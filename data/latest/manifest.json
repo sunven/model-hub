@@ -1,6 +1,6 @@
 {
-  "snapshotId": "20261027-73febb9e",
-  "generatedAt": "2026-10-27T03:50:54.451Z",
+  "snapshotId": "20261027-76543201",
+  "generatedAt": "2026-10-27T04:32:57.324Z",
   "sources": {
     "modelsDev": {
       "license": "MIT",
@@ -8,14 +8,14 @@
       "files": {
         "api": {
           "url": "https://models.dev/api.json",
-          "hash": "6f5fa4e3fad0b4e34d6cbff486bbfa1e98b49a6ae27c8a2f7ee61fb58267d552",
-          "fetchedAt": "2026-10-27T03:50:38.082Z",
-          "bytes": 5955492
+          "hash": "8a8dfc7ac53a16e8f2f497fc9ab823057864bc5c2bbb9bb2afab0e93250e8fca",
+          "fetchedAt": "2026-10-27T04:32:55.730Z",
+          "bytes": 5955482
         },
         "models": {
           "url": "https://models.dev/models.json",
-          "hash": "1fa633e6fc9658f3b07ee9b5d87e33cb48d5e0a9269b03f8107dc18516b2aae4",
-          "fetchedAt": "2026-10-27T03:50:41.036Z",
+          "hash": "c082bd884e27f485ed5443df0d60b7fe6c138a3c404d46c429fd2cc72a1740f0",
+          "fetchedAt": "2026-10-27T04:32:55.819Z",
           "bytes": 506159
         }
       }
@@ -31,13 +31,13 @@
         "text": {
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/text/latest-00000-of-00001.parquet",
           "hash": "d423b3bcd609777fd95be3bb58d8d5b6e654c07a9f1294dbcd57f91f6c419c91",
-          "fetchedAt": "2026-10-27T03:50:47.395Z",
+          "fetchedAt": "2026-10-27T04:32:56.368Z",
           "bytes": 621039
         },
         "webdev": {
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/webdev/latest-00000-of-00001.parquet",
           "hash": "ca6bb80c0ea1c0c89a370bb1c485f17a29ec25a5fb4443f3d81132f314166320",
-          "fetchedAt": "2026-10-27T03:50:51.167Z",
+          "fetchedAt": "2026-10-27T04:32:56.656Z",
           "bytes": 30683
         }
       }
@@ -48,7 +48,7 @@
     "as_of": "2026-10-26",
     "source": "ECB reference rate via Frankfurter",
     "source_url": "https://api.frankfurter.dev/v1/latest?base=USD&symbols=CNY",
-    "fetched_at": "2026-10-27T03:50:54.328Z"
+    "fetched_at": "2026-10-27T04:32:57.033Z"
   },
   "counts": {
     "models": 43,
@@ -57,11 +57,11 @@
     "unmatched": 504
   },
   "files": {
-    "models.json": "e3fe8810dc7e3a2e74121429ad45b8c66e3039fad1d2d3e343376ca6fe5b7f92",
-    "offers.json": "c8941e2b7a705b81e5b27138b80793fe4752acc3d2bcf162998561d8f6fcef9a",
+    "models.json": "ad075e1c2779577e368af658308179d3cd80a65b26b44875e50e325cc5e58a36",
+    "offers.json": "351fa94e70e864c4e8e49e171cea7e2e671df4a4eda14f5d260243598053677d",
     "scores.json": "c5fe414f7420e5f9f59369e8139d048d2a3b46366b110e08ee8a88da61c758ed",
     "unmatched.json": "45e1eab6b1bf7aa238842ddaeec56e33bc85c14992f43897fc9054b05183d642",
-    "validation-report.json": "a1729a2acc0a664de424cd2329d44ee54b1812ca4d1907b3b8c81278269063c4"
+    "validation-report.json": "bd6d477f9da1b3490075911e6c596563f9ecec0c99a29b4aa97379d1fd4ee71c"
   },
   "overrides": {
     "count": 0,
@@ -79,13 +79,13 @@
   },
   "freshness": {
     "modelsDev": {
-      "fetchedAt": "2026-10-27T03:50:38.082Z",
+      "fetchedAt": "2026-10-27T04:32:55.730Z",
       "ageHours": 0,
       "thresholdHours": 48,
       "stale": false
     },
     "arena": {
-      "fetchedAt": "2026-10-27T03:50:47.395Z",
+      "fetchedAt": "2026-10-27T04:32:56.368Z",
       "ageHours": 0,
       "thresholdHours": 72,
       "stale": false
@@ -103,8 +103,8 @@
   },
   "notes": [
     "Local pipeline run. Site deployment is out of scope for this step.",
-    "models.dev snapshot fetchedAt=2026-10-27T03:50:38.082Z",
-    "Arena text/webdev fetchedAt=2026-10-27T03:50:47.395Z/2026-10-27T03:50:51.167Z",
+    "models.dev snapshot fetchedAt=2026-10-27T04:32:55.730Z",
+    "Arena text/webdev fetchedAt=2026-10-27T04:32:56.368Z/2026-10-27T04:32:56.656Z",
     "Arena text filtered to category=overall; webdev filtered to category=webdev; latest publish date, highest vote_count per model/org.",
     "No AA data embedded; AA links are external-only.",
     "FX 6.6681 2026-10-26 from ECB reference rate via Frankfurter.",
