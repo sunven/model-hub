@@ -243,6 +243,7 @@ export function ExploreClient({
                           <input
                             type="checkbox"
                             checked={compare.selected.includes(row.id)}
+                            disabled={!compare.ready}
                             onChange={() => compare.toggle(row.id)}
                             aria-label={`加入对比 ${row.name}`}
                           />
@@ -290,6 +291,7 @@ export function ExploreClient({
                         type="button"
                         className={`btn small ${compare.selected.includes(row.id) ? 'primary' : ''}`}
                         onClick={() => compare.toggle(row.id)}
+                        disabled={!compare.ready}
                       >
                         {compare.selected.includes(row.id) ? '已加入' : '对比'}
                       </button>

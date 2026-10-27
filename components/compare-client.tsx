@@ -1,13 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
-import { useEffect, useMemo, type ReactNode } from 'react'
+import { useMemo, type ReactNode } from 'react'
 import { useCompare } from './compare-provider'
 import { RowBadges } from './badges'
 import { ScorePill } from './score-pill'
 import { fmtCnyRange, fmtContext, fmtRange, scoreMeta } from '@/lib/format'
-import { modelHref, parseCompareIds } from '@/lib/site'
+import { modelHref } from '@/lib/site'
 import type { FxConfig } from '@/lib/snapshot'
 import type { BoardDomains, ModelRow } from '@/lib/types'
 
@@ -120,15 +119,10 @@ export function CompareClient({
   fx: FxConfig
   picks: ModelRow[]
 }) {
-  const params = useSearchParams()
   const compare = useCompare()
   const byId = useMemo(() => new Map(models.map(m => [m.id, m])), [models])
-  useEffect(() => {
-    const fromUrl = parseCompareIds(params.get('models')).slice(0, 3)
-    if (fromUrl.length) compare.setSelected(fromUrl)
-    // Only initialize from URL on mount.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+
+  if (!compare.ready) return <div className="sheet-inner"><div className="empty">正在加载对比…</div></div>
 
   const selected = compare.selected.map(id => byId.get(id)).filter(Boolean) as ModelRow[]
 

@@ -27,11 +27,3 @@ export function absoluteUrl(path = '/'): string {
 export function modelHref(canonicalId: string): string {
   return `/models/${canonicalId}`
 }
-
-export function compareHref(ids: string[]): string {
-  return `/compare?models=${ids.map(encodeURIComponent).join(',')}`
-}
-
-export function parseCompareIds(value: string | null): string[] {
-  return (value ?? '').split(',').filter(Boolean)
-}

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCompare } from './compare-provider'
-import { compareHref } from '@/lib/site'
+import { compareHref } from '@/lib/compare-set'
 
 export function CompareTray() {
   const { selected, modelIndex, remove, clear, showToast } = useCompare()
@@ -37,7 +37,7 @@ export function CompareTray() {
 }
 
 export function CompareButton({ modelId, small = false, primary = false }: { modelId: string; small?: boolean; primary?: boolean }) {
-  const { selected, toggle } = useCompare()
+  const { selected, ready, toggle } = useCompare()
   const active = selected.includes(modelId)
   return (
     <button
@@ -45,6 +45,7 @@ export function CompareButton({ modelId, small = false, primary = false }: { mod
       className={`btn ${active || primary ? 'primary' : ''}`}
       style={small ? { padding: '4px 8px', fontSize: 11 } : undefined}
       onClick={() => toggle(modelId)}
+      disabled={!ready}
     >
       {active ? '已加入对比' : '加入对比'}
     </button>

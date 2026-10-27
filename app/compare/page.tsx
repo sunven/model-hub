@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
 import { CompareClient } from '@/components/compare-client'
 import { catalog, fx } from '@/lib/data'
 
@@ -11,8 +10,6 @@ export const metadata: Metadata = {
 
 export default function ComparePage() {
   return (
-    <Suspense fallback={<div className="container"><div className="empty">正在加载对比…</div></div>}>
-      <CompareClient models={catalog.rows} domains={catalog.domains} fx={fx} picks={catalog.topText(6)} />
-    </Suspense>
+    <CompareClient models={catalog.rows} domains={catalog.domains} fx={fx} picks={catalog.topText(6)} />
   )
 }

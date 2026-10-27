@@ -34,6 +34,8 @@ npm run test:e2e    # Playwright（本地默认使用 Chrome）
 npm run build       # 静态导出到 out/
 ```
 
+Compare Set 由 `CompareProvider` 唯一持有，页面、托盘和导航栏共用；合法 ID、去重、顺序和最多 3 个的规则统一在 `lib/compare-set.ts`。localStorage 只用于首次恢复与保存选择。对比 URL 中显式给出的 `models` 优先，包括空值和全部无效的 ID；裸 `/compare` 首次进入可恢复已有选择，浏览器返回到已清空的对比地址会恢复空集合。移除和清空用 `replaceState` 更新当前地址，保留其他 query、hash 与 history state。
+
 ## 数据刷新
 
 ```bash
