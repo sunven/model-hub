@@ -31,12 +31,8 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - run: npm run build
-      - id: chromium
-        run: node -e "console.log('path=' + require('@playwright/test').chromium.executablePath())" >> "$GITHUB_OUTPUT"
       - name: Lighthouse CI
         run: npx lhci autorun
-        env:
-          CHROME_PATH: ${{ steps.chromium.outputs.path }}
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
