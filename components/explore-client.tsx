@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useEffect, useMemo, useState, useCallback } from 'react'
 import {
   getCoreRowModel,
@@ -42,24 +42,37 @@ function parseLabs(value: string | null): string[] {
 }
 
 export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDate: string }) {
-  const params = useSearchParams()
   const router = useRouter()
   const compare = useCompare()
 
-  const [q, setQ] = useState(() => params.get('q') ?? '')
-  const [labs, setLabs] = useState<string[]>(() => parseLabs(params.get('labs')))
-  const [providers, setProviders] = useState<string[]>(() => parseLabs(params.get('providers')))
-  const [maxOutput, setMaxOutput] = useState(() => params.get('maxOutput') ?? '')
-  const [minContext, setMinContext] = useState(() => params.get('minContext') ?? '')
-  const [reasoning, setReasoning] = useState(() => params.get('reasoning') === '1')
-  const [openWeights, setOpenWeights] = useState(() => params.get('openWeights') === '1')
-  const [stableOnly, setStableOnly] = useState(() => params.get('stableOnly') === '1')
-  const [hasArena, setHasArena] = useState(() => params.get('hasArena') === '1')
-  const [sortKey, setSortKey] = useState<SortKey>(() => {
-    const value = params.get('sort')
-    return SORT_OPTIONS.some(o => o.value === value) ? (value as SortKey) : 'arena_text'
-  })
+  const [q, setQ] = useState('')
+  const [labs, setLabs] = useState<string[]>([])
+  const [providers, setProviders] = useState<string[]>([])
+  const [maxOutput, setMaxOutput] = useState('')
+  const [minContext, setMinContext] = useState('')
+  const [reasoning, setReasoning] = useState(false)
+  const [openWeights, setOpenWeights] = useState(false)
+  const [stableOnly, setStableOnly] = useState(false)
+  const [hasArena, setHasArena] = useState(false)
+  const [sortKey, setSortKey] = useState<SortKey>('arena_text')
   const [filtersOpen, setFiltersOpen] = useState(false)
+  const [urlReady, setUrlReady] = useState(false)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const sort = params.get('sort')
+    setQ(params.get('q') ?? '')
+    setLabs(parseLabs(params.get('labs')))
+    setProviders(parseLabs(params.get('providers')))
+    setMaxOutput(params.get('maxOutput') ?? '')
+    setMinContext(params.get('minContext') ?? '')
+    setReasoning(params.get('reasoning') === '1')
+    setOpenWeights(params.get('openWeights') === '1')
+    setStableOnly(params.get('stableOnly') === '1')
+    setHasArena(params.get('hasArena') === '1')
+    setSortKey(SORT_OPTIONS.some(o => o.value === sort) ? (sort as SortKey) : 'arena_text')
+    setUrlReady(true)
+  }, [])
 
   const allLabs = useMemo(() => [...new Set(models.map(m => m.lab))].sort((a, b) => a.localeCompare(b, 'zh')), [models])
   const allProviders = useMemo(
@@ -91,7 +104,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
   }, [q, labs, providers, maxOutput, minContext, reasoning, openWeights, stableOnly, hasArena, sortKey])
 
   useEffect(() => {
-    if (window.location.pathname !== '/') return
+    if (!urlReady || window.location.pathname !== '/') return
     const p = new URLSearchParams()
     if (q) p.set('q', q)
     if (labs.length) p.set('labs', labs.join(','))
@@ -105,7 +118,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
     if (sortKey !== 'arena_text') p.set('sort', sortKey)
     const query = p.toString()
     window.history.replaceState({}, '', query ? `${window.location.pathname}?${query}` : window.location.pathname)
-  }, [q, labs, providers, maxOutput, minContext, reasoning, openWeights, stableOnly, hasArena, sortKey])
+  }, [urlReady, q, labs, providers, maxOutput, minContext, reasoning, openWeights, stableOnly, hasArena, sortKey])
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase()

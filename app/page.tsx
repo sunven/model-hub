@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
 import { ExploreClient } from '@/components/explore-client'
 import { JsonLd } from '@/components/json-ld'
 import { manifest, modelRows, models } from '@/lib/data'
@@ -46,9 +45,7 @@ export default function HomePage() {
           <span>Model Version</span>
         </div>
       </section>
-      <Suspense fallback={<div className="container"><div className="empty">正在加载模型表…</div></div>}>
-        <ExploreClient models={modelRows} dataDate={dataDate} />
-      </Suspense>
+      <ExploreClient models={modelRows} dataDate={dataDate} />
     </>
   )
 }
