@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { CiRail, ciDomain } from './ci-rail'
+import { useNoindex } from './use-noindex'
 import { ciHalf, ciOverlaps, fmtVotes } from '@/lib/format'
 import type { LeaderboardRow } from '@/lib/types'
 
@@ -20,17 +21,7 @@ export function LeaderboardClient({
   const [q, setQ] = useState('')
   const [visibleCount, setVisibleCount] = useState(PAGE)
 
-  useEffect(() => {
-    const metas = Array.from(document.querySelectorAll<HTMLMetaElement>('meta[name="robots"]'))
-    if (!metas.length) return
-    const previous = metas.map(meta => meta.getAttribute('content'))
-    for (const meta of metas) meta.setAttribute('content', q ? 'noindex,follow' : 'index,follow')
-    return () => {
-      metas.forEach((meta, i) => {
-        if (previous[i]) meta.setAttribute('content', previous[i]!)
-      })
-    }
-  }, [q])
+  useNoindex(q.trim() !== '')
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase()

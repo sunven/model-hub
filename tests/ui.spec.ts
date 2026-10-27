@@ -22,6 +22,11 @@ test('home renders and search/filter/sort update URL', async ({ page }) => {
   await expect(page.locator('.model-row').first().locator('.model-name')).toContainText('GPT-6 Luna')
   await expect(page).toHaveURL(/sort=price/)
   await expect(page).toHaveURL(/labs=OpenAI/)
+
+  await page.getByRole('button', { name: '移除 OpenAI' }).click()
+  await expect(page.locator('.model-row')).toHaveCount(43)
+  await expect(page).not.toHaveURL(/labs=OpenAI/)
+  await expect(page).toHaveURL(/sort=price/)
 })
 
 test('provider filter includes first-party and gateway-only', async ({ page }) => {
