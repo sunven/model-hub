@@ -40,9 +40,16 @@ npm run build       # 静态导出到 out/
 npm run data:refresh   # 下载 models.dev + Arena 数据，更新 ECB 汇率，重建快照
 npm run data:offline   # 使用 data/raw 缓存重建，不联网
 npm run data           # 缓存存在时复用，否则下载
+npm run data:offline -- --data-dir /absolute/path/to/data # 使用独立数据目录
 ```
 
-管道先写临时目录，校验通过后才原子替换 `data/latest`。硬失败时保留上一份可用快照，并把报告写到 `data/validation-report.json`。`data/raw` 不纳入版本控制。
+管道先校验并写入临时目录，再通过目录 rename 发布 `data/latest` 与 `data/schema`。写入或替换失败会回滚两份目录，报告写到 `data/validation-report.json`；若文件系统连回滚也拒绝，报告会注明保留下来的备份目录。跨目录发布不保证进程崩溃时的原子性，同一数据目录应只运行一个写入者。`data/raw` 不纳入版本控制。
+
+CLI 默认数据目录相对于仓库定位，不受启动目录影响。独立数据目录需包含 `launch-set.yml`、`crosswalk/`、`fx.yml`；离线运行还需 `raw/` 缓存。
+
+程序调用使用 `scripts/snapshot.ts` 的 `runSnapshot({ source, now, dataDir })`，导入时不执行任务，不写日志或修改进程退出码。`source.load(now)` 提供原始目录、Arena 行、配置和来源记录；`createSnapshotSource`（`scripts/fetch.ts`）提供真实下载/缓存 adapter，测试可直接提供 fixture adapter。结果包含 `status`、`report` 和成功时的 `manifest`；无法保存失败报告时会抛错。
+
+Snapshot ID 同时哈希构建代码、依赖锁文件及数据输入。固定输入、代码与时钟可复现所有输出字节。抓取时间保存在缓存旁的 `.metadata.json`，仅在哈希匹配时复用；旧缓存可从哈希匹配的上一份 Manifest 恢复时间，否则标为时间未知（以 1970-01-01 表示并提示 Stale），不会把缓存文件的修改时间当成抓取时间。
 
 数据新鲜度阈值：models.dev 超过 48 小时、Arena 超过 72 小时在界面提示；汇率超过 14 天隐藏 CNY。数据不会因过期被隐藏。
 

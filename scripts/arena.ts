@@ -1,5 +1,3 @@
-import { asyncBufferFromFile, parquetReadObjects } from 'hyparquet'
-import { compressors } from 'hyparquet-compressors'
 import type { Board, Score, UnmatchedEntry } from '../lib/snapshot'
 import type { ArenaBuildResult, CrosswalkEntry, LaunchEntry } from './types'
 import {
@@ -31,12 +29,7 @@ interface CompiledPattern {
   regex: RegExp
 }
 
-async function readParquet(file: string): Promise<any[]> {
-  const fileBuffer = await asyncBufferFromFile(file)
-  return await parquetReadObjects({ file: fileBuffer, compressors })
-}
-
-function normalizeRows(raw: any[], board: Board): { rows: ArenaRow[]; warnings: string[]; filtered: number } {
+function normalizeRows(raw: Record<string, unknown>[], board: Board): { rows: ArenaRow[]; warnings: string[]; filtered: number } {
   const warnings: string[] = []
   const category = board === 'text' ? 'overall' : 'webdev'
   const filteredRows = raw.filter(r => r?.category === category)
@@ -123,18 +116,18 @@ function compilePatterns(crosswalk: CrosswalkEntry[], launch: LaunchEntry[], har
   return out
 }
 
-export async function buildArenaData(args: {
-  textFile: string
-  webdevFile: string
+export function buildArenaData(args: {
+  textRows: Record<string, unknown>[]
+  webdevRows: Record<string, unknown>[]
   crosswalk: CrosswalkEntry[]
   launch: LaunchEntry[]
   modelIds: Set<string>
-}): Promise<ArenaBuildResult> {
+}): ArenaBuildResult {
   const hardFailures: string[] = []
   const warnings: string[] = []
   const patterns = compilePatterns(args.crosswalk, args.launch, hardFailures)
 
-  const [rawText, rawWebdev] = await Promise.all([readParquet(args.textFile), readParquet(args.webdevFile)])
+  const { textRows: rawText, webdevRows: rawWebdev } = args
   const text = normalizeRows(rawText, 'text')
   const webdev = normalizeRows(rawWebdev, 'webdev')
   warnings.push(...text.warnings, ...webdev.warnings)

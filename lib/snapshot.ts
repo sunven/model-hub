@@ -285,14 +285,15 @@ export function hasCompletePrice(offer: Offer): boolean {
   return offer.price != null && offer.price.input != null && offer.price.output != null
 }
 
-function ageDays(date: string): number | null {
+function ageDays(date: string, now: number): number | null {
   const t = Date.parse(date)
   if (!Number.isFinite(t)) return null
-  return Math.floor((Date.now() - t) / 86_400_000)
+  return Math.floor((now - t) / 86_400_000)
 }
 
 export function validateSnapshot(args: {
   snapshotId: string
+  now?: number
   expectedCanonicalIds: readonly string[]
   models: unknown
   offers: unknown
@@ -302,14 +303,14 @@ export function validateSnapshot(args: {
 }): ValidationReport {
   const hardFailures: string[] = []
   const warnings: string[] = []
-  const { snapshotId, expectedCanonicalIds } = args
+  const { snapshotId, expectedCanonicalIds, now = Date.now() } = args
   const models = validateSchema(modelVersionSchema.array(), args.models, 'models.json', hardFailures)
   const offers = validateSchema(offerSchema.array(), args.offers, 'offers.json', hardFailures)
   const scores = validateSchema(scoreSchema.array(), args.scores, 'scores.json', hardFailures)
   const unmatched = validateSchema(unmatchedSchema.array(), args.unmatched, 'unmatched.json', hardFailures)
   const fx = validateSchema(fxSchema, args.fx, 'fx', hardFailures)
   if (!models || !offers || !scores || !unmatched || !fx) {
-    return { status: 'failed', hardFailures, warnings, stats: {}, generatedAt: new Date().toISOString(), snapshotId }
+    return { status: 'failed', hardFailures, warnings, stats: {}, generatedAt: new Date(now).toISOString(), snapshotId }
   }
 
   if (models.length !== expectedCanonicalIds.length) {
@@ -385,7 +386,7 @@ export function validateSnapshot(args: {
     }
   }
 
-  const fxAge = ageDays(fx.as_of)
+  const fxAge = ageDays(fx.as_of, now)
   if (fxAge === null) hardFailures.push(`invalid fx as_of: ${fx.as_of}`)
   else if (fxAge > 14) warnings.push(`fx rate is ${fxAge} days old (>14); CNY should be hidden in UI`)
 
@@ -411,7 +412,7 @@ export function validateSnapshot(args: {
     hardFailures,
     warnings,
     stats,
-    generatedAt: new Date().toISOString(),
+    generatedAt: new Date(now).toISOString(),
     snapshotId,
   }
 }

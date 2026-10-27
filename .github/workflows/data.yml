@@ -27,6 +27,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run data:refresh
+      - run: npm run schema:check
       - run: npm run typecheck
       - run: npm run test:unit
       - run: npm run build
@@ -41,3 +42,10 @@ jobs:
           fi
           git commit -m "chore(data): refresh validated snapshot"
           git push
+      - name: Upload failed snapshot diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshot-validation-report
+          path: data/validation-report.json
+          if-no-files-found: ignore
