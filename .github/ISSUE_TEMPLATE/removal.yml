@@ -1,0 +1,59 @@
+name: 权利方下架请求
+description: 模型厂商、数据来源或权利方请求修正或下架内容
+title: "[下架] "
+labels: ["removal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        我们会在核实期间先隐藏争议条目，并保留内部处理记录。
+        请勿在公开 Issue 中提交身份证件、合同或其他敏感材料；可先说明请求，维护者会安排私下沟通方式。
+  - type: input
+    id: rights_holder
+    attributes:
+      label: 权利方 / 代表身份
+      description: 个人或组织名称，以及与该内容的 relationship（如厂商、代理、数据来源）
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: 涉及页面或数据
+      placeholder: /models/... 或 data/latest/...
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: 请求内容
+      description: 希望修正、隐藏或删除哪些字段/页面
+    validations:
+      required: true
+  - type: textarea
+    id: basis
+    attributes:
+      label: 权利依据
+      description: 商标、版权、合同、数据许可或其他依据的简述
+    validations:
+      required: true
+  - type: input
+    id: evidence
+    attributes:
+      label: 公开可核验链接（可选）
+      description: 如材料敏感，请只提供一般性说明，不要附敏感文件
+    validations:
+      required: false
+  - type: input
+    id: contact
+    attributes:
+      label: 私密联系方式
+      description: 可填写邮箱；如不便公开，可写“请安排私下沟通”
+    validations:
+      required: true
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: 确认
+      options:
+        - label: 我理解此 Issue 会公开显示，并确认未提交敏感材料。
+          required: true

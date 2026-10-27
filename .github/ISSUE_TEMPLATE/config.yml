@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 数据说明、来源与许可
+    url: https://github.com/sunven/model-hub/blob/main/ATTRIBUTION.md
+    about: 提交纠错前请先确认来源、许可和修改说明。
+  - name: 权利方纠错与下架说明
+    url: https://github.com/sunven/model-hub/blob/main/ATTRIBUTION.md#corrections-and-removal-requests
+    about: 请勿公开敏感材料；先说明请求，维护者会安排后续私下沟通。

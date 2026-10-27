@@ -1,0 +1,233 @@
+# Arena HF crosswalk — manual, 2026-10-27
+# textPatterns apply to text/latest with category=overall.
+# webdevPatterns apply to webdev/latest with category=webdev.
+# Empty arrays mean intentionally no match; the model will show 未收录.
+# Patterns are JavaScript regex strings, matched case-insensitively.
+
+- canonicalId: openai/gpt-6.1-sol
+  textPatterns: ['^GPT-6\.1 Sol\b']
+  webdevPatterns: ['^GPT-6\.1 Sol\b']
+  confidence: verified
+
+- canonicalId: openai/gpt-6-sol
+  textPatterns: ['^GPT-6 Sol\b']
+  webdevPatterns: ['^GPT-6 Sol\b']
+  confidence: verified
+
+- canonicalId: openai/gpt-6-luna
+  textPatterns: ['^GPT-6 Luna\b']
+  webdevPatterns: ['^GPT-6 Luna\b']
+  confidence: verified
+
+- canonicalId: openai/gpt-6-astra
+  textPatterns: ['^GPT-6 Astra\b']
+  webdevPatterns: ['^GPT-6 Astra\b']
+  confidence: verified
+
+- canonicalId: anthropic/claude-opus-5-5
+  textPatterns: ['^Claude Opus 5\.5\b']
+  webdevPatterns: ['^Claude Opus 5\.5\b']
+  confidence: verified
+
+- canonicalId: anthropic/claude-sonnet-5-5
+  textPatterns: ['^Claude Sonnet 5\.5\b']
+  webdevPatterns: ['^Claude Sonnet 5\.5\b']
+  confidence: verified
+
+- canonicalId: anthropic/claude-haiku-5-5
+  textPatterns: ['^Claude Haiku 5\.5\b']
+  webdevPatterns: ['^Claude Haiku 5\.5\b']
+  confidence: verified
+
+- canonicalId: anthropic/claude-fable-5-1
+  textPatterns: ['^Claude Fable 5\.1\b']
+  webdevPatterns: ['^Claude Fable 5\.1\b']
+  confidence: verified
+
+- canonicalId: google/gemini-3.8-flash
+  textPatterns: ['^Gemini 3\.8 Flash\b']
+  webdevPatterns: ['^Gemini 3\.8 Flash\b']
+  confidence: verified
+
+- canonicalId: google/gemini-3.5-flash-lite
+  textPatterns: ['^Gemini 3\.5 Flash-Lite\b']
+  webdevPatterns: ['^Gemini 3\.5 Flash-Lite\b']
+  confidence: verified
+
+- canonicalId: google/gemini-3.1-pro-preview-customtools
+  textPatterns: ['^Gemini 3\.1 Pro Preview\b']
+  webdevPatterns: ['^Gemini 3\.1 Pro Preview\b']
+  confidence: verified
+
+- canonicalId: xai/grok-4.7
+  textPatterns: ['^Grok 4\.7\b']
+  webdevPatterns: ['^Grok 4\.7\b']
+  confidence: verified
+
+- canonicalId: xai/grok-4.5
+  textPatterns: ['^Grok 4\.5\b']
+  webdevPatterns: ['^Grok 4\.5\b']
+  confidence: verified
+
+- canonicalId: mistral/mistral-large-4
+  textPatterns: ['^Mistral Large 4\b']
+  webdevPatterns: ['^Mistral Large 4\b']
+  confidence: verified
+
+- canonicalId: mistral/mistral-medium-latest
+  textPatterns: ['^Mistral Medium$']
+  webdevPatterns: []
+  confidence: verified
+
+- canonicalId: mistral/codestral-2508
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: No Arena row for Codestral 2508.
+
+- canonicalId: cohere/command-a-plus-05-2026
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: Arena has Command A / Command R+, not Command A+.
+
+- canonicalId: meta/muse-wonder-1.0
+  textPatterns: ['^Muse Wonder \(']
+  webdevPatterns: ['^Muse Wonder \(']
+  confidence: verified
+
+- canonicalId: meta/muse-spark-1.1
+  textPatterns: ['^Muse Spark 1\.1\b']
+  webdevPatterns: ['^Muse Spark 1\.1\b']
+  confidence: verified
+
+- canonicalId: meta/muse-glimmer-30b
+  textPatterns: ['^Muse Glimmer\b']
+  webdevPatterns: ['^Muse Glimmer\b']
+  confidence: verified
+  notes: Arena row "Muse Glimmer" (org meta) is the only Muse Glimmer variant; the display name omits the 30B size suffix.
+
+- canonicalId: deepseek/deepseek-v4.1-flash-1017
+  textPatterns: []
+  webdevPatterns: ['^DeepSeek-V4\.1-Flash-20261017\b']
+  confidence: verified
+
+- canonicalId: deepseek/deepseek-v4-pro-0813
+  textPatterns: ['^DeepSeek-V4-Pro \(High, 20260813\)$']
+  webdevPatterns: ['^DeepSeek-V4-Pro \(High, 20260813\)$']
+  confidence: verified
+
+- canonicalId: alibaba/qwen3.8-max
+  textPatterns: ['^Qwen3\.8-Max$']
+  webdevPatterns: ['^Qwen3\.8-Max$']
+  confidence: verified
+
+- canonicalId: alibaba/qwen3.8-flash
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: Arena has Qwen3.8-Flash-Next, not the base Flash.
+
+- canonicalId: alibaba/qwen3.8-omni-flash
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: No Arena row.
+
+- canonicalId: alibaba/qwen3.8-27b
+  textPatterns: ['^Qwen3\.8-27B\b']
+  webdevPatterns: ['^Qwen3\.8-27B\b']
+  confidence: verified
+
+- canonicalId: zhipuai/glm-5.3
+  textPatterns: ['^GLM-5\.3 \(']
+  webdevPatterns: ['^GLM-5\.3 \(']
+  confidence: verified
+
+- canonicalId: zhipuai/glm-5.3-flash
+  textPatterns: ['^GLM-5\.3-Flash\b']
+  webdevPatterns: ['^GLM-5\.3-Flash\b']
+  confidence: verified
+
+- canonicalId: zhipuai/glm-4.7-flashx
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: Arena has GLM-4.7 / GLM-4.7-Flash, not FlashX.
+
+- canonicalId: moonshotai/kimi-k3.1-pro
+  textPatterns: []
+  webdevPatterns: ['^Kimi K3\.1 Pro\b']
+  confidence: verified
+  notes: Text has Kimi K3 only; K3.1 Pro appears on webdev.
+
+- canonicalId: moonshotai/kimi-k3
+  textPatterns: ['^Kimi K3 \(']
+  webdevPatterns: ['^Kimi K3 \(']
+  confidence: verified
+
+- canonicalId: bytedance-seed/seed-evolving
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: No Arena row.
+
+- canonicalId: bytedance-seed/seed-character
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: No Arena row.
+
+- canonicalId: bytedance-seed/seed-2.1-pro
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: Arena has Seed2.1 Pro Preview; not mapping preview to base.
+
+- canonicalId: stepfun/step-3.5-flash-2603
+  textPatterns: ['^Step-3\.5-Flash\b']
+  webdevPatterns: []
+  confidence: verified
+  notes: Arena row "Step-3.5-Flash" (org stepfun) is the only Step 3.5 Flash variant; the 2603 snapshot suffix is omitted in Arena.
+
+- canonicalId: xiaomi/mimo-v2.6-pro
+  textPatterns: ['^MiMo-V2\.6-Pro\b']
+  webdevPatterns: ['^MiMo-V2\.6-Pro\b']
+  confidence: verified
+
+- canonicalId: xiaomi/mimo-v2.6-flash
+  textPatterns: ['^MiMo-V2\.6-Flash\b']
+  webdevPatterns: ['^MiMo-V2\.6-Flash\b']
+  confidence: verified
+
+- canonicalId: tencent/hy4-preview
+  textPatterns: []
+  webdevPatterns: ['^Hy4 preview$']
+  confidence: verified
+
+- canonicalId: nvidia/nemotron-3.5-super-vl-120b-a12b
+  textPatterns: ['^NVIDIA-Nemotron-3\.5-Super-VL-120B-A12B\b']
+  webdevPatterns: ['^NVIDIA-Nemotron-3\.5-Super-VL-120B-A12B\b']
+  confidence: verified
+
+- canonicalId: amazon/nova-2-lite
+  textPatterns: ['^Amazon Nova 2 Lite\b']
+  webdevPatterns: []
+  confidence: verified
+
+- canonicalId: sakana/fugu-max
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: No Arena row.
+
+- canonicalId: upstage/solar-pro4
+  textPatterns: ['^Solar Pro 4\b']
+  webdevPatterns: ['^Solar Pro 4\b']
+  confidence: verified
+
+- canonicalId: inception/mercury-3
+  textPatterns: []
+  webdevPatterns: []
+  confidence: none
+  notes: Arena has Mercury 2, not Mercury 3.

@@ -1,0 +1,218 @@
+# 首批 43 个 Model Version（来自 2026-10-26 models.dev 快照）
+# 由 launch-set.md 转写；canonicalId 是稳定键。
+
+- canonicalId: "openai/gpt-6.1-sol"
+  name: "GPT-6.1 Sol"
+  lab: "OpenAI"
+  status: "stable"
+  openWeights: false
+- canonicalId: "openai/gpt-6-sol"
+  name: "GPT-6 Sol"
+  lab: "OpenAI"
+  status: "stable"
+  openWeights: false
+- canonicalId: "openai/gpt-6-luna"
+  name: "GPT-6 Luna"
+  lab: "OpenAI"
+  status: "stable"
+  openWeights: false
+- canonicalId: "openai/gpt-6-astra"
+  name: "GPT-6 Astra"
+  lab: "OpenAI"
+  status: "stable"
+  openWeights: false
+- canonicalId: "anthropic/claude-opus-5-5"
+  name: "Claude Opus 5.5"
+  lab: "Anthropic"
+  status: "stable"
+  openWeights: false
+- canonicalId: "anthropic/claude-sonnet-5-5"
+  name: "Claude Sonnet 5.5"
+  lab: "Anthropic"
+  status: "stable"
+  openWeights: false
+- canonicalId: "anthropic/claude-haiku-5-5"
+  name: "Claude Haiku 5.5"
+  lab: "Anthropic"
+  status: "stable"
+  openWeights: false
+- canonicalId: "anthropic/claude-fable-5-1"
+  name: "Claude Fable 5.1"
+  lab: "Anthropic"
+  status: "stable"
+  openWeights: false
+- canonicalId: "google/gemini-3.8-flash"
+  name: "Gemini 3.8 Flash"
+  lab: "Google"
+  status: "stable"
+  openWeights: false
+- canonicalId: "google/gemini-3.5-flash-lite"
+  name: "Gemini 3.5 Flash Lite"
+  lab: "Google"
+  status: "stable"
+  openWeights: false
+- canonicalId: "google/gemini-3.1-pro-preview-customtools"
+  name: "Gemini 3.1 Pro (Preview Custom Tools)"
+  lab: "Google"
+  status: "beta"
+  openWeights: false
+- canonicalId: "xai/grok-4.7"
+  name: "Grok 4.7"
+  lab: "xAI"
+  status: "beta"
+  openWeights: false
+- canonicalId: "xai/grok-4.5"
+  name: "Grok 4.5"
+  lab: "xAI"
+  status: "stable"
+  openWeights: false
+- canonicalId: "mistral/mistral-large-4"
+  name: "Mistral Large 4"
+  lab: "Mistral"
+  status: "beta"
+  openWeights: false
+- canonicalId: "mistral/mistral-medium-latest"
+  name: "Mistral Medium (latest)"
+  lab: "Mistral"
+  status: "stable"
+  openWeights: true
+- canonicalId: "mistral/codestral-2508"
+  name: "Codestral 2508"
+  lab: "Mistral"
+  status: "stable"
+  openWeights: false
+- canonicalId: "cohere/command-a-plus-05-2026"
+  name: "Command A+"
+  lab: "Cohere"
+  status: "stable"
+  openWeights: true
+- canonicalId: "meta/muse-wonder-1.0"
+  name: "Muse Wonder"
+  lab: "Meta"
+  status: "stable"
+  openWeights: false
+- canonicalId: "meta/muse-spark-1.1"
+  name: "Muse Spark 1.1"
+  lab: "Meta"
+  status: "stable"
+  openWeights: false
+- canonicalId: "meta/muse-glimmer-30b"
+  name: "Muse Glimmer 30B"
+  lab: "Meta"
+  status: "stable"
+  openWeights: true
+- canonicalId: "deepseek/deepseek-v4.1-flash-1017"
+  name: "DeepSeek V4.1 Flash 1017"
+  lab: "DeepSeek"
+  status: "beta / mixed"
+  openWeights: true
+- canonicalId: "deepseek/deepseek-v4-pro-0813"
+  name: "DeepSeek V4 Pro 0813"
+  lab: "DeepSeek"
+  status: "beta / mixed"
+  openWeights: true
+- canonicalId: "alibaba/qwen3.8-max"
+  name: "Qwen3.8 Max"
+  lab: "Alibaba / Qwen"
+  status: "stable"
+  openWeights: false
+- canonicalId: "alibaba/qwen3.8-flash"
+  name: "Qwen3.8 Flash"
+  lab: "Alibaba / Qwen"
+  status: "stable"
+  openWeights: false
+- canonicalId: "alibaba/qwen3.8-omni-flash"
+  name: "Qwen3.8 Omni Flash"
+  lab: "Alibaba / Qwen"
+  status: "stable"
+  openWeights: false
+- canonicalId: "alibaba/qwen3.8-27b"
+  name: "Qwen3.8 27B"
+  lab: "Alibaba / Qwen"
+  status: "beta"
+  openWeights: true
+- canonicalId: "zhipuai/glm-5.3"
+  name: "GLM 5.3"
+  lab: "Zhipu / GLM"
+  status: "beta"
+  openWeights: true
+- canonicalId: "zhipuai/glm-5.3-flash"
+  name: "GLM 5.3 Flash"
+  lab: "Zhipu / GLM"
+  status: "beta"
+  openWeights: true
+- canonicalId: "zhipuai/glm-4.7-flashx"
+  name: "GLM 4.7 FlashX"
+  lab: "Zhipu / GLM"
+  status: "stable"
+  openWeights: true
+- canonicalId: "moonshotai/kimi-k3.1-pro"
+  name: "Kimi K3.1 Pro"
+  lab: "Moonshot / Kimi"
+  status: "stable"
+  openWeights: false
+- canonicalId: "moonshotai/kimi-k3"
+  name: "Kimi K3"
+  lab: "Moonshot / Kimi"
+  status: "beta / mixed"
+  openWeights: true
+- canonicalId: "bytedance-seed/seed-evolving"
+  name: "Seed Evolving"
+  lab: "ByteDance / Seed"
+  status: "stable"
+  openWeights: false
+- canonicalId: "bytedance-seed/seed-character"
+  name: "Seed Character"
+  lab: "ByteDance / Seed"
+  status: "stable"
+  openWeights: false
+- canonicalId: "bytedance-seed/seed-2.1-pro"
+  name: "Seed 2.1 Pro"
+  lab: "ByteDance / Seed"
+  status: "stable"
+  openWeights: false
+- canonicalId: "stepfun/step-3.5-flash-2603"
+  name: "Step 3.5 Flash 2603"
+  lab: "StepFun"
+  status: "stable"
+  openWeights: true
+- canonicalId: "xiaomi/mimo-v2.6-pro"
+  name: "MiMo V2.6 Pro"
+  lab: "Xiaomi"
+  status: "stable"
+  openWeights: true
+- canonicalId: "xiaomi/mimo-v2.6-flash"
+  name: "MiMo V2.6 Flash"
+  lab: "Xiaomi"
+  status: "stable"
+  openWeights: true
+- canonicalId: "tencent/hy4-preview"
+  name: "Hy4 Preview"
+  lab: "Tencent"
+  status: "stable"
+  openWeights: true
+- canonicalId: "nvidia/nemotron-3.5-super-vl-120b-a12b"
+  name: "Nemotron 3.5 Super VL 120B A12B"
+  lab: "NVIDIA"
+  status: "stable"
+  openWeights: true
+- canonicalId: "amazon/nova-2-lite"
+  name: "Nova 2 Lite"
+  lab: "Amazon"
+  status: "stable"
+  openWeights: false
+- canonicalId: "sakana/fugu-max"
+  name: "Fugu Max"
+  lab: "Sakana"
+  status: "stable"
+  openWeights: false
+- canonicalId: "upstage/solar-pro4"
+  name: "Solar Pro 4"
+  lab: "Upstage"
+  status: "stable"
+  openWeights: false
+- canonicalId: "inception/mercury-3"
+  name: "Mercury 3"
+  lab: "Inception"
+  status: "stable"
+  openWeights: false

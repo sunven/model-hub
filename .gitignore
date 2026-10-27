@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+test-results/
+playwright-report/
+.lighthouseci/
+data/raw/
+data/tmp-*/
+data/latest.prev/
+data/validation-report.json
+tsconfig.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store

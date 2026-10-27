@@ -1,0 +1,89 @@
+{
+  "snapshotId": "20261027-f0bdd32e",
+  "generatedAt": "2026-10-27T03:30:39.923Z",
+  "sources": {
+    "modelsDev": {
+      "license": "MIT",
+      "url": "https://models.dev/api.json",
+      "files": {
+        "api": {
+          "url": "https://models.dev/api.json",
+          "hash": "1fb686c61bdc26a71f820079ead7a229d0d105be98ebfee7f4596f7dcd05d8e7",
+          "fetchedAt": "2026-10-27T03:16:39.992Z",
+          "bytes": 5954799
+        },
+        "models": {
+          "url": "https://models.dev/models.json",
+          "hash": "909a66c38a618ffb4b84fc9b8d39aa4b89ef4c94d6726f8df3d7fcc22c993990",
+          "fetchedAt": "2026-10-27T03:16:42.879Z",
+          "bytes": 506159
+        }
+      }
+    },
+    "arena": {
+      "license": "CC BY 4.0",
+      "attribution": "LMArena Leaderboard Dataset (lmarena-ai/leaderboard-dataset)",
+      "filters": {
+        "text": "category=overall",
+        "webdev": "category=webdev"
+      },
+      "files": {
+        "text": {
+          "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/text/latest-00000-of-00001.parquet",
+          "hash": "d423b3bcd609777fd95be3bb58d8d5b6e654c07a9f1294dbcd57f91f6c419c91",
+          "fetchedAt": "2026-10-27T03:16:47.154Z",
+          "bytes": 621039
+        },
+        "webdev": {
+          "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/webdev/latest-00000-of-00001.parquet",
+          "hash": "ca6bb80c0ea1c0c89a370bb1c485f17a29ec25a5fb4443f3d81132f314166320",
+          "fetchedAt": "2026-10-27T03:17:34.507Z",
+          "bytes": 30683
+        }
+      }
+    }
+  },
+  "fx": {
+    "usd_to_cny": 7.12,
+    "as_of": "2026-10-27",
+    "source": "manual placeholder — verify before launch",
+    "reviewed_at": "2026-10-27"
+  },
+  "counts": {
+    "models": 43,
+    "offers": 1246,
+    "scores": 61,
+    "unmatched": 504
+  },
+  "files": {
+    "models.json": "667319ef46ba75711e21e10b9930de20771e877938ca6dae5f348d2009403b1e",
+    "offers.json": "70f51268d40647575f51cd9056e8981f0652ae2e0e5f79be1885448da93f5e11",
+    "scores.json": "c5fe414f7420e5f9f59369e8139d048d2a3b46366b110e08ee8a88da61c758ed",
+    "unmatched.json": "45e1eab6b1bf7aa238842ddaeec56e33bc85c14992f43897fc9054b05183d642",
+    "validation-report.json": "b168c4940e9778d283517aa1e3185e57ccd0d818f99aba380a8f92af94f059f3"
+  },
+  "overrides": {
+    "count": 0,
+    "hash": null
+  },
+  "crosswalk": {
+    "verified": 33,
+    "tentative": 0,
+    "none": 10
+  },
+  "aaLinks": {
+    "verified": 33,
+    "unverified": 10
+  },
+  "validation": {
+    "status": "passed",
+    "report": "validation-report.json"
+  },
+  "notes": [
+    "Local pipeline run. Site deployment is out of scope for this step.",
+    "models.dev snapshot fetchedAt=2026-10-27T03:16:39.992Z",
+    "Arena text/webdev fetchedAt=2026-10-27T03:16:47.154Z/2026-10-27T03:17:34.507Z",
+    "Arena text filtered to category=overall; webdev filtered to category=webdev; latest publish date, highest vote_count per model/org.",
+    "No AA data embedded; AA links are external-only."
+  ]
+}

@@ -1,0 +1,70 @@
+name: 数据纠错
+description: 报告模型、价格、上下文、推理等级或 Arena 映射错误
+title: "[纠错] "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢纠错。请尽量提供可核验的公开来源；没有来源的修改可能无法处理。
+        本站非官方，价格与汇率仅供参考。
+  - type: input
+    id: page
+    attributes:
+      label: 页面 URL
+      description: 例如 /models/anthropic/claude-opus-5-5 或榜单页
+      placeholder: /models/...
+    validations:
+      required: true
+  - type: dropdown
+    id: field
+    attributes:
+      label: 字段
+      options:
+        - 模型名称 / 实验室
+        - 价格
+        - 上下文 / 输出上限
+        - 推理等级
+        - 可用性 / 上线状态
+        - Arena 分数或映射
+        - Artificial Analysis 外链
+        - 汇率 / CNY 折算
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: current
+    attributes:
+      label: 当前值
+      placeholder: 页面现在显示的值
+    validations:
+      required: true
+  - type: input
+    id: proposed
+    attributes:
+      label: 建议值
+      placeholder: 应当显示的值
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 可核验来源
+      description: 官方定价页、官方文档、Arena 数据集页面等公开 URL
+      placeholder: https://...
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 补充说明
+      description: 生效日期、区域、币种、context 阶梯等可能影响判断的信息
+    validations:
+      required: false
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: 确认
+      options:
+        - label: 我理解提交内容会公开显示在 GitHub Issues 中。
+          required: true

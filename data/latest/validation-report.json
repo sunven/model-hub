@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "hardFailures": [],
+  "warnings": [
+    "model has no Arena score: mv_mistral__codestral-2508",
+    "model has no Arena score: mv_cohere__command-a-plus-05-2026",
+    "model has no Arena score: mv_sakana__fugu-max",
+    "model has no Arena score: mv_zhipuai__glm-4.7-flashx",
+    "model has no Arena score: mv_inception__mercury-3",
+    "model has no Arena score: mv_alibaba__qwen3.8-flash",
+    "model has no Arena score: mv_alibaba__qwen3.8-omni-flash",
+    "model has no Arena score: mv_bytedance-seed__seed-2.1-pro",
+    "model has no Arena score: mv_bytedance-seed__seed-character",
+    "model has no Arena score: mv_bytedance-seed__seed-evolving"
+  ],
+  "stats": {
+    "launchModels": 43,
+    "models": 43,
+    "offers": 1246,
+    "scores": 61,
+    "unmatched": 504,
+    "modelsWithScores": 33,
+    "modelsWithoutScores": 10,
+    "byBoard": {
+      "text": 30,
+      "webdev": 31
+    },
+    "offerStatusCounts": {
+      "available_unmarked": 1223,
+      "beta": 17,
+      "deprecated": 6
+    },
+    "offerKindCounts": {
+      "cloud": 109,
+      "first_party": 59,
+      "gateway": 1078
+    },
+    "availabilityCounts": {
+      "available": 40,
+      "mixed": 3
+    },
+    "fxAgeDays": 0,
+    "arena": {
+      "textRows": 11099,
+      "webdevRows": 647,
+      "textCategoryRows": 418,
+      "webdevCategoryRows": 150,
+      "textDeduped": 418,
+      "webdevDeduped": 149,
+      "scores": 61,
+      "unmatched": 504,
+      "matchedRows": 61,
+      "byBoard": {
+        "text": 30,
+        "webdev": 31
+      }
+    }
+  },
+  "generatedAt": "2026-10-27T03:30:39.915Z",
+  "snapshotId": "20261027-f0bdd32e"
+}

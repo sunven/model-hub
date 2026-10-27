@@ -1,0 +1,87 @@
+# Model Hub
+
+面向中文开发者的只读模型信息市场。比较模型版本的价格、上下文、推理等级和 Arena 偏好评分，并链接到 Artificial Analysis 的模型页。
+
+[![CI](https://github.com/sunven/model-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/sunven/model-hub/actions/workflows/ci.yml)
+
+> 当前状态：本地优先的 MVP，未做外网部署。构建产物是纯静态站点，数据和页面均可离线检查。
+
+## 功能
+
+- 43 个首批模型版本、20 个实验室；模型、报价、上下文、推理选项来自 models.dev。
+- Arena text / webdev 两条榜单，保留条件、置信区间、票数、日期和未匹配行。
+- 模型详情报价按第一方、云平台、网关分组，默认折叠网关与已弃用报价。
+- 最多 3 个模型并排对比，支持筛选、排序、搜索和 URL 状态。
+- Artificial Analysis 仅作为外链，不嵌入分数、不调用 API；未核验链接回退 AA 总榜。
+- 快照哈希、校验报告、last-good 保留、人工 override、JSON Schema 和来源日期。
+
+## 本地运行
+
+要求 Node.js 22+、npm 和 curl。
+
+```bash
+npm ci
+npm run dev
+```
+
+打开 http://localhost:3000。仓库已包含通过校验的 `data/latest`，首次运行不需要联网。
+
+```bash
+npm run typecheck   # TypeScript
+npm run test:e2e    # Playwright（本地默认使用 Chrome）
+npm run build       # 静态导出到 out/
+```
+
+## 数据刷新
+
+```bash
+npm run data:refresh   # 下载 models.dev + Arena 数据，更新 ECB 汇率，重建快照
+npm run data:offline   # 使用 data/raw 缓存重建，不联网
+npm run data           # 缓存存在时复用，否则下载
+```
+
+管道先写临时目录，校验通过后才原子替换 `data/latest`。硬失败时保留上一份可用快照，并把报告写到 `data/validation-report.json`。`data/raw` 不纳入版本控制。
+
+数据新鲜度阈值：models.dev 超过 48 小时、Arena 超过 72 小时在界面提示；汇率超过 14 天隐藏 CNY。数据不会因过期被隐藏。
+
+## 配置
+
+| 变量 | 默认值 | 用途 |
+| --- | --- | --- |
+| `SITE_URL` | `https://model-hub.example` | canonical、sitemap、robots、Open Graph 的站点源。部署前必须替换。 |
+
+复制 `.env.example` 为 `.env.local` 可覆盖本地构建配置。
+
+## 数据契约
+
+```text
+data/latest/models.json               ModelVersion
+data/latest/offers.json               Offer
+data/latest/scores.json               Arena Score（text / webdev）
+data/latest/unmatched.json            未映射的 Arena 行
+data/latest/manifest.json             快照、来源、哈希、计数、新鲜度
+data/latest/validation-report.json    校验结果
+data/schema/*.json                    输出 JSON Schema
+data/crosswalk/*.yml                  人工 crosswalk
+data/overrides/*.yml                  人工修正与审计
+data/fx.yml                           USD→CNY 汇率与来源
+```
+
+设计记录在 [`.scratch/model-hub/spec.md`](.scratch/model-hub/spec.md)，领域词汇见 [`GLOSSARY.md`](GLOSSARY.md)。
+
+## 来源、许可与免责
+
+- [models.dev](https://models.dev)：模型与价格数据，MIT License，Copyright (c) 2025 models.dev。
+- [LMArena Leaderboard Dataset](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset)：Arena 评分，CC BY 4.0；本站按 category 和日期筛选、映射到模型版本并改变展示格式。
+- [Artificial Analysis](https://artificialanalysis.ai)：只提供经人工核验的外部链接，不嵌入数据、不调用 API、不展示分数。
+- 汇率来自欧洲央行（ECB）参考汇率，经 [Frankfurter](https://frankfurter.dev) 获取；仅用于展示，不构成交易或投资建议。
+
+完整署名、修改说明和数据许可边界见 [`ATTRIBUTION.md`](ATTRIBUTION.md)。本项目代码使用 MIT License，见 [`LICENSE`](LICENSE)。模型与供应商名称仅作指称，商标归各自所有者；本站非官方，也不代表任何厂商的背书。
+
+## 纠错与下架
+
+数据纠错、字段修正和权利方下架请求统一走 [GitHub Issues](https://github.com/sunven/model-hub/issues/new/choose)。请提供页面 URL、字段、当前值、建议值和可核验来源。敏感请求可先只提交一般性说明，维护者会再安排私下沟通方式。
+
+## 部署
+
+按当前项目决定，暂不做外网部署。未来部署说明见 [`docs/deployment.md`](docs/deployment.md)；公开前还需完成 [`docs/legal-review.md`](docs/legal-review.md) 中的人工复核项。

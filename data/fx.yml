@@ -1,0 +1,6 @@
+# Manual USD→CNY rate for display-only conversion.
+# Review weekly; hide CNY in the UI when as_of is older than 14 days.
+usd_to_cny: 7.12
+as_of: 2026-10-27
+source: manual placeholder — verify before launch
+reviewed_at: 2026-10-27

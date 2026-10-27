@@ -1,0 +1,1265 @@
+[
+  {
+    "id": "mv_anthropic__claude-fable-5-1",
+    "canonicalModelId": "anthropic/claude-fable-5-1",
+    "name": "Claude Fable 5.1",
+    "lab": "Anthropic",
+    "family": "claude-fable",
+    "releaseDate": "2026-09-01",
+    "knowledgeCutoff": "2026-06",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Claude model for demanding reasoning and long-horizon agentic work",
+    "aaUrl": "https://artificialanalysis.ai/models/claude-fable-5-1",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 5 档",
+    "sourceRefs": [
+      "models.dev:anthropic/claude-fable-5-1"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_anthropic__claude-haiku-5-5",
+    "canonicalModelId": "anthropic/claude-haiku-5-5",
+    "name": "Claude Haiku 5.5",
+    "lab": "Anthropic",
+    "family": "claude-haiku",
+    "releaseDate": "2026-10-07",
+    "knowledgeCutoff": "2026-06",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Fast Claude model for responsive assistance, classification, and lightweight agents",
+    "aaUrl": "https://artificialanalysis.ai/models/claude-haiku-5-5",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 5 档",
+    "sourceRefs": [
+      "models.dev:anthropic/claude-haiku-5-5"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_anthropic__claude-opus-5-5",
+    "canonicalModelId": "anthropic/claude-opus-5-5",
+    "name": "Claude Opus 5.5",
+    "lab": "Anthropic",
+    "family": "claude-opus",
+    "releaseDate": "2026-09-22",
+    "knowledgeCutoff": "2026-06",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Claude model for long-running agentic coding and knowledge work",
+    "aaUrl": "https://artificialanalysis.ai/models/claude-opus-5-5",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 5 档",
+    "sourceRefs": [
+      "models.dev:anthropic/claude-opus-5-5"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_anthropic__claude-sonnet-5-5",
+    "canonicalModelId": "anthropic/claude-sonnet-5-5",
+    "name": "Claude Sonnet 5.5",
+    "lab": "Anthropic",
+    "family": "claude-sonnet",
+    "releaseDate": "2026-09-28",
+    "knowledgeCutoff": "2026-06",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Fast Claude model for everyday coding, agents, and knowledge work",
+    "aaUrl": "https://artificialanalysis.ai/models/claude-sonnet-5-5",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 5 档",
+    "sourceRefs": [
+      "models.dev:anthropic/claude-sonnet-5-5"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_mistral__codestral-2508",
+    "canonicalModelId": "mistral/codestral-2508",
+    "name": "Codestral 2508",
+    "lab": "Mistral",
+    "family": "codestral",
+    "releaseDate": "2025-07-30",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Mistral code model for low-latency completion, fill-in-the-middle, and code generation",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "不支持",
+    "sourceRefs": [
+      "models.dev:mistral/codestral-2508"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_cohere__command-a-plus-05-2026",
+    "canonicalModelId": "cohere/command-a-plus-05-2026",
+    "name": "Command A+",
+    "lab": "Cohere",
+    "family": "command-a",
+    "releaseDate": "2026-05-20",
+    "knowledgeCutoff": "2025-04-01",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "Cohere's stronger command model for multilingual agents and enterprise workflows",
+    "aaUrl": "https://artificialanalysis.ai/models/command-a-plus",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "预算可调",
+    "sourceRefs": [
+      "models.dev:cohere/command-a-plus-05-2026"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_deepseek__deepseek-v4-pro-0813",
+    "canonicalModelId": "deepseek/deepseek-v4-pro-0813",
+    "name": "DeepSeek V4 Pro 0813",
+    "lab": "DeepSeek",
+    "family": "deepseek-thinking",
+    "releaseDate": "2026-08-13",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "DeepSeek V4 Pro snapshot with million-token context and support for thinking and non-thinking modes",
+    "aaUrl": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+    "availability": "mixed",
+    "releaseBadges": [
+      "beta"
+    ],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:deepseek/deepseek-v4-pro-0813"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_deepseek__deepseek-v4.1-flash-1017",
+    "canonicalModelId": "deepseek/deepseek-v4.1-flash-1017",
+    "name": "DeepSeek V4.1 Flash 1017",
+    "lab": "DeepSeek",
+    "family": "deepseek-flash",
+    "releaseDate": "2026-10-17",
+    "knowledgeCutoff": "2025-05",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "October 17 update of DeepSeek V4.1 Flash with improved reasoning, coding, agentic tasks, and visual understanding",
+    "aaUrl": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+    "availability": "mixed",
+    "releaseBadges": [
+      "beta"
+    ],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:deepseek/deepseek-v4.1-flash-1017"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_sakana__fugu-max",
+    "canonicalModelId": "sakana/fugu-max",
+    "name": "Fugu Max",
+    "lab": "Sakana",
+    "family": "fugu",
+    "releaseDate": "2026-09-11",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Multi-agent model for routing expert agents across complex analytical tasks",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "固定 high",
+    "sourceRefs": [
+      "models.dev:sakana/fugu-max"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_google__gemini-3.1-pro-preview-customtools",
+    "canonicalModelId": "google/gemini-3.1-pro-preview-customtools",
+    "name": "Gemini 3.1 Pro (Preview Custom Tools)",
+    "lab": "Google",
+    "family": "gemini-pro",
+    "releaseDate": "2026-02-19",
+    "knowledgeCutoff": "2025-01",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Advanced Gemini model for complex reasoning, coding, and multimodal analysis",
+    "aaUrl": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+    "availability": "available",
+    "releaseBadges": [
+      "beta"
+    ],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:google/gemini-3.1-pro-preview-customtools"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_google__gemini-3.5-flash-lite",
+    "canonicalModelId": "google/gemini-3.5-flash-lite",
+    "name": "Gemini 3.5 Flash Lite",
+    "lab": "Google",
+    "family": "gemini-flash-lite",
+    "releaseDate": "2026-07-21",
+    "knowledgeCutoff": "2026-03",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Fast Gemini model balancing multimodal reasoning, tool use, and cost",
+    "aaUrl": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 4 档",
+    "sourceRefs": [
+      "models.dev:google/gemini-3.5-flash-lite"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_google__gemini-3.8-flash",
+    "canonicalModelId": "google/gemini-3.8-flash",
+    "name": "Gemini 3.8 Flash",
+    "lab": "Google",
+    "family": "gemini-flash",
+    "releaseDate": "2026-09-02",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Google's most intelligent Flash model, engineered for long-horizon software engineering, autonomous agents, and complex enterprise workflows",
+    "aaUrl": "https://artificialanalysis.ai/models/gemini-3-8-flash",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:google/gemini-3.8-flash"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_zhipuai__glm-4.7-flashx",
+    "canonicalModelId": "zhipuai/glm-4.7-flashx",
+    "name": "GLM 4.7 FlashX",
+    "lab": "Zhipu / GLM",
+    "family": "glm-flash",
+    "releaseDate": "2026-01-19",
+    "knowledgeCutoff": "2025-04",
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "Efficient GLM model for fast reasoning, coding, and agent workflows",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "开关",
+    "sourceRefs": [
+      "models.dev:zhipuai/glm-4.7-flashx"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_zhipuai__glm-5.3",
+    "canonicalModelId": "zhipuai/glm-5.3",
+    "name": "GLM 5.3",
+    "lab": "Zhipu / GLM",
+    "family": "glm",
+    "releaseDate": "2026-08-14",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "Flagship GLM model for long-horizon coding, agents, and complex project delivery",
+    "aaUrl": "https://artificialanalysis.ai/models/glm-5-3",
+    "availability": "available",
+    "releaseBadges": [
+      "beta"
+    ],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:zhipuai/glm-5.3"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_zhipuai__glm-5.3-flash",
+    "canonicalModelId": "zhipuai/glm-5.3-flash",
+    "name": "GLM 5.3 Flash",
+    "lab": "Zhipu / GLM",
+    "family": "glm-flash",
+    "releaseDate": "2026-09-18",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "High-speed GLM-5.3-Flash serving option for coding and agent workflows",
+    "aaUrl": "https://artificialanalysis.ai/models/glm-5-3-flash",
+    "availability": "available",
+    "releaseBadges": [
+      "beta"
+    ],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:zhipuai/glm-5.3-flash"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_openai__gpt-6-astra",
+    "canonicalModelId": "openai/gpt-6-astra",
+    "name": "GPT-6 Astra",
+    "lab": "OpenAI",
+    "family": "gpt-astra",
+    "releaseDate": "2026-09-04",
+    "knowledgeCutoff": "2026-04-30",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "GPT-6 Astra is OpenAI's most capable model for complex reasoning, coding, computer use, research, and document creation.",
+    "aaUrl": "https://artificialanalysis.ai/models/gpt-6-astra",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 5 档",
+    "sourceRefs": [
+      "models.dev:openai/gpt-6-astra"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_openai__gpt-6-luna",
+    "canonicalModelId": "openai/gpt-6-luna",
+    "name": "GPT-6 Luna",
+    "lab": "OpenAI",
+    "family": "gpt-luna",
+    "releaseDate": "2026-09-22",
+    "knowledgeCutoff": "2026-05-18",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "OpenAI's most efficient model for focused, high-volume tasks",
+    "aaUrl": "https://artificialanalysis.ai/models/gpt-6-luna",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 6 档",
+    "sourceRefs": [
+      "models.dev:openai/gpt-6-luna"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_openai__gpt-6-sol",
+    "canonicalModelId": "openai/gpt-6-sol",
+    "name": "GPT-6 Sol",
+    "lab": "OpenAI",
+    "family": "gpt-sol",
+    "releaseDate": "2026-09-22",
+    "knowledgeCutoff": "2026-04-20",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "OpenAI model for complex coding and agentic workflows",
+    "aaUrl": "https://artificialanalysis.ai/models/gpt-6-sol",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 6 档",
+    "sourceRefs": [
+      "models.dev:openai/gpt-6-sol"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_openai__gpt-6.1-sol",
+    "canonicalModelId": "openai/gpt-6.1-sol",
+    "name": "GPT-6.1 Sol",
+    "lab": "OpenAI",
+    "family": "gpt-sol",
+    "releaseDate": "2026-09-29",
+    "knowledgeCutoff": "2026-04-30",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Near-Astra performance for complex coding, computer use, and professional work at a lower cost.",
+    "aaUrl": "https://artificialanalysis.ai/models/gpt-6-1-sol",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 5 档",
+    "sourceRefs": [
+      "models.dev:openai/gpt-6.1-sol"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_xai__grok-4.5",
+    "canonicalModelId": "xai/grok-4.5",
+    "name": "Grok 4.5",
+    "lab": "xAI",
+    "family": "grok",
+    "releaseDate": "2026-07-08",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "xAI's Grok model for chat, coding, agentic tools, and lower hallucination risk",
+    "aaUrl": "https://artificialanalysis.ai/models/grok-4-5",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 4 档",
+    "sourceRefs": [
+      "models.dev:xai/grok-4.5"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_xai__grok-4.7",
+    "canonicalModelId": "xai/grok-4.7",
+    "name": "Grok 4.7",
+    "lab": "xAI",
+    "family": "grok",
+    "releaseDate": "2026-09-21",
+    "knowledgeCutoff": "2026-05",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "xAI's frontier model for long-running agents, coding, knowledge work, and visual projects",
+    "aaUrl": "https://artificialanalysis.ai/models/grok-4-7",
+    "availability": "available",
+    "releaseBadges": [
+      "beta"
+    ],
+    "reasoningLabel": "可调 4 档",
+    "sourceRefs": [
+      "models.dev:xai/grok-4.7"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_tencent__hy4-preview",
+    "canonicalModelId": "tencent/hy4-preview",
+    "name": "Hy4 Preview",
+    "lab": "Tencent",
+    "family": "Hy",
+    "releaseDate": "2026-08-28",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "A next-generation productivity model with significantly enhanced Agent and complex task execution capabilities.",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 2 档",
+    "sourceRefs": [
+      "models.dev:tencent/hy4-preview"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_moonshotai__kimi-k3",
+    "canonicalModelId": "moonshotai/kimi-k3",
+    "name": "Kimi K3",
+    "lab": "Moonshot / Kimi",
+    "family": "kimi-k3",
+    "releaseDate": "2026-07-16",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "Multimodal Kimi model with 1M context and toggleable max-effort thinking for long-horizon agent work",
+    "aaUrl": "https://artificialanalysis.ai/models/kimi-k3",
+    "availability": "mixed",
+    "releaseBadges": [
+      "beta"
+    ],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:moonshotai/kimi-k3"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_moonshotai__kimi-k3.1-pro",
+    "canonicalModelId": "moonshotai/kimi-k3.1-pro",
+    "name": "Kimi K3.1 Pro",
+    "lab": "Moonshot / Kimi",
+    "family": "kimi-k3",
+    "releaseDate": "2026-10-23",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Multimodal Kimi model with 1M context and always-on reasoning for coding, 3D creation, financial research, and agentic work",
+    "aaUrl": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:moonshotai/kimi-k3.1-pro"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_inception__mercury-3",
+    "canonicalModelId": "inception/mercury-3",
+    "name": "Mercury 3",
+    "lab": "Inception",
+    "family": "mercury",
+    "releaseDate": "2026-10-16",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Inception's diffusion reasoning model for chat, multi-step problem solving, and tool use",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:inception/mercury-3"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_xiaomi__mimo-v2.6-flash",
+    "canonicalModelId": "xiaomi/mimo-v2.6-flash",
+    "name": "MiMo V2.6 Flash",
+    "lab": "Xiaomi",
+    "family": "mimo",
+    "releaseDate": "2026-09-22",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "MiMo Flash model for multimodal coding agents and long-context automation",
+    "aaUrl": "https://artificialanalysis.ai/models/mimo-v2-6-flash",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "开关",
+    "sourceRefs": [
+      "models.dev:xiaomi/mimo-v2.6-flash"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_xiaomi__mimo-v2.6-pro",
+    "canonicalModelId": "xiaomi/mimo-v2.6-pro",
+    "name": "MiMo V2.6 Pro",
+    "lab": "Xiaomi",
+    "family": "mimo",
+    "releaseDate": "2026-09-22",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "MiMo Pro model for multimodal coding agents and long-context automation",
+    "aaUrl": "https://artificialanalysis.ai/models/mimo-v2-6-pro",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "开关",
+    "sourceRefs": [
+      "models.dev:xiaomi/mimo-v2.6-pro"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_mistral__mistral-large-4",
+    "canonicalModelId": "mistral/mistral-large-4",
+    "name": "Mistral Large 4",
+    "lab": "Mistral",
+    "family": "mistral-large",
+    "releaseDate": "2026-10-06",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Mistral's 1T-parameter multimodal MoE for reasoning, coding, and agentic work",
+    "aaUrl": "https://artificialanalysis.ai/models/mistral-large-4",
+    "availability": "available",
+    "releaseBadges": [
+      "beta"
+    ],
+    "reasoningLabel": "可调 2 档",
+    "sourceRefs": [
+      "models.dev:mistral/mistral-large-4"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_mistral__mistral-medium-latest",
+    "canonicalModelId": "mistral/mistral-medium-latest",
+    "name": "Mistral Medium (latest)",
+    "lab": "Mistral",
+    "family": "mistral-medium",
+    "releaseDate": "2026-04-29",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "Balanced Mistral model for enterprise assistants, multilingual work, and tools",
+    "aaUrl": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 2 档",
+    "sourceRefs": [
+      "models.dev:mistral/mistral-medium-latest"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_meta__muse-glimmer-30b",
+    "canonicalModelId": "meta/muse-glimmer-30b",
+    "name": "Muse Glimmer 30B",
+    "lab": "Meta",
+    "family": "muse",
+    "releaseDate": "2026-08-10",
+    "knowledgeCutoff": "2026-01-04",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "Muse Glimmer is a 30-billion-parameter open-weight multimodal model from Meta Superintelligence Labs, distilled from Muse Spark for always-on local agents, tool use, coding, and image understanding.",
+    "aaUrl": "https://artificialanalysis.ai/models/muse-glimmer",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:meta/muse-glimmer-30b"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_meta__muse-spark-1.1",
+    "canonicalModelId": "meta/muse-spark-1.1",
+    "name": "Muse Spark 1.1",
+    "lab": "Meta",
+    "family": "muse",
+    "releaseDate": "2026-04-08",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Muse Spark is a natively multimodal reasoning model with support for tool-use, visual chain of thought, and multi-agent orchestration.",
+    "aaUrl": "https://artificialanalysis.ai/models/muse-spark-1-1",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 5 档",
+    "sourceRefs": [
+      "models.dev:meta/muse-spark-1.1"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_meta__muse-wonder-1.0",
+    "canonicalModelId": "meta/muse-wonder-1.0",
+    "name": "Muse Wonder",
+    "lab": "Meta",
+    "family": "muse",
+    "releaseDate": "2026-10-12",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Muse Wonder is a frontier multimodal reasoning model from Meta for personal and professional agents, long-horizon coding, and computer use. It combines Active Memory, which carries relevant context across conversations, with Active Focus, which keeps it working through blockers toward a goal.",
+    "aaUrl": "https://artificialanalysis.ai/models/muse-wonder",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 6 档",
+    "sourceRefs": [
+      "models.dev:meta/muse-wonder-1.0"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_nvidia__nemotron-3.5-super-vl-120b-a12b",
+    "canonicalModelId": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+    "name": "Nemotron 3.5 Super VL 120B A12B",
+    "lab": "NVIDIA",
+    "family": "nemotron",
+    "releaseDate": "2026-10-15",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "NVIDIA vision-language reasoning model for text, image, and video understanding and agentic tool use",
+    "aaUrl": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "开关",
+    "sourceRefs": [
+      "models.dev:nvidia/nemotron-3.5-super-vl-120b-a12b"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_amazon__nova-2-lite",
+    "canonicalModelId": "amazon/nova-2-lite",
+    "name": "Nova 2 Lite",
+    "lab": "Amazon",
+    "family": "nova",
+    "releaseDate": "2025-12-02",
+    "knowledgeCutoff": "2025-10",
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Multimodal reasoning model for visual analysis, planning, and tool use",
+    "aaUrl": "https://artificialanalysis.ai/models/nova-2-0-lite",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:amazon/nova-2-lite"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_alibaba__qwen3.8-27b",
+    "canonicalModelId": "alibaba/qwen3.8-27b",
+    "name": "Qwen3.8 27B",
+    "lab": "Alibaba / Qwen",
+    "family": "qwen",
+    "releaseDate": "2026-08-14",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "Dense 27B vision-language model for coding, agent tasks, and image and video understanding",
+    "aaUrl": "https://artificialanalysis.ai/models/qwen3-8-27b",
+    "availability": "available",
+    "releaseBadges": [
+      "beta"
+    ],
+    "reasoningLabel": "可调 4 档",
+    "sourceRefs": [
+      "models.dev:alibaba/qwen3.8-27b"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_alibaba__qwen3.8-flash",
+    "canonicalModelId": "alibaba/qwen3.8-flash",
+    "name": "Qwen3.8 Flash",
+    "lab": "Alibaba / Qwen",
+    "family": "qwen",
+    "releaseDate": "2026-08-26",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Qwen vision-language model for visual reasoning, documents, and agent tasks",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:alibaba/qwen3.8-flash"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_alibaba__qwen3.8-max",
+    "canonicalModelId": "alibaba/qwen3.8-max",
+    "name": "Qwen3.8 Max",
+    "lab": "Alibaba / Qwen",
+    "family": "qwen",
+    "releaseDate": "2026-08-03",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "2.4-trillion-parameter MoE flagship for coding, professional work, multimodal understanding, and long-horizon agentic workflows",
+    "aaUrl": "https://artificialanalysis.ai/models/qwen3-8-max",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:alibaba/qwen3.8-max"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_alibaba__qwen3.8-omni-flash",
+    "canonicalModelId": "alibaba/qwen3.8-omni-flash",
+    "name": "Qwen3.8 Omni Flash",
+    "lab": "Alibaba / Qwen",
+    "family": "qwen",
+    "releaseDate": "2026-09-17",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Qwen omni model for text, vision, audio, and multimodal agent tasks",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 4 档",
+    "sourceRefs": [
+      "models.dev:alibaba/qwen3.8-omni-flash"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_bytedance-seed__seed-2.1-pro",
+    "canonicalModelId": "bytedance-seed/seed-2.1-pro",
+    "name": "Seed 2.1 Pro",
+    "lab": "ByteDance / Seed",
+    "family": "seed",
+    "releaseDate": "2026-06-23",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Flagship ByteDance Seed 2.1 model for complex multimodal reasoning, coding, and agents",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 7 档",
+    "sourceRefs": [
+      "models.dev:bytedance-seed/seed-2.1-pro"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_bytedance-seed__seed-character",
+    "canonicalModelId": "bytedance-seed/seed-character",
+    "name": "Seed Character",
+    "lab": "ByteDance / Seed",
+    "family": "seed",
+    "releaseDate": "2026-06-23",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "ByteDance Seed model optimized for character-driven dialogue and consistent conversational behavior",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 3 档",
+    "sourceRefs": [
+      "models.dev:bytedance-seed/seed-character"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_bytedance-seed__seed-evolving",
+    "canonicalModelId": "bytedance-seed/seed-evolving",
+    "name": "Seed Evolving",
+    "lab": "ByteDance / Seed",
+    "family": "seed",
+    "releaseDate": "2026-06-23",
+    "knowledgeCutoff": null,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Rolling ByteDance Seed model for rapidly updated reasoning, coding, and agent capabilities",
+    "aaUrl": null,
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 7 档",
+    "sourceRefs": [
+      "models.dev:bytedance-seed/seed-evolving"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_upstage__solar-pro4",
+    "canonicalModelId": "upstage/solar-pro4",
+    "name": "Solar Pro 4",
+    "lab": "Upstage",
+    "family": "solar-pro",
+    "releaseDate": "2026-08-06",
+    "knowledgeCutoff": "2026-02",
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": false,
+    "description": "Upstage's flagship model, specialized for agentic use",
+    "aaUrl": "https://artificialanalysis.ai/models/solar-pro4",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 7 档",
+    "sourceRefs": [
+      "models.dev:upstage/solar-pro4"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  },
+  {
+    "id": "mv_stepfun__step-3.5-flash-2603",
+    "canonicalModelId": "stepfun/step-3.5-flash-2603",
+    "name": "Step 3.5 Flash 2603",
+    "lab": "StepFun",
+    "family": "step",
+    "releaseDate": "2026-04-02",
+    "knowledgeCutoff": "2025-01",
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "openWeights": true,
+    "description": "StepFun flash model for efficient multimodal reasoning, coding, and tool use",
+    "aaUrl": "https://artificialanalysis.ai/models/step-3-5-flash",
+    "availability": "available",
+    "releaseBadges": [],
+    "reasoningLabel": "可调 2 档",
+    "sourceRefs": [
+      "models.dev:stepfun/step-3.5-flash-2603"
+    ],
+    "snapshotId": "20261027-f0bdd32e"
+  }
+]

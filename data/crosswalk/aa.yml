@@ -1,0 +1,217 @@
+# Artificial Analysis per-model links — manual search-index verification.
+# Verified entries point to exact /models/<slug> pages. Unverified/null entries fall back to the AA leaderboard.
+# AA website terms prohibit automated access; this file was built from public search-index results, not AA page fetches.
+- canonicalId: openai/gpt-6.1-sol
+  aaUrl: https://artificialanalysis.ai/models/gpt-6-1-sol
+  verified: true
+  notes: "search-index exact model page (title: GPT-6.1 Sol (max))"
+
+- canonicalId: openai/gpt-6-sol
+  aaUrl: https://artificialanalysis.ai/models/gpt-6-sol
+  verified: true
+  notes: "search-index exact model page (title: GPT-6 Sol (max))"
+
+- canonicalId: openai/gpt-6-luna
+  aaUrl: https://artificialanalysis.ai/models/gpt-6-luna
+  verified: true
+  notes: "search-index exact model page (title: GPT-6 Luna (max))"
+
+- canonicalId: openai/gpt-6-astra
+  aaUrl: https://artificialanalysis.ai/models/gpt-6-astra
+  verified: true
+  notes: "search-index exact model page (title: GPT-6 Astra (max))"
+
+- canonicalId: anthropic/claude-opus-5-5
+  aaUrl: https://artificialanalysis.ai/models/claude-opus-5-5
+  verified: true
+  notes: "search-index exact model page (title: Claude Opus 5.5 (max with fallback))"
+
+- canonicalId: anthropic/claude-sonnet-5-5
+  aaUrl: https://artificialanalysis.ai/models/claude-sonnet-5-5
+  verified: true
+  notes: "search-index exact model page (title: Claude Sonnet 5.5 (max with fallback))"
+
+- canonicalId: anthropic/claude-haiku-5-5
+  aaUrl: https://artificialanalysis.ai/models/claude-haiku-5-5
+  verified: true
+  notes: "search-index exact model page (title: Claude Haiku 5.5 (max))"
+
+- canonicalId: anthropic/claude-fable-5-1
+  aaUrl: https://artificialanalysis.ai/models/claude-fable-5-1
+  verified: true
+  notes: "search-index exact model page (title: Claude Fable 5.1 (Max, Default Fallback))"
+
+- canonicalId: google/gemini-3.8-flash
+  aaUrl: https://artificialanalysis.ai/models/gemini-3-8-flash
+  verified: true
+  notes: "search-index exact model page (title: Gemini 3.8 Flash (high))"
+
+- canonicalId: google/gemini-3.5-flash-lite
+  aaUrl: https://artificialanalysis.ai/models/gemini-3-5-flash-lite
+  verified: true
+  notes: "search-index exact model page (title: Gemini 3.5 Flash-Lite)"
+
+- canonicalId: google/gemini-3.1-pro-preview-customtools
+  aaUrl: https://artificialanalysis.ai/models/gemini-3-1-pro-preview
+  verified: true
+  notes: "search-index page for Gemini 3.1 Pro Preview; AA title omits the Custom Tools variant"
+
+- canonicalId: xai/grok-4.7
+  aaUrl: https://artificialanalysis.ai/models/grok-4-7
+  verified: true
+  notes: "search-index exact model page (title: Grok 4.7 (xhigh))"
+
+- canonicalId: xai/grok-4.5
+  aaUrl: https://artificialanalysis.ai/models/grok-4-5
+  verified: true
+  notes: "search-index exact model page (title: Grok 4.5 (high))"
+
+- canonicalId: mistral/mistral-large-4
+  aaUrl: https://artificialanalysis.ai/models/mistral-large-4
+  verified: true
+  notes: "search-index exact model page (title: Mistral Large 4 Preview)"
+
+- canonicalId: mistral/mistral-medium-latest
+  aaUrl: https://artificialanalysis.ai/models/mistral-medium-3-5
+  verified: true
+  notes: "search-index page Mistral Medium 3.5; models.dev weights are Mistral-Medium-3.5-128B"
+
+- canonicalId: mistral/codestral-2508
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results; no Codestral model page indexed"
+
+- canonicalId: cohere/command-a-plus-05-2026
+  aaUrl: https://artificialanalysis.ai/models/command-a-plus
+  verified: true
+  notes: "search-index exact model page (title: Command A+)"
+
+- canonicalId: meta/muse-wonder-1.0
+  aaUrl: https://artificialanalysis.ai/models/muse-wonder
+  verified: true
+  notes: "search-index exact model page (title: Muse Wonder (max))"
+
+- canonicalId: meta/muse-spark-1.1
+  aaUrl: https://artificialanalysis.ai/models/muse-spark-1-1
+  verified: true
+  notes: "search-index exact model page (title: Muse Spark 1.1 (xhigh))"
+
+- canonicalId: meta/muse-glimmer-30b
+  aaUrl: https://artificialanalysis.ai/models/muse-glimmer
+  verified: true
+  notes: "search-index exact model page (title: Muse Glimmer (high)); AA title omits 30B size"
+
+- canonicalId: deepseek/deepseek-v4.1-flash-1017
+  aaUrl: https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017
+  verified: true
+  notes: "search-index exact model page (title: DeepSeek V4.1 Flash 1017 (max))"
+
+- canonicalId: deepseek/deepseek-v4-pro-0813
+  aaUrl: https://artificialanalysis.ai/models/deepseek-v4-pro
+  verified: true
+  notes: "search-index exact model page (title: DeepSeek V4 Pro 0813 (max))"
+
+- canonicalId: alibaba/qwen3.8-max
+  aaUrl: https://artificialanalysis.ai/models/qwen3-8-max
+  verified: true
+  notes: "search-index exact model page (title: Qwen3.8 Max (0902))"
+
+- canonicalId: alibaba/qwen3.8-flash
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results; only Qwen3.8-Flash-Next indexed"
+
+- canonicalId: alibaba/qwen3.8-omni-flash
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results; only Qwen3.5 Omni Flash indexed"
+
+- canonicalId: alibaba/qwen3.8-27b
+  aaUrl: https://artificialanalysis.ai/models/qwen3-8-27b
+  verified: true
+  notes: "search-index exact model page (title: Qwen3.8 27B (xhigh))"
+
+- canonicalId: zhipuai/glm-5.3
+  aaUrl: https://artificialanalysis.ai/models/glm-5-3
+  verified: true
+  notes: "search-index exact model page (title: GLM-5.3 (max))"
+
+- canonicalId: zhipuai/glm-5.3-flash
+  aaUrl: https://artificialanalysis.ai/models/glm-5-3-flash
+  verified: true
+  notes: "search-index exact model page (title: GLM-5.3-Flash)"
+
+- canonicalId: zhipuai/glm-4.7-flashx
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results; only GLM-4.7-Flash indexed"
+
+- canonicalId: moonshotai/kimi-k3.1-pro
+  aaUrl: https://artificialanalysis.ai/models/kimi-k3-1-pro
+  verified: true
+  notes: "search-index exact model page (title: Kimi K3.1 Pro)"
+
+- canonicalId: moonshotai/kimi-k3
+  aaUrl: https://artificialanalysis.ai/models/kimi-k3
+  verified: true
+  notes: "search-index exact model page (title: Kimi K3 (max))"
+
+- canonicalId: bytedance-seed/seed-evolving
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results"
+
+- canonicalId: bytedance-seed/seed-character
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results"
+
+- canonicalId: bytedance-seed/seed-2.1-pro
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results"
+
+- canonicalId: stepfun/step-3.5-flash-2603
+  aaUrl: https://artificialanalysis.ai/models/step-3-5-flash
+  verified: true
+  notes: "search-index exact model page (title: Step 3.5 Flash 2603)"
+
+- canonicalId: xiaomi/mimo-v2.6-pro
+  aaUrl: https://artificialanalysis.ai/models/mimo-v2-6-pro
+  verified: true
+  notes: "search-index exact model page (title: MiMo-V2.6-Pro)"
+
+- canonicalId: xiaomi/mimo-v2.6-flash
+  aaUrl: https://artificialanalysis.ai/models/mimo-v2-6-flash
+  verified: true
+  notes: "search-index exact model page (title: MiMo-V2.6-Flash)"
+
+- canonicalId: tencent/hy4-preview
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results; only Hy3-preview indexed"
+
+- canonicalId: nvidia/nemotron-3.5-super-vl-120b-a12b
+  aaUrl: https://artificialanalysis.ai/models/nemotron-3-5-super-vl
+  verified: true
+  notes: "search-index exact model page (title: Nemotron 3.5 Super VL); AA title omits 120B A12B size"
+
+- canonicalId: amazon/nova-2-lite
+  aaUrl: https://artificialanalysis.ai/models/nova-2-0-lite
+  verified: true
+  notes: "search-index exact model page (title: Nova 2.0 Lite (non-reasoning))"
+
+- canonicalId: sakana/fugu-max
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results; no Fugu results returned"
+
+- canonicalId: upstage/solar-pro4
+  aaUrl: https://artificialanalysis.ai/models/solar-pro4
+  verified: true
+  notes: "search-index exact model page (title: Solar Pro 4)"
+
+- canonicalId: inception/mercury-3
+  aaUrl: null
+  verified: false
+  notes: "no exact /models/<slug> page found in search-index results; only Mercury 2 indexed"
