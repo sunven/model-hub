@@ -1,0 +1,1327 @@
+{
+ "url": "http://localhost:3100/",
+ "at": "2026-10-27T06:13:59.854Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.56,
+    0.51,
+    0.37,
+    0.47
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3240,
+     "screens": 3.6,
+     "words": 1099,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 3,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "选型工作台",
+     "words": 1,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "IBM Plex Mono",
+       "share": 0.17,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      22
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 22,
+      "vw": 1.5,
+      "font": "IBM Plex Sans",
+      "text": "选型工作台"
+     },
+     "monoShare": 0.17,
+     "monoProseShare": 0.17,
+     "monoFamilies": [
+      "IBM Plex Mono"
+     ],
+     "monoSamples": [
+      "anthropic/claude-opus-5-5",
+      "anthropic/claude-fable-5-1",
+      "meta/muse-wonder-1.0",
+      "google/gemini-3.8-flash",
+      "xiaomi/mimo-v2.6-pro",
+      "alibaba/qwen3.8-max"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.02,
+     "centerShare": 0,
+     "smallText": 127
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#131416",
+       "share": 0.39
+      },
+      {
+       "color": "#5d5f60",
+       "share": 0.39
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.21
+      },
+      {
+       "color": "#353736",
+       "share": 0.01
+      },
+      {
+       "color": "#92400e",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#131416",
+      "hsl": {
+       "h": 220,
+       "s": 0.07,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 6,
+     "height": 35,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 3,
+     "hairlineSamples": [
+      "div.table-wrap.desktop-only 1000px",
+      "footer.site-footer 1422px",
+      "div.footer-legal 1240px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex mono"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3240,
+    "margins": {
+     "left": 123,
+     "right": 110
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 49,
+      "height": 2886,
+      "words": 1060,
+      "media": 0,
+      "middle": 45,
+      "heading": {
+       "text": "选型工作台",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 100,
+      "right": 100,
+      "textLeft": 100,
+      "textRight": 100,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": true
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2935,
+      "height": 211,
+      "words": 35,
+      "media": 0,
+      "middle": 250,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 100,
+      "right": 100,
+      "textLeft": 100,
+      "textRight": 100,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "选型工作台",
+      "size": 22,
+      "top": 77,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 100,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 1,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.06,
+    "voidBox": {
+     "x": 240,
+     "y": 240,
+     "w": 120,
+     "h": 600
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 100,
+     "right": 110
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 5,
+     "firstScreen": 3,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 5,
+     "radii": [
+      [
+       0,
+       5
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 43,
+     "leftAligned": 0,
+     "figures": 135,
+     "tabularShare": 1,
+     "kpiMax": 14
+    },
+    "rows": {
+     "count": 43,
+     "median": 60
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.67,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      22
+     ]
+    },
+    "title": {
+     "text": "选型工作台",
+     "size": 22,
+     "top": 77
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 9,
+   "filled": [
+    0.37,
+    0.25,
+    0.33,
+    0.28,
+    0.35,
+    0.27,
+    0.24,
+    0.23,
+    0.51
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 9083,
+     "screens": 8.9,
+     "words": 1308,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 3,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "选型工作台",
+     "words": 1,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      22
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 22,
+      "vw": 2.9,
+      "font": "IBM Plex Sans",
+      "text": "选型工作台"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.02,
+     "smallText": 130
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#5d5f60",
+       "share": 0.56
+      },
+      {
+       "color": "#131416",
+       "share": 0.4
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.03
+      },
+      {
+       "color": "#353736",
+       "share": 0.01
+      },
+      {
+       "color": "#92400e",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#131416",
+      "hsl": {
+       "h": 220,
+       "s": 0.07,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 6,
+     "height": 35,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 45,
+     "hairlineSamples": [
+      "article.mobile-card 702px",
+      "article.mobile-card 702px",
+      "article.mobile-card 702px",
+      "article.mobile-card 702px",
+      "article.mobile-card 702px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 9083,
+    "margins": {
+     "left": 33,
+     "right": 33
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 49,
+      "height": 8692,
+      "words": 1147,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "选型工作台",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 33,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 8741,
+      "height": 250,
+      "words": 35,
+      "media": 0,
+      "middle": 43,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 33,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "选型工作台",
+      "size": 22,
+      "top": 77,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 33,
+      "n": 44
+     }
+    ],
+    "leftBlocks": 44,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 33,
+     "right": 33
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 0,
+     "firstScreen": 0,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 3,
+     "radii": [
+      [
+       0,
+       2
+      ],
+      [
+       16,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 43,
+     "leftAligned": 0,
+     "figures": 103,
+     "tabularShare": 1,
+     "kpiMax": 18
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.67,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      22
+     ]
+    },
+    "title": {
+     "text": "选型工作台",
+     "size": 22,
+     "top": 77
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.54,
+    0.46,
+    0.33,
+    0.39,
+    0.41,
+    0.47,
+    0.35,
+    0.4,
+    0.31,
+    0.38,
+    0.72,
+    0.76
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 9380,
+     "screens": 11.1,
+     "words": 1308,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 3,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 68,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "选型工作台",
+     "words": 1,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [
+     {
+      "text": "选型工作台",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "IBM Plex Sans",
+      "weight": 600,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 68,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      22
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 22,
+      "vw": 5.6,
+      "font": "IBM Plex Sans",
+      "text": "选型工作台"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.02,
+     "smallText": 130
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      },
+      {
+       "color": "#f4f6f8",
+       "top": 8854,
+       "hsl": {
+        "h": 210,
+        "s": 0.22,
+        "l": 0.96
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#5d5f60",
+       "share": 0.56
+      },
+      {
+       "color": "#131416",
+       "share": 0.4
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.03
+      },
+      {
+       "color": "#353736",
+       "share": 0.01
+      },
+      {
+       "color": "#92400e",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#131416",
+      "hsl": {
+       "h": 220,
+       "s": 0.07,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 6,
+     "height": 35,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 45,
+     "hairlineSamples": [
+      "article.mobile-card 358px",
+      "article.mobile-card 358px",
+      "article.mobile-card 358px",
+      "article.mobile-card 358px",
+      "article.mobile-card 358px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 9380,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 48,
+      "height": 8806,
+      "words": 1147,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "选型工作台",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 16,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 8854,
+      "height": 438,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 26,
+      "textLeft": 16,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "选型工作台",
+      "size": 22,
+      "top": 68,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 44
+     }
+    ],
+    "leftBlocks": 44,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 16,
+     "right": 16
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 68,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 1,
+     "radii": [
+      [
+       0,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 43,
+     "leftAligned": 0,
+     "figures": 103,
+     "tabularShare": 1,
+     "kpiMax": 18
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.67,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      22
+     ]
+    },
+    "title": {
+     "text": "选型工作台",
+     "size": 22,
+     "top": 68
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "tiny-text",
+   "width": 1440,
+   "message": "67% of the text is under 13px.",
+   "fix": "Data and labels read at 13–14px; keep 11–12px for sublines and axis ticks.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/final-home/desktop-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/final-home/desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/final-home/tablet-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/final-home/tablet-page-01.jpg",
+    "/Users/sunven/github/model-hub/.taste-skill/final-home/tablet-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/final-home/mobile-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/final-home/mobile-page-01.jpg",
+    "/Users/sunven/github/model-hub/.taste-skill/final-home/mobile-page-02.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

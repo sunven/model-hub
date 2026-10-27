@@ -1,0 +1,1268 @@
+{
+ "url": "http://localhost:3000/compare",
+ "at": "2026-10-27T05:37:58.091Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 2,
+   "filled": [
+    0.91,
+    0.72
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 984,
+     "screens": 1.1,
+     "words": 86,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 2,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "先选两个模型",
+     "words": 1,
+     "chars": 6,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 113,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "先选两个模型",
+     "words": 1,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      22
+     ],
+     "sizeCount": 5,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 22,
+      "vw": 1.5,
+      "font": "IBM Plex Sans",
+      "text": "先选两个模型"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.02,
+     "smallText": 7
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#5d5f60",
+       "share": 0.49
+      },
+      {
+       "color": "#131416",
+       "share": 0.32
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#131416",
+      "hsl": {
+       "h": 220,
+       "s": 0.07,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 6,
+     "height": 35,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "去模型表"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 8,
+     "hairlineSamples": [
+      "div.pick-list 760px",
+      "div.pick-row 760px",
+      "div.pick-row 760px",
+      "div.pick-row 760px",
+      "div.pick-row 760px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex sans fallback"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 984,
+    "margins": {
+     "left": 100,
+     "right": 100
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 49,
+      "height": 631,
+      "words": 42,
+      "media": 0,
+      "middle": 316,
+      "heading": {
+       "text": "先选两个模型",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 100,
+      "right": 580,
+      "textLeft": 100,
+      "textRight": 580,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 680,
+      "height": 211,
+      "words": 35,
+      "media": 0,
+      "middle": 250,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 100,
+      "right": 100,
+      "textLeft": 100,
+      "textRight": 100,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "先选两个模型",
+      "size": 22,
+      "top": 113,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 100,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 2,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.23,
+    "voidBox": {
+     "x": 900,
+     "y": 120,
+     "w": 540,
+     "h": 540
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 100,
+     "right": 100
+    },
+    "hero": {
+     "text": "先选两个模型",
+     "words": 1,
+     "chars": 6,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 113,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 1,
+     "radii": [
+      [
+       0,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 5,
+     "tabularShare": 1,
+     "kpiMax": 14
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.62,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      22
+     ]
+    },
+    "title": {
+     "text": "先选两个模型",
+     "size": 22,
+     "top": 113
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 2,
+   "filled": [
+    0.87,
+    0.81
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 1108,
+     "screens": 1.1,
+     "words": 86,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 2,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "先选两个模型",
+     "words": 1,
+     "chars": 6,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 113,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "先选两个模型",
+     "words": 1,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      22
+     ],
+     "sizeCount": 5,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 22,
+      "vw": 2.9,
+      "font": "IBM Plex Sans",
+      "text": "先选两个模型"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.02,
+     "smallText": 7
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#5d5f60",
+       "share": 0.49
+      },
+      {
+       "color": "#131416",
+       "share": 0.32
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#131416",
+      "hsl": {
+       "h": 220,
+       "s": 0.07,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 6,
+     "height": 35,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "去模型表"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 8,
+     "hairlineSamples": [
+      "div.pick-list 702px",
+      "div.pick-row 702px",
+      "div.pick-row 702px",
+      "div.pick-row 702px",
+      "div.pick-row 702px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex sans fallback"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 1108,
+    "margins": {
+     "left": 33,
+     "right": 33
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 49,
+      "height": 716,
+      "words": 42,
+      "media": 0,
+      "middle": 258,
+      "heading": {
+       "text": "先选两个模型",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 33,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 765,
+      "height": 250,
+      "words": 35,
+      "media": 0,
+      "middle": 43,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 33,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "先选两个模型",
+      "size": 22,
+      "top": 113,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 33,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 2,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 24,
+     "right": 33
+    },
+    "hero": {
+     "text": "先选两个模型",
+     "words": 1,
+     "chars": 6,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 113,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 3,
+     "radii": [
+      [
+       0,
+       2
+      ],
+      [
+       16,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 5,
+     "tabularShare": 1,
+     "kpiMax": 14
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.62,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      22
+     ]
+    },
+    "title": {
+     "text": "先选两个模型",
+     "size": 22,
+     "top": 113
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 2,
+   "filled": [
+    0.87,
+    0.81
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 1299,
+     "screens": 1.5,
+     "words": 86,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 2,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "先选两个模型",
+     "words": 1,
+     "chars": 6,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 86,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "先选两个模型",
+     "words": 1,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [
+     {
+      "text": "先选两个模型",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "IBM Plex Sans",
+      "weight": 600,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 86,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      22
+     ],
+     "sizeCount": 5,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 22,
+      "vw": 5.6,
+      "font": "IBM Plex Sans",
+      "text": "先选两个模型"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.02,
+     "smallText": 7
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      },
+      {
+       "color": "#f4f6f8",
+       "top": 773,
+       "hsl": {
+        "h": 210,
+        "s": 0.22,
+        "l": 0.96
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#5d5f60",
+       "share": 0.49
+      },
+      {
+       "color": "#131416",
+       "share": 0.32
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#131416",
+      "hsl": {
+       "h": 220,
+       "s": 0.07,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 6,
+     "height": 35,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "去模型表"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 8,
+     "hairlineSamples": [
+      "div.pick-list 358px",
+      "div.pick-row 358px",
+      "div.pick-row 358px",
+      "div.pick-row 358px",
+      "div.pick-row 358px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex sans fallback"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 1299,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 48,
+      "height": 725,
+      "words": 42,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "先选两个模型",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 16,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 773,
+      "height": 438,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 26,
+      "textLeft": 16,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "先选两个模型",
+      "size": 22,
+      "top": 86,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 2,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 16,
+     "right": 16
+    },
+    "hero": {
+     "text": "先选两个模型",
+     "words": 1,
+     "chars": 6,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 86,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 1,
+     "radii": [
+      [
+       0,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 5,
+     "tabularShare": 1,
+     "kpiMax": 14
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.62,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      22
+     ]
+    },
+    "title": {
+     "text": "先选两个模型",
+     "size": 22,
+     "top": 86
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "tiny-text",
+   "width": 1440,
+   "message": "62% of the text is under 13px.",
+   "fix": "Data and labels read at 13–14px; keep 11–12px for sublines and axis ticks.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/after-compare-empty/desktop-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/after-compare-empty/desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/after-compare-empty/tablet-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/after-compare-empty/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/after-compare-empty/mobile-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/after-compare-empty/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

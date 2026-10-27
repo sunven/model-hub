@@ -1,0 +1,2471 @@
+{
+ "url": "http://localhost:3000/",
+ "at": "2026-10-27T05:13:47.952Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.87,
+    0.98,
+    0.99,
+    0.75
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3213,
+     "screens": 3.6,
+     "words": 997,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 30,
+     "vw": 2.1,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 111,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "选型工作台",
+     "words": 1,
+     "lines": 1,
+     "size": 30,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "选型工作台",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "-apple-system",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 111,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "43",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "right",
+      "position": "right",
+      "widthRatio": 0.06,
+      "top": 117,
+      "tag": "strong",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 2,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.73,
+       "mono": false
+      },
+      {
+       "family": "SFMono-Regular",
+       "share": 0.27,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      19,
+      30,
+      34
+     ],
+     "sizeCount": 8,
+     "notLoaded": [
+      "SFMono-Regular"
+     ],
+     "body": {
+      "font": "-apple-system",
+      "size": 10.5,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.3
+     },
+     "measureChars": 173,
+     "max": {
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "text": "43"
+     },
+     "monoShare": 0.27,
+     "monoProseShare": 0.27,
+     "monoFamilies": [
+      "SFMono-Regular"
+     ],
+     "monoSamples": [
+      "本地预览",
+      "MODEL DIRECTORY · 43 个模型",
+      "Anthropic · anthropic/claude-opus-5-5",
+      "Anthropic · anthropic/claude-fable-5-1",
+      "Meta · meta/muse-wonder-1.0",
+      "Google · google/gemini-3.8-flash"
+     ],
+     "microLabels": 9,
+     "microLabelShare": 0.014,
+     "microSamples": [
+      "MODEL DIRECTORY · 43 个模型",
+      "Model Version",
+      "实验室",
+      "托管商（更多）",
+      "最高输出价",
+      "最低上下文"
+     ],
+     "upperShare": 0.03,
+     "centerShare": 0,
+     "smallText": 70
+    },
+    "eyebrows": [
+     {
+      "text": "MODEL DIRECTORY · 43 个模型",
+      "above": "选型工作台",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 88
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f4f6f8",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.22,
+      "l": 0.96
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 233,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#5f6774",
+       "share": 0.56
+      },
+      {
+       "color": "#111827",
+       "share": 0.41
+      },
+      {
+       "color": "#047857",
+       "share": 0.01
+      },
+      {
+       "color": "#1d4ed8",
+       "share": 0.01
+      },
+      {
+       "color": "#b45309",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#111827",
+      "hsl": {
+       "h": 221,
+       "s": 0.39,
+       "l": 0.11
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 1,
+     "radius": 6,
+     "height": 33,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 1,
+     "shadowOverlay": 1,
+     "shadowSamples": [
+      "div.table-wrap.desktop-only → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px"
+     ],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 2,
+     "hairlineSamples": [
+      "header.site-header 1440px",
+      "footer.site-footer 1440px"
+     ],
+     "outlinedBoxes": 2,
+     "dashed": 1,
+     "blurred": 1,
+     "roundedBoxes": 2,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 58,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3213,
+    "margins": {
+     "left": 48,
+     "right": 83
+    },
+    "sections": [
+     {
+      "sel": "section.page-head",
+      "tag": "section",
+      "top": 58,
+      "height": 127,
+      "words": 12,
+      "media": 0,
+      "middle": 777,
+      "heading": {
+       "text": "43",
+       "size": 34,
+       "tag": "strong"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.workbench",
+      "tag": "div",
+      "top": 186,
+      "height": 2826,
+      "words": 960,
+      "media": 0,
+      "middle": 35,
+      "heading": null,
+      "left": 39,
+      "right": 24,
+      "textLeft": 39,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": true,
+      "hero": true,
+      "continues": false,
+      "pinned": true
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "选型工作台",
+      "size": 30,
+      "top": 111,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 24,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 1,
+    "bodySize": 11,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.05,
+    "voidBox": {
+     "x": 180,
+     "y": 240,
+     "w": 120,
+     "h": 540
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": false,
+    "ground": "#f4f6f8",
+    "sidebar": null,
+    "topbar": {
+     "h": 58
+    },
+    "canvas": {
+     "left": 39,
+     "right": 83
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 30,
+     "vw": 2.1,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 111,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 2,
+     "firstScreen": 2,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 2,
+     "radii": [
+      [
+       8,
+       2
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 2,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 43,
+     "leftAligned": 43,
+     "figures": 104,
+     "tabularShare": 1,
+     "kpiMax": 34
+    },
+    "rows": {
+     "count": 43,
+     "median": 62
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.79,
+     "tiny": 338,
+     "tinySamples": [
+      "本地预览 10px",
+      "MODEL DIRECTORY · 10px",
+      "个模型 10px",
+      "Model Version 10px"
+     ],
+     "sizes": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      18,
+      19,
+      30,
+      34
+     ]
+    },
+    "title": {
+     "text": "选型工作台",
+     "size": 30,
+     "top": 111
+    },
+    "colourShare": 0.002
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 10,
+   "filled": [
+    0.84,
+    0.9,
+    0.96,
+    0.96,
+    0.9,
+    0.9,
+    0.9,
+    0.96,
+    0.96,
+    0.72
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 10017,
+     "screens": 9.8,
+     "words": 1287,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 26,
+     "vw": 3.4,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 99,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "选型工作台",
+     "words": 1,
+     "lines": 1,
+     "size": 26,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "选型工作台",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 26,
+      "vw": 3.4,
+      "font": "-apple-system",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.68,
+      "top": 99,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 1,
+       "mono": false
+      },
+      {
+       "family": "SFMono-Regular",
+       "share": 0,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      9,
+      10,
+      11,
+      12,
+      14,
+      16,
+      18,
+      19,
+      26
+     ],
+     "sizeCount": 9,
+     "notLoaded": [
+      "SFMono-Regular"
+     ],
+     "body": {
+      "font": "-apple-system",
+      "size": 10.5,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.3
+     },
+     "measureChars": 137,
+     "max": {
+      "size": 26,
+      "vw": 3.4,
+      "font": "-apple-system",
+      "text": "选型工作台"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "SFMono-Regular"
+     ],
+     "monoSamples": [
+      "本地预览",
+      "MODEL DIRECTORY · 43 个模型"
+     ],
+     "microLabels": 130,
+     "microLabelShare": 0.225,
+     "microSamples": [
+      "MODEL DIRECTORY · 43 个模型",
+      "Anthropic",
+      "Arena text",
+      "Arena webdev",
+      "Anthropic",
+      "Arena text"
+     ],
+     "upperShare": 0.23,
+     "centerShare": 0.06,
+     "smallText": 126
+    },
+    "eyebrows": [
+     {
+      "text": "MODEL DIRECTORY · 43 个模型",
+      "above": "选型工作台",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 76
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f4f6f8",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.22,
+      "l": 0.96
+     },
+     "dark": false,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#5f6774",
+       "share": 0.54
+      },
+      {
+       "color": "#111827",
+       "share": 0.43
+      },
+      {
+       "color": "#047857",
+       "share": 0.01
+      },
+      {
+       "color": "#1d4ed8",
+       "share": 0.01
+      },
+      {
+       "color": "#b45309",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#111827"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 87,
+     "inHero": 7,
+     "radius": 6,
+     "height": 33,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "查看详情",
+      "加入对比",
+      "查看详情",
+      "加入对比"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 43,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px"
+     ],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 45,
+     "hairlineSamples": [
+      "header.site-header 768px",
+      "div.mobile-scores 708px",
+      "div.mobile-scores 708px",
+      "div.mobile-scores 708px",
+      "div.mobile-scores 708px"
+     ],
+     "outlinedBoxes": 43,
+     "dashed": 1,
+     "blurred": 1,
+     "roundedBoxes": 43,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 54,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 10017,
+    "margins": {
+     "left": 30,
+     "right": 30
+    },
+    "sections": [
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 212,
+      "height": 209,
+      "words": 28,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Claude Opus 5.5",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 434,
+      "height": 209,
+      "words": 28,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Claude Fable 5.1",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 655,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Muse Wonder",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 876,
+      "height": 209,
+      "words": 28,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Gemini 3.8 Flash",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 1097,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 194,
+      "heading": {
+       "text": "MiMo V2.6 Pro",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 1318,
+      "height": 209,
+      "words": 29,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Qwen3.8 Max",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 1540,
+      "height": 209,
+      "words": 31,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Gemini 3.1 Pro (Preview Custom Tools)",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 1761,
+      "height": 209,
+      "words": 28,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Muse Spark 1.1",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 1982,
+      "height": 209,
+      "words": 31,
+      "media": 0,
+      "middle": 166,
+      "heading": {
+       "text": "Kimi K3",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 2203,
+      "height": 209,
+      "words": 30,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "GLM 5.3",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 2425,
+      "height": 209,
+      "words": 28,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Claude Sonnet 5.5",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 2646,
+      "height": 209,
+      "words": 31,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "GLM 5.3 Flash",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 2867,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 194,
+      "heading": {
+       "text": "MiMo V2.6 Flash",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 3088,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Grok 4.5",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 3310,
+      "height": 209,
+      "words": 33,
+      "media": 0,
+      "middle": 150,
+      "heading": {
+       "text": "DeepSeek V4 Pro 0813",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 3531,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "GPT-6.1 Sol",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 3752,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "GPT-6 Astra",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 3973,
+      "height": 209,
+      "words": 30,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Qwen3.8 27B",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 4195,
+      "height": 209,
+      "words": 29,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Gemini 3.5 Flash Lite",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 4416,
+      "height": 209,
+      "words": 28,
+      "media": 0,
+      "middle": 171,
+      "heading": {
+       "text": "Mistral Large 4",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 4637,
+      "height": 209,
+      "words": 30,
+      "media": 0,
+      "middle": 194,
+      "heading": {
+       "text": "Nemotron 3.5 Super VL 120B A12B",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 4858,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 171,
+      "heading": {
+       "text": "Step 3.5 Flash 2603",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 5079,
+      "height": 209,
+      "words": 28,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Claude Haiku 5.5",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 5301,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "GPT-6 Sol",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 5522,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Grok 4.7",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 5743,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "GPT-6 Luna",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 5964,
+      "height": 209,
+      "words": 29,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Muse Glimmer 30B",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 6186,
+      "height": 209,
+      "words": 28,
+      "media": 0,
+      "middle": 171,
+      "heading": {
+       "text": "Solar Pro 4",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 6407,
+      "height": 209,
+      "words": 25,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Nova 2 Lite",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 6628,
+      "height": 209,
+      "words": 26,
+      "media": 0,
+      "middle": 171,
+      "heading": {
+       "text": "Mistral Medium (latest)",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 6849,
+      "height": 209,
+      "words": 19,
+      "media": 0,
+      "middle": 183,
+      "heading": {
+       "text": "Codestral 2508",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 7071,
+      "height": 209,
+      "words": 20,
+      "media": 0,
+      "middle": 173,
+      "heading": {
+       "text": "Command A+",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 7292,
+      "height": 209,
+      "words": 28,
+      "media": 0,
+      "middle": 166,
+      "heading": {
+       "text": "DeepSeek V4.1 Flash 1017",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 7513,
+      "height": 209,
+      "words": 20,
+      "media": 0,
+      "middle": 168,
+      "heading": {
+       "text": "Fugu Max",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 7734,
+      "height": 209,
+      "words": 23,
+      "media": 0,
+      "middle": 194,
+      "heading": {
+       "text": "GLM 4.7 FlashX",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 7956,
+      "height": 209,
+      "words": 25,
+      "media": 0,
+      "middle": 171,
+      "heading": {
+       "text": "Hy4 Preview",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 8177,
+      "height": 209,
+      "words": 27,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Kimi K3.1 Pro",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 8398,
+      "height": 209,
+      "words": 21,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Mercury 3",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 8619,
+      "height": 209,
+      "words": 23,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Qwen3.8 Flash",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "article.mobile-card",
+      "tag": "article",
+      "top": 8840,
+      "height": 209,
+      "words": 24,
+      "media": 0,
+      "middle": 170,
+      "heading": {
+       "text": "Qwen3.8 Omni Flash",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 30,
+      "right": 30,
+      "textLeft": 30,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "选型工作台",
+      "size": 26,
+      "top": 99,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "Model",
+      "side": "left",
+      "px": 14
+     }
+    ],
+    "edges": [
+     {
+      "x": 30,
+      "n": 43
+     },
+     {
+      "x": 16,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 44,
+    "bodySize": 11,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": false,
+    "ground": "#f4f6f8",
+    "sidebar": null,
+    "topbar": {
+     "h": 54
+    },
+    "canvas": {
+     "left": 30,
+     "right": 30
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 26,
+     "vw": 3.4,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 99,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 43,
+     "firstScreen": 4,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 86,
+     "radii": [
+      [
+       8,
+       43
+      ],
+      [
+       0,
+       43
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 43,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 43,
+     "leftAligned": 43,
+     "figures": 103,
+     "tabularShare": 0.58,
+     "kpiMax": 18
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.79,
+     "tiny": 338,
+     "tinySamples": [
+      "本地预览 10px",
+      "MODEL DIRECTORY · 10px",
+      "个模型 10px",
+      "Model Version 10px"
+     ],
+     "sizes": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      18,
+      19,
+      26,
+      34
+     ]
+    },
+    "title": {
+     "text": "选型工作台",
+     "size": 26,
+     "top": 99
+    },
+    "colourShare": 0.002
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.89,
+    0.86,
+    0.92,
+    0.92,
+    0.92,
+    0.8,
+    0.8,
+    0.8,
+    0.92,
+    0.86,
+    0.86,
+    0.78
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 10255,
+     "screens": 12.2,
+     "words": 1286,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 26,
+     "vw": 6.7,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 95,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "选型工作台",
+     "words": 1,
+     "lines": 1,
+     "size": 26,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "选型工作台",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 26,
+      "vw": 6.7,
+      "font": "-apple-system",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 95,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 1,
+       "mono": false
+      },
+      {
+       "family": "SFMono-Regular",
+       "share": 0,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      9,
+      10,
+      11,
+      12,
+      14,
+      16,
+      17,
+      18,
+      26
+     ],
+     "sizeCount": 9,
+     "notLoaded": [
+      "SFMono-Regular"
+     ],
+     "body": {
+      "font": "-apple-system",
+      "size": 10.5,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.3
+     },
+     "measureChars": 68,
+     "max": {
+      "size": 26,
+      "vw": 6.7,
+      "font": "-apple-system",
+      "text": "选型工作台"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "SFMono-Regular"
+     ],
+     "monoSamples": [
+      "MODEL DIRECTORY · 43 个模型"
+     ],
+     "microLabels": 130,
+     "microLabelShare": 0.225,
+     "microSamples": [
+      "MODEL DIRECTORY · 43 个模型",
+      "Anthropic",
+      "Arena text",
+      "Arena webdev",
+      "Anthropic",
+      "Arena text"
+     ],
+     "upperShare": 0.23,
+     "centerShare": 0.06,
+     "smallText": 126
+    },
+    "eyebrows": [
+     {
+      "text": "MODEL DIRECTORY · 43 个模型",
+      "above": "选型工作台",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 73
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f4f6f8",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.22,
+      "l": 0.96
+     },
+     "dark": false,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#5f6774",
+       "share": 0.54
+      },
+      {
+       "color": "#111827",
+       "share": 0.43
+      },
+      {
+       "color": "#047857",
+       "share": 0.01
+      },
+      {
+       "color": "#1d4ed8",
+       "share": 0.01
+      },
+      {
+       "color": "#b45309",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#111827"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 87,
+     "inHero": 5,
+     "radius": 6,
+     "height": 33,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "查看详情",
+      "加入对比",
+      "查看详情",
+      "加入对比"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 43,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px"
+     ],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 45,
+     "hairlineSamples": [
+      "header.site-header 390px",
+      "div.mobile-scores 330px",
+      "div.mobile-scores 330px",
+      "div.mobile-scores 330px",
+      "div.mobile-scores 330px"
+     ],
+     "outlinedBoxes": 43,
+     "dashed": 1,
+     "blurred": 1,
+     "roundedBoxes": 43,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 51,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 10255,
+    "margins": {
+     "left": 30,
+     "right": 30
+    },
+    "sections": [
+     {
+      "sel": "section.page-head",
+      "tag": "section",
+      "top": 51,
+      "height": 131,
+      "words": 9,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "选型工作台",
+       "size": 26,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 21,
+      "textLeft": 16,
+      "textRight": 21,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.workbench",
+      "tag": "div",
+      "top": 182,
+      "height": 9821,
+      "words": 1163,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Claude Opus 5.5",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 18,
+      "textRight": 18,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 10039,
+      "height": 126,
+      "words": 37,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 16,
+      "right": 27,
+      "textLeft": 16,
+      "textRight": 27,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "选型工作台",
+      "size": 26,
+      "top": 95,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "Model",
+      "side": "left",
+      "px": 14
+     }
+    ],
+    "edges": [
+     {
+      "x": 30,
+      "n": 43
+     },
+     {
+      "x": 16,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 44,
+    "bodySize": 11,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": false,
+    "ground": "#f4f6f8",
+    "sidebar": null,
+    "topbar": {
+     "h": 51
+    },
+    "canvas": {
+     "left": 30,
+     "right": 30
+    },
+    "hero": {
+     "text": "选型工作台",
+     "words": 1,
+     "chars": 5,
+     "lines": 1,
+     "size": 26,
+     "vw": 6.7,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 95,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 43,
+     "firstScreen": 3,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 86,
+     "radii": [
+      [
+       8,
+       43
+      ],
+      [
+       0,
+       43
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 43,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 43,
+     "leftAligned": 43,
+     "figures": 103,
+     "tabularShare": 0.58,
+     "kpiMax": 18
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.79,
+     "tiny": 337,
+     "tinySamples": [
+      "MODEL DIRECTORY · 10px",
+      "个模型 10px",
+      "Model Version 10px",
+      "实验室 10px"
+     ],
+     "sizes": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      26,
+      34
+     ]
+    },
+    "title": {
+     "text": "选型工作台",
+     "size": 26,
+     "top": 95
+    },
+    "colourShare": 0.002
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "micro-label",
+   "width": 1440,
+   "message": "9 tiny uppercase letter-spaced labels (e.g. \"MODEL DIRECTORY · 43 个模型\", \"Model Version\", \"实验室\", \"托管商（更多）\").",
+   "fix": "Use sentence-case text at a readable size, or delete the label.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "font-fallback",
+   "width": 1440,
+   "message": "Typeface(s) declared but not loaded, so a fallback is rendering: SFMono-Regular",
+   "fix": "Fix the font URL / family name, or the screenshots you are judging are not the design.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "font-not-dealt",
+   "width": 1440,
+   "message": "The sheet dealt IBM Plex Sans, but the page renders -apple-system, SFMono-Regular.",
+   "fix": "Load the dealt face (the link on the sheet) and put it first in font-family. A build that falls back to a default face lands on the default look."
+  },
+  {
+   "level": "WARN",
+   "id": "numeric-align",
+   "width": 1440,
+   "message": "43 of 43 numeric table cells are left-aligned.",
+   "fix": "Right-align numbers, amounts and percentages (and their column headers) so the digits line up.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "tiny-text",
+   "width": 1440,
+   "message": "338 text blocks under 11px: 本地预览 10px, MODEL DIRECTORY · 10px, 个模型 10px, Model Version 10px.",
+   "fix": "Nothing below 11px; secondary text 12px, data 13–14px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "edge-text",
+   "width": 768,
+   "message": "1 text block(s) sit within 16px of the screen edge: \"Model\" (14px from the left)",
+   "fix": "Keep text inside the page margin (16–32px or more). Only display type deliberately bled past the edge may touch it."
+  },
+  {
+   "level": "WARN",
+   "id": "edge-text",
+   "width": 390,
+   "message": "1 text block(s) sit 12–15px from the phone's edge: \"Model\" (14px)",
+   "fix": "The page margin is 16–20px on a phone; the header and the corner labels sit on it too."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/before-home/desktop-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/before-home/desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/before-home/tablet-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/before-home/tablet-page-01.jpg",
+    "/Users/sunven/github/model-hub/.taste-skill/before-home/tablet-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/before-home/mobile-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/before-home/mobile-page-01.jpg",
+    "/Users/sunven/github/model-hub/.taste-skill/before-home/mobile-page-02.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

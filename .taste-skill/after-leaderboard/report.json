@@ -1,0 +1,1328 @@
+{
+ "url": "http://localhost:3000/leaderboards/text",
+ "at": "2026-10-27T05:30:56.147Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.47,
+    0.33,
+    0.28,
+    0.52,
+    0.47
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3634,
+     "screens": 4,
+     "words": 545,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 2,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      22
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": {
+      "font": "IBM Plex Sans",
+      "size": 12,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.3
+     },
+     "measureChars": 207,
+     "max": {
+      "size": 22,
+      "vw": 1.5,
+      "font": "IBM Plex Sans",
+      "text": "Arena 榜单"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 11
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#131416",
+       "share": 0.48
+      },
+      {
+       "color": "#5d5f60",
+       "share": 0.38
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.1
+      },
+      {
+       "color": "#353736",
+       "share": 0.04
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#131416"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 2,
+     "radius": 6,
+     "height": 32,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "模型目录"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 4,
+     "hairlineSamples": [
+      "nav.tabs 1240px",
+      "div.lb-table-wrap.desktop-only 1240px",
+      "footer.site-footer 1422px",
+      "div.footer-legal 1240px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex sans fallback"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3634,
+    "margins": {
+     "left": 119,
+     "right": 110
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 49,
+      "height": 3281,
+      "words": 529,
+      "media": 0,
+      "middle": 151,
+      "heading": {
+       "text": "Arena 榜单",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 100,
+      "right": 110,
+      "textLeft": 100,
+      "textRight": 110,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 3330,
+      "height": 211,
+      "words": 35,
+      "media": 0,
+      "middle": 250,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 100,
+      "right": 100,
+      "textLeft": 100,
+      "textRight": 100,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Arena 榜单",
+      "size": 22,
+      "top": 77,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 100,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 2,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.25,
+    "voidBox": {
+     "x": 420,
+     "y": 300,
+     "w": 540,
+     "h": 600
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 100,
+     "right": 110
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 1,
+     "radii": [
+      [
+       0,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 51,
+     "leftAligned": 1,
+     "figures": 101,
+     "tabularShare": 0.99,
+     "kpiMax": 14
+    },
+    "rows": {
+     "count": 50,
+     "median": 58
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.51,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ]
+    },
+    "title": {
+     "text": "Arena 榜单",
+     "size": 22,
+     "top": 77
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    0.92,
+    0.89,
+    0.89,
+    0.91,
+    0.91,
+    0.86
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 5716,
+     "screens": 5.6,
+     "words": 685,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 2,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ],
+     "sizeCount": 7,
+     "notLoaded": [],
+     "body": {
+      "font": "IBM Plex Sans",
+      "size": 12,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.3
+     },
+     "measureChars": 117,
+     "max": {
+      "size": 22,
+      "vw": 2.9,
+      "font": "IBM Plex Sans",
+      "text": "Arena 榜单"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 49
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#131416",
+       "share": 0.52
+      },
+      {
+       "color": "#5d5f60",
+       "share": 0.4
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.05
+      },
+      {
+       "color": "#353736",
+       "share": 0.03
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#131416"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 2,
+     "radius": 6,
+     "height": 32,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "模型目录"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 53,
+     "hairlineSamples": [
+      "nav.tabs 702px",
+      "article.mobile-card 702px",
+      "article.mobile-card 702px",
+      "article.mobile-card 702px",
+      "article.mobile-card 702px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex sans fallback"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 5716,
+    "margins": {
+     "left": 33,
+     "right": 33
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 49,
+      "height": 5324,
+      "words": 624,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Arena 榜单",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 33,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 5373,
+      "height": 250,
+      "words": 35,
+      "media": 0,
+      "middle": 43,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 33,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Arena 榜单",
+      "size": 22,
+      "top": 77,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 33,
+      "n": 52
+     }
+    ],
+    "leftBlocks": 52,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 33,
+     "right": 33
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 0,
+     "firstScreen": 0,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 3,
+     "radii": [
+      [
+       0,
+       2
+      ],
+      [
+       16,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 51,
+     "leftAligned": 1,
+     "figures": 101,
+     "tabularShare": 1,
+     "kpiMax": 14
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.51,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ]
+    },
+    "title": {
+     "text": "Arena 榜单",
+     "size": 22,
+     "top": 77
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 8,
+   "filled": [
+    0.93,
+    0.82,
+    0.87,
+    0.85,
+    0.88,
+    0.88,
+    0.93,
+    0.81
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 6013,
+     "screens": 7.1,
+     "words": 685,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 2,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 68,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [
+     {
+      "text": "Arena 榜单",
+      "words": 2,
+      "chars": 8,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "IBM Plex Sans",
+      "weight": 600,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 68,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ],
+     "sizeCount": 7,
+     "notLoaded": [],
+     "body": {
+      "font": "IBM Plex Sans",
+      "size": 12,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.3
+     },
+     "measureChars": 60,
+     "max": {
+      "size": 22,
+      "vw": 5.6,
+      "font": "IBM Plex Sans",
+      "text": "Arena 榜单"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 49
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      },
+      {
+       "color": "#f4f6f8",
+       "top": 5487,
+       "hsl": {
+        "h": 210,
+        "s": 0.22,
+        "l": 0.96
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#131416",
+       "share": 0.52
+      },
+      {
+       "color": "#5d5f60",
+       "share": 0.4
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.05
+      },
+      {
+       "color": "#353736",
+       "share": 0.03
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#131416"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 2,
+     "radius": 6,
+     "height": 32,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "模型目录"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 53,
+     "hairlineSamples": [
+      "nav.tabs 358px",
+      "article.mobile-card 358px",
+      "article.mobile-card 358px",
+      "article.mobile-card 358px",
+      "article.mobile-card 358px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex sans fallback"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 6013,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 48,
+      "height": 5439,
+      "words": 624,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Arena 榜单",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 16,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 5487,
+      "height": 438,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 26,
+      "textLeft": 16,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Arena 榜单",
+      "size": 22,
+      "top": 68,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 52
+     }
+    ],
+    "leftBlocks": 52,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 16,
+     "right": 16
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 68,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 1,
+     "radii": [
+      [
+       0,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 51,
+     "leftAligned": 1,
+     "figures": 101,
+     "tabularShare": 1,
+     "kpiMax": 14
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.51,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ]
+    },
+    "title": {
+     "text": "Arena 榜单",
+     "size": 22,
+     "top": 68
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "tiny-text",
+   "width": 1440,
+   "message": "51% of the text is under 13px.",
+   "fix": "Data and labels read at 13–14px; keep 11–12px for sublines and axis ticks.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/after-leaderboard/desktop-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/after-leaderboard/desktop-page-01.jpg",
+    "/Users/sunven/github/model-hub/.taste-skill/after-leaderboard/desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/after-leaderboard/tablet-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/after-leaderboard/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/after-leaderboard/mobile-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/after-leaderboard/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

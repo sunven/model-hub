@@ -1,0 +1,1409 @@
+{
+ "url": "http://localhost:3000/leaderboards/text",
+ "at": "2026-10-27T05:15:37.354Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.71,
+    0.84,
+    0.84,
+    0.57
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3311,
+     "screens": 3.7,
+     "words": 591,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 30,
+     "vw": 2.1,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.45,
+     "top": 103,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "lines": 1,
+     "size": 30,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "Arena 榜单",
+      "words": 2,
+      "chars": 8,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "-apple-system",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.45,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 103,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.95,
+       "mono": false
+      },
+      {
+       "family": "SFMono-Regular",
+       "share": 0.05,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      10,
+      11,
+      12,
+      14,
+      19,
+      30
+     ],
+     "sizeCount": 6,
+     "notLoaded": [
+      "SFMono-Regular"
+     ],
+     "body": {
+      "font": "-apple-system",
+      "size": 10.5,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.2
+     },
+     "measureChars": 235,
+     "max": {
+      "size": 30,
+      "vw": 2.1,
+      "font": "-apple-system",
+      "text": "Arena 榜单"
+     },
+     "monoShare": 0.05,
+     "monoProseShare": 0.05,
+     "monoFamilies": [
+      "SFMono-Regular"
+     ],
+     "monoSamples": [
+      "本地预览",
+      "LEADERBOARD · Arena text",
+      "#1",
+      "#2",
+      "#3",
+      "#4"
+     ],
+     "microLabels": 7,
+     "microLabelShare": 0.019,
+     "microSamples": [
+      "LEADERBOARD · Arena text",
+      "Rank",
+      "Model",
+      "Organization",
+      "Rating",
+      "Condition"
+     ],
+     "upperShare": 0.03,
+     "centerShare": 0,
+     "smallText": 53
+    },
+    "eyebrows": [
+     {
+      "text": "LEADERBOARD · Arena text",
+      "above": "Arena 榜单",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 80
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f4f6f8",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.22,
+      "l": 0.96
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 309,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#111827",
+       "share": 0.62
+      },
+      {
+       "color": "#5f6774",
+       "share": 0.37
+      },
+      {
+       "color": "#1d4ed8",
+       "share": 0.01
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 5,
+     "inHero": 4,
+     "radius": 6,
+     "height": 33,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "← 模型表",
+      "Arena text",
+      "Arena webdev"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 1,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "div.lb-table-wrap.desktop-only → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px"
+     ],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 2,
+     "hairlineSamples": [
+      "header.site-header 1440px",
+      "footer.site-footer 1440px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 1,
+     "blurred": 1,
+     "roundedBoxes": 1,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 58,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3311,
+    "margins": {
+     "left": 116,
+     "right": 174
+    },
+    "sections": [],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Arena 榜单",
+      "size": 30,
+      "top": 103,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 104,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 1,
+    "bodySize": 11,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.11,
+    "voidBox": {
+     "x": 420,
+     "y": 300,
+     "w": 240,
+     "h": 600
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": false,
+    "ground": "#f4f6f8",
+    "sidebar": null,
+    "topbar": {
+     "h": 58
+    },
+    "canvas": {
+     "left": 105,
+     "right": 166
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 30,
+     "vw": 2.1,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.45,
+     "top": 103,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 1,
+     "radii": [
+      [
+       8,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 1,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 51,
+     "leftAligned": 51,
+     "figures": 101,
+     "tabularShare": 0.99,
+     "kpiMax": 14
+    },
+    "rows": {
+     "count": 50,
+     "median": 54
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.77,
+     "tiny": 233,
+     "tinySamples": [
+      "本地预览 10px",
+      "LEADERBOARD · 10px",
+      "Arena text 10px",
+      "Rank 10px"
+     ],
+     "sizes": [
+      10,
+      11,
+      12,
+      14,
+      16,
+      19,
+      30
+     ]
+    },
+    "title": {
+     "text": "Arena 榜单",
+     "size": 30,
+     "top": 103
+    },
+    "colourShare": 0.003
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    0.75,
+    0.83,
+    0.83,
+    0.83,
+    0.83,
+    0.54
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 5510,
+     "screens": 5.4,
+     "words": 675,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 26,
+     "vw": 3.4,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.45,
+     "top": 95,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "lines": 1,
+     "size": 26,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "Arena 榜单",
+      "words": 2,
+      "chars": 8,
+      "lines": 1,
+      "size": 26,
+      "vw": 3.4,
+      "font": "-apple-system",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.45,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.67,
+      "top": 95,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.99,
+       "mono": false
+      },
+      {
+       "family": "SFMono-Regular",
+       "share": 0.01,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      10,
+      11,
+      12,
+      14,
+      16,
+      19,
+      26
+     ],
+     "sizeCount": 7,
+     "notLoaded": [
+      "SFMono-Regular"
+     ],
+     "body": {
+      "font": "-apple-system",
+      "size": 10.5,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.2
+     },
+     "measureChars": 140,
+     "max": {
+      "size": 26,
+      "vw": 3.4,
+      "font": "-apple-system",
+      "text": "Arena 榜单"
+     },
+     "monoShare": 0.01,
+     "monoProseShare": 0.01,
+     "monoFamilies": [
+      "SFMono-Regular"
+     ],
+     "monoSamples": [
+      "本地预览",
+      "LEADERBOARD · Arena text"
+     ],
+     "microLabels": 51,
+     "microLabelShare": 0.178,
+     "microSamples": [
+      "LEADERBOARD · Arena text",
+      "#1 · google",
+      "#2 · Anthropic",
+      "#3 · Anthropic",
+      "#4 · anthropic",
+      "#5 · anthropic"
+     ],
+     "upperShare": 0.19,
+     "centerShare": 0,
+     "smallText": 47
+    },
+    "eyebrows": [
+     {
+      "text": "LEADERBOARD · Arena text",
+      "above": "Arena 榜单",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 72
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f4f6f8",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.22,
+      "l": 0.96
+     },
+     "dark": false,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#5f6774",
+       "share": 0.54
+      },
+      {
+       "color": "#111827",
+       "share": 0.45
+      },
+      {
+       "color": "#1d4ed8",
+       "share": 0.01
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 5,
+     "inHero": 4,
+     "radius": 6,
+     "height": 33,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "← 模型表",
+      "Arena text",
+      "Arena webdev"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 50,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px"
+     ],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 2,
+     "hairlineSamples": [
+      "header.site-header 768px",
+      "footer.site-footer 768px"
+     ],
+     "outlinedBoxes": 50,
+     "dashed": 1,
+     "blurred": 1,
+     "roundedBoxes": 50,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 54,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 5510,
+    "margins": {
+     "left": 30,
+     "right": 30
+    },
+    "sections": [],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Arena 榜单",
+      "size": 26,
+      "top": 95,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "Model",
+      "side": "left",
+      "px": 14
+     }
+    ],
+    "edges": [
+     {
+      "x": 30,
+      "n": 50
+     },
+     {
+      "x": 16,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 51,
+    "bodySize": 11,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": false,
+    "ground": "#f4f6f8",
+    "sidebar": null,
+    "topbar": {
+     "h": 54
+    },
+    "canvas": {
+     "left": 28,
+     "right": 30
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 26,
+     "vw": 3.4,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.45,
+     "top": 95,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 50,
+     "firstScreen": 7,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 50,
+     "radii": [
+      [
+       8,
+       50
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 50,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 51,
+     "leftAligned": 51,
+     "figures": 101,
+     "tabularShare": 0.5,
+     "kpiMax": 14
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.77,
+     "tiny": 233,
+     "tinySamples": [
+      "本地预览 10px",
+      "LEADERBOARD · 10px",
+      "Arena text 10px",
+      "Rank 10px"
+     ],
+     "sizes": [
+      10,
+      11,
+      12,
+      14,
+      16,
+      19,
+      26
+     ]
+    },
+    "title": {
+     "text": "Arena 榜单",
+     "size": 26,
+     "top": 95
+    },
+    "colourShare": 0.005
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 7,
+   "filled": [
+    0.69,
+    0.8,
+    0.8,
+    0.8,
+    0.8,
+    0.86,
+    0.5
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 5543,
+     "screens": 6.6,
+     "words": 674,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 26,
+     "vw": 6.7,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.45,
+     "top": 91,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "lines": 1,
+     "size": 26,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "Arena 榜单",
+      "words": 2,
+      "chars": 8,
+      "lines": 1,
+      "size": 26,
+      "vw": 6.7,
+      "font": "-apple-system",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.45,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 91,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.99,
+       "mono": false
+      },
+      {
+       "family": "SFMono-Regular",
+       "share": 0.01,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      10,
+      11,
+      12,
+      14,
+      16,
+      17,
+      26
+     ],
+     "sizeCount": 7,
+     "notLoaded": [
+      "SFMono-Regular"
+     ],
+     "body": {
+      "font": "-apple-system",
+      "size": 10.5,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.2
+     },
+     "measureChars": 68,
+     "max": {
+      "size": 26,
+      "vw": 6.7,
+      "font": "-apple-system",
+      "text": "Arena 榜单"
+     },
+     "monoShare": 0.01,
+     "monoProseShare": 0.01,
+     "monoFamilies": [
+      "SFMono-Regular"
+     ],
+     "monoSamples": [
+      "LEADERBOARD · Arena text"
+     ],
+     "microLabels": 51,
+     "microLabelShare": 0.178,
+     "microSamples": [
+      "LEADERBOARD · Arena text",
+      "#1 · google",
+      "#2 · Anthropic",
+      "#3 · Anthropic",
+      "#4 · anthropic",
+      "#5 · anthropic"
+     ],
+     "upperShare": 0.19,
+     "centerShare": 0,
+     "smallText": 47
+    },
+    "eyebrows": [
+     {
+      "text": "LEADERBOARD · Arena text",
+      "above": "Arena 榜单",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 69
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f4f6f8",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.22,
+      "l": 0.96
+     },
+     "dark": false,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#5f6774",
+       "share": 0.54
+      },
+      {
+       "color": "#111827",
+       "share": 0.45
+      },
+      {
+       "color": "#1d4ed8",
+       "share": 0.01
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 5,
+     "inHero": 4,
+     "radius": 6,
+     "height": 33,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容",
+      "← 模型表",
+      "Arena text",
+      "Arena webdev"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 50,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "article.mobile-card → rgba(0, 0, 0, 0.05) 0px 1px 2px 0px"
+     ],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 2,
+     "hairlineSamples": [
+      "header.site-header 390px",
+      "footer.site-footer 390px"
+     ],
+     "outlinedBoxes": 50,
+     "dashed": 1,
+     "blurred": 1,
+     "roundedBoxes": 50,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 51,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 5543,
+    "margins": {
+     "left": 28,
+     "right": 30
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 51,
+      "height": 5240,
+      "words": 615,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Arena 榜单",
+       "size": 26,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 21,
+      "textLeft": 16,
+      "textRight": 21,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 5327,
+      "height": 126,
+      "words": 37,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 16,
+      "right": 27,
+      "textLeft": 16,
+      "textRight": 27,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Arena 榜单",
+      "size": 26,
+      "top": 91,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "Model",
+      "side": "left",
+      "px": 14
+     }
+    ],
+    "edges": [
+     {
+      "x": 30,
+      "n": 50
+     },
+     {
+      "x": 16,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 51,
+    "bodySize": 11,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": false,
+    "ground": "#f4f6f8",
+    "sidebar": null,
+    "topbar": {
+     "h": 51
+    },
+    "canvas": {
+     "left": 27,
+     "right": 30
+    },
+    "hero": {
+     "text": "Arena 榜单",
+     "words": 2,
+     "chars": 8,
+     "lines": 1,
+     "size": 26,
+     "vw": 6.7,
+     "font": "-apple-system",
+     "weight": 400,
+     "tracking": -0.03,
+     "leading": 1.45,
+     "top": 91,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 50,
+     "firstScreen": 5,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 50,
+     "radii": [
+      [
+       8,
+       50
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 50,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 51,
+     "leftAligned": 51,
+     "figures": 101,
+     "tabularShare": 0.5,
+     "kpiMax": 14
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.77,
+     "tiny": 232,
+     "tinySamples": [
+      "LEADERBOARD · 10px",
+      "Arena text 10px",
+      "Rank 10px",
+      "Model 10px"
+     ],
+     "sizes": [
+      10,
+      11,
+      12,
+      14,
+      16,
+      17,
+      26
+     ]
+    },
+    "title": {
+     "text": "Arena 榜单",
+     "size": 26,
+     "top": 91
+    },
+    "colourShare": 0.009
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "micro-label",
+   "width": 1440,
+   "message": "7 tiny uppercase letter-spaced labels (e.g. \"LEADERBOARD · Arena text\", \"Rank\", \"Model\", \"Organization\").",
+   "fix": "Use sentence-case text at a readable size, or delete the label.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "font-fallback",
+   "width": 1440,
+   "message": "Typeface(s) declared but not loaded, so a fallback is rendering: SFMono-Regular",
+   "fix": "Fix the font URL / family name, or the screenshots you are judging are not the design.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "font-not-dealt",
+   "width": 1440,
+   "message": "The sheet dealt IBM Plex Sans, but the page renders -apple-system, SFMono-Regular.",
+   "fix": "Load the dealt face (the link on the sheet) and put it first in font-family. A build that falls back to a default face lands on the default look."
+  },
+  {
+   "level": "WARN",
+   "id": "numeric-align",
+   "width": 1440,
+   "message": "51 of 51 numeric table cells are left-aligned.",
+   "fix": "Right-align numbers, amounts and percentages (and their column headers) so the digits line up.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "tiny-text",
+   "width": 1440,
+   "message": "233 text blocks under 11px: 本地预览 10px, LEADERBOARD · 10px, Arena text 10px, Rank 10px.",
+   "fix": "Nothing below 11px; secondary text 12px, data 13–14px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "edge-text",
+   "width": 768,
+   "message": "1 text block(s) sit within 16px of the screen edge: \"Model\" (14px from the left)",
+   "fix": "Keep text inside the page margin (16–32px or more). Only display type deliberately bled past the edge may touch it."
+  },
+  {
+   "level": "WARN",
+   "id": "edge-text",
+   "width": 390,
+   "message": "1 text block(s) sit 12–15px from the phone's edge: \"Model\" (14px)",
+   "fix": "The page margin is 16–20px on a phone; the header and the corner labels sit on it too."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/before-leaderboard/desktop-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/before-leaderboard/desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/before-leaderboard/tablet-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/before-leaderboard/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/before-leaderboard/mobile-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/before-leaderboard/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

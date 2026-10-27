@@ -1,0 +1,1339 @@
+{
+ "url": "http://localhost:3000/about",
+ "at": "2026-10-27T05:34:52.867Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.86,
+    0.97,
+    0.84
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2339,
+     "screens": 2.6,
+     "words": 325,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 2,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "数据说明与许可",
+     "words": 1,
+     "chars": 7,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "数据说明与许可",
+     "words": 1,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 0.97,
+       "mono": false
+      },
+      {
+       "family": "IBM Plex Mono",
+       "share": 0.03,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": {
+      "font": "IBM Plex Sans",
+      "size": 14,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 6.4
+     },
+     "measureChars": 100,
+     "max": {
+      "size": 22,
+      "vw": 1.5,
+      "font": "IBM Plex Sans",
+      "text": "数据说明与许可"
+     },
+     "monoShare": 0.03,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "IBM Plex Mono"
+     ],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.13,
+     "centerShare": 0,
+     "smallText": 11
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#131416",
+       "share": 0.74
+      },
+      {
+       "color": "#5d5f60",
+       "share": 0.15
+      },
+      {
+       "color": "#1b6c80",
+       "share": 0.07
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.03
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#131416",
+      "hsl": {
+       "h": 220,
+       "s": 0.07,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 6,
+     "height": 35,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 3,
+     "hairlineSamples": [
+      "div.link-row 700px",
+      "footer.site-footer 1422px",
+      "div.footer-legal 1240px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 4,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 178
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex sans fallback",
+     "ibm plex mono"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2339,
+    "margins": {
+     "left": 100,
+     "right": 100
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 49,
+      "height": 1985,
+      "words": 338,
+      "media": 0,
+      "middle": 56,
+      "heading": {
+       "text": "数据说明与许可",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 100,
+      "right": 100,
+      "textLeft": 100,
+      "textRight": 100,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": true
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2034,
+      "height": 211,
+      "words": 35,
+      "media": 0,
+      "middle": 250,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 100,
+      "right": 100,
+      "textLeft": 100,
+      "textRight": 100,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "数据说明与许可",
+      "size": 22,
+      "top": 77,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 320,
+      "n": 19
+     },
+     {
+      "x": 100,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 21,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.08,
+    "voidBox": {
+     "x": 0,
+     "y": 540,
+     "w": 300,
+     "h": 360
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 100,
+     "right": 100
+    },
+    "hero": {
+     "text": "数据说明与许可",
+     "words": 1,
+     "chars": 7,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 3,
+     "firstScreen": 3,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 3,
+     "radii": [
+      [
+       8,
+       3
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 3,
+     "tabularShare": 1,
+     "kpiMax": 12
+    },
+    "rows": {
+     "count": 3,
+     "median": 35
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.21,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ]
+    },
+    "title": {
+     "text": "数据说明与许可",
+     "size": 22,
+     "top": 77
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.9,
+    0.94,
+    0.88
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2732,
+     "screens": 2.7,
+     "words": 313,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 2,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "数据说明与许可",
+     "words": 1,
+     "chars": 7,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "数据说明与许可",
+     "words": 1,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 0.97,
+       "mono": false
+      },
+      {
+       "family": "IBM Plex Mono",
+       "share": 0.03,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": {
+      "font": "IBM Plex Sans",
+      "size": 14,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 6.4
+     },
+     "measureChars": 100,
+     "max": {
+      "size": 22,
+      "vw": 2.9,
+      "font": "IBM Plex Sans",
+      "text": "数据说明与许可"
+     },
+     "monoShare": 0.03,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "IBM Plex Mono"
+     ],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.13,
+     "centerShare": 0,
+     "smallText": 11
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#131416",
+       "share": 0.74
+      },
+      {
+       "color": "#5d5f60",
+       "share": 0.15
+      },
+      {
+       "color": "#1b6c80",
+       "share": 0.07
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.03
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#131416",
+      "hsl": {
+       "h": 220,
+       "s": 0.07,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 6,
+     "height": 35,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 3,
+     "hairlineSamples": [
+      "div.link-row 702px",
+      "footer.site-footer 750px",
+      "div.footer-legal 702px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 4,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex sans fallback",
+     "ibm plex mono"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2732,
+    "margins": {
+     "left": 33,
+     "right": 33
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 49,
+      "height": 2340,
+      "words": 338,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "数据说明与许可",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 33,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2389,
+      "height": 250,
+      "words": 35,
+      "media": 0,
+      "middle": 43,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 33,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "数据说明与许可",
+      "size": 22,
+      "top": 77,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 33,
+      "n": 21
+     }
+    ],
+    "leftBlocks": 21,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 33,
+     "right": 33
+    },
+    "hero": {
+     "text": "数据说明与许可",
+     "words": 1,
+     "chars": 7,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 77,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 0,
+     "firstScreen": 0,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 5,
+     "radii": [
+      [
+       8,
+       3
+      ],
+      [
+       16,
+       1
+      ],
+      [
+       0,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 3,
+     "tabularShare": 1,
+     "kpiMax": 12
+    },
+    "rows": {
+     "count": 3,
+     "median": 35
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.21,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ]
+    },
+    "title": {
+     "text": "数据说明与许可",
+     "size": 22,
+     "top": 77
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.96,
+    0.8,
+    0.96,
+    0.96,
+    0.86
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 3913,
+     "screens": 4.6,
+     "words": 313,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 2,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "数据说明与许可",
+     "words": 1,
+     "chars": 7,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 68,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "数据说明与许可",
+     "words": 1,
+     "lines": 1,
+     "size": 22,
+     "font": "IBM Plex Sans"
+    },
+    "headings": [
+     {
+      "text": "数据说明与许可",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "IBM Plex Sans",
+      "weight": 600,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 68,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 0.97,
+       "mono": false
+      },
+      {
+       "family": "IBM Plex Mono",
+       "share": 0.03,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": {
+      "font": "IBM Plex Sans",
+      "size": 14,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 6.4
+     },
+     "measureChars": 51,
+     "max": {
+      "size": 22,
+      "vw": 5.6,
+      "font": "IBM Plex Sans",
+      "text": "数据说明与许可"
+     },
+     "monoShare": 0.03,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "IBM Plex Mono"
+     ],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.13,
+     "centerShare": 0,
+     "smallText": 15
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f9fbfc",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.33,
+      "l": 0.98
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 48,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      },
+      {
+       "color": "#f4f6f8",
+       "top": 3386,
+       "hsl": {
+        "h": 210,
+        "s": 0.22,
+        "l": 0.96
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#131416",
+       "share": 0.74
+      },
+      {
+       "color": "#5d5f60",
+       "share": 0.15
+      },
+      {
+       "color": "#1b6c80",
+       "share": 0.07
+      },
+      {
+       "color": "#6b6b6b",
+       "share": 0.03
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#131416",
+      "hsl": {
+       "h": 220,
+       "s": 0.07,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 6,
+     "height": 35,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "跳到主要内容"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 3,
+     "hairlineSamples": [
+      "div.link-row 358px",
+      "footer.site-footer 390px",
+      "div.footer-legal 358px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 3,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 48,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex sans fallback",
+     "ibm plex mono"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 3913,
+    "margins": {
+     "left": 16,
+     "right": 17
+    },
+    "sections": [
+     {
+      "sel": "main#main-content",
+      "tag": "main",
+      "top": 48,
+      "height": 3338,
+      "words": 338,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "数据说明与许可",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 16,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 3386,
+      "height": 438,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "数据",
+       "size": 12,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 26,
+      "textLeft": 16,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "数据说明与许可",
+      "size": 22,
+      "top": 68,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 21
+     }
+    ],
+    "leftBlocks": 21,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": false,
+    "ground": "#f9fbfc",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 16,
+     "right": 17
+    },
+    "hero": {
+     "text": "数据说明与许可",
+     "words": 1,
+     "chars": 7,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "IBM Plex Sans",
+     "weight": 600,
+     "tracking": -0.01,
+     "leading": 1.3,
+     "top": 68,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 3,
+     "firstScreen": 3,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 3,
+     "radii": [
+      [
+       8,
+       3
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 3,
+     "tabularShare": 1,
+     "kpiMax": 12
+    },
+    "rows": {
+     "count": 3,
+     "median": 50
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.26,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      22
+     ]
+    },
+    "title": {
+     "text": "数据说明与许可",
+     "size": 22,
+     "top": 68
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/after-about/desktop-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/after-about/desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/after-about/tablet-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/after-about/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/sunven/github/model-hub/.taste-skill/after-about/mobile-fold.jpg",
+   "pages": [
+    "/Users/sunven/github/model-hub/.taste-skill/after-about/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}
