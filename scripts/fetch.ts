@@ -1,11 +1,18 @@
 import { createHash } from 'node:crypto'
 import { execFile as execFileCallback } from 'node:child_process'
 import { promisify } from 'node:util'
-import { mkdir, readFile, rename, rm, stat } from 'node:fs/promises'
+import { mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
-import { parse } from 'yaml'
-import type { RawCatalog, LaunchEntry, CrosswalkEntry, AaCrosswalkEntry, FxConfig } from './types'
+import { parse, stringify } from 'yaml'
+import type {
+  RawCatalog,
+  LaunchEntry,
+  CrosswalkEntry,
+  AaCrosswalkEntry,
+  FxConfig,
+  OverrideEntry,
+} from './types'
 
 const execFile = promisify(execFileCallback)
 
@@ -19,6 +26,9 @@ export const MODELS_DEV_API_URL = 'https://models.dev/api.json'
 export const MODELS_DEV_MODELS_URL = 'https://models.dev/models.json'
 export const ARENA_TEXT_URL = 'https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/text/latest-00000-of-00001.parquet'
 export const ARENA_WEBDEV_URL = 'https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/webdev/latest-00000-of-00001.parquet'
+export const FX_URL = 'https://api.frankfurter.dev/v1/latest?base=USD&symbols=CNY'
+export const FX_FILE = path.join(DATA_DIR, 'fx.yml')
+export const OVERRIDES_FILE = path.join(DATA_DIR, 'overrides/overrides.yml')
 
 export interface CliOptions {
   refresh: boolean
@@ -98,7 +108,59 @@ export async function readAaCrosswalk(): Promise<AaCrosswalkEntry[]> {
 }
 
 export async function readFx(): Promise<FxConfig> {
-  return await readYaml<FxConfig>(path.join(DATA_DIR, 'fx.yml'))
+  return await readYaml<FxConfig>(FX_FILE)
+}
+
+export async function refreshFx(current: FxConfig, opts: CliOptions): Promise<{ fx: FxConfig; warning?: string }> {
+  if (opts.offline || !opts.refresh) return { fx: current }
+  try {
+    const { stdout } = await execFile('curl', [
+      '--http1.1',
+      '-fsSL',
+      '--retry', '3',
+      '--retry-delay', '2',
+      '--max-time', '30',
+      FX_URL,
+    ])
+    const payload = JSON.parse(stdout) as { date?: string; rates?: { CNY?: number } }
+    const rate = payload.rates?.CNY
+    const date = payload.date
+    if (typeof rate !== 'number' || !Number.isFinite(rate) || rate <= 0 || !date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      throw new Error('unexpected FX response shape')
+    }
+    const fx: FxConfig = {
+      usd_to_cny: Math.round(rate * 10000) / 10000,
+      as_of: date,
+      source: 'ECB reference rate via Frankfurter',
+      source_url: FX_URL,
+      fetched_at: new Date().toISOString(),
+    }
+    const body =
+      '# USD→CNY display-only conversion, fetched from the ECB reference rate via Frankfurter.\n' +
+      '# The pipeline refreshes this on --refresh; CNY is hidden when as_of is older than 14 days.\n' +
+      stringify(fx)
+    const tmp = `${FX_FILE}.part`
+    await writeFile(tmp, body)
+    await rename(tmp, FX_FILE)
+    return { fx }
+  } catch (err) {
+    return {
+      fx: current,
+      warning: `FX refresh failed; kept existing ${current.as_of} rate (${current.usd_to_cny}): ${(err as Error).message.slice(0, 240)}`,
+    }
+  }
+}
+
+export async function readOverrides(): Promise<{ entries: OverrideEntry[]; hash: string | null }> {
+  if (!existsSync(OVERRIDES_FILE)) return { entries: [], hash: null }
+  const buf = await readFile(OVERRIDES_FILE)
+  const parsed = parse(buf.toString('utf8'))
+  const entries = parsed == null ? [] : (parsed as OverrideEntry[])
+  if (!Array.isArray(entries)) throw new Error('data/overrides/overrides.yml must contain a YAML array')
+  return {
+    entries,
+    hash: createHash('sha256').update(buf).digest('hex'),
+  }
 }
 
 export async function fileInfo(file: string): Promise<{ path: string; hash: string; fetchedAt: string; bytes: number }> {
@@ -113,7 +175,7 @@ export async function fileInfo(file: string): Promise<{ path: string; hash: stri
 }
 
 export async function makeSnapshotId(): Promise<string> {
-  const PIPELINE_VERSION = '2026-10-27.2'
+  const PIPELINE_VERSION = '2026-10-27.3'
   const files = [
     path.join(RAW_MODELS, 'api.json'),
     path.join(RAW_MODELS, 'models.json'),
@@ -122,7 +184,8 @@ export async function makeSnapshotId(): Promise<string> {
     path.join(DATA_DIR, 'launch-set.yml'),
     path.join(DATA_DIR, 'crosswalk/arena.yml'),
     path.join(DATA_DIR, 'crosswalk/aa.yml'),
-    path.join(DATA_DIR, 'fx.yml'),
+    path.join(DATA_DIR, 'overrides/overrides.yml'),
+    FX_FILE,
   ]
   const hash = createHash('sha256')
   hash.update(PIPELINE_VERSION)

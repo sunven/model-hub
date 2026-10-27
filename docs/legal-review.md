@@ -25,6 +25,9 @@ Status date: 2026-10-27
 - [x] External links use `rel="noopener noreferrer"`.
 - [x] No third-party logos or images are bundled.
 - [x] Public repository and Issues entry point are available at https://github.com/sunven/model-hub.
+- [x] FX is fetched automatically from the ECB reference rate via Frankfurter; source URL, effective date, and fetch time are recorded; CNY hides after 14 days.
+- [x] JSON-LD uses `WebPage` / `BreadcrumbList` / `ItemList` only; no `AggregateRating` or `Review`.
+- [x] The repository is public with an MIT code license and commit author uses GitHub noreply.
 
 ## Human sign-off required before public deployment
 
@@ -33,11 +36,11 @@ Status date: 2026-10-27
 - [ ] Confirm the CC BY 4.0 attribution and modification statement are sufficient for the LMArena dataset.
 - [ ] Confirm the privacy statement against the eventual hosting provider's access-log and subprocessor practices.
 - [ ] Publish a private contact channel for sensitive rights-holder requests (email or equivalent). Until then, Issues is the only public channel.
-- [ ] Confirm the FX source/date review owner and cadence (weekly recommended).
+- [ ] Confirm the FX source/date review owner and cadence (weekly recommended); automated refresh does not replace human review.
 - [ ] Confirm the public repository contains no confidential material and that the commit author identity is acceptable.
 - [ ] After deployment, verify the public Issues link, removal process, and site-wide disclaimers on the live domain.
 
 ## Deliberately deferred
 
-- Public deployment, custom domain, and mainland-China ICP filing: deferred by the project owner.
+- Public deployment, custom domain, and mainland-China ICP filing: deferred by the project owner. Static output and deployment notes are ready; nothing has been deployed.
 - Per-model Open Graph images: not required for the first release.

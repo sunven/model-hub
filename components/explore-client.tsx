@@ -68,6 +68,29 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
   )
 
   useEffect(() => {
+    const filteredView = Boolean(
+      q ||
+        labs.length ||
+        providers.length ||
+        maxOutput ||
+        minContext ||
+        reasoning ||
+        openWeights ||
+        stableOnly ||
+        hasArena ||
+        sortKey !== 'arena_text',
+    )
+    const metas = Array.from(document.querySelectorAll<HTMLMetaElement>('meta[name="robots"]'))
+    const previous = metas.map(meta => meta.getAttribute('content'))
+    for (const meta of metas) meta.setAttribute('content', filteredView ? 'noindex,follow' : 'index,follow')
+    return () => {
+      metas.forEach((meta, i) => {
+        if (previous[i]) meta.setAttribute('content', previous[i]!)
+      })
+    }
+  }, [q, labs, providers, maxOutput, minContext, reasoning, openWeights, stableOnly, hasArena, sortKey])
+
+  useEffect(() => {
     if (window.location.pathname !== '/') return
     const p = new URLSearchParams()
     if (q) p.set('q', q)

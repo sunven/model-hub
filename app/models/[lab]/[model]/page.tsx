@@ -3,7 +3,10 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { StatusBadges } from '@/components/badges'
 import { CompareButton } from '@/components/compare-tray'
+import { JsonLd } from '@/components/json-ld'
 import { OfferTable } from '@/components/offer-table'
+import { OG_IMAGE } from '@/lib/site'
+import { breadcrumbLd, webPageLd } from '@/lib/structured-data'
 import {
   fmtCnyRange,
   fmtContext,
@@ -36,10 +39,23 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lab, model } = await params
   const found = getModelByParams(lab, model)
-  if (!found) return { title: '模型未找到' }
+  if (!found) return { title: '模型未找到', robots: { index: false, follow: false } }
+  const title = `${found.name} — 价格、上下文、推理等级与 Arena 评分`
+  const description = found.description ?? `${found.name} 的价格、上下文、推理等级和 Arena 评分。`
+  const path = `/models/${found.canonicalModelId}`
   return {
-    title: `${found.name} — 价格、上下文、推理等级与 Arena 评分`,
-    description: found.description ?? `${found.name} 的价格、上下文、推理等级和 Arena 评分。`,
+    title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: 'article',
+      title: `${title} | Model Hub`,
+      description,
+      url: path,
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: found.name }],
+    },
+    twitter: { card: 'summary_large_image', title: `${title} | Model Hub`, description, images: [OG_IMAGE] },
+    robots: { index: true, follow: true },
   }
 }
 
@@ -122,8 +138,18 @@ export default async function ModelPage({ params }: Props) {
     ? new Date(manifest.sources.modelsDev.files.api.fetchedAt).toISOString().slice(0, 10)
     : '2026-10-26'
 
+  const path = `/models/${found.canonicalModelId}`
+  const pageDescription = found.description ?? `${found.name} 的价格、上下文、推理等级和 Arena 评分。`
+
   return (
     <div className="detail-wrap">
+      <JsonLd data={webPageLd({ name: found.name, description: pageDescription, path })} />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: '模型目录', path: '/' },
+          { name: found.name, path },
+        ])}
+      />
       <Link className="back" href="/">← 返回模型表</Link>
       <div className="detail-head">
         <div className="detail-title">

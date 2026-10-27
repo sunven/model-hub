@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "canonicalModelId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "lab": {
+        "type": "string",
+        "minLength": 1
+      },
+      "family": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "releaseDate": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "knowledgeCutoff": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "modalities": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "output": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "input",
+          "output"
+        ],
+        "additionalProperties": false
+      },
+      "openWeights": {
+        "type": "boolean"
+      },
+      "description": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "aaUrl": {
+        "anyOf": [
+          {
+            "type": "string",
+            "format": "uri"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "availability": {
+        "type": "string",
+        "enum": [
+          "available",
+          "deprecated",
+          "mixed",
+          "open_weights_only",
+          "unknown"
+        ]
+      },
+      "releaseBadges": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "reasoningLabel": {
+        "type": "string"
+      },
+      "sourceRefs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "snapshotId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "canonicalModelId",
+      "name",
+      "lab",
+      "family",
+      "releaseDate",
+      "knowledgeCutoff",
+      "modalities",
+      "openWeights",
+      "description",
+      "aaUrl",
+      "availability",
+      "releaseBadges",
+      "reasoningLabel",
+      "sourceRefs",
+      "snapshotId"
+    ],
+    "additionalProperties": false
+  }
+}

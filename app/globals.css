@@ -6,7 +6,7 @@
   --bg: #f4f6f8;
   --panel: #ffffff;
   --ink: #111827;
-  --muted: #6b7280;
+  --muted: #5f6774;
   --line: #e5e7eb;
   --accent: #1d4ed8;
   --accent-soft: #eff6ff;
@@ -25,8 +25,15 @@ body {
   padding-bottom: 96px;
 }
 a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
 button { font: inherit; cursor: pointer; }
 h1, h2, h3, p { margin: 0; }
+.skip-link { position: fixed; left: 12px; top: -60px; z-index: 100; background: #111827; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; }
+.skip-link:focus { top: 10px; }
+.data-banner { max-width: 1440px; margin: 10px auto 0; padding: 9px 14px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius); color: #78350f; font-size: 11.5px; line-height: 1.55; }
+.data-banner strong { font-size: 11px; letter-spacing: 0.04em; }
+.data-banner a { color: #92400e; text-decoration: underline; }
+@media (max-width: 980px) { .data-banner { margin: 8px 16px 0; } }
 
 .mono { font-family: var(--mono); }
 .muted { color: var(--muted); }
@@ -195,6 +202,7 @@ select:focus, input:focus { outline: 2px solid #dbeafe; border-color: var(--acce
 .cap-list span { color: var(--muted); }
 .cap-list strong { font-weight: 650; text-align: right; }
 .source-box { font-size: 10.5px; color: var(--muted); line-height: 1.65; }
+.source-box a, .aa-card a { text-decoration: underline; text-underline-offset: 2px; }
 .aa-card { display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; border: 1px dashed var(--line); border-radius: calc(var(--radius) - 2px); padding: 12px; background: #fbfcfd; }
 .aa-card strong { display: block; font-size: 12px; margin-bottom: 2px; }
 .aa-card p { font-size: 10.5px; color: var(--muted); line-height: 1.5; }
@@ -239,7 +247,8 @@ select:focus, input:focus { outline: 2px solid #dbeafe; border-color: var(--acce
 .lb-rating { font-weight: 800; font-size: 14px; font-variant-numeric: tabular-nums; }
 .lb-ci { font-size: 10px; color: var(--muted); }
 .lb-badge { font-size: 9.5px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 1px 5px; }
-.lb-unmatched { opacity: 0.72; }
+.lb-unmatched { background: #f9fafb; }
+.lb-unmatched .lb-name { font-weight: 600; }
 .lb-more { display: flex; justify-content: center; padding: 14px 0 0; }
 
 .about-wrap { max-width: 900px; margin: 0 auto; padding: 34px 24px 60px; }

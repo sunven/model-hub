@@ -1,0 +1,21 @@
+# Manual corrections applied after normalization, before validation.
+# Every entry is audited in manifest.overrides.applied; conflicts are reported.
+# Fields:
+#   target_type: model | offer
+#   target_id:   canonicalModelId (or model id) for model; offer id for offer
+#   field:       model: name, lab, family, releaseDate, knowledgeCutoff,
+#                       openWeights, aaUrl, availability, reasoningLabel
+#                offer: status, providerKind, price
+#   value:       scalar, null, or a partial price object {input, output, cacheRead, cacheWrite, tiers}
+#   reason, author, created_at (ISO 8601), source_url
+#
+# Example:
+# - target_type: offer
+#   target_id: of_anthropic__claude-opus-5-5
+#   field: price
+#   value: { input: 4, output: 20 }
+#   reason: "Official pricing page changed on 2026-10-20"
+#   author: sunven
+#   created_at: "2026-10-27T00:00:00Z"
+#   source_url: https://example.com/official-pricing
+[]

@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "modelVersionId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "providerId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "providerName": {
+        "type": "string",
+        "minLength": 1
+      },
+      "providerKind": {
+        "type": "string",
+        "enum": [
+          "first_party",
+          "cloud",
+          "gateway"
+        ]
+      },
+      "providerModelId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "providerModelName": {
+        "type": "string",
+        "minLength": 1
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "available_unmarked",
+          "beta",
+          "alpha",
+          "deprecated"
+        ]
+      },
+      "price": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "input": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "output": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "cacheRead": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "cacheWrite": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "currency": {
+                "type": "string",
+                "const": "USD"
+              },
+              "tiers": {
+                "type": "array",
+                "items": {}
+              }
+            },
+            "required": [
+              "input",
+              "output",
+              "cacheRead",
+              "cacheWrite",
+              "currency",
+              "tiers"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "limits": {
+        "type": "object",
+        "properties": {
+          "context": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "input": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "output": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "context",
+          "input",
+          "output"
+        ],
+        "additionalProperties": false
+      },
+      "capabilities": {
+        "type": "object",
+        "properties": {
+          "reasoning": {
+            "type": "boolean"
+          },
+          "reasoningOptions": {
+            "type": "array",
+            "items": {}
+          },
+          "toolCall": {
+            "type": "boolean"
+          },
+          "structuredOutput": {
+            "type": "boolean"
+          },
+          "attachment": {
+            "type": "boolean"
+          },
+          "temperature": {
+            "type": "boolean"
+          },
+          "interleaved": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "reasoning",
+          "reasoningOptions",
+          "toolCall",
+          "structuredOutput",
+          "attachment",
+          "temperature",
+          "interleaved"
+        ],
+        "additionalProperties": false
+      },
+      "sourceRefs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "snapshotId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "modelVersionId",
+      "providerId",
+      "providerName",
+      "providerKind",
+      "providerModelId",
+      "providerModelName",
+      "status",
+      "price",
+      "limits",
+      "capabilities",
+      "sourceRefs",
+      "snapshotId"
+    ],
+    "additionalProperties": false
+  }
+}

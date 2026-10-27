@@ -5,6 +5,7 @@ import { fx, modelRows } from '@/lib/data'
 
 export const metadata: Metadata = {
   title: '并排比较',
+  alternates: { canonical: '/compare' },
   robots: { index: false, follow: false },
 }
 

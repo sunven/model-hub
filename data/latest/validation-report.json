@@ -39,7 +39,7 @@
       "available": 40,
       "mixed": 3
     },
-    "fxAgeDays": 0,
+    "fxAgeDays": 1,
     "arena": {
       "textRows": 11099,
       "webdevRows": 647,
@@ -54,8 +54,13 @@
         "text": 30,
         "webdev": 31
       }
+    },
+    "overrides": {
+      "count": 0,
+      "applied": 0,
+      "hash": "c66340a9362f142d6b60fc5bf60607c7c5e61c5dfe5b82bcb0e3246b723fdd85"
     }
   },
-  "generatedAt": "2026-10-27T03:30:39.915Z",
-  "snapshotId": "20261027-f0bdd32e"
+  "generatedAt": "2026-10-27T03:50:54.433Z",
+  "snapshotId": "20261027-73febb9e"
 }

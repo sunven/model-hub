@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "modelVersionId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "source": {
+        "type": "string",
+        "const": "arena_hf"
+      },
+      "board": {
+        "type": "string",
+        "enum": [
+          "text",
+          "webdev"
+        ]
+      },
+      "condition": {
+        "type": "string"
+      },
+      "rating": {
+        "type": "number"
+      },
+      "ciLow": {
+        "type": "number"
+      },
+      "ciHigh": {
+        "type": "number"
+      },
+      "rank": {
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 9007199254740991
+      },
+      "votes": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      },
+      "snapshotDate": {
+        "type": "string"
+      },
+      "sourceRef": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "modelVersionId",
+      "source",
+      "board",
+      "condition",
+      "rating",
+      "ciLow",
+      "ciHigh",
+      "rank",
+      "votes",
+      "snapshotDate",
+      "sourceRef"
+    ],
+    "additionalProperties": false
+  }
+}

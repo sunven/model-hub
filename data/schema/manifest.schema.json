@@ -1,0 +1,450 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "snapshotId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+    },
+    "sources": {
+      "type": "object",
+      "properties": {
+        "modelsDev": {
+          "type": "object",
+          "properties": {
+            "license": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "files": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "hash": {
+                    "type": "string"
+                  },
+                  "fetchedAt": {
+                    "type": "string"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "url",
+                  "hash",
+                  "fetchedAt",
+                  "bytes"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "license",
+            "url",
+            "files"
+          ],
+          "additionalProperties": false
+        },
+        "arena": {
+          "type": "object",
+          "properties": {
+            "license": {
+              "type": "string"
+            },
+            "attribution": {
+              "type": "string"
+            },
+            "filters": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "files": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "hash": {
+                    "type": "string"
+                  },
+                  "fetchedAt": {
+                    "type": "string"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "url",
+                  "hash",
+                  "fetchedAt",
+                  "bytes"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "license",
+            "attribution",
+            "filters",
+            "files"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "modelsDev",
+        "arena"
+      ],
+      "additionalProperties": {}
+    },
+    "fx": {
+      "type": "object",
+      "properties": {
+        "usd_to_cny": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "as_of": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "fetched_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+        },
+        "reviewed_at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "usd_to_cny",
+        "as_of",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "models": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "offers": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "scores": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "unmatched": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "models",
+        "offers",
+        "scores",
+        "unmatched"
+      ],
+      "additionalProperties": false
+    },
+    "files": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "overrides": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "hash": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "applied": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "targetType": {
+                "type": "string",
+                "enum": [
+                  "model",
+                  "offer"
+                ]
+              },
+              "targetId": {
+                "type": "string"
+              },
+              "field": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "sourceUrl": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "targetType",
+              "targetId",
+              "field",
+              "author",
+              "createdAt",
+              "reason",
+              "sourceUrl"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "count",
+        "hash",
+        "applied"
+      ],
+      "additionalProperties": false
+    },
+    "crosswalk": {
+      "type": "object",
+      "properties": {
+        "verified": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "tentative": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "none": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "verified",
+        "tentative",
+        "none"
+      ],
+      "additionalProperties": false
+    },
+    "aaLinks": {
+      "type": "object",
+      "properties": {
+        "verified": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "unverified": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "verified",
+        "unverified"
+      ],
+      "additionalProperties": false
+    },
+    "freshness": {
+      "type": "object",
+      "properties": {
+        "modelsDev": {
+          "type": "object",
+          "properties": {
+            "fetchedAt": {
+              "type": "string"
+            },
+            "ageHours": {
+              "type": "number",
+              "minimum": 0
+            },
+            "thresholdHours": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "stale": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "fetchedAt",
+            "ageHours",
+            "thresholdHours",
+            "stale"
+          ],
+          "additionalProperties": false
+        },
+        "arena": {
+          "type": "object",
+          "properties": {
+            "fetchedAt": {
+              "type": "string"
+            },
+            "ageHours": {
+              "type": "number",
+              "minimum": 0
+            },
+            "thresholdHours": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "stale": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "fetchedAt",
+            "ageHours",
+            "thresholdHours",
+            "stale"
+          ],
+          "additionalProperties": false
+        },
+        "fx": {
+          "type": "object",
+          "properties": {
+            "asOf": {
+              "type": "string"
+            },
+            "ageDays": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "thresholdDays": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "stale": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "asOf",
+            "ageDays",
+            "thresholdDays",
+            "stale"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "modelsDev",
+        "arena",
+        "fx"
+      ],
+      "additionalProperties": false
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "failed"
+          ]
+        },
+        "report": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "report"
+      ],
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "snapshotId",
+    "generatedAt",
+    "sources",
+    "fx",
+    "counts",
+    "files",
+    "overrides",
+    "freshness",
+    "validation",
+    "notes"
+  ],
+  "additionalProperties": false
+}

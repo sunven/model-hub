@@ -30,7 +30,42 @@ export interface FxConfig {
   usd_to_cny: number
   as_of: string
   source: string
+  source_url?: string
+  fetched_at?: string
   reviewed_at?: string
+}
+
+export type OverrideTargetType = 'model' | 'offer'
+
+export interface OverrideEntry {
+  target_type: OverrideTargetType
+  target_id: string
+  field: string
+  value: unknown
+  reason: string
+  author: string
+  created_at: string
+  source_url?: string | null
+}
+
+export interface OverrideAudit {
+  targetType: OverrideTargetType
+  targetId: string
+  field: string
+  author: string
+  createdAt: string
+  reason: string
+  sourceUrl: string | null
+}
+
+export interface OverrideResult {
+  models: ModelVersion[]
+  offers: Offer[]
+  applied: OverrideAudit[]
+  warnings: string[]
+  hardFailures: string[]
+  count: number
+  hash: string
 }
 
 export interface RawModel {
@@ -159,6 +194,13 @@ export interface ValidationReport {
   snapshotId: string
 }
 
+export interface FreshnessCheck {
+  fetchedAt: string
+  ageHours: number
+  thresholdHours: number
+  stale: boolean
+}
+
 export interface Manifest {
   snapshotId: string
   generatedAt: string
@@ -166,9 +208,14 @@ export interface Manifest {
   fx: FxConfig
   counts: { models: number; offers: number; scores: number; unmatched: number }
   files: Record<string, string>
-  overrides: { count: number; hash: string | null }
+  overrides: { count: number; hash: string | null; applied: OverrideAudit[] }
   crosswalk?: { verified: number; tentative: number; none: number }
   aaLinks?: { verified: number; unverified: number }
+  freshness: {
+    modelsDev: FreshnessCheck
+    arena: FreshnessCheck
+    fx: { asOf: string; ageDays: number; thresholdDays: number; stale: boolean }
+  }
   validation: { status: 'passed' | 'failed'; report: string }
   notes: string[]
 }

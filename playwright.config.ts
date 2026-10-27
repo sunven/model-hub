@@ -1,7 +1,10 @@
 import { defineConfig } from '@playwright/test'
 
+const channel = process.env.PLAYWRIGHT_CHANNEL === 'chromium' ? undefined : 'chrome'
+
 export default defineConfig({
   testDir: './tests',
+  testMatch: '**/*.spec.ts',
   timeout: 60_000,
   expect: { timeout: 10_000 },
   fullyParallel: false,
@@ -9,7 +12,7 @@ export default defineConfig({
   reporter: 'list',
   use: {
     baseURL: 'http://localhost:3000',
-    channel: 'chrome',
+    channel,
     headless: true,
     viewport: { width: 1440, height: 1000 },
     trace: 'retain-on-failure',

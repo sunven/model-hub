@@ -102,7 +102,47 @@ test('about and 404 pages', async ({ page }) => {
   await page.goto('/about')
   await expect(page.getByText('CC BY 4.0').first()).toBeVisible()
   await expect(page.getByText('当前覆盖')).toBeVisible()
+  await expect(page.getByRole('link', { name: 'GitHub Issues' }).first()).toHaveAttribute(
+    'href',
+    'https://github.com/sunven/model-hub/issues/new/choose',
+  )
 
   await page.goto('/no-such-page')
   await expect(page.getByText('没有找到这个页面')).toBeVisible()
+})
+
+test('stale snapshot banner appears after thresholds', async ({ page }) => {
+  await page.clock.install({ time: new Date('2027-01-05T00:00:00Z') })
+  await page.goto('/')
+  const banner = page.locator('.data-banner')
+  await expect(banner).toBeVisible()
+  await expect(banner).toContainText('models.dev 快照已超过 48 小时')
+  await expect(banner).toContainText('Arena 快照已超过 72 小时')
+  await expect(banner).toContainText('汇率已超过 14 天')
+})
+
+test('SEO metadata, sitemap, robots, and filtered noindex', async ({ page, request }) => {
+  await page.goto('/')
+  await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href', /model-hub\.example\/?$/)
+  await expect(page.locator('meta[property="og:image"]').first()).toHaveAttribute('content', /og\.png$/)
+  await expect(page.locator('script[type="application/ld+json"]').first()).toBeAttached()
+
+  await page.locator('input.search').fill('Claude')
+  await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute('content', /noindex/)
+
+  await page.goto('/compare')
+  await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute('content', /noindex/)
+
+  const sitemap = await request.get('/sitemap.xml')
+  expect(sitemap.status()).toBe(200)
+  const sitemapText = await sitemap.text()
+  expect(sitemapText).toContain('/models/anthropic/claude-opus-5-5')
+  expect(sitemapText).toContain('/leaderboards/webdev')
+  expect(sitemapText).not.toContain('/compare')
+
+  const robots = await request.get('/robots.txt')
+  expect(robots.status()).toBe(200)
+  const robotsText = await robots.text()
+  expect(robotsText).toContain('Sitemap: https://model-hub.example/sitemap.xml')
+  expect(robotsText).toContain('Disallow: /compare')
 })
