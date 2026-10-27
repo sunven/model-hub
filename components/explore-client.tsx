@@ -2,14 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useMemo, useState, useCallback } from 'react'
-import {
-  getCoreRowModel,
-  getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type SortingState,
-} from '@tanstack/react-table'
+import { useEffect, useMemo, useState } from 'react'
 import { RowBadges } from './badges'
 import { ScoreCell } from './score-pill'
 import { useCompare } from './compare-provider'
@@ -25,14 +18,6 @@ const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: 'price', label: '输出价格' },
   { value: 'context', label: '上下文' },
 ]
-
-const SORT_COLUMN: Record<SortKey, string> = {
-  arena_text: 'text',
-  arena_webdev: 'webdev',
-  newest: 'releaseDate',
-  price: 'price',
-  context: 'context',
-}
 
 const CONTEXT_OPTIONS = [32000, 128000, 256000, 1000000]
 const PRICE_OPTIONS = [1, 5, 15]
@@ -150,43 +135,31 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
     })
   }, [models, q, labs, providers, maxOutput, minContext, reasoning, openWeights, stableOnly, hasArena])
 
-  const sorting = useMemo<SortingState>(
-    () => [{ id: SORT_COLUMN[sortKey], desc: sortKey !== 'price' }],
-    [sortKey],
-  )
-  const handleSortingChange = useCallback(
-    (updater: SortingState | ((old: SortingState) => SortingState)) => {
-      const next = typeof updater === 'function' ? updater(sorting) : updater
-      const column = next[0]?.id
-      const found = (Object.entries(SORT_COLUMN) as [SortKey, string][]).find(([, id]) => id === column)
-      if (found) setSortKey(found[0])
-    },
-    [sorting],
-  )
-  const columns = useMemo<ColumnDef<ModelRow>[]>(
-    () => [
-      { id: 'select', accessorFn: row => row.id },
-      { id: 'model', accessorFn: row => row.name },
-      { id: 'context', accessorFn: row => row.context ?? undefined, sortUndefined: 'last' },
-      { id: 'price', accessorFn: row => row.price?.outputMin ?? undefined, sortUndefined: 'last' },
-      { id: 'reasoning', accessorFn: row => row.reasoningLabel },
-      { id: 'text', accessorFn: row => row.text?.rating ?? undefined, sortUndefined: 'last' },
-      { id: 'webdev', accessorFn: row => row.webdev?.rating ?? undefined, sortUndefined: 'last' },
-      { id: 'releaseDate', accessorFn: row => row.releaseDate ?? undefined, sortUndefined: 'last' },
-    ],
-    [],
-  )
-
-  const table = useReactTable({
-    data: filtered,
-    columns,
-    state: { sorting },
-    onSortingChange: handleSortingChange,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-  })
-
-  const rows = table.getRowModel().rows.map(r => r.original)
+  const rows = useMemo(() => {
+    const value = (model: ModelRow): number | string | null => {
+      switch (sortKey) {
+        case 'arena_text':
+          return model.text?.rating ?? null
+        case 'arena_webdev':
+          return model.webdev?.rating ?? null
+        case 'newest':
+          return model.releaseDate
+        case 'price':
+          return model.price?.outputMin ?? null
+        case 'context':
+          return model.context
+      }
+    }
+    const direction = sortKey === 'price' ? 1 : -1
+    return [...filtered].sort((a, b) => {
+      const av = value(a)
+      const bv = value(b)
+      if (av == null) return bv == null ? a.name.localeCompare(b.name, 'zh') : 1
+      if (bv == null) return -1
+      if (av === bv) return a.name.localeCompare(b.name, 'zh')
+      return (av < bv ? -1 : 1) * direction
+    })
+  }, [filtered, sortKey])
   const activeChips: { label: string; remove: () => void }[] = []
   if (q) activeChips.push({ label: `搜索“${q}”`, remove: () => setQ('') })
   for (const lab of labs) {
