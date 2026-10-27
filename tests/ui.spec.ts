@@ -1,8 +1,13 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
+
+async function waitForUrlReady(page: Page) {
+  await expect(page.locator('.workbench')).toHaveAttribute('data-url-ready', 'true')
+}
 
 test('home renders and search/filter/sort update URL', async ({ page }) => {
   await page.goto('/')
   await expect(page.locator('.model-row')).toHaveCount(43)
+  await waitForUrlReady(page)
 
   await page.locator('input.search').fill('Claude')
   await expect(page.locator('.model-row')).toHaveCount(4)
@@ -21,6 +26,7 @@ test('home renders and search/filter/sort update URL', async ({ page }) => {
 
 test('provider filter includes first-party and gateway-only', async ({ page }) => {
   await page.goto('/')
+  await waitForUrlReady(page)
   await page.locator('#provider-filter summary').click()
   await page.locator('#provider-filter .check').filter({ hasText: /^\s*Anthropic\s*$/ }).click()
   await expect(page.locator('.model-row')).toHaveCount(4)
@@ -35,6 +41,7 @@ test('provider filter includes first-party and gateway-only', async ({ page }) =
 
 test('compare max 3, tray navigation, and clear all', async ({ page }) => {
   await page.goto('/')
+  await waitForUrlReady(page)
   const checks = page.locator('.model-row input[type=checkbox]')
   await checks.nth(0).check()
   await checks.nth(1).check()
@@ -89,6 +96,7 @@ test('leaderboard search, show more, and noindex meta', async ({ page }) => {
 test('mobile cards and filter drawer', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
+  await waitForUrlReady(page)
   await expect(page.locator('.mobile-card').first()).toBeVisible()
   await expect(page.locator('.model-row').first()).toBeHidden()
 
@@ -126,6 +134,7 @@ test('SEO metadata, sitemap, robots, and filtered noindex', async ({ page, reque
   await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href', /model-hub\.example\/?$/)
   await expect(page.locator('meta[property="og:image"]').first()).toHaveAttribute('content', /og\.png$/)
   await expect(page.locator('script[type="application/ld+json"]').first()).toBeAttached()
+  await waitForUrlReady(page)
 
   await page.locator('input.search').fill('Claude')
   await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute('content', /noindex/)

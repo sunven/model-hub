@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { RowBadges } from './badges'
 import { ScoreCell } from './score-pill'
 import { useCompare } from './compare-provider'
@@ -21,6 +21,7 @@ const SORT_OPTIONS: { value: SortKey; label: string }[] = [
 
 const CONTEXT_OPTIONS = [32000, 128000, 256000, 1000000]
 const PRICE_OPTIONS = [1, 5, 15]
+const useIsoLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
 function parseLabs(value: string | null): string[] {
   return (value ?? '').split(',').filter(Boolean)
@@ -43,7 +44,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [urlReady, setUrlReady] = useState(false)
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const sort = params.get('sort')
     setQ(params.get('q') ?? '')
@@ -212,7 +213,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
   }
 
   return (
-    <div className="workbench">
+    <div className="workbench" data-url-ready={urlReady ? 'true' : 'false'}>
       <aside className={`filters ${filtersOpen ? 'open' : ''}`} id="filters-panel">
         <div className="filters-head">
           <strong>筛选</strong>
