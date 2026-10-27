@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { checkFreshness, FRESHNESS_POLICY } from './freshness'
 
 const stringArray = z.array(z.string())
 const nullableNumber = z.number().finite().nullable()
@@ -285,12 +286,6 @@ export function hasCompletePrice(offer: Offer): boolean {
   return offer.price != null && offer.price.input != null && offer.price.output != null
 }
 
-function ageDays(date: string, now: number): number | null {
-  const t = Date.parse(date)
-  if (!Number.isFinite(t)) return null
-  return Math.floor((now - t) / 86_400_000)
-}
-
 export function validateSnapshot(args: {
   snapshotId: string
   now?: number
@@ -386,9 +381,10 @@ export function validateSnapshot(args: {
     }
   }
 
-  const fxAge = ageDays(fx.as_of, now)
+  const fxFreshness = checkFreshness('fx', fx.as_of, now)
+  const fxAge = fxFreshness.ageDays
   if (fxAge === null) hardFailures.push(`invalid fx as_of: ${fx.as_of}`)
-  else if (fxAge > 14) warnings.push(`fx rate is ${fxAge} days old (>14); CNY should be hidden in UI`)
+  else if (fxFreshness.stale) warnings.push(`fx rate as of ${fx.as_of} is older than ${FRESHNESS_POLICY.fx.thresholdDays} days; CNY should be hidden in UI`)
 
   const stats = {
     launchModels: expectedCanonicalIds.length,

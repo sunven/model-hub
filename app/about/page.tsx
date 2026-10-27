@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { JsonLd } from '@/components/json-ld'
+import { FRESHNESS_POLICY } from '@/lib/freshness'
 import { arenaDate, catalog, manifest, modelsDevDate } from '@/lib/data'
 import {
   ATTRIBUTION_URL,
@@ -146,8 +147,8 @@ export default function AboutPage() {
 
           <h2 id="freshness">数据新鲜度</h2>
           <p>
-            models.dev 超过 48 小时、Arena 超过 72 小时时，页面顶部提示数据可能过期，但仍显示最近一次通过校验的数据。
-            汇率超过 14 天时隐藏 CNY，只保留 USD。数据不会因过期被隐藏。
+            models.dev 超过 {FRESHNESS_POLICY.modelsDev.thresholdHours} 小时、Arena 超过 {FRESHNESS_POLICY.arena.thresholdHours} 小时时，页面顶部提示数据可能过期，但仍显示最近一次通过校验的数据。
+            汇率超过 {FRESHNESS_POLICY.fx.thresholdDays} 天时隐藏 CNY，只保留 USD。数据不会因过期被隐藏。
           </p>
           <table className="data-table">
             <caption className="sr-only">数据来源、快照日期与过期处理</caption>
@@ -163,19 +164,19 @@ export default function AboutPage() {
               <tr>
                 <td>models.dev</td>
                 <td>{apiDate}</td>
-                <td>48 小时</td>
+                <td>{FRESHNESS_POLICY.modelsDev.thresholdHours} 小时</td>
                 <td>顶部提示，仍显示最近校验快照</td>
               </tr>
               <tr>
                 <td>Arena text / webdev</td>
                 <td>{arenaTextDate}</td>
-                <td>72 小时</td>
+                <td>{FRESHNESS_POLICY.arena.thresholdHours} 小时</td>
                 <td>顶部提示，保留 condition 与日期</td>
               </tr>
               <tr>
                 <td>ECB 汇率</td>
                 <td>{fx.as_of}</td>
-                <td>14 天</td>
+                <td>{FRESHNESS_POLICY.fx.thresholdDays} 天</td>
                 <td>隐藏 CNY，只保留 USD</td>
               </tr>
             </tbody>

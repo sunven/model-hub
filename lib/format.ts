@@ -1,4 +1,5 @@
 import type { Availability, FxConfig } from './snapshot'
+import { checkFreshness } from './freshness'
 import type { CiDomain, CiStat, PriceSummary } from './types'
 
 export function fmtMoney(value: number | null | undefined): string {
@@ -132,13 +133,11 @@ export function reasoningText(options: any[] | undefined, supported: boolean): s
 }
 
 export function fxIsFresh(fx: FxConfig, now = new Date()): boolean {
-  const t = Date.parse(fx.as_of)
-  if (!Number.isFinite(t)) return false
-  return Math.floor((now.getTime() - t) / 86_400_000) <= 14
+  return !checkFreshness('fx', fx.as_of, now.getTime()).stale
 }
 
-export function fmtCnyRange(min: number, max: number, fx: FxConfig): string | null {
-  if (!fxIsFresh(fx)) return null
+export function fmtCnyRange(min: number, max: number, fx: FxConfig, now = Date.now()): string | null {
+  if (checkFreshness('fx', fx.as_of, now).stale) return null
   const a = (min * fx.usd_to_cny).toFixed(2)
   const b = (max * fx.usd_to_cny).toFixed(2)
   return min === max ? `≈¥${a}` : `≈¥${a}–${b}`

@@ -130,6 +130,30 @@ test('is byte reproducible with a fixed clock and isolates concurrent output dir
   assert.deepEqual(await tree(secondDir), await tree(firstDir))
 })
 
+test('Manifest and validation agree just across all freshness thresholds without hiding data', async t => {
+  const dataDir = await tempDir(t)
+  const input = fixture()
+  const expiry = new Date('2026-11-10T00:00:00.000Z')
+  input.sources.modelsDev.files.api.fetchedAt = '2026-11-08T00:00:00.000Z'
+  input.sources.arena.files.text.fetchedAt = '2026-11-09T00:00:00.000Z'
+  input.sources.arena.files.webdev.fetchedAt = '2026-11-07T00:00:00.000Z'
+  for (const offset of [0, 1]) {
+    const result = await runSnapshot({ source: source(input), now: new Date(expiry.getTime() + offset), dataDir })
+    assert.equal(result.status, 'passed', result.report.hardFailures.join('\n'))
+    if (result.status !== 'passed') return
+    const { freshness } = result.manifest
+    assert.equal(freshness.modelsDev.ageHours, 48)
+    assert.equal(freshness.arena.ageHours, 72)
+    assert.equal(freshness.arena.fetchedAt, input.sources.arena.files.webdev.fetchedAt)
+    assert.equal(freshness.fx.ageDays, 14)
+    for (const check of Object.values(freshness)) assert.equal(check.stale, offset === 1)
+    assert.equal(result.report.warnings.some(message => message.includes('CNY should be hidden')), offset === 1)
+    assert.equal(result.report.stats.fxAgeDays, 14)
+    assert.equal(result.manifest.counts.models, 1)
+    assert.equal(result.manifest.counts.scores, 2)
+  }
+})
+
 test('IDs follow content rather than fetch timestamps or the output path', async t => {
   const dataDir = await tempDir(t)
   const input = fixture()
@@ -156,6 +180,10 @@ test('invalid Overrides, crosswalks, and Manifests never replace either publishe
     (input: SnapshotInput) => { input.overrides.entries = [{ created_at: 'yesterday' }] },
     (input: SnapshotInput) => { input.crosswalk[0].textPatterns = ['['] },
     (input: SnapshotInput) => { input.sources.modelsDev.files.api.bytes = -1 },
+    (input: SnapshotInput) => { input.sources.modelsDev.files.api.fetchedAt = 'unknown' },
+    (input: SnapshotInput) => { input.sources.arena.files.text.fetchedAt = 'unknown' },
+    (input: SnapshotInput) => { input.sources.arena.files.webdev.fetchedAt = 'unknown' },
+    (input: SnapshotInput) => { input.fx.as_of = 'unknown' },
   ]) {
     const dataDir = await tempDir(t)
     const preserved = await lastGood(dataDir)

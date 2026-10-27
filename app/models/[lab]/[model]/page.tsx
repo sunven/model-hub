@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { StatusBadges } from '@/components/badges'
+import { CnyPricePair } from '@/components/cny-price'
 import { CiRail } from '@/components/ci-rail'
 import { CompareButton } from '@/components/compare-tray'
 import { JsonLd } from '@/components/json-ld'
@@ -10,7 +11,6 @@ import { modelHref, OG_IMAGE } from '@/lib/site'
 import { breadcrumbLd, webPageLd } from '@/lib/structured-data'
 import {
   ciHalf,
-  fmtCnyRange,
   fmtContext,
   fmtDate,
   fmtRange,
@@ -154,8 +154,6 @@ export default async function ModelPage({ params }: Props) {
     webdevDomain,
   } = detail
   const aaUrl = found.aaUrl ?? AA_FALLBACK
-  const cnyIn = row.price ? fmtCnyRange(row.price.inputMin, row.price.inputMax, fx) : null
-  const cnyOut = row.price ? fmtCnyRange(row.price.outputMin, row.price.outputMax, fx) : null
   const modalities = `${(found.modalities.input ?? []).join(' / ') || '未提供'} → ${(found.modalities.output ?? []).join(' / ') || '未提供'}`
 
   const path = modelHref(found.canonicalModelId)
@@ -212,16 +210,7 @@ export default async function ModelPage({ params }: Props) {
           )}
           <div className="spec-sub">
             {row.price ? 'USD / 1M tokens' : 'models.dev 未提供价格'}
-            {row.price && cnyIn && cnyOut ? (
-              <>
-                {' · '}
-                <span className="cny-pair">
-                  <span className="cny-range">{cnyIn}</span>
-                  <span className="cny-sep"> / </span>
-                  <span className="cny-range">{cnyOut}</span>
-                </span>
-              </>
-            ) : null}
+            {row.price && <CnyPricePair {...row.price} fx={fx} />}
           </div>
         </div>
         <div className="spec-cell">

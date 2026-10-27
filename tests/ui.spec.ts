@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test'
+import manifest from '../data/latest/manifest.json' with { type: 'json' }
 
 async function waitForUrlReady(page: Page) {
   await expect(page.locator('.workbench')).toHaveAttribute('data-url-ready', 'true')
@@ -133,6 +134,51 @@ test('stale snapshot banner appears after thresholds', async ({ page }) => {
   await expect(banner).toContainText('Arena 快照已超过 72 小时')
   await expect(banner).toContainText('汇率已超过 14 天')
 })
+
+for (const { route, cny, usd } of [
+  { route: '/models/anthropic/claude-opus-5-5', cny: '.cny-range', usd: '.price-pair' },
+  { route: '/compare?models=mv_anthropic__claude-opus-5-5', cny: '.compare-table .cell-block', usd: '.compare-table' },
+]) {
+  test(`FX expiry updates CNY and the banner together on ${route}`, async ({ page }) => {
+    const errors: string[] = []
+    page.on('pageerror', error => errors.push(error.message))
+    const expiry = new Date(Date.parse(manifest.fx.as_of) + 14 * 86_400_000)
+    await page.clock.install({ time: expiry })
+    await page.clock.pauseAt(expiry)
+    await page.goto(route)
+    await expect(page.locator(cny)).toHaveCount(2)
+    await expect(page.locator(cny).first()).toContainText('≈¥')
+    await expect(page.locator('.data-banner')).not.toContainText('汇率已超过')
+    await page.clock.runFor(1)
+    await expect(page.locator(cny)).toHaveCount(0)
+    await expect(page.locator('.data-banner')).toContainText('汇率已超过 14 天')
+    await expect(page.locator(usd)).toContainText('$')
+
+    // Opening a previously generated page after expiry must not restore CNY.
+    await page.reload()
+    await expect(page.locator('.data-banner')).toContainText('汇率已超过 14 天')
+    await expect(page.locator(cny)).toHaveCount(0)
+    expect(errors).toEqual([])
+  })
+}
+
+for (const { timestamp, hours, message } of [
+  { timestamp: manifest.freshness.modelsDev.fetchedAt, hours: 48, message: 'models.dev 快照已超过 48 小时' },
+  { timestamp: manifest.freshness.arena.fetchedAt, hours: 72, message: 'Arena 快照已超过 72 小时' },
+]) {
+  test(`data stays visible when ${message}`, async ({ page }) => {
+    const expiry = new Date(Date.parse(timestamp) + hours * 3_600_000)
+    await page.clock.install({ time: expiry })
+    await page.clock.pauseAt(expiry)
+    await page.goto('/')
+    await waitForUrlReady(page)
+    await expect(page.locator('.model-row')).toHaveCount(43)
+    await expect(page.locator('.data-banner').filter({ hasText: message })).toHaveCount(0)
+    await page.clock.runFor(1)
+    await expect(page.locator('.data-banner')).toContainText(message)
+    await expect(page.locator('.model-row')).toHaveCount(43)
+  })
+}
 
 test('SEO metadata, sitemap, robots, and filtered noindex', async ({ page, request }) => {
   await page.goto('/')

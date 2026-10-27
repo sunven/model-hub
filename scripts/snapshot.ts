@@ -6,7 +6,8 @@ import { buildArenaData } from './arena'
 import { applyOverrides } from './overrides'
 import { publishSnapshot } from './publish-snapshot'
 import { generateJsonSchemas, manifestSchema, overrideEntrySchema, validateSchema, validationReportSchema, validateSnapshot } from '../lib/snapshot'
-import type { FreshnessCheck, FxConfig, Manifest, ModelVersion, Offer, OverrideEntry, ValidationReport } from '../lib/snapshot'
+import type { FxConfig, Manifest, ModelVersion, Offer, OverrideEntry, ValidationReport } from '../lib/snapshot'
+import { snapshotFreshness } from '../lib/freshness'
 import type { AaCrosswalkEntry, CrosswalkEntry, LaunchEntry, RawCatalog } from './types'
 
 export interface SnapshotInput {
@@ -36,7 +37,7 @@ function json(value: unknown): string {
 async function makeSnapshotId(input: SnapshotInput, now: Date): Promise<string> {
   const hash = createHash('sha256')
   // Hash the recipe as well as its inputs; no manually maintained pipeline version.
-  for (const file of ['snapshot.ts', 'fetch.ts', 'publish-snapshot.ts', 'models.ts', 'arena.ts', 'overrides.ts', 'config.ts', '../lib/snapshot.ts', '../package-lock.json']) {
+  for (const file of ['snapshot.ts', 'fetch.ts', 'publish-snapshot.ts', 'models.ts', 'arena.ts', 'overrides.ts', 'config.ts', '../lib/snapshot.ts', '../lib/freshness.ts', '../package-lock.json']) {
     hash.update(file).update(await readFile(new URL(file, import.meta.url)))
   }
   const { warnings, sources, ...content } = input
@@ -54,17 +55,6 @@ async function makeSnapshotId(input: SnapshotInput, now: Date): Promise<string> 
     return value
   }))
   return `${now.toISOString().slice(0, 10).replace(/-/g, '')}-${hash.digest('hex').slice(0, 8)}`
-}
-
-function ageHours(iso: string, now: number): number {
-  const time = Date.parse(iso)
-  if (!Number.isFinite(time)) return Number.POSITIVE_INFINITY
-  return Math.max(0, Math.round(((now - time) / 3_600_000) * 10) / 10)
-}
-
-function freshnessCheck(fetchedAt: string, thresholdHours: number, now: number): FreshnessCheck {
-  const age = ageHours(fetchedAt, now)
-  return { fetchedAt, ageHours: age, thresholdHours, stale: age > thresholdHours }
 }
 
 /**
@@ -158,12 +148,6 @@ export async function runSnapshot({ source, now = new Date(), dataDir }: {
     const textRaw = input.sources.arena.files.text
     const webdevRaw = input.sources.arena.files.webdev
     phase = 'manifest'
-    const arenaFetchedAt =
-      Date.parse(textRaw.fetchedAt) <= Date.parse(webdevRaw.fetchedAt) ? textRaw.fetchedAt : webdevRaw.fetchedAt
-    const fxAgeDays = Number.isFinite(Date.parse(fx.as_of))
-      ? Math.max(0, Math.floor((now.getTime() - Date.parse(fx.as_of)) / 86_400_000))
-      : 999_999
-
     const manifest: Manifest = {
       snapshotId,
       generatedAt: now.toISOString(),
@@ -190,11 +174,11 @@ export async function runSnapshot({ source, now = new Date(), dataDir }: {
         verified: aaCrosswalk.filter(c => c.verified && c.aaUrl).length,
         unverified: aaCrosswalk.filter(c => !c.verified || !c.aaUrl).length,
       },
-      freshness: {
-        modelsDev: freshnessCheck(apiRaw.fetchedAt, 48, now.getTime()),
-        arena: freshnessCheck(arenaFetchedAt, 72, now.getTime()),
-        fx: { asOf: fx.as_of, ageDays: fxAgeDays, thresholdDays: 14, stale: fxAgeDays > 14 },
-      },
+      freshness: snapshotFreshness({
+        modelsDev: apiRaw.fetchedAt,
+        arena: [textRaw.fetchedAt, webdevRaw.fetchedAt],
+        fx: fx.as_of,
+      }, now.getTime()),
       validation: { status: 'passed', report: 'validation-report.json' },
       notes: [
         'Local pipeline run. Site deployment is out of scope for this step.',

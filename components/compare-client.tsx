@@ -5,7 +5,8 @@ import { useMemo, type ReactNode } from 'react'
 import { useCompare } from './compare-provider'
 import { RowBadges } from './badges'
 import { ScorePill } from './score-pill'
-import { fmtCnyRange, fmtContext, fmtRange, scoreMeta } from '@/lib/format'
+import { CnyRange } from './cny-price'
+import { fmtContext, fmtRange, scoreMeta } from '@/lib/format'
 import { modelHref } from '@/lib/site'
 import type { FxConfig } from '@/lib/snapshot'
 import type { BoardDomains, ModelRow } from '@/lib/types'
@@ -36,11 +37,10 @@ const FIELDS: Field[] = [
     value: m => (m.price ? `${fmtRange(m.price.inputMin, m.price.inputMax)}/1M` : '未公布'),
     render: (m, fx) => {
       if (!m.price) return '未公布'
-      const cny = fmtCnyRange(m.price.inputMin, m.price.inputMax, fx)
       return (
         <span>
           {fmtRange(m.price.inputMin, m.price.inputMax)} / 1M
-          {cny && <span className="small muted cell-block">{cny}</span>}
+          <CnyRange min={m.price.inputMin} max={m.price.inputMax} fx={fx} className="small muted cell-block" />
         </span>
       )
     },
@@ -51,11 +51,10 @@ const FIELDS: Field[] = [
     value: m => (m.price ? `${fmtRange(m.price.outputMin, m.price.outputMax)}/1M` : '未公布'),
     render: (m, fx) => {
       if (!m.price) return '未公布'
-      const cny = fmtCnyRange(m.price.outputMin, m.price.outputMax, fx)
       return (
         <span>
           {fmtRange(m.price.outputMin, m.price.outputMax)} / 1M
-          {cny && <span className="small muted cell-block">{cny}</span>}
+          <CnyRange min={m.price.outputMin} max={m.price.outputMax} fx={fx} className="small muted cell-block" />
         </span>
       )
     },

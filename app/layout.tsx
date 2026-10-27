@@ -8,6 +8,7 @@ import './globals.css'
 import { CompareProvider } from '@/components/compare-provider'
 import { CompareTray } from '@/components/compare-tray'
 import { DataFreshness } from '@/components/data-freshness'
+import { FreshnessProvider } from '@/components/freshness-provider'
 import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
@@ -48,13 +49,15 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <JsonLd data={websiteLd()} />
         <a className="skip-link" href="#main-content">跳到主要内容</a>
         <CompareProvider modelIndex={catalog.index}>
-          <SiteHeader />
-          <div className="sheet">
-            <DataFreshness freshness={manifest.freshness} />
-            <main id="main-content" tabIndex={-1}>{children}</main>
-            <SiteFooter />
-          </div>
-          <CompareTray />
+          <FreshnessProvider freshness={manifest.freshness}>
+            <SiteHeader />
+            <div className="sheet">
+              <DataFreshness />
+              <main id="main-content" tabIndex={-1}>{children}</main>
+              <SiteFooter />
+            </div>
+            <CompareTray />
+          </FreshnessProvider>
         </CompareProvider>
       </body>
     </html>
