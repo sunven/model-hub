@@ -19,6 +19,22 @@ export interface ScoreView {
   condition: string
 }
 
+export interface CiStat {
+  rating: number
+  ciLow: number
+  ciHigh: number
+}
+
+export interface CiDomain {
+  min: number
+  max: number
+}
+
+export interface BoardDomains {
+  text: CiDomain | null
+  webdev: CiDomain | null
+}
+
 export interface PriceSummary {
   inputMin: number
   inputMax: number

@@ -1,24 +1,5 @@
 import type { CSSProperties } from 'react'
-
-export type CiStat = {
-  rating: number
-  ciLow: number
-  ciHigh: number
-}
-
-export type CiDomain = { min: number; max: number }
-
-export function ciDomain(items: (CiStat | null | undefined)[]): CiDomain | null {
-  const valid = items.filter(
-    (item): item is CiStat =>
-      Boolean(item && Number.isFinite(item.ciLow) && Number.isFinite(item.ciHigh) && Number.isFinite(item.rating)),
-  )
-  if (!valid.length) return null
-  const low = Math.min(...valid.map(item => item.ciLow), ...valid.map(item => item.rating))
-  const high = Math.max(...valid.map(item => item.ciHigh), ...valid.map(item => item.rating))
-  const pad = Math.max((high - low) * 0.04, 0.4)
-  return { min: low - pad, max: high + pad }
-}
+import type { CiDomain, CiStat } from '@/lib/types'
 
 function clamp(value: number) {
   return Math.min(1, Math.max(0, value))

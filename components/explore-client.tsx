@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { RowBadges } from './badges'
-import { CiRail, ciDomain, type CiDomain } from './ci-rail'
+import { CiRail } from './ci-rail'
 import { ScoreCell } from './score-pill'
 import { useCompare } from './compare-provider'
 import { useExploreQuery } from './use-explore-query'
@@ -16,9 +16,9 @@ import {
   selectModels,
   type SortKey,
 } from '@/lib/explore-query'
-import { ciHalf, fmtContext, fmtPriceLines } from '@/lib/format'
+import { ciDomain, ciHalf, fmtContext, fmtPriceLines } from '@/lib/format'
 import { modelHref } from '@/lib/site'
-import type { ModelRow, ScoreView } from '@/lib/types'
+import type { CiDomain, ModelRow, ScoreView } from '@/lib/types'
 
 function MobileScore({ label, score, domain }: { label: string; score: ScoreView | null; domain: CiDomain | null }) {
   return (

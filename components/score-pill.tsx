@@ -1,6 +1,6 @@
-import { CiRail, type CiDomain } from './ci-rail'
+import { CiRail } from './ci-rail'
 import { scoreMeta } from '@/lib/format'
-import type { ScoreView } from '@/lib/types'
+import type { CiDomain, ScoreView } from '@/lib/types'
 
 export function ScorePill({ score, domain }: { score: ScoreView | null; domain: CiDomain | null }) {
   if (!score) {

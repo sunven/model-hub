@@ -2,9 +2,9 @@
 
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
-import { CiRail, ciDomain } from './ci-rail'
+import { CiRail } from './ci-rail'
 import { useNoindex } from './use-noindex'
-import { ciHalf, ciOverlaps, fmtVotes } from '@/lib/format'
+import { ciDomain, ciHalf, ciOverlaps, fmtVotes } from '@/lib/format'
 import type { LeaderboardRow } from '@/lib/types'
 
 const PAGE = 50

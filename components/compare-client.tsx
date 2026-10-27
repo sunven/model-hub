@@ -6,16 +6,10 @@ import { useEffect, useMemo, type ReactNode } from 'react'
 import { useCompare } from './compare-provider'
 import { RowBadges } from './badges'
 import { ScorePill } from './score-pill'
-import { ciDomain, type CiDomain } from './ci-rail'
-import {
-  fmtCnyRange,
-  fmtContext,
-  fmtRange,
-  scoreMeta,
-} from '@/lib/format'
+import { ciDomain, fmtCnyRange, fmtContext, fmtRange, scoreMeta } from '@/lib/format'
 import { modelHref, parseCompareIds } from '@/lib/site'
 import type { FxConfig } from '@/scripts/types'
-import type { ModelRow } from '@/lib/types'
+import type { CiDomain, ModelRow } from '@/lib/types'
 
 const AA_URL = 'https://artificialanalysis.ai/leaderboards/models'
 

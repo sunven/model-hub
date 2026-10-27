@@ -60,6 +60,10 @@ _Avoid_: 样本分、票数分
 站内按某个 Board 和 Score 排序展示的页面，不是上游数据实体。
 _Avoid_: 排行、榜单
 
+**Catalog**:
+站内可浏览的 Model Version 集合，连同它们的 Offer 与 Score 视图；不是上游数据实体。
+_Avoid_: 模型列表、数据库
+
 **Explore Query**:
 用户在探索表上形成的一组搜索、筛选与排序条件；可分享、可刷新。榜单搜索不属于 Explore Query。
 _Avoid_: 页面状态、筛选器、filter state

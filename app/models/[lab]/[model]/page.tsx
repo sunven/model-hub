@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { StatusBadges } from '@/components/badges'
-import { CiRail, ciDomain, type CiDomain } from '@/components/ci-rail'
+import { CiRail } from '@/components/ci-rail'
 import { CompareButton } from '@/components/compare-tray'
 import { JsonLd } from '@/components/json-ld'
 import { OfferTable } from '@/components/offer-table'
 import { modelHref, OG_IMAGE } from '@/lib/site'
 import { breadcrumbLd, webPageLd } from '@/lib/structured-data'
 import {
+  ciDomain,
   ciHalf,
   fmtCnyRange,
   fmtContext,
@@ -27,7 +28,7 @@ import {
   models,
   primaryScore,
 } from '@/lib/data'
-import type { Offer, Score } from '@/lib/types'
+import type { CiDomain, Offer, Score } from '@/lib/types'
 
 type Props = { params: Promise<{ lab: string; model: string }> }
 

@@ -1,5 +1,5 @@
 import type { FxConfig } from '@/scripts/types'
-import type { Availability, PriceSummary } from './types'
+import type { Availability, CiDomain, CiStat, PriceSummary } from './types'
 
 export function fmtMoney(value: number | null | undefined): string {
   if (value === null || value === undefined) return '未公布'
@@ -41,20 +41,27 @@ export function fmtVotes(votes: number): string {
   return votesFormat.format(votes)
 }
 
-interface Ci {
-  ciLow: number
-  ciHigh: number
+export function ciDomain(items: (CiStat | null | undefined)[]): CiDomain | null {
+  const valid = items.filter(
+    (item): item is CiStat =>
+      Boolean(item && Number.isFinite(item.ciLow) && Number.isFinite(item.ciHigh) && Number.isFinite(item.rating)),
+  )
+  if (!valid.length) return null
+  const low = Math.min(...valid.map(item => item.ciLow), ...valid.map(item => item.rating))
+  const high = Math.max(...valid.map(item => item.ciHigh), ...valid.map(item => item.rating))
+  const pad = Math.max((high - low) * 0.04, 0.4)
+  return { min: low - pad, max: high + pad }
 }
 
-export function ciHalf(score: Ci): number {
+export function ciHalf(score: CiStat): number {
   return (score.ciHigh - score.ciLow) / 2
 }
 
-export function ciOverlaps(a: Ci, b: Ci): boolean {
+export function ciOverlaps(a: CiStat, b: CiStat): boolean {
   return a.ciLow <= b.ciHigh && b.ciLow <= a.ciHigh
 }
 
-export function scoreMeta(score: Ci & { rank: number; condition: string }): string {
+export function scoreMeta(score: CiStat & { rank: number; condition: string }): string {
   return `#${score.rank} · ${score.condition} · ±${ciHalf(score).toFixed(1)}`
 }
 
