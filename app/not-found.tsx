@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { modelRows, topTextModels } from '@/lib/data'
+import { catalog } from '@/lib/data'
 import { modelHref } from '@/lib/site'
 
-const picks = topTextModels(8)
+const picks = catalog.topText(8)
 
 export default function NotFound() {
   return (
@@ -17,13 +17,13 @@ export default function NotFound() {
           </div>
           <p className="notfound-note">
             链接可能来自旧版本，目录随数据快照更新。也可以从评分最高的模型或榜单重新开始；共收录{' '}
-            {modelRows.length} 个模型版本。
+            {catalog.rows.length} 个模型版本。
           </p>
         </div>
         <div className="notfound-list">
           <div className="notfound-head">
             <h2>评分最高的模型</h2>
-            <Link href="/">浏览全部 {modelRows.length} 个模型</Link>
+            <Link href="/">浏览全部 {catalog.rows.length} 个模型</Link>
           </div>
           {picks.map(model => (
             <Link className="notfound-row" href={modelHref(model.canonicalId)} key={model.id}>

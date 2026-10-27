@@ -16,9 +16,9 @@ import {
   selectModels,
   type SortKey,
 } from '@/lib/explore-query'
-import { ciDomain, ciHalf, fmtContext, fmtPriceLines } from '@/lib/format'
+import { ciHalf, fmtContext, fmtPriceLines } from '@/lib/format'
 import { modelHref } from '@/lib/site'
-import type { CiDomain, ModelRow, ScoreView } from '@/lib/types'
+import type { BoardDomains, CiDomain, ModelRow, ScoreView } from '@/lib/types'
 
 function MobileScore({ label, score, domain }: { label: string; score: ScoreView | null; domain: CiDomain | null }) {
   return (
@@ -43,7 +43,15 @@ function MobileScore({ label, score, domain }: { label: string; score: ScoreView
   )
 }
 
-export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDate: string }) {
+export function ExploreClient({
+  models,
+  domains,
+  dataDate,
+}: {
+  models: ModelRow[]
+  domains: BoardDomains
+  dataDate: string
+}) {
   const router = useRouter()
   const compare = useCompare()
   const { query, update, reset, toggleInList, removeFilter, urlReady } = useExploreQuery()
@@ -56,13 +64,6 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
   )
 
   const rows = useMemo(() => selectModels(models, query), [models, query])
-  const domains = useMemo(
-    () => ({
-      text: ciDomain(models.map(m => m.text)),
-      webdev: ciDomain(models.map(m => m.webdev)),
-    }),
-    [models],
-  )
   const activeChips = describeActiveFilters(query)
 
   function sortButton(key: SortKey, label: string) {

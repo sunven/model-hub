@@ -9,7 +9,6 @@ import { OfferTable } from '@/components/offer-table'
 import { modelHref, OG_IMAGE } from '@/lib/site'
 import { breadcrumbLd, webPageLd } from '@/lib/structured-data'
 import {
-  ciDomain,
   ciHalf,
   fmtCnyRange,
   fmtContext,
@@ -18,32 +17,23 @@ import {
   fmtVotes,
   scoreMeta,
 } from '@/lib/format'
-import {
-  fx,
-  getModelByParams,
-  getModelOffers,
-  getModelScores,
-  modelsDevDate,
-  modelRows,
-  models,
-  primaryScore,
-} from '@/lib/data'
-import type { CiDomain, Offer, Score } from '@/lib/types'
+import { catalog, fx, modelsDevDate } from '@/lib/data'
+import type { CiDomain, Score } from '@/lib/types'
 
 type Props = { params: Promise<{ lab: string; model: string }> }
 
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return models.map(model => {
-    const [lab, ...rest] = model.canonicalModelId.split('/')
+  return catalog.index.map(model => {
+    const [lab, ...rest] = model.canonicalId.split('/')
     return { lab, model: rest.join('/') }
   })
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lab, model } = await params
-  const found = getModelByParams(lab, model)
+  const found = catalog.getDetail(`${lab}/${model}`)?.model
   if (!found) return { title: '模型未找到', robots: { index: false, follow: false } }
   const title = `${found.name} — 价格、上下文、推理等级与 Arena 评分`
   const description = found.description ?? `${found.name} 的价格、上下文、推理等级和 Arena 评分。`
@@ -150,19 +140,19 @@ function ArenaCard({
 
 export default async function ModelPage({ params }: Props) {
   const { lab, model } = await params
-  const found = getModelByParams(lab, model)
-  if (!found) notFound()
-  const row = modelRows.find(m => m.id === found.id)
-  if (!row) notFound()
-
-  const offers: Offer[] = getModelOffers(found.id)
-  const allScores = getModelScores(found.id)
-  const textScores = allScores.filter(s => s.board === 'text')
-  const webdevScores = allScores.filter(s => s.board === 'webdev')
-  const textPrimary = primaryScore(found.id, 'text')
-  const webdevPrimary = primaryScore(found.id, 'webdev')
-  const textDomain = ciDomain(modelRows.map(m => m.text))
-  const webdevDomain = ciDomain(modelRows.map(m => m.webdev))
+  const detail = catalog.getDetail(`${lab}/${model}`)
+  if (!detail) notFound()
+  const {
+    model: found,
+    row,
+    offers,
+    textScores,
+    webdevScores,
+    textPrimary,
+    webdevPrimary,
+    textDomain,
+    webdevDomain,
+  } = detail
   const aaUrl = found.aaUrl ?? AA_FALLBACK
   const cnyIn = row.price ? fmtCnyRange(row.price.inputMin, row.price.inputMax, fx) : null
   const cnyOut = row.price ? fmtCnyRange(row.price.outputMin, row.price.outputMax, fx) : null
@@ -245,7 +235,7 @@ export default async function ModelPage({ params }: Props) {
 
       <div className="detail-layout">
         <div className="detail-main">
-          <OfferTable offers={offers} />
+          <OfferTable offers={offers} hasPrimary={row.providerNames.length > 0} />
 
           <section className="section-block" aria-labelledby="arena-title">
             <h2 className="section-title" id="arena-title">

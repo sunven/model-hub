@@ -11,7 +11,7 @@ import { DataFreshness } from '@/components/data-freshness'
 import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { manifest, modelIndex } from '@/lib/data'
+import { catalog, manifest } from '@/lib/data'
 import { LOCALE, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site'
 import { websiteLd } from '@/lib/structured-data'
 
@@ -47,7 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body>
         <JsonLd data={websiteLd()} />
         <a className="skip-link" href="#main-content">跳到主要内容</a>
-        <CompareProvider modelIndex={modelIndex}>
+        <CompareProvider modelIndex={catalog.index}>
           <SiteHeader />
           <div className="sheet">
             <DataFreshness freshness={manifest.freshness} />

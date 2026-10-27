@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { ExploreClient } from '@/components/explore-client'
 import { JsonLd } from '@/components/json-ld'
-import { modelRows, models, modelsDevDate, topTextModels } from '@/lib/data'
+import { catalog, modelsDevDate } from '@/lib/data'
 import { ciOverlaps, fmtRange } from '@/lib/format'
 import { OG_IMAGE, modelHref } from '@/lib/site'
 import { itemListLd, webPageLd } from '@/lib/structured-data'
@@ -22,15 +22,16 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: `${title} | Model Hub`, description, images: [OG_IMAGE] },
 }
 
-const withArena = modelRows.filter(row => row.text || row.webdev)
-const priced = modelRows.filter(row => row.price)
+const rows = catalog.rows
+const withArena = rows.filter(row => row.text || row.webdev)
+const priced = rows.filter(row => row.price)
 const outputMin = Math.min(...priced.map(row => row.price!.outputMin))
 const outputMax = Math.max(...priced.map(row => row.price!.outputMax))
-const labCount = new Set(modelRows.map(row => row.lab)).size
-const [topText, nextText] = topTextModels(2)
+const labCount = new Set(rows.map(row => row.lab)).size
+const [topText, nextText] = catalog.topText(2)
 const topOverlap = Boolean(topText && nextText && ciOverlaps(topText.text!, nextText.text!))
 
-const finding = `${modelRows.length} 个模型版本，输出价 ${fmtRange(outputMin, outputMax)} / 1M；${withArena.length} 个有 Arena 评分，${
+const finding = `${rows.length} 个模型版本，输出价 ${fmtRange(outputMin, outputMax)} / 1M；${withArena.length} 个有 Arena 评分，${
   topOverlap ? '榜首两名的置信区间重叠。' : '榜首与次席的置信区间不重叠。'
 }`
 
@@ -41,7 +42,7 @@ export default function HomePage() {
       <JsonLd
         data={itemListLd({
           name: 'Model Hub 模型目录',
-          items: models.map(model => ({ name: model.name, path: modelHref(model.canonicalModelId) })),
+          items: catalog.index.map(model => ({ name: model.name, path: modelHref(model.canonicalId) })),
         })}
       />
       <div className="sheet-inner">
@@ -53,10 +54,10 @@ export default function HomePage() {
           <p className="meta">
             数据 {modelsDevDate}
             <br />
-            {modelRows.length} 个模型 · {labCount} 个实验室
+            {rows.length} 个模型 · {labCount} 个实验室
           </p>
         </section>
-        <ExploreClient models={modelRows} dataDate={modelsDevDate} />
+        <ExploreClient models={rows} domains={catalog.domains} dataDate={modelsDevDate} />
       </div>
     </>
   )

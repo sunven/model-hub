@@ -6,19 +6,17 @@ import { useEffect, useMemo, type ReactNode } from 'react'
 import { useCompare } from './compare-provider'
 import { RowBadges } from './badges'
 import { ScorePill } from './score-pill'
-import { ciDomain, fmtCnyRange, fmtContext, fmtRange, scoreMeta } from '@/lib/format'
+import { fmtCnyRange, fmtContext, fmtRange, scoreMeta } from '@/lib/format'
 import { modelHref, parseCompareIds } from '@/lib/site'
 import type { FxConfig } from '@/scripts/types'
-import type { CiDomain, ModelRow } from '@/lib/types'
+import type { BoardDomains, ModelRow } from '@/lib/types'
 
 const AA_URL = 'https://artificialanalysis.ai/leaderboards/models'
-
-type Domains = { text: CiDomain | null; webdev: CiDomain | null }
 
 type Field = {
   label: string
   value: (model: ModelRow) => string
-  render: (model: ModelRow, fx: FxConfig, domains: Domains) => ReactNode
+  render: (model: ModelRow, fx: FxConfig, domains: BoardDomains) => ReactNode
   numeric?: boolean
 }
 
@@ -111,14 +109,20 @@ const FIELDS: Field[] = [
   },
 ]
 
-export function CompareClient({ models, fx, picks }: { models: ModelRow[]; fx: FxConfig; picks: ModelRow[] }) {
+export function CompareClient({
+  models,
+  domains,
+  fx,
+  picks,
+}: {
+  models: ModelRow[]
+  domains: BoardDomains
+  fx: FxConfig
+  picks: ModelRow[]
+}) {
   const params = useSearchParams()
   const compare = useCompare()
   const byId = useMemo(() => new Map(models.map(m => [m.id, m])), [models])
-  const domains = useMemo<Domains>(
-    () => ({ text: ciDomain(models.map(m => m.text)), webdev: ciDomain(models.map(m => m.webdev)) }),
-    [models],
-  )
   useEffect(() => {
     const fromUrl = parseCompareIds(params.get('models')).slice(0, 3)
     if (fromUrl.length) compare.setSelected(fromUrl)

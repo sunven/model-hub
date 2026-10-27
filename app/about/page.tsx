@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { JsonLd } from '@/components/json-ld'
-import { arenaDate, manifest, modelRows, modelsDevDate } from '@/lib/data'
+import { arenaDate, catalog, manifest, modelsDevDate } from '@/lib/data'
 import {
   ATTRIBUTION_URL,
   ISSUES_URL,
@@ -30,8 +30,9 @@ export const metadata: Metadata = {
 
 const apiDate = modelsDevDate
 const arenaTextDate = arenaDate('text')
-const withArena = modelRows.filter(m => m.text || m.webdev).length
-const gatewayOnly = modelRows.filter(m => m.gatewayOnly).length
+const rows = catalog.rows
+const withArena = rows.filter(m => m.text || m.webdev).length
+const gatewayOnly = rows.filter(m => m.gatewayOnly).length
 const crosswalk = manifest.crosswalk ?? { verified: 0, tentative: 0, none: 0 }
 const aaLinks = manifest.aaLinks ?? { verified: 0, unverified: 0 }
 const overrides = manifest.overrides
@@ -133,8 +134,8 @@ export default function AboutPage() {
 
           <h2 id="coverage">当前覆盖</h2>
           <p>
-            当前目录 {modelRows.length} 个模型版本，其中 {withArena} 个有至少一条 Arena 分数，
-            {modelRows.length - withArena} 个未收录；{gatewayOnly} 个模型只有网关报价。
+            当前目录 {rows.length} 个模型版本，其中 {withArena} 个有至少一条 Arena 分数，
+            {rows.length - withArena} 个未收录；{gatewayOnly} 个模型只有网关报价。
             Arena 名称映射：verified {crosswalk.verified} / tentative {crosswalk.tentative} / none {crosswalk.none}。
             AA 逐模型链接：verified {aaLinks.verified} / 其余 {aaLinks.unverified} 回退总榜。
             未收录不等于能力差，页面会明确标注。
@@ -259,9 +260,9 @@ export default function AboutPage() {
         <aside className="about-aside" aria-label="数据摘要">
           <div className="about-note">
             <h2>覆盖快照</h2>
-            <div className="kv"><span>模型版本</span><b>{modelRows.length}</b></div>
+            <div className="kv"><span>模型版本</span><b>{rows.length}</b></div>
             <div className="kv"><span>有 Arena 评分</span><b>{withArena}</b></div>
-            <div className="kv"><span>未收录</span><b>{modelRows.length - withArena}</b></div>
+            <div className="kv"><span>未收录</span><b>{rows.length - withArena}</b></div>
             <div className="kv"><span>仅网关报价</span><b>{gatewayOnly}</b></div>
           </div>
           <div className="about-note">

@@ -12,8 +12,7 @@ import {
   reasoningText,
 } from '@/lib/format'
 
-export function OfferTable({ offers }: { offers: Offer[] }) {
-  const hasPrimary = offers.some(o => o.providerKind !== 'gateway')
+export function OfferTable({ offers, hasPrimary }: { offers: Offer[]; hasPrimary: boolean }) {
   const [showGateways, setShowGateways] = useState(!hasPrimary)
   const [showDeprecated, setShowDeprecated] = useState(false)
 
