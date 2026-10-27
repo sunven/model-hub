@@ -32,6 +32,7 @@ export interface ModelRow {
   canonicalId: string
   name: string
   lab: string
+  family: string | null
   availability: Availability
   releaseBadges: string[]
   openWeights: boolean

@@ -122,6 +122,7 @@ export const modelRows: ModelRow[] = models.map(m => {
     canonicalId: m.canonicalModelId,
     name: m.name,
     lab: m.lab,
+    family: m.family,
     availability: m.availability,
     releaseBadges: m.releaseBadges,
     openWeights: m.openWeights,
