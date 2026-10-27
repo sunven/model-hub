@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCompare } from './compare-provider'
+import { compareHref } from '@/lib/site'
 
 export function CompareTray() {
   const { selected, modelIndex, remove, clear, showToast } = useCompare()
@@ -10,7 +11,7 @@ export function CompareTray() {
 
   if (pathname.startsWith('/compare') || selected.length === 0) return null
   const byId = new Map(modelIndex.map(m => [m.id, m]))
-  const compareHref = `/compare?models=${selected.map(encodeURIComponent).join(',')}`
+  const href = compareHref(selected)
 
   return (
     <div className="compare-tray" role="region" aria-label="对比托盘">
@@ -24,7 +25,7 @@ export function CompareTray() {
         </span>
       ))}
       {selected.length >= 2 ? (
-        <Link className="tray-btn" href={compareHref}>去对比</Link>
+        <Link className="tray-btn" href={href}>去对比</Link>
       ) : (
         <button type="button" className="tray-btn" onClick={() => showToast('再选一个模型就能对比')}>
           去对比

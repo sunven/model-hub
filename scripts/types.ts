@@ -201,10 +201,31 @@ export interface FreshnessCheck {
   stale: boolean
 }
 
+export interface SourceFile {
+  url: string
+  hash: string
+  fetchedAt: string
+  bytes: number
+}
+
+export interface ManifestSources {
+  modelsDev: {
+    license: string
+    url: string
+    files: { api: SourceFile; models?: SourceFile }
+  }
+  arena: {
+    license: string
+    attribution: string
+    filters: { text: string; webdev: string }
+    files: { text: SourceFile; webdev: SourceFile }
+  }
+}
+
 export interface Manifest {
   snapshotId: string
   generatedAt: string
-  sources: Record<string, any>
+  sources: ManifestSources
   fx: FxConfig
   counts: { models: number; offers: number; scores: number; unmatched: number }
   files: Record<string, string>

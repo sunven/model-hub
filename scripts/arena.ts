@@ -133,8 +133,7 @@ export async function buildArenaData(args: {
   const warnings: string[] = []
   const patterns = compilePatterns(args.crosswalk, args.launch, hardFailures)
 
-  const rawText = await readParquet(args.textFile)
-  const rawWebdev = await readParquet(args.webdevFile)
+  const [rawText, rawWebdev] = await Promise.all([readParquet(args.textFile), readParquet(args.webdevFile)])
   const text = normalizeRows(rawText, 'text')
   const webdev = normalizeRows(rawWebdev, 'webdev')
   warnings.push(...text.warnings, ...webdev.warnings)

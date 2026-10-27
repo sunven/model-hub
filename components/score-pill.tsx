@@ -1,9 +1,6 @@
-import { ciDomain, CiRail, type CiDomain } from './ci-rail'
-import { ciHalf } from '@/lib/format'
+import { CiRail, type CiDomain } from './ci-rail'
+import { scoreMeta } from '@/lib/format'
 import type { ScoreView } from '@/lib/types'
-
-export { ciDomain }
-export type { CiDomain }
 
 export function ScorePill({ score, domain }: { score: ScoreView | null; domain: CiDomain | null }) {
   if (!score) {
@@ -36,9 +33,7 @@ export function ScoreCell({
   return (
     <div className="score-cell" title={`${label} CI ${score.ciLow.toFixed(1)}–${score.ciHigh.toFixed(1)}`}>
       <ScorePill score={score} domain={domain} />
-      <span className="score-meta">
-        #{score.rank} · {score.condition} · ±{ciHalf(score).toFixed(1)}
-      </span>
+      <span className="score-meta">{scoreMeta(score)}</span>
     </div>
   )
 }

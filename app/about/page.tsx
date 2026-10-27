@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { JsonLd } from '@/components/json-ld'
-import { manifest, modelRows } from '@/lib/data'
+import { arenaDate, manifest, modelRows, modelsDevDate } from '@/lib/data'
 import {
   ATTRIBUTION_URL,
   ISSUES_URL,
@@ -28,12 +28,8 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: `${title} | Model Hub`, description, images: [OG_IMAGE] },
 }
 
-const apiDate = manifest.sources?.modelsDev?.files?.api?.fetchedAt
-  ? new Date(manifest.sources.modelsDev.files.api.fetchedAt).toISOString().slice(0, 10)
-  : '2026-10-26'
-const arenaDate = manifest.sources?.arena?.files?.text?.fetchedAt
-  ? new Date(manifest.sources.arena.files.text.fetchedAt).toISOString().slice(0, 10)
-  : '2026-10-27'
+const apiDate = modelsDevDate
+const arenaTextDate = arenaDate('text')
 const withArena = modelRows.filter(m => m.text || m.webdev).length
 const gatewayOnly = modelRows.filter(m => m.gatewayOnly).length
 const crosswalk = manifest.crosswalk ?? { verified: 0, tentative: 0, none: 0 }
@@ -109,7 +105,7 @@ export default function AboutPage() {
             </li>
             <li>
               <strong>LMArena Leaderboard Dataset</strong>：Arena text / webdev 偏好评分，CC BY 4.0。数据快照{' '}
-              {arenaDate}。来源：
+              {arenaTextDate}。来源：
               <a
                 href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset"
                 target="_blank"
@@ -171,7 +167,7 @@ export default function AboutPage() {
               </tr>
               <tr>
                 <td>Arena text / webdev</td>
-                <td>{arenaDate}</td>
+                <td>{arenaTextDate}</td>
                 <td>72 小时</td>
                 <td>顶部提示，保留 condition 与日期</td>
               </tr>
@@ -271,7 +267,7 @@ export default function AboutPage() {
           <div className="about-note">
             <h2>数据日期</h2>
             <div className="kv"><span>models.dev</span><b>{apiDate}</b></div>
-            <div className="kv"><span>Arena</span><b>{arenaDate}</b></div>
+            <div className="kv"><span>Arena</span><b>{arenaTextDate}</b></div>
             <div className="kv"><span>汇率</span><b>{fx.as_of}</b></div>
             <p style={{ marginTop: 8 }}>过期只提示，不隐藏数据；汇率过期则隐藏 CNY。</p>
           </div>

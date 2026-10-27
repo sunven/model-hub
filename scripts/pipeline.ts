@@ -67,19 +67,22 @@ async function main(): Promise<void> {
   const opts = parseCliOptions(process.argv.slice(2))
   await ensureRaw(opts)
 
-  const currentFx = await readFx()
+  const [currentFx, overrideFile, launch, crosswalk, aaCrosswalk, catalog] = await Promise.all([
+    readFx(),
+    readOverrides(),
+    readLaunchSet(),
+    readCrosswalk(),
+    readAaCrosswalk(),
+    loadModelsDev(),
+  ])
   const { fx, warning: fxWarning } = await refreshFx(currentFx, opts)
-  const { entries: rawOverrides, hash: overrideHash } = await readOverrides()
+  const { entries: rawOverrides, hash: overrideHash } = overrideFile
   const parsedOverrides = overrideEntrySchema.array().safeParse(rawOverrides)
   const overrideSchemaFailures = parsedOverrides.success
     ? []
     : parsedOverrides.error.issues.map(issue => `schema overrides.yml: ${issue.path.join('.') || '(root)'} ${issue.message}`)
   const overrideEntries: OverrideEntry[] = parsedOverrides.success ? parsedOverrides.data : []
 
-  const launch = await readLaunchSet()
-  const crosswalk = await readCrosswalk()
-  const aaCrosswalk = await readAaCrosswalk()
-  const catalog = await loadModelsDev()
   const snapshotId = await makeSnapshotId()
 
   console.log(`snapshot ${snapshotId}`)

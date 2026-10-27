@@ -5,6 +5,7 @@ import unmatchedJson from '@/data/latest/unmatched.json'
 import manifestJson from '@/data/latest/manifest.json'
 import type { FxConfig } from '@/scripts/types'
 import type {
+  Board,
   LeaderboardRow,
   Manifest,
   ModelIndexEntry,
@@ -16,6 +17,8 @@ import type {
   ScoreView,
   UnmatchedEntry,
 } from './types'
+import { compareOffers } from './offers'
+import { modelHref } from './site'
 
 export const models = modelsJson as unknown as ModelVersion[]
 export const offers = offersJson as unknown as Offer[]
@@ -23,6 +26,16 @@ export const scores = scoresJson as unknown as Score[]
 export const unmatched = unmatchedJson as unknown as UnmatchedEntry[]
 export const manifest = manifestJson as unknown as Manifest
 export const fx = manifest.fx as FxConfig
+
+function dateOnly(iso: string): string {
+  return new Date(iso).toISOString().slice(0, 10)
+}
+
+export const modelsDevDate = dateOnly(manifest.sources.modelsDev.files.api.fetchedAt)
+
+export function arenaDate(board: Board): string {
+  return dateOnly(manifest.sources.arena.files[board].fetchedAt)
+}
 
 const modelById = new Map(models.map(m => [m.id, m]))
 const offersByModel = new Map<string, Offer[]>()
@@ -47,7 +60,6 @@ function scoreView(score: Score | undefined): ScoreView | null {
     rank: score.rank,
     votes: score.votes,
     condition: score.condition,
-    date: score.snapshotDate,
   }
 }
 
@@ -66,15 +78,7 @@ export function getModelScores(modelId: string): Score[] {
 }
 
 export function getModelOffers(modelId: string): Offer[] {
-  const order = { first_party: 0, cloud: 1, gateway: 2 } as const
-  return [...(offersByModel.get(modelId) ?? [])].sort((a, b) => {
-    const kind = order[a.providerKind] - order[b.providerKind]
-    if (kind) return kind
-    const ap = a.price?.output ?? Number.POSITIVE_INFINITY
-    const bp = b.price?.output ?? Number.POSITIVE_INFINITY
-    if (ap !== bp) return ap - bp
-    return a.providerName.localeCompare(b.providerName)
-  })
+  return [...(offersByModel.get(modelId) ?? [])].sort(compareOffers)
 }
 
 function summarizePrice(modelOffers: Offer[]): PriceSummary | null {
@@ -128,8 +132,6 @@ export const modelRows: ModelRow[] = models.map(m => {
     price: summarizePrice(modelOffers),
     text: scoreView(primaryScore(m.id, 'text') ?? undefined),
     webdev: scoreView(primaryScore(m.id, 'webdev') ?? undefined),
-    offerCount: modelOffers.length,
-    visibleOfferCount: modelOffers.filter(o => o.providerKind !== 'gateway').length,
     providerNames,
     gatewayOnly: providerNames.length === 0,
     unmarked: modelOffers.some(o => o.status === 'available_unmarked'),
@@ -148,15 +150,14 @@ export function getModelByParams(lab: string, model: string): ModelVersion | und
   return models.find(m => m.canonicalModelId === canonical)
 }
 
-export function getModelById(id: string): ModelVersion | undefined {
-  return modelById.get(id)
+export function topTextModels(limit: number): ModelRow[] {
+  return modelRows
+    .filter(model => model.text)
+    .sort((a, b) => b.text!.rating - a.text!.rating)
+    .slice(0, limit)
 }
 
-export function modelHref(canonicalId: string): string {
-  return `/models/${canonicalId}`
-}
-
-export function leaderboardRows(board: 'text' | 'webdev'): LeaderboardRow[] {
+export function leaderboardRows(board: Board): LeaderboardRow[] {
   const rows: LeaderboardRow[] = []
   for (const score of scores.filter(s => s.board === board)) {
     const model = modelById.get(score.modelVersionId)
@@ -164,17 +165,14 @@ export function leaderboardRows(board: 'text' | 'webdev'): LeaderboardRow[] {
     rows.push({
       id: score.id,
       kind: 'model',
-      board,
       rank: score.rank,
       name: model.name,
       lab: model.lab,
-      organization: model.lab,
       rating: score.rating,
       ciLow: score.ciLow,
       ciHigh: score.ciHigh,
       condition: score.condition,
       votes: score.votes,
-      snapshotDate: score.snapshotDate,
       href: modelHref(model.canonicalModelId),
     })
   }
@@ -182,17 +180,14 @@ export function leaderboardRows(board: 'text' | 'webdev'): LeaderboardRow[] {
     rows.push({
       id: u.id,
       kind: 'unmatched',
-      board,
       rank: u.rank,
       name: u.modelName,
       lab: u.organization,
-      organization: u.organization,
       rating: u.rating,
       ciLow: u.ciLow,
       ciHigh: u.ciHigh,
       condition: u.condition,
       votes: u.votes,
-      snapshotDate: u.snapshotDate,
       href: null,
     })
   }

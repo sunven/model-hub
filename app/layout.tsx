@@ -12,7 +12,7 @@ import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { manifest, modelIndex } from '@/lib/data'
-import { OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site'
+import { LOCALE, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site'
 import { websiteLd } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
-    locale: 'zh_CN',
+    locale: LOCALE,
     siteName: SITE_NAME,
     title: 'Model Hub — 模型信息市场',
     description: SITE_DESCRIPTION,

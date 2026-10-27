@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCompare } from './compare-provider'
+import { compareHref } from '@/lib/site'
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -52,7 +53,7 @@ export function SiteHeader() {
           {selected.length > 0 && (
             <Link
               className="compare-count"
-              href={selected.length >= 2 ? `/compare?models=${selected.map(encodeURIComponent).join(',')}` : '/compare'}
+              href={selected.length >= 2 ? compareHref(selected) : '/compare'}
             >
               对比 <b>{selected.length}</b>
             </Link>

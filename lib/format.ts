@@ -1,5 +1,5 @@
 import type { FxConfig } from '@/scripts/types'
-import type { Availability, PriceSummary, ScoreView } from './types'
+import type { Availability, PriceSummary } from './types'
 
 export function fmtMoney(value: number | null | undefined): string {
   if (value === null || value === undefined) return '未公布'
@@ -11,11 +11,6 @@ export function fmtMoney(value: number | null | undefined): string {
 export function fmtRange(min: number | null | undefined, max: number | null | undefined): string {
   if (min === null || min === undefined || max === null || max === undefined) return '未公布'
   return min === max ? fmtMoney(min) : `${fmtMoney(min)}–${fmtMoney(max)}`
-}
-
-export function fmtPrice(price: PriceSummary | null): string {
-  if (!price) return '未公布'
-  return `${fmtRange(price.inputMin, price.inputMax)} / ${fmtRange(price.outputMin, price.outputMax)}`
 }
 
 export function fmtPriceLines(price: PriceSummary | null): { input: string; output: string } {
@@ -40,16 +35,26 @@ export function fmtDate(value: string | null | undefined): string {
   return value || '—'
 }
 
-export function ciHalf(score: ScoreView): number {
+const votesFormat = new Intl.NumberFormat('en-US')
+
+export function fmtVotes(votes: number): string {
+  return votesFormat.format(votes)
+}
+
+interface Ci {
+  ciLow: number
+  ciHigh: number
+}
+
+export function ciHalf(score: Ci): number {
   return (score.ciHigh - score.ciLow) / 2
 }
 
-export function fmtRating(score: ScoreView | null): string {
-  return score ? score.rating.toFixed(1) : '未收录'
+export function ciOverlaps(a: Ci, b: Ci): boolean {
+  return a.ciLow <= b.ciHigh && b.ciLow <= a.ciHigh
 }
 
-export function scoreSubline(score: ScoreView | null): string {
-  if (!score) return 'Arena 未收录'
+export function scoreMeta(score: Ci & { rank: number; condition: string }): string {
   return `#${score.rank} · ${score.condition} · ±${ciHalf(score).toFixed(1)}`
 }
 
@@ -125,19 +130,9 @@ export function fxIsFresh(fx: FxConfig, now = new Date()): boolean {
   return Math.floor((now.getTime() - t) / 86_400_000) <= 14
 }
 
-export function fmtCny(usd: number, fx: FxConfig): string | null {
-  if (!fxIsFresh(fx)) return null
-  return `≈¥${(usd * fx.usd_to_cny).toFixed(2)}`
-}
-
 export function fmtCnyRange(min: number, max: number, fx: FxConfig): string | null {
   if (!fxIsFresh(fx)) return null
   const a = (min * fx.usd_to_cny).toFixed(2)
   const b = (max * fx.usd_to_cny).toFixed(2)
   return min === max ? `≈¥${a}` : `≈¥${a}–${b}`
-}
-
-export function scorePill(score: ScoreView | null): { rating: string; sub: string; missing: boolean } {
-  if (!score) return { rating: '未收录', sub: 'Arena 未收录', missing: true }
-  return { rating: score.rating.toFixed(1), sub: `#${score.rank} · ${score.condition}`, missing: false }
 }

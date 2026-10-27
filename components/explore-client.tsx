@@ -4,11 +4,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { RowBadges } from './badges'
-import { CiRail, ciDomain } from './ci-rail'
+import { CiRail, ciDomain, type CiDomain } from './ci-rail'
 import { ScoreCell } from './score-pill'
 import { useCompare } from './compare-provider'
-import { ciHalf, fmtContext, fmtPriceLines, fmtRange } from '@/lib/format'
-import type { ModelRow } from '@/lib/types'
+import { ciHalf, fmtContext, fmtPriceLines } from '@/lib/format'
+import { modelHref } from '@/lib/site'
+import type { ModelRow, ScoreView } from '@/lib/types'
 
 type SortKey = 'arena_text' | 'arena_webdev' | 'newest' | 'price' | 'context'
 
@@ -24,40 +25,113 @@ const CONTEXT_OPTIONS = [32000, 128000, 256000, 1000000]
 const PRICE_OPTIONS = [1, 5, 15]
 const useIsoLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
+type Filters = {
+  q: string
+  labs: string[]
+  providers: string[]
+  maxOutput: string
+  minContext: string
+  reasoning: boolean
+  openWeights: boolean
+  stableOnly: boolean
+  hasArena: boolean
+  sortKey: SortKey
+}
+
+const DEFAULT_FILTERS: Filters = {
+  q: '',
+  labs: [],
+  providers: [],
+  maxOutput: '',
+  minContext: '',
+  reasoning: false,
+  openWeights: false,
+  stableOnly: false,
+  hasArena: false,
+  sortKey: 'arena_text',
+}
+
 function parseLabs(value: string | null): string[] {
   return (value ?? '').split(',').filter(Boolean)
+}
+
+function parseFilters(params: URLSearchParams): Filters {
+  const sort = params.get('sort')
+  return {
+    q: params.get('q') ?? '',
+    labs: parseLabs(params.get('labs')),
+    providers: parseLabs(params.get('providers')),
+    maxOutput: params.get('maxOutput') ?? '',
+    minContext: params.get('minContext') ?? '',
+    reasoning: params.get('reasoning') === '1',
+    openWeights: params.get('openWeights') === '1',
+    stableOnly: params.get('stableOnly') === '1',
+    hasArena: params.get('hasArena') === '1',
+    sortKey: SORT_OPTIONS.some(o => o.value === sort) ? (sort as SortKey) : DEFAULT_FILTERS.sortKey,
+  }
+}
+
+function filtersToParams(filters: Filters): URLSearchParams {
+  const params = new URLSearchParams()
+  if (filters.q) params.set('q', filters.q)
+  if (filters.labs.length) params.set('labs', filters.labs.join(','))
+  if (filters.providers.length) params.set('providers', filters.providers.join(','))
+  if (filters.maxOutput) params.set('maxOutput', filters.maxOutput)
+  if (filters.minContext) params.set('minContext', filters.minContext)
+  if (filters.reasoning) params.set('reasoning', '1')
+  if (filters.openWeights) params.set('openWeights', '1')
+  if (filters.stableOnly) params.set('stableOnly', '1')
+  if (filters.hasArena) params.set('hasArena', '1')
+  if (filters.sortKey !== DEFAULT_FILTERS.sortKey) params.set('sort', filters.sortKey)
+  return params
+}
+
+function hasActiveFilters(filters: Filters): boolean {
+  return (
+    Boolean(filters.q || filters.labs.length || filters.providers.length || filters.maxOutput || filters.minContext) ||
+    filters.reasoning ||
+    filters.openWeights ||
+    filters.stableOnly ||
+    filters.hasArena ||
+    filters.sortKey !== DEFAULT_FILTERS.sortKey
+  )
+}
+
+function MobileScore({ label, score, domain }: { label: string; score: ScoreView | null; domain: CiDomain | null }) {
+  return (
+    <div className="mobile-score">
+      <span>{label}</span>
+      {score ? (
+        <>
+          <strong>{score.rating.toFixed(1)}</strong>
+          <div className="score-top">
+            <CiRail stat={score} domain={domain} width={48} />
+            <span className="lb-ci">±{ciHalf(score).toFixed(1)}</span>
+          </div>
+          <small>#{score.rank} · {score.condition}</small>
+        </>
+      ) : (
+        <>
+          <span className="missing">未收录</span>
+          <small>Arena 未收录</small>
+        </>
+      )}
+    </div>
+  )
 }
 
 export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDate: string }) {
   const router = useRouter()
   const compare = useCompare()
 
-  const [q, setQ] = useState('')
-  const [labs, setLabs] = useState<string[]>([])
-  const [providers, setProviders] = useState<string[]>([])
-  const [maxOutput, setMaxOutput] = useState('')
-  const [minContext, setMinContext] = useState('')
-  const [reasoning, setReasoning] = useState(false)
-  const [openWeights, setOpenWeights] = useState(false)
-  const [stableOnly, setStableOnly] = useState(false)
-  const [hasArena, setHasArena] = useState(false)
-  const [sortKey, setSortKey] = useState<SortKey>('arena_text')
+  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS)
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [urlReady, setUrlReady] = useState(false)
 
+  const update = (patch: Partial<Filters>) => setFilters(prev => ({ ...prev, ...patch }))
+
   useIsoLayoutEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const sort = params.get('sort')
-    setQ(params.get('q') ?? '')
-    setLabs(parseLabs(params.get('labs')))
-    setProviders(parseLabs(params.get('providers')))
-    setMaxOutput(params.get('maxOutput') ?? '')
-    setMinContext(params.get('minContext') ?? '')
-    setReasoning(params.get('reasoning') === '1')
-    setOpenWeights(params.get('openWeights') === '1')
-    setStableOnly(params.get('stableOnly') === '1')
-    setHasArena(params.get('hasArena') === '1')
-    setSortKey(SORT_OPTIONS.some(o => o.value === sort) ? (sort as SortKey) : 'arena_text')
+    setFilters(parseFilters(new URLSearchParams(window.location.search)))
     setUrlReady(true)
   }, [])
 
@@ -68,57 +142,35 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
   )
 
   useEffect(() => {
-    const filteredView = Boolean(
-      q ||
-        labs.length ||
-        providers.length ||
-        maxOutput ||
-        minContext ||
-        reasoning ||
-        openWeights ||
-        stableOnly ||
-        hasArena ||
-        sortKey !== 'arena_text',
-    )
     const metas = Array.from(document.querySelectorAll<HTMLMetaElement>('meta[name="robots"]'))
     const previous = metas.map(meta => meta.getAttribute('content'))
-    for (const meta of metas) meta.setAttribute('content', filteredView ? 'noindex,follow' : 'index,follow')
+    const content = hasActiveFilters(filters) ? 'noindex,follow' : 'index,follow'
+    for (const meta of metas) meta.setAttribute('content', content)
     return () => {
       metas.forEach((meta, i) => {
         if (previous[i]) meta.setAttribute('content', previous[i]!)
       })
     }
-  }, [q, labs, providers, maxOutput, minContext, reasoning, openWeights, stableOnly, hasArena, sortKey])
+  }, [filters])
 
   useEffect(() => {
     if (!urlReady || window.location.pathname !== '/') return
-    const p = new URLSearchParams()
-    if (q) p.set('q', q)
-    if (labs.length) p.set('labs', labs.join(','))
-    if (providers.length) p.set('providers', providers.join(','))
-    if (maxOutput) p.set('maxOutput', maxOutput)
-    if (minContext) p.set('minContext', minContext)
-    if (reasoning) p.set('reasoning', '1')
-    if (openWeights) p.set('openWeights', '1')
-    if (stableOnly) p.set('stableOnly', '1')
-    if (hasArena) p.set('hasArena', '1')
-    if (sortKey !== 'arena_text') p.set('sort', sortKey)
-    const query = p.toString()
+    const query = filtersToParams(filters).toString()
     window.history.replaceState({}, '', query ? `${window.location.pathname}?${query}` : window.location.pathname)
-  }, [urlReady, q, labs, providers, maxOutput, minContext, reasoning, openWeights, stableOnly, hasArena, sortKey])
+  }, [urlReady, filters])
 
   const filtered = useMemo(() => {
-    const query = q.trim().toLowerCase()
-    const max = maxOutput ? Number(maxOutput) : null
-    const min = minContext ? Number(minContext) : null
+    const query = filters.q.trim().toLowerCase()
+    const max = filters.maxOutput ? Number(filters.maxOutput) : null
+    const min = filters.minContext ? Number(filters.minContext) : null
     return models.filter(m => {
       if (query) {
         const hay = `${m.name} ${m.lab} ${m.canonicalId}`.toLowerCase()
         if (!hay.includes(query)) return false
       }
-      if (labs.length && !labs.includes(m.lab)) return false
-      if (providers.length) {
-        const match = providers.some(p =>
+      if (filters.labs.length && !filters.labs.includes(m.lab)) return false
+      if (filters.providers.length) {
+        const match = filters.providers.some(p =>
           p === '__gateway_only__' ? m.gatewayOnly : m.providerNames.includes(p),
         )
         if (!match) return false
@@ -129,17 +181,17 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
       if (min !== null) {
         if (!m.context || m.context < min) return false
       }
-      if (reasoning && m.reasoningLabel === '不支持') return false
-      if (openWeights && !m.openWeights) return false
-      if (stableOnly && (m.availability !== 'available' || m.releaseBadges.length > 0)) return false
-      if (hasArena && !m.text && !m.webdev) return false
+      if (filters.reasoning && m.reasoningLabel === '不支持') return false
+      if (filters.openWeights && !m.openWeights) return false
+      if (filters.stableOnly && (m.availability !== 'available' || m.releaseBadges.length > 0)) return false
+      if (filters.hasArena && !m.text && !m.webdev) return false
       return true
     })
-  }, [models, q, labs, providers, maxOutput, minContext, reasoning, openWeights, stableOnly, hasArena])
+  }, [models, filters])
 
   const rows = useMemo(() => {
     const value = (model: ModelRow): number | string | null => {
-      switch (sortKey) {
+      switch (filters.sortKey) {
         case 'arena_text':
           return model.text?.rating ?? null
         case 'arena_webdev':
@@ -152,7 +204,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
           return model.context
       }
     }
-    const direction = sortKey === 'price' ? 1 : -1
+    const direction = filters.sortKey === 'price' ? 1 : -1
     return [...filtered].sort((a, b) => {
       const av = value(a)
       const bv = value(b)
@@ -161,7 +213,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
       if (av === bv) return a.name.localeCompare(b.name, 'zh')
       return (av < bv ? -1 : 1) * direction
     })
-  }, [filtered, sortKey])
+  }, [filtered, filters.sortKey])
 
   const domains = useMemo(
     () => ({
@@ -172,58 +224,51 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
   )
 
   const activeChips: { label: string; remove: () => void }[] = []
-  if (q) activeChips.push({ label: `搜索“${q}”`, remove: () => setQ('') })
-  for (const lab of labs) {
+  if (filters.q) activeChips.push({ label: `搜索“${filters.q}”`, remove: () => update({ q: '' }) })
+  for (const lab of filters.labs) {
     activeChips.push({
       label: lab,
-      remove: () => setLabs(prev => prev.filter(x => x !== lab)),
+      remove: () => setFilters(prev => ({ ...prev, labs: prev.labs.filter(x => x !== lab) })),
     })
   }
-  for (const provider of providers) {
+  for (const provider of filters.providers) {
     activeChips.push({
       label: provider === '__gateway_only__' ? '仅网关' : provider,
-      remove: () => setProviders(prev => prev.filter(x => x !== provider)),
+      remove: () => setFilters(prev => ({ ...prev, providers: prev.providers.filter(x => x !== provider) })),
     })
   }
-  if (maxOutput) activeChips.push({ label: `输出 ≤ $${maxOutput}`, remove: () => setMaxOutput('') })
-  if (minContext) activeChips.push({ label: `上下文 ≥ ${fmtContext(Number(minContext))}`, remove: () => setMinContext('') })
-  if (reasoning) activeChips.push({ label: '支持推理', remove: () => setReasoning(false) })
-  if (openWeights) activeChips.push({ label: '开源权重', remove: () => setOpenWeights(false) })
-  if (stableOnly) activeChips.push({ label: '仅稳定版', remove: () => setStableOnly(false) })
-  if (hasArena) activeChips.push({ label: '只看有评测', remove: () => setHasArena(false) })
-
-  function clearFilters() {
-    setQ('')
-    setLabs([])
-    setProviders([])
-    setMaxOutput('')
-    setMinContext('')
-    setReasoning(false)
-    setOpenWeights(false)
-    setStableOnly(false)
-    setHasArena(false)
-    setSortKey('arena_text')
-  }
+  if (filters.maxOutput) activeChips.push({ label: `输出 ≤ $${filters.maxOutput}`, remove: () => update({ maxOutput: '' }) })
+  if (filters.minContext) activeChips.push({ label: `上下文 ≥ ${fmtContext(Number(filters.minContext))}`, remove: () => update({ minContext: '' }) })
+  if (filters.reasoning) activeChips.push({ label: '支持推理', remove: () => update({ reasoning: false }) })
+  if (filters.openWeights) activeChips.push({ label: '开源权重', remove: () => update({ openWeights: false }) })
+  if (filters.stableOnly) activeChips.push({ label: '仅稳定版', remove: () => update({ stableOnly: false }) })
+  if (filters.hasArena) activeChips.push({ label: '只看有评测', remove: () => update({ hasArena: false }) })
 
   function toggleLab(lab: string, checked: boolean) {
-    setLabs(prev => (checked ? [...new Set([...prev, lab])] : prev.filter(x => x !== lab)))
+    setFilters(prev => ({
+      ...prev,
+      labs: checked ? [...new Set([...prev.labs, lab])] : prev.labs.filter(x => x !== lab),
+    }))
   }
 
   function toggleProvider(provider: string, checked: boolean) {
-    setProviders(prev => (checked ? [...new Set([...prev, provider])] : prev.filter(x => x !== provider)))
+    setFilters(prev => ({
+      ...prev,
+      providers: checked ? [...new Set([...prev.providers, provider])] : prev.providers.filter(x => x !== provider),
+    }))
   }
 
   function sortButton(key: SortKey, label: string) {
     return (
-      <button type="button" className="th-sort" onClick={() => setSortKey(key)}>
+      <button type="button" className="th-sort" onClick={() => update({ sortKey: key })}>
         {label}
-        {sortKey === key && <span className="arrow">{key === 'price' ? '↑' : '↓'}</span>}
+        {filters.sortKey === key && <span className="arrow">{key === 'price' ? '↑' : '↓'}</span>}
       </button>
     )
   }
 
   function ariaSort(key: SortKey) {
-    if (sortKey !== key) return 'none' as const
+    if (filters.sortKey !== key) return 'none' as const
     return key === 'price' ? ('ascending' as const) : ('descending' as const)
   }
 
@@ -233,7 +278,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
         <div className="filters-head">
           <strong>筛选</strong>
           <div className="head-actions">
-            <button type="button" className="btn small ghost" onClick={clearFilters}>清除</button>
+            <button type="button" className="btn small ghost" onClick={() => setFilters(DEFAULT_FILTERS)}>清除</button>
             <button type="button" className="btn small mobile-only" onClick={() => setFiltersOpen(false)}>关闭</button>
           </div>
         </div>
@@ -242,7 +287,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
           <div className="filter-title">实验室</div>
           {allLabs.map(lab => (
             <label className="check" key={lab}>
-              <input type="checkbox" checked={labs.includes(lab)} onChange={e => toggleLab(lab, e.target.checked)} />
+              <input type="checkbox" checked={filters.labs.includes(lab)} onChange={e => toggleLab(lab, e.target.checked)} />
               <span>{lab}</span>
             </label>
           ))}
@@ -256,7 +301,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
               <label className="check" key={provider}>
                 <input
                   type="checkbox"
-                  checked={providers.includes(provider)}
+                  checked={filters.providers.includes(provider)}
                   onChange={e => toggleProvider(provider, e.target.checked)}
                 />
                 <span>{provider}</span>
@@ -265,7 +310,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
             <label className="check">
               <input
                 type="checkbox"
-                checked={providers.includes('__gateway_only__')}
+                checked={filters.providers.includes('__gateway_only__')}
                 onChange={e => toggleProvider('__gateway_only__', e.target.checked)}
               />
               <span>仅网关（无第一方 / 云报价）</span>
@@ -275,7 +320,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
 
         <div className="filter-group">
           <label className="filter-title" htmlFor="max-output">最高输出价</label>
-          <select id="max-output" value={maxOutput} onChange={e => setMaxOutput(e.target.value)}>
+          <select id="max-output" value={filters.maxOutput} onChange={e => update({ maxOutput: e.target.value })}>
             <option value="">不限</option>
             {PRICE_OPTIONS.map(v => <option key={v} value={v}>≤ ${v} / 1M</option>)}
           </select>
@@ -283,7 +328,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
 
         <div className="filter-group">
           <label className="filter-title" htmlFor="min-context">最低上下文</label>
-          <select id="min-context" value={minContext} onChange={e => setMinContext(e.target.value)}>
+          <select id="min-context" value={filters.minContext} onChange={e => update({ minContext: e.target.value })}>
             <option value="">不限</option>
             {CONTEXT_OPTIONS.map(v => <option key={v} value={v}>≥ {fmtContext(v)}</option>)}
           </select>
@@ -291,10 +336,10 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
 
         <div className="filter-group">
           <div className="filter-title">能力 / 状态</div>
-          <label className="switch-row"><span>支持推理</span><input type="checkbox" checked={reasoning} onChange={e => setReasoning(e.target.checked)} /></label>
-          <label className="switch-row"><span>开源权重</span><input type="checkbox" checked={openWeights} onChange={e => setOpenWeights(e.target.checked)} /></label>
-          <label className="switch-row"><span>仅稳定版</span><input type="checkbox" checked={stableOnly} onChange={e => setStableOnly(e.target.checked)} /></label>
-          <label className="switch-row"><span>只看有评测</span><input type="checkbox" checked={hasArena} onChange={e => setHasArena(e.target.checked)} /></label>
+          <label className="switch-row"><span>支持推理</span><input type="checkbox" checked={filters.reasoning} onChange={e => update({ reasoning: e.target.checked })} /></label>
+          <label className="switch-row"><span>开源权重</span><input type="checkbox" checked={filters.openWeights} onChange={e => update({ openWeights: e.target.checked })} /></label>
+          <label className="switch-row"><span>仅稳定版</span><input type="checkbox" checked={filters.stableOnly} onChange={e => update({ stableOnly: e.target.checked })} /></label>
+          <label className="switch-row"><span>只看有评测</span><input type="checkbox" checked={filters.hasArena} onChange={e => update({ hasArena: e.target.checked })} /></label>
         </div>
       </aside>
 
@@ -311,12 +356,17 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
                 type="search"
                 aria-label="搜索模型、实验室或别名"
                 placeholder="搜索模型 / 实验室 / 别名"
-                value={q}
-                onChange={e => setQ(e.target.value)}
+                value={filters.q}
+                onChange={e => update({ q: e.target.value })}
               />
             </div>
           </div>
-          <select className="sort-select" value={sortKey} onChange={e => setSortKey(e.target.value as SortKey)} aria-label="排序">
+          <select
+            className="sort-select"
+            value={filters.sortKey}
+            onChange={e => update({ sortKey: e.target.value as SortKey })}
+            aria-label="排序"
+          >
             {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
           <button
@@ -339,7 +389,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
                 <button type="button" onClick={chip.remove} aria-label={`移除 ${chip.label}`}>×</button>
               </span>
             ))}
-            <button type="button" className="chip clear" onClick={clearFilters}>清除全部</button>
+            <button type="button" className="chip clear" onClick={() => setFilters(DEFAULT_FILTERS)}>清除全部</button>
           </div>
         )}
 
@@ -372,7 +422,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
                   {rows.map(row => {
                     const prices = fmtPriceLines(row.price)
                     return (
-                      <tr className="model-row" key={row.id} onClick={() => router.push(`/models/${row.canonicalId}`)}>
+                      <tr className="model-row" key={row.id} onClick={() => router.push(modelHref(row.canonicalId))}>
                         <td className="col-check" onClick={e => e.stopPropagation()}>
                           <input
                             type="checkbox"
@@ -383,7 +433,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
                         </td>
                         <td>
                           <div className="model-name">
-                            <Link href={`/models/${row.canonicalId}`} onClick={e => e.stopPropagation()}>{row.name}</Link>
+                            <Link href={modelHref(row.canonicalId)} onClick={e => e.stopPropagation()}>{row.name}</Link>
                             <RowBadges row={row} exceptionsOnly />
                           </div>
                           <div className="model-sub">
@@ -407,70 +457,39 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
             </div>
 
             <div className="mobile-list">
-              {rows.map(row => (
-                <article className="mobile-card" key={row.id}>
-                  <div className="mobile-card-top">
-                    <div>
-                      <div className="lab">{row.lab}</div>
-                      <h3><Link href={`/models/${row.canonicalId}`}>{row.name}</Link></h3>
-                      <div className="mobile-badges">
-                        <RowBadges row={row} exceptionsOnly />
+              {rows.map(row => {
+                const prices = fmtPriceLines(row.price)
+                return (
+                  <article className="mobile-card" key={row.id}>
+                    <div className="mobile-card-top">
+                      <div>
+                        <div className="lab">{row.lab}</div>
+                        <h3><Link href={modelHref(row.canonicalId)}>{row.name}</Link></h3>
+                        <div className="mobile-badges">
+                          <RowBadges row={row} exceptionsOnly />
+                        </div>
+                        <div className="mobile-id">{row.canonicalId}</div>
                       </div>
-                      <div className="mobile-id">{row.canonicalId}</div>
+                      <button
+                        type="button"
+                        className={`btn small ${compare.selected.includes(row.id) ? 'primary' : ''}`}
+                        onClick={() => compare.toggle(row.id)}
+                      >
+                        {compare.selected.includes(row.id) ? '已加入' : '对比'}
+                      </button>
                     </div>
-                    <button
-                      type="button"
-                      className={`btn small ${compare.selected.includes(row.id) ? 'primary' : ''}`}
-                      onClick={() => compare.toggle(row.id)}
-                    >
-                      {compare.selected.includes(row.id) ? '已加入' : '对比'}
-                    </button>
-                  </div>
-                  <div className="mobile-scores">
-                    <div className="mobile-score">
-                      <span>Arena text</span>
-                      {row.text ? (
-                        <>
-                          <strong>{row.text.rating.toFixed(1)}</strong>
-                          <div className="score-top">
-                            <CiRail stat={row.text} domain={domains.text} width={48} />
-                            <span className="lb-ci">±{ciHalf(row.text).toFixed(1)}</span>
-                          </div>
-                          <small>#{row.text.rank} · {row.text.condition}</small>
-                        </>
-                      ) : (
-                        <>
-                          <span className="missing">未收录</span>
-                          <small>Arena 未收录</small>
-                        </>
-                      )}
+                    <div className="mobile-scores">
+                      <MobileScore label="Arena text" score={row.text} domain={domains.text} />
+                      <MobileScore label="Arena webdev" score={row.webdev} domain={domains.webdev} />
                     </div>
-                    <div className="mobile-score">
-                      <span>Arena webdev</span>
-                      {row.webdev ? (
-                        <>
-                          <strong>{row.webdev.rating.toFixed(1)}</strong>
-                          <div className="score-top">
-                            <CiRail stat={row.webdev} domain={domains.webdev} width={48} />
-                            <span className="lb-ci">±{ciHalf(row.webdev).toFixed(1)}</span>
-                          </div>
-                          <small>#{row.webdev.rank} · {row.webdev.condition}</small>
-                        </>
-                      ) : (
-                        <>
-                          <span className="missing">未收录</span>
-                          <small>Arena 未收录</small>
-                        </>
-                      )}
+                    <div className="mobile-facts">
+                      <span>上下文 <b>{fmtContext(row.context)}</b></span>
+                      <span>价格 <b>{prices.input} / {prices.output}</b></span>
+                      <span>推理 <b>{row.reasoningLabel}</b></span>
                     </div>
-                  </div>
-                  <div className="mobile-facts">
-                    <span>上下文 <b>{fmtContext(row.context)}</b></span>
-                    <span>价格 <b>{fmtRange(row.price?.inputMin, row.price?.inputMax)} / {fmtRange(row.price?.outputMin, row.price?.outputMax)}</b></span>
-                    <span>推理 <b>{row.reasoningLabel}</b></span>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                )
+              })}
             </div>
 
             <div className="table-foot">
@@ -482,7 +501,7 @@ export function ExploreClient({ models, dataDate }: { models: ModelRow[]; dataDa
           <div className="empty">
             <strong>没有符合条件的模型</strong>
             <p>删掉一两个筛选条件，或者清除全部筛选再看。</p>
-            <button type="button" className="btn primary" onClick={clearFilters}>清除筛选</button>
+            <button type="button" className="btn primary" onClick={() => setFilters(DEFAULT_FILTERS)}>清除筛选</button>
           </div>
         )}
       </section>

@@ -8,11 +8,12 @@ import { RowBadges } from './badges'
 import { ScorePill } from './score-pill'
 import { ciDomain, type CiDomain } from './ci-rail'
 import {
-  ciHalf,
   fmtCnyRange,
   fmtContext,
   fmtRange,
+  scoreMeta,
 } from '@/lib/format'
+import { modelHref, parseCompareIds } from '@/lib/site'
 import type { FxConfig } from '@/scripts/types'
 import type { ModelRow } from '@/lib/types'
 
@@ -85,11 +86,7 @@ const FIELDS: Field[] = [
     render: (m, fx, domains) => (
       <span className="compare-score">
         <ScorePill score={m.text} domain={domains.text} />
-        {m.text && (
-          <span className="cell-sub">
-            #{m.text.rank} · {m.text.condition} · ±{ciHalf(m.text).toFixed(1)}
-          </span>
-        )}
+        {m.text && <span className="cell-sub">{scoreMeta(m.text)}</span>}
       </span>
     ),
   },
@@ -99,11 +96,7 @@ const FIELDS: Field[] = [
     render: (m, fx, domains) => (
       <span className="compare-score">
         <ScorePill score={m.webdev} domain={domains.webdev} />
-        {m.webdev && (
-          <span className="cell-sub">
-            #{m.webdev.rank} · {m.webdev.condition} · ±{ciHalf(m.webdev).toFixed(1)}
-          </span>
-        )}
+        {m.webdev && <span className="cell-sub">{scoreMeta(m.webdev)}</span>}
       </span>
     ),
   },
@@ -124,7 +117,7 @@ const FIELDS: Field[] = [
   },
 ]
 
-export function CompareClient({ models, fx }: { models: ModelRow[]; fx: FxConfig }) {
+export function CompareClient({ models, fx, picks }: { models: ModelRow[]; fx: FxConfig; picks: ModelRow[] }) {
   const params = useSearchParams()
   const compare = useCompare()
   const byId = useMemo(() => new Map(models.map(m => [m.id, m])), [models])
@@ -132,17 +125,8 @@ export function CompareClient({ models, fx }: { models: ModelRow[]; fx: FxConfig
     () => ({ text: ciDomain(models.map(m => m.text)), webdev: ciDomain(models.map(m => m.webdev)) }),
     [models],
   )
-  const picks = useMemo(
-    () =>
-      models
-        .filter(m => m.text)
-        .sort((a, b) => b.text!.rating - a.text!.rating)
-        .slice(0, 6),
-    [models],
-  )
-
   useEffect(() => {
-    const fromUrl = (params.get('models') ?? '').split(',').filter(Boolean).slice(0, 3)
+    const fromUrl = parseCompareIds(params.get('models')).slice(0, 3)
     if (fromUrl.length) compare.setSelected(fromUrl)
     // Only initialize from URL on mount.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -212,7 +196,7 @@ export function CompareClient({ models, fx }: { models: ModelRow[]; fx: FxConfig
               <th>字段</th>
               {selected.map(m => (
                 <th key={m.id}>
-                  <Link href={`/models/${m.canonicalId}`}>{m.name}</Link>
+                  <Link href={modelHref(m.canonicalId)}>{m.name}</Link>
                   <span className="cell-sub">
                     {m.lab}
                     <button type="button" className="btn small" onClick={() => compare.remove(m.id)}>移除</button>

@@ -1,10 +1,8 @@
 import Link from 'next/link'
-import { modelRows } from '@/lib/data'
+import { modelRows, topTextModels } from '@/lib/data'
+import { modelHref } from '@/lib/site'
 
-const picks = modelRows
-  .filter(model => model.text)
-  .sort((a, b) => b.text!.rating - a.text!.rating)
-  .slice(0, 8)
+const picks = topTextModels(8)
 
 export default function NotFound() {
   return (
@@ -28,7 +26,7 @@ export default function NotFound() {
             <Link href="/">浏览全部 {modelRows.length} 个模型</Link>
           </div>
           {picks.map(model => (
-            <Link className="notfound-row" href={`/models/${model.canonicalId}`} key={model.id}>
+            <Link className="notfound-row" href={modelHref(model.canonicalId)} key={model.id}>
               <span className="pick-rank">#{model.text!.rank}</span>
               <span className="pick-name">
                 {model.name}

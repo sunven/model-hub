@@ -150,6 +150,9 @@ export function applyOverrides(
   entries: OverrideEntry[],
   hash: string,
 ): OverrideResult {
+  if (!entries.length) {
+    return { models, offers, applied: [], warnings: [], hardFailures: [], count: 0, hash }
+  }
   const nextModels = structuredClone(models)
   const nextOffers = structuredClone(offers)
   const modelByCanonical = new Map(nextModels.map(m => [m.canonicalModelId, m]))

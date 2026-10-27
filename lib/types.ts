@@ -1,5 +1,6 @@
 import type {
   Availability,
+  Board,
   Manifest,
   ModelVersion,
   Offer,
@@ -7,7 +8,7 @@ import type {
   UnmatchedEntry,
 } from '@/scripts/types'
 
-export type { Availability, Manifest, ModelVersion, Offer, Score, UnmatchedEntry }
+export type { Availability, Board, Manifest, ModelVersion, Offer, Score, UnmatchedEntry }
 
 export interface ScoreView {
   rating: number
@@ -16,7 +17,6 @@ export interface ScoreView {
   rank: number
   votes: number
   condition: string
-  date: string
 }
 
 export interface PriceSummary {
@@ -42,8 +42,6 @@ export interface ModelRow {
   price: PriceSummary | null
   text: ScoreView | null
   webdev: ScoreView | null
-  offerCount: number
-  visibleOfferCount: number
   providerNames: string[]
   gatewayOnly: boolean
   unmarked: boolean
@@ -59,16 +57,13 @@ export interface ModelIndexEntry {
 export interface LeaderboardRow {
   id: string
   kind: 'model' | 'unmatched'
-  board: 'text' | 'webdev'
   rank: number
   name: string
   lab: string
-  organization: string
   rating: number
   ciLow: number
   ciHigh: number
   condition: string
   votes: number
-  snapshotDate: string
   href: string | null
 }

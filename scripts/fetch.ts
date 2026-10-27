@@ -81,10 +81,12 @@ async function ensureFile(url: string, dest: string, opts: CliOptions, label: st
 }
 
 export async function ensureRaw(opts: CliOptions): Promise<void> {
-  await ensureFile(MODELS_DEV_API_URL, path.join(RAW_MODELS, 'api.json'), opts, 'models.dev api.json')
-  await ensureFile(MODELS_DEV_MODELS_URL, path.join(RAW_MODELS, 'models.json'), opts, 'models.dev models.json')
-  await ensureFile(ARENA_TEXT_URL, path.join(RAW_ARENA, 'text-latest.parquet'), opts, 'Arena text latest')
-  await ensureFile(ARENA_WEBDEV_URL, path.join(RAW_ARENA, 'webdev-latest.parquet'), opts, 'Arena webdev latest')
+  await Promise.all([
+    ensureFile(MODELS_DEV_API_URL, path.join(RAW_MODELS, 'api.json'), opts, 'models.dev api.json'),
+    ensureFile(MODELS_DEV_MODELS_URL, path.join(RAW_MODELS, 'models.json'), opts, 'models.dev models.json'),
+    ensureFile(ARENA_TEXT_URL, path.join(RAW_ARENA, 'text-latest.parquet'), opts, 'Arena text latest'),
+    ensureFile(ARENA_WEBDEV_URL, path.join(RAW_ARENA, 'webdev-latest.parquet'), opts, 'Arena webdev latest'),
+  ])
 }
 
 export async function readJson<T>(file: string): Promise<T> {

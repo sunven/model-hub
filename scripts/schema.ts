@@ -164,12 +164,16 @@ export const manifestSchema: z.ZodType<Manifest> = z
     generatedAt: z.iso.datetime(),
     sources: z
       .object({
-        modelsDev: z.object({ license: z.string(), url: z.string(), files: z.record(z.string(), fileInfoSchema) }),
+        modelsDev: z.object({
+          license: z.string(),
+          url: z.string(),
+          files: z.object({ api: fileInfoSchema, models: fileInfoSchema.optional() }),
+        }),
         arena: z.object({
           license: z.string(),
           attribution: z.string(),
-          filters: z.record(z.string(), z.string()),
-          files: z.record(z.string(), fileInfoSchema),
+          filters: z.object({ text: z.string(), webdev: z.string() }),
+          files: z.object({ text: fileInfoSchema, webdev: fileInfoSchema }),
         }),
       })
       .catchall(z.unknown()),

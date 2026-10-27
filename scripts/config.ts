@@ -1,12 +1,5 @@
 import type { Availability, Board, OfferStatus, ProviderKind, RawModel } from './types'
 
-export const FIRST_PARTY_PROVIDER_KEYS = new Set([
-  'openai', 'anthropic', 'google', 'xai', 'mistral', 'cohere', 'meta', 'deepseek',
-  'alibaba', 'alibaba-cn', 'zhipuai', 'zai', 'moonshotai', 'moonshotai-cn',
-  'stepfun', 'stepfun-ai', 'xiaomi', 'tencent-tokenhub', 'nvidia', 'amazon',
-  'sakana', 'upstage', 'inception',
-])
-
 export const CLOUD_PROVIDER_KEYS = new Set([
   'amazon-bedrock', 'azure', 'google-vertex', 'google-vertex-anthropic', 'volcengine',
   // Major inference clouds: legitimate hosting for open-weight models.
@@ -35,12 +28,6 @@ export const LAB_FIRST_PARTY_KEYS: Record<string, string[]> = {
   Sakana: ['sakana'],
   Upstage: ['upstage'],
   Inception: ['inception'],
-}
-
-export function providerKind(providerId: string): ProviderKind {
-  if (FIRST_PARTY_PROVIDER_KEYS.has(providerId)) return 'first_party'
-  if (CLOUD_PROVIDER_KEYS.has(providerId)) return 'cloud'
-  return 'gateway'
 }
 
 export function providerKindForModel(providerId: string, lab: string): ProviderKind {

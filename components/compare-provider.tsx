@@ -1,6 +1,7 @@
 'use client'
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { parseCompareIds } from '@/lib/site'
 import type { ModelIndexEntry } from '@/lib/types'
 
 interface CompareContextValue {
@@ -27,7 +28,7 @@ export function CompareProvider({
   const [selected, setSelectedState] = useState<string[]>([])
   const [toast, setToast] = useState<string | null>(null)
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const ids = new Set(modelIndex.map(m => m.id))
+  const ids = useMemo(() => new Set(modelIndex.map(m => m.id)), [modelIndex])
 
   const showToast = useCallback((message: string) => {
     setToast(message)
@@ -44,12 +45,11 @@ export function CompareProvider({
       initial = []
     }
     if (window.location.pathname.startsWith('/compare')) {
-      const fromUrl = new URLSearchParams(window.location.search).get('models')?.split(',') ?? []
+      const fromUrl = parseCompareIds(new URLSearchParams(window.location.search).get('models'))
       if (fromUrl.length) initial = fromUrl
     }
     setSelectedState(initial.filter(id => ids.has(id)).slice(0, 3))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [ids])
 
   const persist = useCallback(
     (next: string[]) => {
@@ -98,9 +98,13 @@ export function CompareProvider({
     [selected, setSelected],
   )
   const clear = useCallback(() => setSelected([]), [setSelected])
+  const value = useMemo(
+    () => ({ selected, modelIndex, toggle, remove, clear, setSelected, showToast }),
+    [selected, modelIndex, toggle, remove, clear, setSelected, showToast],
+  )
 
   return (
-    <CompareContext.Provider value={{ selected, modelIndex, toggle, remove, clear, setSelected, showToast }}>
+    <CompareContext.Provider value={value}>
       {children}
       <div className={`toast ${toast ? 'show' : ''}`} role="status" aria-live="polite">
         {toast ?? ''}

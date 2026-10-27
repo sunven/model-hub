@@ -181,10 +181,6 @@ canvas {
   font-size: var(--fs-small);
 }
 
-.nowrap {
-  white-space: nowrap;
-}
-
 .num,
 .score-rating,
 .spec-value {
@@ -440,15 +436,10 @@ main {
   color: var(--text);
 }
 
-.btn.small,
-.btn.tiny {
+.btn.small {
   height: 26px;
   padding: 0 8px;
   font-size: 12px;
-}
-
-.btn.wide {
-  width: 100%;
 }
 
 .btn.mobile-only {
@@ -617,10 +608,6 @@ details.filter-group[open] > summary::after {
 
 .filter-group select {
   margin-top: 2px;
-}
-
-.filters .clear-all {
-  margin-top: 14px;
 }
 
 .results {
@@ -1118,12 +1105,6 @@ details.filter-group[open] > summary::after {
   font-variant-numeric: tabular-nums;
 }
 
-.mobile-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-}
-
 /* ---------- detail ---------- */
 
 .detail-head {
@@ -1212,12 +1193,6 @@ details.filter-group[open] > summary::after {
   font-weight: 600;
 }
 
-.spec-value .unit {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 400;
-}
-
 .spec-value .arrow {
   color: var(--muted);
   font-weight: 400;
@@ -1233,10 +1208,6 @@ details.filter-group[open] > summary::after {
 
 .cny-range {
   white-space: nowrap;
-}
-
-.spec-value.msg {
-  color: var(--muted);
 }
 
 .spec-score .score-top {

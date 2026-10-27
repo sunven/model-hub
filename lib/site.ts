@@ -23,3 +23,15 @@ export const LEGAL_REVIEW_URL = `${REPO_URL}/blob/main/docs/legal-review.md`
 export function absoluteUrl(path = '/'): string {
   return new URL(path, `${SITE_URL}/`).toString()
 }
+
+export function modelHref(canonicalId: string): string {
+  return `/models/${canonicalId}`
+}
+
+export function compareHref(ids: string[]): string {
+  return `/compare?models=${ids.map(encodeURIComponent).join(',')}`
+}
+
+export function parseCompareIds(value: string | null): string[] {
+  return (value ?? '').split(',').filter(Boolean)
+}

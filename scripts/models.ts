@@ -168,11 +168,12 @@ export function buildModelsData(
     aaById.set(entry.canonicalId, entry.aaUrl)
   }
 
+  const launchIds = new Set(launchSet.map(entry => entry.canonicalId))
   const rowsByCanonical = new Map<string, Row[]>()
   for (const [providerId, provider] of Object.entries(catalog)) {
     for (const [modelId, model] of Object.entries(provider.models ?? {})) {
       const canonical = model.canonical_model_id
-      if (!canonical) continue
+      if (!canonical || !launchIds.has(canonical)) continue
       const rows = rowsByCanonical.get(canonical) ?? []
       rows.push({ providerId, providerName: provider.name ?? providerId, modelId, model })
       rowsByCanonical.set(canonical, rows)

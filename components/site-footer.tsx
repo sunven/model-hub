@@ -1,10 +1,6 @@
 import Link from 'next/link'
-import { manifest } from '@/lib/data'
+import { manifest, modelsDevDate } from '@/lib/data'
 import { ATTRIBUTION_URL, NEW_ISSUE_URL, REPO_URL } from '@/lib/site'
-
-const dataDate = manifest.sources?.modelsDev?.files?.api?.fetchedAt
-  ? new Date(manifest.sources.modelsDev.files.api.fetchedAt).toISOString().slice(0, 10)
-  : '2026-10-26'
 
 export function SiteFooter() {
   return (
@@ -61,7 +57,7 @@ export function SiteFooter() {
         </div>
         <div className="footer-legal">
           <span>非官方，模型与商标归各自所有者。价格以供应商官网为准。</span>
-          <span>本地预览 · 未做外网部署 · 数据 {dataDate}</span>
+          <span>本地预览 · 未做外网部署 · 数据 {modelsDevDate}</span>
         </div>
       </div>
     </footer>

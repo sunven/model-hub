@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import { CiRail, ciDomain } from './ci-rail'
+import { ciHalf, ciOverlaps, fmtVotes } from '@/lib/format'
 import type { LeaderboardRow } from '@/lib/types'
 
 const PAGE = 50
@@ -34,7 +35,7 @@ export function LeaderboardClient({
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase()
     if (!query) return rows
-    return rows.filter(row => `${row.name} ${row.lab} ${row.organization} ${row.condition}`.toLowerCase().includes(query))
+    return rows.filter(row => `${row.name} ${row.lab} ${row.condition}`.toLowerCase().includes(query))
   }, [rows, q])
 
   const visible = filtered.slice(0, visibleCount)
@@ -45,9 +46,7 @@ export function LeaderboardClient({
     first && second
       ? Math.round((parseFloat(first.rating.toFixed(1)) - parseFloat(second.rating.toFixed(1))) * 10) / 10
       : null
-  const topOverlap = Boolean(
-    first && second && first.ciLow <= second.ciHigh && second.ciLow <= first.ciHigh,
-  )
+  const topOverlap = Boolean(first && second && ciOverlaps(first, second))
 
   const finding =
     first && second && topGap !== null
@@ -153,11 +152,11 @@ export function LeaderboardClient({
                     <td className="num">
                       <div className="lb-score">
                         <span className="lb-rating">{row.rating.toFixed(1)}</span>
-                        <span className="lb-ci">±{((row.ciHigh - row.ciLow) / 2).toFixed(1)}</span>
+                        <span className="lb-ci">±{ciHalf(row).toFixed(1)}</span>
                       </div>
                     </td>
                     <td className="lb-condition">{row.condition}</td>
-                    <td className="num">{row.votes.toLocaleString('en-US')}</td>
+                    <td className="num">{fmtVotes(row.votes)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -180,12 +179,12 @@ export function LeaderboardClient({
                       <CiRail stat={row} domain={domains} width={44} />
                       <span className="lb-rating">{row.rating.toFixed(1)}</span>
                     </div>
-                    <span className="lb-ci">±{((row.ciHigh - row.ciLow) / 2).toFixed(1)}</span>
+                    <span className="lb-ci">±{ciHalf(row).toFixed(1)}</span>
                   </div>
                 </div>
                 <div className="mobile-facts" style={{ marginTop: 8 }}>
                   <span>条件 <b>{row.condition}</b></span>
-                  <span>票数 <b>{row.votes.toLocaleString('en-US')}</b></span>
+                  <span>票数 <b>{fmtVotes(row.votes)}</b></span>
                 </div>
               </article>
             ))}

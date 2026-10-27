@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { JsonLd } from '@/components/json-ld'
 import { LeaderboardClient } from '@/components/leaderboard-client'
-import { leaderboardRows, manifest } from '@/lib/data'
+import { arenaDate, leaderboardRows } from '@/lib/data'
 import { OG_IMAGE } from '@/lib/site'
 import { breadcrumbLd, itemListLd, webPageLd } from '@/lib/structured-data'
 
@@ -41,10 +41,7 @@ export default async function LeaderboardPage({ params }: Props) {
   const { board } = await params
   if (board !== 'text' && board !== 'webdev') notFound()
   const rows = leaderboardRows(board)
-  const raw = board === 'text'
-    ? manifest.sources?.arena?.files?.text?.fetchedAt
-    : manifest.sources?.arena?.files?.webdev?.fetchedAt
-  const dataDate = raw ? new Date(raw).toISOString().slice(0, 10) : '2026-10-27'
+  const dataDate = arenaDate(board)
   const path = `/leaderboards/${board}`
   const title = board === 'text' ? 'Arena text 榜单' : 'Arena webdev 榜单'
   return (

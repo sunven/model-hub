@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { manifest, models } from '@/lib/data'
-import { absoluteUrl } from '@/lib/site'
+import { absoluteUrl, modelHref } from '@/lib/site'
 
 export const dynamic = 'force-static'
 
@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     { url: absoluteUrl('/about'), lastModified, changeFrequency: 'monthly', priority: 0.5 },
     ...models.map(model => ({
-      url: absoluteUrl(`/models/${model.canonicalModelId}`),
+      url: absoluteUrl(modelHref(model.canonicalModelId)),
       lastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.7,

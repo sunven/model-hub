@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import type { Offer } from '@/lib/types'
+import { compareOffers } from '@/lib/offers'
 import {
   fmtContext,
   fmtMoney,
@@ -20,14 +21,7 @@ export function OfferTable({ offers }: { offers: Offer[] }) {
     () =>
       offers
         .filter(o => (showGateways || o.providerKind !== 'gateway') && (showDeprecated || o.status !== 'deprecated'))
-        .sort((a, b) => {
-          const order = { first_party: 0, cloud: 1, gateway: 2 } as const
-          const kind = order[a.providerKind] - order[b.providerKind]
-          if (kind) return kind
-          const ap = a.price?.output ?? Number.POSITIVE_INFINITY
-          const bp = b.price?.output ?? Number.POSITIVE_INFINITY
-          return ap - bp || a.providerName.localeCompare(b.providerName)
-        }),
+        .sort(compareOffers),
     [offers, showGateways, showDeprecated],
   )
 
