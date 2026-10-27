@@ -31,8 +31,6 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - run: npm run build
-      - name: Lighthouse CI
-        run: npx lhci autorun
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -40,6 +38,26 @@ jobs:
           path: |
             playwright-report/
             test-results/
-            .lighthouseci/
+          if-no-files-found: ignore
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: https://model-hub.example
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Lighthouse CI
+        run: npx lhci autorun
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: lighthouse-artifacts
+          path: .lighthouseci/
           if-no-files-found: ignore
           include-hidden-files: true
