@@ -37,10 +37,19 @@ Status date: 2026-10-27
 - [ ] Confirm the privacy statement against the eventual hosting provider's access-log and subprocessor practices.
 - [ ] Publish a private contact channel for sensitive rights-holder requests (email or equivalent). Until then, Issues is the only public channel.
 - [ ] Confirm the FX source/date review owner and cadence (weekly recommended); automated refresh does not replace human review.
-- [ ] Confirm the public repository contains no confidential material and that the commit author identity is acceptable.
+- [x] Confirm the public repository contains no confidential material and that the commit author identity is acceptable (owner confirmed 2026-10-27; noreply identity).
 - [ ] After deployment, verify the public Issues link, removal process, and site-wide disclaimers on the live domain.
+- [x] Owner accepts the unchecked human review items above as pre-deployment gates; the local-only phase may close with them outstanding.
+
+## Owner decision (2026-10-27)
+
+- Public deployment, custom domain, and mainland-China ICP filing are deferred. Nothing has been deployed.
+- The owner accepts the remaining human review items, including the private sensitive-request channel, as **pre-deployment gates**. They do not block the current local-only phase.
+- The owner confirmed that keeping the planning notes (`.scratch/`), validated data snapshots, and this checklist in the public repository is acceptable. No credentials, `.env` files, or raw source downloads are committed; the commit author uses GitHub noreply.
+- Automated FX refresh does not replace the weekly human spot-check; that check is part of the pre-deployment gate.
 
 ## Deliberately deferred
 
 - Public deployment, custom domain, and mainland-China ICP filing: deferred by the project owner. Static output and deployment notes are ready; nothing has been deployed.
+- Private rights-holder contact channel and final human terms review: required before public deployment, accepted as gates by the owner on 2026-10-27.
 - Per-model Open Graph images: not required for the first release.
