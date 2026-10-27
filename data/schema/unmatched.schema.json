@@ -22,7 +22,8 @@
         "type": "string"
       },
       "condition": {
-        "type": "string"
+        "type": "string",
+        "minLength": 1
       },
       "rating": {
         "type": "number"
@@ -44,7 +45,8 @@
         "maximum": 9007199254740991
       },
       "snapshotDate": {
-        "type": "string"
+        "type": "string",
+        "minLength": 1
       },
       "sourceRef": {
         "type": "string"

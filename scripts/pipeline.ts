@@ -26,9 +26,8 @@ import {
 import { buildModelsData } from './models'
 import { buildArenaData } from './arena'
 import { applyOverrides } from './overrides'
-import { generateJsonSchemas, manifestSchema, modelVersionSchema, offerSchema, overrideEntrySchema, scoreSchema, unmatchedSchema, validateSchema, validationReportSchema } from './schema'
-import { validateSnapshot } from './validate'
-import type { FreshnessCheck, Manifest, ModelVersion, Offer, OverrideEntry, ValidationReport } from './types'
+import { generateJsonSchemas, manifestSchema, overrideEntrySchema, validateSchema, validationReportSchema, validateSnapshot } from '../lib/snapshot'
+import type { FreshnessCheck, Manifest, ModelVersion, Offer, OverrideEntry, ValidationReport } from '../lib/snapshot'
 
 async function writeJson(file: string, value: unknown): Promise<string> {
   const content = JSON.stringify(value, null, 2) + '\n'
@@ -104,7 +103,7 @@ async function main(): Promise<void> {
 
   const report: ValidationReport = validateSnapshot({
     snapshotId,
-    launch,
+    expectedCanonicalIds: launch.map(entry => entry.canonicalId),
     models: built.models,
     offers: built.offers,
     scores: arena.scores,
@@ -120,10 +119,6 @@ async function main(): Promise<void> {
     applied: overrideResult.applied.length,
     hash: overrideHash,
   }
-  validateSchema(modelVersionSchema.array(), built.models, 'models.json', report.hardFailures)
-  validateSchema(offerSchema.array(), built.offers, 'offers.json', report.hardFailures)
-  validateSchema(scoreSchema.array(), arena.scores, 'scores.json', report.hardFailures)
-  validateSchema(unmatchedSchema.array(), arena.unmatched, 'unmatched.json', report.hardFailures)
   validateSchema(validationReportSchema, report, 'validation-report.json', report.hardFailures)
   report.status = report.hardFailures.length ? 'failed' : 'passed'
 
@@ -249,7 +244,7 @@ async function main(): Promise<void> {
 
   console.log('\nPASSED')
   console.log(`models=${built.models.length} offers=${built.offers.length} scores=${arena.scores.length} unmatched=${arena.unmatched.length}`)
-  console.log(`scores by board: text=${report.stats.byBoard.text} webdev=${report.stats.byBoard.webdev}`)
+  console.log(`scores by board: text=${arena.scores.filter(score => score.board === 'text').length} webdev=${arena.scores.filter(score => score.board === 'webdev').length}`)
   console.log(`models with/without scores: ${report.stats.modelsWithScores}/${report.stats.modelsWithoutScores}`)
   console.log(`warnings: ${report.warnings.length} (see data/latest/validation-report.json)`)
   if (report.warnings.length) {

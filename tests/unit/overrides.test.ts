@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { applyOverrides } from '../../scripts/overrides'
-import { overrideEntrySchema } from '../../scripts/schema'
-import type { ModelVersion, Offer, OverrideEntry } from '../../scripts/types'
+import { overrideEntrySchema } from '../../lib/snapshot'
+import type { ModelVersion, Offer, OverrideEntry } from '../../lib/snapshot'
 
 const model: ModelVersion = {
   id: 'mv_test__model',

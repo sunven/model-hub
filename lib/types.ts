@@ -1,12 +1,4 @@
-import type {
-  Availability,
-  Board,
-  Manifest,
-  ModelVersion,
-  Offer,
-  Score,
-  UnmatchedEntry,
-} from '@/scripts/types'
+import type { Availability, Board, Manifest, ModelVersion, Offer, Score, UnmatchedEntry } from './snapshot'
 
 export type { Availability, Board, Manifest, ModelVersion, Offer, Score, UnmatchedEntry }
 

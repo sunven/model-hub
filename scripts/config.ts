@@ -1,4 +1,5 @@
-import type { Availability, Board, OfferStatus, ProviderKind, RawModel } from './types'
+import type { Availability, Board, OfferStatus, ProviderKind } from '../lib/snapshot'
+import type { RawModel } from './types'
 
 export const CLOUD_PROVIDER_KEYS = new Set([
   'amazon-bedrock', 'azure', 'google-vertex', 'google-vertex-anthropic', 'volcengine',

@@ -1,5 +1,5 @@
-import type { FxConfig } from '@/scripts/types'
-import type { Availability, CiDomain, CiStat, PriceSummary } from './types'
+import type { Availability, FxConfig } from './snapshot'
+import type { CiDomain, CiStat, PriceSummary } from './types'
 
 export function fmtMoney(value: number | null | undefined): string {
   if (value === null || value === undefined) return '未公布'

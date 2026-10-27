@@ -28,6 +28,8 @@ npm run dev
 
 ```bash
 npm run typecheck   # TypeScript
+npm run test:unit   # 纯逻辑与数据契约
+npm run schema:check # 检查 JSON Schema 是否与契约一致
 npm run test:e2e    # Playwright（本地默认使用 Chrome）
 npm run build       # 静态导出到 out/
 ```
@@ -53,6 +55,10 @@ npm run data           # 缓存存在时复用，否则下载
 复制 `.env.example` 为 `.env.local` 可覆盖本地构建配置。
 
 ## 数据契约
+
+`lib/snapshot.ts` 是 Snapshot 契约的权威：定义 Zod schema、由 schema 推导的 TypeScript 类型和快照校验规则。数据管道与站点构建共用这份契约，`scripts/types.ts` 仅保留上游输入与管道处理结果的类型。
+
+修改契约后运行 `npm run schema:generate`，并提交生成的 `data/schema/*.json`。CI 通过 `npm run schema:check` 拦截遗漏更新、缺失或多余的 schema；这两条命令均不刷新数据快照。
 
 ```text
 data/latest/models.json               ModelVersion

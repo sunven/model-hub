@@ -1,6 +1,7 @@
 import { asyncBufferFromFile, parquetReadObjects } from 'hyparquet'
 import { compressors } from 'hyparquet-compressors'
-import type { ArenaBuildResult, Board, CrosswalkEntry, LaunchEntry, Score, UnmatchedEntry } from './types'
+import type { Board, Score, UnmatchedEntry } from '../lib/snapshot'
+import type { ArenaBuildResult, CrosswalkEntry, LaunchEntry } from './types'
 import {
   conditionFromName,
   finiteNumber,

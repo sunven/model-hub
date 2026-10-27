@@ -25,35 +25,64 @@
             },
             "files": {
               "type": "object",
-              "propertyNames": {
-                "type": "string"
-              },
-              "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "url": {
-                    "type": "string"
+              "properties": {
+                "api": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "hash": {
+                      "type": "string"
+                    },
+                    "fetchedAt": {
+                      "type": "string"
+                    },
+                    "bytes": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
                   },
-                  "hash": {
-                    "type": "string"
-                  },
-                  "fetchedAt": {
-                    "type": "string"
-                  },
-                  "bytes": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 9007199254740991
-                  }
+                  "required": [
+                    "url",
+                    "hash",
+                    "fetchedAt",
+                    "bytes"
+                  ],
+                  "additionalProperties": false
                 },
-                "required": [
-                  "url",
-                  "hash",
-                  "fetchedAt",
-                  "bytes"
-                ],
-                "additionalProperties": false
-              }
+                "models": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "hash": {
+                      "type": "string"
+                    },
+                    "fetchedAt": {
+                      "type": "string"
+                    },
+                    "bytes": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "hash",
+                    "fetchedAt",
+                    "bytes"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "api"
+              ],
+              "additionalProperties": false
             }
           },
           "required": [
@@ -74,44 +103,81 @@
             },
             "filters": {
               "type": "object",
-              "propertyNames": {
-                "type": "string"
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "webdev": {
+                  "type": "string"
+                }
               },
-              "additionalProperties": {
-                "type": "string"
-              }
+              "required": [
+                "text",
+                "webdev"
+              ],
+              "additionalProperties": false
             },
             "files": {
               "type": "object",
-              "propertyNames": {
-                "type": "string"
-              },
-              "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "url": {
-                    "type": "string"
+              "properties": {
+                "text": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "hash": {
+                      "type": "string"
+                    },
+                    "fetchedAt": {
+                      "type": "string"
+                    },
+                    "bytes": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
                   },
-                  "hash": {
-                    "type": "string"
-                  },
-                  "fetchedAt": {
-                    "type": "string"
-                  },
-                  "bytes": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 9007199254740991
-                  }
+                  "required": [
+                    "url",
+                    "hash",
+                    "fetchedAt",
+                    "bytes"
+                  ],
+                  "additionalProperties": false
                 },
-                "required": [
-                  "url",
-                  "hash",
-                  "fetchedAt",
-                  "bytes"
-                ],
-                "additionalProperties": false
-              }
+                "webdev": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "hash": {
+                      "type": "string"
+                    },
+                    "fetchedAt": {
+                      "type": "string"
+                    },
+                    "bytes": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "hash",
+                    "fetchedAt",
+                    "bytes"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "text",
+                "webdev"
+              ],
+              "additionalProperties": false
             }
           },
           "required": [

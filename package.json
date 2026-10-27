@@ -8,6 +8,8 @@
     "data": "tsx scripts/pipeline.ts",
     "data:offline": "tsx scripts/pipeline.ts --offline",
     "data:refresh": "tsx scripts/pipeline.ts --refresh",
+    "schema:generate": "tsx scripts/schemas.ts --write",
+    "schema:check": "tsx scripts/schemas.ts --check",
     "pretest:e2e": "node -e \"require('node:fs').rmSync('.next',{recursive:true,force:true})\"",
     "test:e2e": "playwright test",
     "test:ui": "playwright test tests/ui.spec.ts",

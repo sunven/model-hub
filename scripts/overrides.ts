@@ -1,10 +1,6 @@
-import type {
-  ModelVersion,
-  Offer,
-  OverrideAudit,
-  OverrideEntry,
-  OverrideResult,
-} from './types'
+import { availabilitySchema, modelVersionSchema, offerStatusSchema, priceSchema, providerKindSchema } from '../lib/snapshot'
+import type { ModelVersion, Offer, OverrideAudit, OverrideEntry } from '../lib/snapshot'
+import type { OverrideResult } from './types'
 
 const MODEL_FIELDS = new Set([
   'name',
@@ -20,23 +16,10 @@ const MODEL_FIELDS = new Set([
 
 const OFFER_FIELDS = new Set(['status', 'providerKind', 'price'])
 
-const AVAILABILITY = new Set(['available', 'deprecated', 'mixed', 'open_weights_only', 'unknown'])
-const OFFER_STATUS = new Set(['available_unmarked', 'beta', 'alpha', 'deprecated'])
-const PROVIDER_KIND = new Set(['first_party', 'cloud', 'gateway'])
-
-function isAaUrl(value: unknown): value is string {
-  if (typeof value !== 'string') return false
-  try {
-    const url = new URL(value)
-    return (
-      url.protocol === 'https:' &&
-      (url.hostname === 'artificialanalysis.ai' || url.hostname === 'www.artificialanalysis.ai') &&
-      /^\/models\/[^/]+\/?$/.test(url.pathname)
-    )
-  } catch {
-    return false
-  }
-}
+const pricePatchSchema = priceSchema.omit({ currency: true }).partial().refine(
+  patch => Object.values(patch).some(value => value !== undefined),
+  'price override must contain at least one field',
+)
 
 function isIsoDate(value: unknown): boolean {
   return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}/.test(value) && !Number.isNaN(Date.parse(value))
@@ -65,16 +48,18 @@ function applyModelField(model: ModelVersion, field: string, value: unknown): st
       if (typeof value !== 'boolean') return 'expected boolean for openWeights'
       model.openWeights = value
       return null
-    case 'aaUrl':
-      if (value !== null && !isAaUrl(value)) return 'expected https://artificialanalysis.ai/models/<slug> or null for aaUrl'
-      model.aaUrl = value
+    case 'aaUrl': {
+      const parsed = modelVersionSchema.shape.aaUrl.safeParse(value)
+      if (!parsed.success) return 'expected https://artificialanalysis.ai/models/<slug> or null for aaUrl'
+      model.aaUrl = parsed.data
       return null
-    case 'availability':
-      if (typeof value !== 'string' || !AVAILABILITY.has(value)) {
-        return `expected one of ${[...AVAILABILITY].join(', ')} for availability`
-      }
-      model.availability = value as ModelVersion['availability']
+    }
+    case 'availability': {
+      const parsed = availabilitySchema.safeParse(value)
+      if (!parsed.success) return `expected one of ${availabilitySchema.options.join(', ')} for availability`
+      model.availability = parsed.data
       return null
+    }
     default:
       return `unallowed model field: ${field}`
   }
@@ -85,24 +70,9 @@ function applyPrice(offer: Offer, value: unknown): string | null {
     offer.price = null
     return null
   }
-  if (!value || typeof value !== 'object' || Array.isArray(value)) {
-    return 'expected price object or null'
-  }
-  const patch = value as Record<string, unknown>
-  const allowed = new Set(['input', 'output', 'cacheRead', 'cacheWrite', 'tiers'])
-  for (const key of Object.keys(patch)) {
-    if (!allowed.has(key)) return `unallowed price field: ${key}`
-  }
-  for (const key of ['input', 'output', 'cacheRead', 'cacheWrite'] as const) {
-    const next = patch[key]
-    if (next !== undefined && next !== null && (typeof next !== 'number' || !Number.isFinite(next) || next < 0)) {
-      return `expected non-negative number or null for price.${key}`
-    }
-  }
-  if (patch.tiers !== undefined && !Array.isArray(patch.tiers)) return 'expected array for price.tiers'
-  if (patch.input === undefined && patch.output === undefined && patch.cacheRead === undefined && patch.cacheWrite === undefined && patch.tiers === undefined) {
-    return 'price override must contain at least one field'
-  }
+  const parsed = pricePatchSchema.safeParse(value)
+  if (!parsed.success) return parsed.error.issues.map(issue => `${issue.path.join('.')}: ${issue.message}`).join('; ')
+  const patch = parsed.data
 
   const base = offer.price ?? {
     input: null,
@@ -114,29 +84,29 @@ function applyPrice(offer: Offer, value: unknown): string | null {
   }
   offer.price = {
     ...base,
-    ...(patch.input !== undefined ? { input: patch.input as number | null } : {}),
-    ...(patch.output !== undefined ? { output: patch.output as number | null } : {}),
-    ...(patch.cacheRead !== undefined ? { cacheRead: patch.cacheRead as number | null } : {}),
-    ...(patch.cacheWrite !== undefined ? { cacheWrite: patch.cacheWrite as number | null } : {}),
-    ...(patch.tiers !== undefined ? { tiers: patch.tiers as unknown[] } : {}),
+    ...(patch.input !== undefined ? { input: patch.input } : {}),
+    ...(patch.output !== undefined ? { output: patch.output } : {}),
+    ...(patch.cacheRead !== undefined ? { cacheRead: patch.cacheRead } : {}),
+    ...(patch.cacheWrite !== undefined ? { cacheWrite: patch.cacheWrite } : {}),
+    ...(patch.tiers !== undefined ? { tiers: patch.tiers } : {}),
   }
   return null
 }
 
 function applyOfferField(offer: Offer, field: string, value: unknown): string | null {
   switch (field) {
-    case 'status':
-      if (typeof value !== 'string' || !OFFER_STATUS.has(value)) {
-        return `expected one of ${[...OFFER_STATUS].join(', ')} for status`
-      }
-      offer.status = value as Offer['status']
+    case 'status': {
+      const parsed = offerStatusSchema.safeParse(value)
+      if (!parsed.success) return `expected one of ${offerStatusSchema.options.join(', ')} for status`
+      offer.status = parsed.data
       return null
-    case 'providerKind':
-      if (typeof value !== 'string' || !PROVIDER_KIND.has(value)) {
-        return `expected one of ${[...PROVIDER_KIND].join(', ')} for providerKind`
-      }
-      offer.providerKind = value as Offer['providerKind']
+    }
+    case 'providerKind': {
+      const parsed = providerKindSchema.safeParse(value)
+      if (!parsed.success) return `expected one of ${providerKindSchema.options.join(', ')} for providerKind`
+      offer.providerKind = parsed.data
       return null
+    }
     case 'price':
       return applyPrice(offer, value)
     default:

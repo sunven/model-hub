@@ -3,26 +3,19 @@ import offersJson from '@/data/latest/offers.json'
 import scoresJson from '@/data/latest/scores.json'
 import unmatchedJson from '@/data/latest/unmatched.json'
 import manifestJson from '@/data/latest/manifest.json'
-import type { FxConfig } from '@/scripts/types'
+import { manifestSchema, modelVersionSchema, offerSchema, scoreSchema, unmatchedSchema } from './snapshot'
 import { buildCatalog } from './catalog'
 import { modelHref } from './site'
-import type {
-  Board,
-  LeaderboardRow,
-  Manifest,
-  ModelVersion,
-  Offer,
-  Score,
-  UnmatchedEntry,
-} from './types'
+import type { Board } from './snapshot'
+import type { LeaderboardRow } from './types'
 
-const models = modelsJson as unknown as ModelVersion[]
-const offers = offersJson as unknown as Offer[]
-const scores = scoresJson as unknown as Score[]
-const unmatched = unmatchedJson as unknown as UnmatchedEntry[]
+const models = modelVersionSchema.array().parse(modelsJson)
+const offers = offerSchema.array().parse(offersJson)
+const scores = scoreSchema.array().parse(scoresJson)
+const unmatched = unmatchedSchema.array().parse(unmatchedJson)
 
-export const manifest = manifestJson as unknown as Manifest
-export const fx = manifest.fx as FxConfig
+export const manifest = manifestSchema.parse(manifestJson)
+export const fx = manifest.fx
 export const catalog = buildCatalog({ models, offers, scores })
 
 function dateOnly(iso: string): string {

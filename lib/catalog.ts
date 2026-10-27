@@ -1,17 +1,8 @@
+import { hasCompletePrice } from './snapshot'
 import { ciDomain } from './format'
 import { compareOffers } from './offers'
-import type {
-  Board,
-  BoardDomains,
-  CiDomain,
-  ModelIndexEntry,
-  ModelRow,
-  ModelVersion,
-  Offer,
-  PriceSummary,
-  Score,
-  ScoreView,
-} from './types'
+import type { Board, ModelVersion, Offer, Score } from './snapshot'
+import type { BoardDomains, CiDomain, ModelIndexEntry, ModelRow, PriceSummary, ScoreView } from './types'
 
 export interface ModelDetail {
   model: ModelVersion
@@ -82,12 +73,10 @@ type OfferSummary = Pick<
 
 function summarizeOffers(offers: Offer[]): OfferSummary {
   const primary = offers.filter(offer => offer.providerKind !== 'gateway')
-  const pricedPrimary = primary.filter(
-    offer => offer.price != null && offer.price.input != null && offer.price.output != null,
-  )
+  const pricedPrimary = primary.filter(hasCompletePrice)
   const priced = pricedPrimary.length
     ? pricedPrimary
-    : offers.filter(offer => offer.price != null && offer.price.input != null && offer.price.output != null)
+    : offers.filter(hasCompletePrice)
   const price: PriceSummary | null = priced.length
     ? {
         inputMin: Math.min(...priced.map(offer => offer.price!.input!)),

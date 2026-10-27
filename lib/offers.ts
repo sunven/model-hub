@@ -1,4 +1,4 @@
-import type { Offer } from './types'
+import type { Offer } from './snapshot'
 
 const PROVIDER_KIND_ORDER: Record<Offer['providerKind'], number> = {
   first_party: 0,

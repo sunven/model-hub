@@ -5,14 +5,8 @@ import { mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 import { parse, stringify } from 'yaml'
-import type {
-  RawCatalog,
-  LaunchEntry,
-  CrosswalkEntry,
-  AaCrosswalkEntry,
-  FxConfig,
-  OverrideEntry,
-} from './types'
+import type { FxConfig, OverrideEntry } from '../lib/snapshot'
+import type { RawCatalog, LaunchEntry, CrosswalkEntry, AaCrosswalkEntry } from './types'
 
 const execFile = promisify(execFileCallback)
 

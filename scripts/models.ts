@@ -1,4 +1,6 @@
-import type { AaCrosswalkEntry, LaunchEntry, ModelBuildResult, ModelVersion, Offer, OfferStatus, RawCatalog, RawModel } from './types'
+import { aaUrlSchema, hasCompletePrice } from '../lib/snapshot'
+import type { ModelVersion, Offer, OfferStatus } from '../lib/snapshot'
+import type { AaCrosswalkEntry, LaunchEntry, ModelBuildResult, RawCatalog, RawModel } from './types'
 import {
   LAB_FIRST_PARTY_KEYS,
   availabilityFromStatuses,
@@ -122,15 +124,6 @@ function buildOffer(row: Row, lab: string, modelVersionId: string, snapshotId: s
   }
 }
 
-function validAaUrl(value: string): boolean {
-  try {
-    const url = new URL(value)
-    return url.protocol === 'https:' && (url.hostname === 'artificialanalysis.ai' || url.hostname === 'www.artificialanalysis.ai')
-  } catch {
-    return false
-  }
-}
-
 export function buildModelsData(
   catalog: RawCatalog,
   launchSet: LaunchEntry[],
@@ -157,7 +150,7 @@ export function buildModelsData(
       warnings.push(`AA crosswalk missing URL: ${entry.canonicalId}`)
       continue
     }
-    if (!validAaUrl(entry.aaUrl)) {
+    if (!aaUrlSchema.safeParse(entry.aaUrl).success) {
       warnings.push(`AA crosswalk ignored (invalid URL): ${entry.canonicalId} -> ${entry.aaUrl}`)
       continue
     }
@@ -203,7 +196,7 @@ export function buildModelsData(
     if (modelOffers.length && !modelOffers.some(o => o.status !== 'deprecated')) {
       warnings.push(`launch model is deprecated-only: ${entry.canonicalId}`)
     }
-    if (modelOffers.length && !modelOffers.some(o => o.price?.input !== null && o.price?.output !== null)) {
+    if (modelOffers.length && !modelOffers.some(hasCompletePrice)) {
       warnings.push(`launch model has no priced offer: ${entry.canonicalId}`)
     }
 

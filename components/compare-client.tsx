@@ -8,7 +8,7 @@ import { RowBadges } from './badges'
 import { ScorePill } from './score-pill'
 import { fmtCnyRange, fmtContext, fmtRange, scoreMeta } from '@/lib/format'
 import { modelHref, parseCompareIds } from '@/lib/site'
-import type { FxConfig } from '@/scripts/types'
+import type { FxConfig } from '@/lib/snapshot'
 import type { BoardDomains, ModelRow } from '@/lib/types'
 
 const AA_URL = 'https://artificialanalysis.ai/leaderboards/models'
