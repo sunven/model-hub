@@ -39,6 +39,13 @@ We use the `text` and `webdev` configurations. Changes made for display:
 
 USD→CNY display conversion uses European Central Bank reference rates obtained through the public Frankfurter API (https://frankfurter.dev). The rate and its effective date are recorded in `data/fx.yml` and `data/latest/manifest.json`. Conversions are approximate, are not transaction rates, and are hidden when the rate is older than 14 days.
 
+## Typefaces
+
+- IBM Plex Sans and IBM Plex Mono, Copyright 2019 IBM Corp. All rights reserved.
+- License: SIL Open Font License, Version 1.1 — https://scripts.sil.org/OFL
+- Project: https://github.com/IBM/plex
+- Delivery: self-hosted via the `@fontsource/ibm-plex-sans` and `@fontsource/ibm-plex-mono` packages; the font files are served with the site's static assets. The Latin subset is used; Chinese text falls back to the system sans-serif.
+
 ## Data snapshot licensing
 
 Third-party source data remains subject to the upstream licenses above. The MIT License in `LICENSE` covers this project's original code and documentation, not third-party model data, trademarks, or Artificial Analysis content. No license is granted for third-party marks.

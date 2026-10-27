@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { ExploreClient } from '@/components/explore-client'
 import { JsonLd } from '@/components/json-ld'
 import { manifest, modelRows, models } from '@/lib/data'
+import { fmtRange } from '@/lib/format'
 import { OG_IMAGE } from '@/lib/site'
 import { itemListLd, webPageLd } from '@/lib/structured-data'
 
@@ -24,6 +25,25 @@ export const metadata: Metadata = {
 const rawDate = manifest.sources?.modelsDev?.files?.api?.fetchedAt
 const dataDate = rawDate ? new Date(rawDate).toISOString().slice(0, 10) : '2026-10-26'
 
+const withArena = modelRows.filter(row => row.text || row.webdev)
+const priced = modelRows.filter(row => row.price)
+const outputMin = Math.min(...priced.map(row => row.price!.outputMin))
+const outputMax = Math.max(...priced.map(row => row.price!.outputMax))
+const labCount = new Set(modelRows.map(row => row.lab)).size
+const rankedText = modelRows.filter(row => row.text).sort((a, b) => b.text!.rating - a.text!.rating)
+const topText = rankedText[0]
+const nextText = rankedText[1]
+const topOverlap = Boolean(
+  topText &&
+    nextText &&
+    topText.text!.ciLow <= nextText.text!.ciHigh &&
+    nextText.text!.ciLow <= topText.text!.ciHigh,
+)
+
+const finding = `${modelRows.length} 个模型版本，输出价 ${fmtRange(outputMin, outputMax)} / 1M；${withArena.length} 个有 Arena 评分，${
+  topOverlap ? '榜首两名的置信区间重叠。' : '榜首与次席的置信区间不重叠。'
+}`
+
 export default function HomePage() {
   return (
     <>
@@ -34,18 +54,20 @@ export default function HomePage() {
           items: models.map(model => ({ name: model.name, path: `/models/${model.canonicalModelId}` })),
         })}
       />
-      <section className="page-head">
-        <div>
-          <div className="kicker">MODEL DIRECTORY · {modelRows.length} 个模型</div>
-          <h1>选型工作台</h1>
-          <p>先看价格和上下文，再按 Arena 评测比较。所有分数都标来源和日期；缺失不隐藏。</p>
-        </div>
-        <div className="head-stat">
-          <strong>{modelRows.length}</strong>
-          <span>Model Version</span>
-        </div>
-      </section>
-      <ExploreClient models={modelRows} dataDate={dataDate} />
+      <div className="sheet-inner">
+        <section className="page-head">
+          <div>
+            <h1>选型工作台</h1>
+            <p className="lede">{finding}</p>
+          </div>
+          <p className="meta">
+            数据 {dataDate}
+            <br />
+            {modelRows.length} 个模型 · {labCount} 个实验室
+          </p>
+        </section>
+        <ExploreClient models={modelRows} dataDate={dataDate} />
+      </div>
     </>
   )
 }

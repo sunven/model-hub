@@ -1,24 +1,44 @@
-import { ciHalf, scoreSubline } from '@/lib/format'
+import { ciDomain, CiRail, type CiDomain } from './ci-rail'
+import { ciHalf } from '@/lib/format'
 import type { ScoreView } from '@/lib/types'
 
-export function ScorePill({ score }: { score: ScoreView | null }) {
+export { ciDomain }
+export type { CiDomain }
+
+export function ScorePill({ score, domain }: { score: ScoreView | null; domain: CiDomain | null }) {
   if (!score) {
     return <span className="missing" title="Arena 未收录，不代表能力差">未收录</span>
   }
   return (
-    <span className="score">
-      <span className="rating">{score.rating.toFixed(1)}</span>
-      <span className="ci">±{ciHalf(score).toFixed(1)}</span>
-      <span className="rank">#{score.rank}</span>
+    <span className="score-top">
+      <CiRail stat={score} domain={domain} width={40} />
+      <span className="score-rating">{score.rating.toFixed(1)}</span>
     </span>
   )
 }
 
-export function ScoreCell({ score, label }: { score: ScoreView | null; label: string }) {
+export function ScoreCell({
+  score,
+  domain,
+  label,
+}: {
+  score: ScoreView | null
+  domain: CiDomain | null
+  label: string
+}) {
+  if (!score) {
+    return (
+      <div className="score-cell">
+        <span className="missing" title={`${label} 未收录`}>未收录</span>
+      </div>
+    )
+  }
   return (
-    <div title={score ? scoreSubline(score) : `${label} 未收录`}>
-      <ScorePill score={score} />
-      {score && <div className="small muted" style={{ marginTop: 3 }}>{score.condition}</div>}
+    <div className="score-cell" title={`${label} CI ${score.ciLow.toFixed(1)}–${score.ciHigh.toFixed(1)}`}>
+      <ScorePill score={score} domain={domain} />
+      <span className="score-meta">
+        #{score.rank} · {score.condition} · ±{ciHalf(score).toFixed(1)}
+      </span>
     </div>
   )
 }

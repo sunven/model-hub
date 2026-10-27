@@ -30,25 +30,19 @@ export function CompareTray() {
           去对比
         </button>
       )}
-      <button
-        type="button"
-        style={{ border: 'none', background: 'transparent', color: '#a3a3a3', fontSize: 10, padding: '0 3px' }}
-        onClick={clear}
-      >
-        清空
-      </button>
+      <button type="button" className="tray-clear" onClick={clear}>清空</button>
     </div>
   )
 }
 
-export function CompareButton({ modelId, small = false }: { modelId: string; small?: boolean }) {
+export function CompareButton({ modelId, small = false, primary = false }: { modelId: string; small?: boolean; primary?: boolean }) {
   const { selected, toggle } = useCompare()
   const active = selected.includes(modelId)
   return (
     <button
       type="button"
-      className={`btn ${active ? 'primary' : ''}`}
-      style={small ? { padding: '4px 8px', fontSize: 10.5 } : undefined}
+      className={`btn ${active || primary ? 'primary' : ''}`}
+      style={small ? { padding: '4px 8px', fontSize: 11 } : undefined}
       onClick={() => toggle(modelId)}
     >
       {active ? '已加入对比' : '加入对比'}

@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import '@fontsource/ibm-plex-sans/latin-400.css'
+import '@fontsource/ibm-plex-sans/latin-500.css'
+import '@fontsource/ibm-plex-sans/latin-600.css'
+import '@fontsource/ibm-plex-mono/latin-400.css'
 import './globals.css'
 import { CompareProvider } from '@/components/compare-provider'
 import { CompareTray } from '@/components/compare-tray'
@@ -37,9 +41,6 @@ export const metadata: Metadata = {
   },
 }
 
-const rawDate = manifest.sources?.modelsDev?.files?.api?.fetchedAt
-const dataDate = rawDate ? new Date(rawDate).toISOString().slice(0, 10) : '2026-10-26'
-
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="zh-CN">
@@ -47,10 +48,12 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <JsonLd data={websiteLd()} />
         <a className="skip-link" href="#main-content">跳到主要内容</a>
         <CompareProvider modelIndex={modelIndex}>
-          <SiteHeader dataDate={dataDate} />
-          <DataFreshness freshness={manifest.freshness} />
-          <main id="main-content" tabIndex={-1}>{children}</main>
-          <SiteFooter />
+          <SiteHeader />
+          <div className="sheet">
+            <DataFreshness freshness={manifest.freshness} />
+            <main id="main-content" tabIndex={-1}>{children}</main>
+            <SiteFooter />
+          </div>
           <CompareTray />
         </CompareProvider>
       </body>

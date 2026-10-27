@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { StatusBadges } from '@/components/badges'
+import { CiRail, ciDomain } from '@/components/ci-rail'
 import { CompareButton } from '@/components/compare-tray'
 import { JsonLd } from '@/components/json-ld'
 import { OfferTable } from '@/components/offer-table'
@@ -11,7 +12,6 @@ import {
   fmtCnyRange,
   fmtContext,
   fmtDate,
-  fmtPrice,
   fmtRange,
 } from '@/lib/format'
 import {
@@ -70,37 +70,44 @@ function ArenaCard({
   label,
   primary,
   scores,
+  domain,
 }: {
   board: 'text' | 'webdev'
   label: string
   primary: Score | null
   scores: Score[]
+  domain: ReturnType<typeof ciDomain>
 }) {
   return (
     <div className="arena-card">
       <div className="arena-label">
-        {label}
-        <span className="badge">{primary?.condition ?? '未收录'}</span>
+        <span>{label}</span>
+        <span className="badge mixed">{primary?.condition ?? '未收录'}</span>
       </div>
       {primary ? (
         <>
-          <div className="arena-big">{primary.rating.toFixed(1)}</div>
+          <div className="arena-score-row">
+            <CiRail stat={primary} domain={domain} width={96} />
+            <span className="arena-big">{primary.rating.toFixed(1)}</span>
+          </div>
           <div className="arena-meta">
-            <span>CI {primary.ciLow.toFixed(1)}–{primary.ciHigh.toFixed(1)}</span>
+            <span>
+              CI {primary.ciLow.toFixed(1)}–{primary.ciHigh.toFixed(1)}
+            </span>
             <span>#{primary.rank}</span>
-            <span>{primary.votes.toLocaleString('en-US')} votes</span>
+            <span>{primary.votes.toLocaleString('en-US')} 票</span>
           </div>
           <div className="arena-note">
             {primary.condition} · {primary.snapshotDate} · Arena HF
           </div>
           {scores.length > 1 && (
             <div className="arena-list">
-              {scores.map(s => (
-                <div className="arena-row" key={s.id}>
-                  <span className="cond">{s.condition}</span>
-                  <span className="rating">{s.rating.toFixed(1)}</span>
-                  <span>#{s.rank} · ±{scoreHalf(s).toFixed(1)}</span>
-                  <span className="votes">{s.votes.toLocaleString('en-US')} votes</span>
+              {scores.map(score => (
+                <div className="arena-row" key={score.id}>
+                  <span className="cond">{score.condition}</span>
+                  <span className="rating">{score.rating.toFixed(1)}</span>
+                  <span>#{score.rank} · ±{scoreHalf(score).toFixed(1)}</span>
+                  <span className="votes">{score.votes.toLocaleString('en-US')} 票</span>
                 </div>
               ))}
             </div>
@@ -109,7 +116,7 @@ function ArenaCard({
       ) : (
         <>
           <div className="arena-missing">Arena 未收录。这不代表能力差。</div>
-          <Link className="btn tiny" href={`/leaderboards/${board}`}>查看 Arena {board} 榜</Link>
+          <Link className="btn small" href={`/leaderboards/${board}`}>查看 Arena {board} 榜</Link>
         </>
       )}
     </div>
@@ -129,6 +136,8 @@ export default async function ModelPage({ params }: Props) {
   const webdevScores = allScores.filter(s => s.board === 'webdev')
   const textPrimary = primaryScore(found.id, 'text')
   const webdevPrimary = primaryScore(found.id, 'webdev')
+  const textDomain = ciDomain(modelRows.map(m => m.text))
+  const webdevDomain = ciDomain(modelRows.map(m => m.webdev))
   const aaUrl = found.aaUrl ?? AA_FALLBACK
   const fx = manifest.fx
   const cnyIn = row.price ? fmtCnyRange(row.price.inputMin, row.price.inputMax, fx) : null
@@ -142,7 +151,7 @@ export default async function ModelPage({ params }: Props) {
   const pageDescription = found.description ?? `${found.name} 的价格、上下文、推理等级和 Arena 评分。`
 
   return (
-    <div className="detail-wrap">
+    <div className="sheet-inner">
       <JsonLd data={webPageLd({ name: found.name, description: pageDescription, path })} />
       <JsonLd
         data={breadcrumbLd([
@@ -150,11 +159,20 @@ export default async function ModelPage({ params }: Props) {
           { name: found.name, path },
         ])}
       />
-      <Link className="back" href="/">← 返回模型表</Link>
+      <nav className="crumbs" aria-label="面包屑">
+        <Link href="/">模型目录</Link>
+        <span className="sep">/</span>
+        <span>{found.name}</span>
+      </nav>
+
       <div className="detail-head">
         <div className="detail-title">
           <h1>{found.name}</h1>
-          <div className="detail-sub">{found.lab} · {found.canonicalModelId}</div>
+          <div className="detail-sub">
+            <span>{found.lab}</span>
+            <span className="sep">·</span>
+            <span className="id">{found.canonicalModelId}</span>
+          </div>
           <div className="detail-badges">
             <StatusBadges
               availability={found.availability}
@@ -165,29 +183,105 @@ export default async function ModelPage({ params }: Props) {
           </div>
         </div>
         <div className="detail-actions">
-          <CompareButton modelId={found.id} />
-          <a className="btn ghost" href={aaUrl} target="_blank" rel="noopener noreferrer">外部评测 · AA</a>
+          <CompareButton modelId={found.id} primary />
+          <a className="btn" href={aaUrl} target="_blank" rel="noopener noreferrer">外部评测 · AA</a>
         </div>
       </div>
+
+      <section className="spec-band" aria-label="关键规格">
+        <div className="spec-cell lead">
+          <div className="spec-label">价格 · 输入 / 输出</div>
+          {row.price ? (
+            <div className="price-pair">
+              <span>输入 <b>{fmtRange(row.price.inputMin, row.price.inputMax)}</b></span>
+              <span>输出 <b>{fmtRange(row.price.outputMin, row.price.outputMax)}</b></span>
+            </div>
+          ) : (
+            <div className="spec-value">未公布</div>
+          )}
+          <div className="spec-sub">
+            {row.price ? 'USD / 1M tokens' : 'models.dev 未提供价格'}
+            {row.price && cnyIn && cnyOut ? (
+              <>
+                {' · '}
+                <span className="cny-pair">
+                  <span className="cny-range">{cnyIn}</span>
+                  <span className="cny-sep"> / </span>
+                  <span className="cny-range">{cnyOut}</span>
+                </span>
+              </>
+            ) : null}
+          </div>
+        </div>
+        <div className="spec-cell">
+          <div className="spec-label">上下文</div>
+          <div className="spec-value">{fmtContext(row.context)}</div>
+          <div className="spec-sub">输出上限 {fmtContext(row.outputLimit)}</div>
+        </div>
+        <div className="spec-cell spec-score">
+          <div className="spec-label">Arena text</div>
+          {textPrimary ? (
+            <>
+              <div className="score-top">
+                <CiRail stat={textPrimary} domain={textDomain} width={64} />
+                <span className="spec-value">{textPrimary.rating.toFixed(1)}</span>
+              </div>
+              <div className="spec-sub">
+                #{textPrimary.rank} · {textPrimary.condition} · ±{scoreHalf(textPrimary).toFixed(1)} ·{' '}
+                {textPrimary.votes.toLocaleString('en-US')} 票
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="spec-value spec-missing">未收录</div>
+              <div className="spec-sub">Arena 未收录，不代表能力差</div>
+            </>
+          )}
+        </div>
+        <div className="spec-cell spec-score">
+          <div className="spec-label">Arena webdev</div>
+          {webdevPrimary ? (
+            <>
+              <div className="score-top">
+                <CiRail stat={webdevPrimary} domain={webdevDomain} width={64} />
+                <span className="spec-value">{webdevPrimary.rating.toFixed(1)}</span>
+              </div>
+              <div className="spec-sub">
+                #{webdevPrimary.rank} · {webdevPrimary.condition} · ±{scoreHalf(webdevPrimary).toFixed(1)} ·{' '}
+                {webdevPrimary.votes.toLocaleString('en-US')} 票
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="spec-value spec-missing">未收录</div>
+              <div className="spec-sub">Arena 未收录，不代表能力差</div>
+            </>
+          )}
+        </div>
+      </section>
 
       <div className="detail-layout">
         <div className="detail-main">
           <OfferTable offers={offers} />
 
-          <section className="panel">
-            <h2>Arena 评测 <span className="sub">分榜展示 · 不跨榜比较</span></h2>
+          <section className="section-block" aria-labelledby="arena-title">
+            <h2 className="section-title" id="arena-title">
+              Arena 评测 <span className="sub">分榜展示 · 不跨榜比较</span>
+            </h2>
             <div className="arena-grid">
-              <ArenaCard board="text" label="Arena text" primary={textPrimary} scores={textScores} />
-              <ArenaCard board="webdev" label="Arena webdev" primary={webdevPrimary} scores={webdevScores} />
+              <ArenaCard board="text" label="Arena text" primary={textPrimary} scores={textScores} domain={textDomain} />
+              <ArenaCard board="webdev" label="Arena webdev" primary={webdevPrimary} scores={webdevScores} domain={webdevDomain} />
             </div>
-            <p className="source-box" style={{ marginTop: 9 }}>
+            <p className="source-box">
               Arena rating 是偏好评分，不是准确率；置信区间重叠时不宣称显著优劣。text / webdev 是两个独立 Board。
             </p>
           </section>
+        </div>
 
+        <aside className="detail-side">
           <section className="panel">
             <h2>能力与模态</h2>
-            {found.description && <p className="source-box" style={{ marginBottom: 9 }}>{found.description}</p>}
+            {found.description && <p className="source-box" style={{ marginTop: 8 }}>{found.description}</p>}
             <div className="cap-list">
               <div><span>输入 / 输出模态</span><strong>{modalities}</strong></div>
               <div><span>工具调用</span><strong>{offers.some(o => o.capabilities.toolCall) ? '支持' : '未提供'}</strong></div>
@@ -195,79 +289,20 @@ export default async function ModelPage({ params }: Props) {
               <div><span>知识截止</span><strong>{found.knowledgeCutoff || '未提供'}</strong></div>
               <div><span>开源权重</span><strong>{found.openWeights ? '是' : '否'}</strong></div>
               <div><span>推理等级</span><strong>{found.reasoningLabel}</strong></div>
+              <div><span>发布</span><strong>{fmtDate(found.releaseDate)}</strong></div>
+              <div><span>输出上限</span><strong>{fmtContext(row.outputLimit)}</strong></div>
+              <div><span>报价条目</span><strong>{offers.length} 条</strong></div>
+              <div><span>数据快照</span><strong>{modelDate}</strong></div>
             </div>
           </section>
-
-          <section className="panel">
-            <div className="aa-card">
-              <div>
-                <strong>外部评测 · Artificial Analysis</strong>
-                <p>站内不展示 AA 分数，也不调用 AA API。需要 Intelligence / Coding / 速度等指标时，请到 AA 查看。</p>
-              </div>
-              <a className="btn ghost" href={aaUrl} target="_blank" rel="noopener noreferrer">打开 AA</a>
-            </div>
-          </section>
-
-          <section className="panel">
-            <h2>来源与更新时间</h2>
-            <div className="source-box">
-              models.dev（MIT）· Arena HuggingFace（CC BY 4.0）· 快照 {modelDate}<br />
-              价格以供应商官网为准；Arena 分数为 latest 快照，详情保留 condition 与日期。<br />
-              本站非官方，模型与商标归各自所有者。<Link href="/about" style={{ color: 'var(--accent)', marginLeft: 4 }}>数据说明</Link>
-            </div>
-          </section>
-        </div>
-
-        <aside className="detail-side">
-          <div className="panel">
-            <h2>关键事实</h2>
-            <div className="facts">
-              <div className="fact">
-                <span>价格 in / out</span>
-                <strong>{fmtPrice(row.price)}</strong>
-                <small className="small">{cnyIn && cnyOut ? `${cnyIn} / ${cnyOut} · 汇率 ${fx.as_of}` : 'USD / 1M tokens'}</small>
-              </div>
-              <div className="fact">
-                <span>上下文</span>
-                <strong>{fmtContext(row.context)}</strong>
-                <small className="small">输出上限 {fmtContext(row.outputLimit)}</small>
-              </div>
-              <div className="fact">
-                <span>推理</span>
-                <strong>{found.reasoningLabel}</strong>
-                <small className="small">详情见报价表</small>
-              </div>
-              <div className="fact">
-                <span>发布 / 状态</span>
-                <strong>{fmtDate(found.releaseDate)}</strong>
-                <small className="small">
-                  {found.availability === 'available' ? (row.unmarked ? '可用（未标记）' : '可用') : found.availability}
-                  {found.openWeights ? ' · 开源权重' : ''}
-                </small>
-              </div>
-            </div>
-          </div>
-          <div className="panel">
-            <h2>快速操作</h2>
-            <div style={{ display: 'grid', gap: 6 }}>
-              <CompareButton modelId={found.id} />
-              <Link className="btn" href="/">返回模型表</Link>
-              <a className="btn ghost" href={aaUrl} target="_blank" rel="noopener noreferrer">在 AA 查看</a>
-            </div>
-          </div>
-          <div className="panel">
-            <h2>价格说明</h2>
-            <p className="source-box">
-              input {row.price ? fmtRange(row.price.inputMin, row.price.inputMax) : '未公布'} · output{' '}
-              {row.price ? fmtRange(row.price.outputMin, row.price.outputMax) : '未公布'} · 1M tokens
-              {row.price?.gatewayOnly ? ' · 仅网关报价' : ''}
-            </p>
-            <p className="source-box" style={{ marginTop: 6 }}>
-              报价条目 {offers.length} 条，默认折叠网关与已弃用；完整明细见托管报价。
-            </p>
-          </div>
         </aside>
       </div>
+
+      <p className="detail-source">
+        models.dev（MIT）· Arena HuggingFace（CC BY 4.0）· 快照 {modelDate} · 汇率 ECB / Frankfurter {fx.as_of} ·
+        价格以供应商官网为准；Arena 分数为 latest 快照，保留 condition 与日期 · Artificial Analysis 仅外链，不嵌入分数 ·
+        本站非官方，模型与商标归各自所有者 · <Link href="/about">数据说明</Link>
+      </p>
     </div>
   )
 }

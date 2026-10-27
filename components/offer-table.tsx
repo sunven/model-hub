@@ -35,7 +35,7 @@ export function OfferTable({ offers }: { offers: Offer[] }) {
     <section className="panel">
       <div className="offers-head">
         <h2>
-          托管报价 <span className="sub">{visible.length} 条可见 · 默认折叠网关 / 已弃用</span>
+          托管报价 <span className="sub">{visible.length} 条可见 · 默认隐藏网关 / 已弃用</span>
         </h2>
         <div className="offer-toggles">
           <label className="mini-check">
@@ -59,16 +59,17 @@ export function OfferTable({ offers }: { offers: Offer[] }) {
         <>
           <div className="offer-table-wrap" style={{ overflow: 'auto' }}>
             <table className="offer-table">
+              <caption className="sr-only">托管报价，按第一方、云平台、网关排序</caption>
               <thead>
                 <tr>
-                  <th>Provider</th>
+                  <th>托管商</th>
                   <th>类型</th>
                   <th>状态</th>
-                  <th>Input</th>
-                  <th>Output</th>
-                  <th>Cache</th>
-                  <th>Context</th>
-                  <th>Reasoning</th>
+                  <th className="num">输入</th>
+                  <th className="num">输出</th>
+                  <th className="num">缓存</th>
+                  <th className="num">上下文</th>
+                  <th>推理</th>
                 </tr>
               </thead>
               <tbody>
@@ -103,9 +104,10 @@ export function OfferTable({ offers }: { offers: Offer[] }) {
                   {providerKindLabel(offer.providerKind)} · {offer.providerModelId}
                 </div>
                 <div className="mobile-offer-prices">
-                  <span>Input<b>{fmtMoney(offer.price?.input)}</b></span>
-                  <span>Output<b>{fmtMoney(offer.price?.output)}</b></span>
-                  <span>Context<b>{fmtContext(offer.limits.context)}</b></span>
+                  <span>输入<b>{fmtMoney(offer.price?.input)}</b></span>
+                  <span>输出<b>{fmtMoney(offer.price?.output)}</b></span>
+                  <span>缓存<b>{fmtMoney(offer.price?.cacheRead)}</b></span>
+                  <span>上下文<b>{fmtContext(offer.limits.context)}</b></span>
                 </div>
                 <div className="mobile-offer-reason">
                   {reasoningText(offer.capabilities.reasoningOptions, offer.capabilities.reasoning)}

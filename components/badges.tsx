@@ -6,18 +6,20 @@ export function StatusBadges({
   releaseBadges,
   openWeights,
   unmarked = false,
+  exceptionsOnly = false,
 }: {
   availability: Availability
   releaseBadges: string[]
   openWeights: boolean
   unmarked?: boolean
+  exceptionsOnly?: boolean
 }) {
   const items: { label: string; className: string; title?: string; dashed?: boolean }[] = []
   if (availability === 'mixed') items.push({ label: '混合', className: 'mixed' })
   if (availability === 'deprecated') items.push({ label: '已弃用', className: 'deprecated' })
   if (availability === 'open_weights_only') items.push({ label: '可自托管', className: 'ow' })
   if (availability === 'unknown') items.push({ label: '未知', className: 'mixed' })
-  if (availability === 'available' && releaseBadges.length === 0) {
+  if (availability === 'available' && releaseBadges.length === 0 && !exceptionsOnly) {
     items.push({
       label: availabilityLabel(availability),
       className: availabilityClass(availability),
@@ -45,13 +47,14 @@ export function StatusBadges({
   )
 }
 
-export function RowBadges({ row }: { row: ModelRow }) {
+export function RowBadges({ row, exceptionsOnly = false }: { row: ModelRow; exceptionsOnly?: boolean }) {
   return (
     <StatusBadges
       availability={row.availability}
       releaseBadges={row.releaseBadges}
       openWeights={row.openWeights}
       unmarked={row.unmarked}
+      exceptionsOnly={exceptionsOnly}
     />
   )
 }
