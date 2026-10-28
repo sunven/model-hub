@@ -1,6 +1,6 @@
 {
-  "snapshotId": "20261027-76543201",
-  "generatedAt": "2026-10-27T04:32:57.324Z",
+  "snapshotId": "20261028-888c00fa",
+  "generatedAt": "2026-10-28T09:55:22.299Z",
   "sources": {
     "modelsDev": {
       "license": "MIT",
@@ -8,15 +8,15 @@
       "files": {
         "api": {
           "url": "https://models.dev/api.json",
-          "hash": "8a8dfc7ac53a16e8f2f497fc9ab823057864bc5c2bbb9bb2afab0e93250e8fca",
-          "fetchedAt": "2026-10-27T04:32:55.730Z",
-          "bytes": 5955482
+          "hash": "2b7bc31889088e3b899fe4a348f54f56c8603140a7a723595b55a02df6fb0127",
+          "bytes": 5954828,
+          "fetchedAt": "2026-10-28T09:55:22.299Z"
         },
         "models": {
           "url": "https://models.dev/models.json",
-          "hash": "c082bd884e27f485ed5443df0d60b7fe6c138a3c404d46c429fd2cc72a1740f0",
-          "fetchedAt": "2026-10-27T04:32:55.819Z",
-          "bytes": 506159
+          "hash": "6aa7b1bbea8ac752460758981266b8948022468125577fde0110acc7236335ab",
+          "bytes": 506159,
+          "fetchedAt": "2026-10-28T09:55:22.299Z"
         }
       }
     },
@@ -31,37 +31,37 @@
         "text": {
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/text/latest-00000-of-00001.parquet",
           "hash": "d423b3bcd609777fd95be3bb58d8d5b6e654c07a9f1294dbcd57f91f6c419c91",
-          "fetchedAt": "2026-10-27T04:32:56.368Z",
-          "bytes": 621039
+          "bytes": 621039,
+          "fetchedAt": "2026-10-28T09:55:22.299Z"
         },
         "webdev": {
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/webdev/latest-00000-of-00001.parquet",
-          "hash": "ca6bb80c0ea1c0c89a370bb1c485f17a29ec25a5fb4443f3d81132f314166320",
-          "fetchedAt": "2026-10-27T04:32:56.656Z",
-          "bytes": 30683
+          "hash": "799523e96d42e2322de0d7e5480e6656bf1998355a295f88e859ecfa80c86096",
+          "bytes": 30895,
+          "fetchedAt": "2026-10-28T09:55:22.299Z"
         }
       }
     }
   },
   "fx": {
-    "usd_to_cny": 6.6681,
-    "as_of": "2026-10-26",
+    "usd_to_cny": 6.6675,
+    "as_of": "2026-10-27",
     "source": "ECB reference rate via Frankfurter",
     "source_url": "https://api.frankfurter.dev/v1/latest?base=USD&symbols=CNY",
-    "fetched_at": "2026-10-27T04:32:57.033Z"
+    "fetched_at": "2026-10-28T09:55:22.299Z"
   },
   "counts": {
     "models": 43,
-    "offers": 1246,
+    "offers": 1252,
     "scores": 61,
-    "unmatched": 504
+    "unmatched": 505
   },
   "files": {
-    "models.json": "ad075e1c2779577e368af658308179d3cd80a65b26b44875e50e325cc5e58a36",
-    "offers.json": "351fa94e70e864c4e8e49e171cea7e2e671df4a4eda14f5d260243598053677d",
-    "scores.json": "c5fe414f7420e5f9f59369e8139d048d2a3b46366b110e08ee8a88da61c758ed",
-    "unmatched.json": "45e1eab6b1bf7aa238842ddaeec56e33bc85c14992f43897fc9054b05183d642",
-    "validation-report.json": "bd6d477f9da1b3490075911e6c596563f9ecec0c99a29b4aa97379d1fd4ee71c"
+    "models.json": "2e12e0bfcbc5c37d2ff070e30f24b6adcd84a98253d904dec3c42535fb1bec3c",
+    "offers.json": "1b5f174b62798ab28ee24045556741833d0b078297b508d946fc6f98c1f7351c",
+    "scores.json": "adc084450505a35f30becd92df0247f0886166395487d75a4335f6aabb657f94",
+    "unmatched.json": "5a5dbe4c48cca7acef9e6edec86f550a081b9695d234d08f6e6459236c28e81d",
+    "validation-report.json": "d1f91806a7965bdcf99c508aa0b79f3bba9b7084805b8d8be826c79076e4d992"
   },
   "overrides": {
     "count": 0,
@@ -79,19 +79,19 @@
   },
   "freshness": {
     "modelsDev": {
-      "fetchedAt": "2026-10-27T04:32:55.730Z",
+      "fetchedAt": "2026-10-28T09:55:22.299Z",
       "ageHours": 0,
       "thresholdHours": 48,
       "stale": false
     },
     "arena": {
-      "fetchedAt": "2026-10-27T04:32:56.368Z",
+      "fetchedAt": "2026-10-28T09:55:22.299Z",
       "ageHours": 0,
       "thresholdHours": 72,
       "stale": false
     },
     "fx": {
-      "asOf": "2026-10-26",
+      "asOf": "2026-10-27",
       "ageDays": 1,
       "thresholdDays": 14,
       "stale": false
@@ -103,11 +103,11 @@
   },
   "notes": [
     "Local pipeline run. Site deployment is out of scope for this step.",
-    "models.dev snapshot fetchedAt=2026-10-27T04:32:55.730Z",
-    "Arena text/webdev fetchedAt=2026-10-27T04:32:56.368Z/2026-10-27T04:32:56.656Z",
+    "models.dev snapshot fetchedAt=2026-10-28T09:55:22.299Z",
+    "Arena text/webdev fetchedAt=2026-10-28T09:55:22.299Z/2026-10-28T09:55:22.299Z",
     "Arena text filtered to category=overall; webdev filtered to category=webdev; latest publish date, highest vote_count per model/org.",
     "No AA data embedded; AA links are external-only.",
-    "FX 6.6681 2026-10-26 from ECB reference rate via Frankfurter.",
+    "FX 6.6675 2026-10-27 from ECB reference rate via Frankfurter.",
     "Overrides: 0 entries, 0 applied.",
     "Output JSON Schema lives in data/schema and is validated before promotion."
   ]
