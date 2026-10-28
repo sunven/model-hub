@@ -6,7 +6,7 @@ import { useMemo, useState } from 'react'
 import { RowBadges } from './badges'
 import { CiRail } from './ci-rail'
 import { ScoreCell } from './score-pill'
-import { useCompare } from './compare-provider'
+import { CompareButton, CompareCheckbox } from './compare-tray'
 import { useExploreQuery } from './use-explore-query'
 import {
   CONTEXT_OPTIONS,
@@ -53,7 +53,6 @@ export function ExploreClient({
   dataDate: string
 }) {
   const router = useRouter()
-  const compare = useCompare()
   const { query, update, reset, toggleInList, removeFilter, urlReady } = useExploreQuery()
   const [filtersOpen, setFiltersOpen] = useState(false)
 
@@ -240,13 +239,7 @@ export function ExploreClient({
                     return (
                       <tr className="model-row" key={row.id} onClick={() => router.push(modelHref(row.canonicalId))}>
                         <td className="col-check" onClick={e => e.stopPropagation()}>
-                          <input
-                            type="checkbox"
-                            checked={compare.selected.includes(row.id)}
-                            disabled={!compare.ready}
-                            onChange={() => compare.toggle(row.id)}
-                            aria-label={`加入对比 ${row.name}`}
-                          />
+                          <CompareCheckbox modelId={row.id} label={`加入对比 ${row.name}`} />
                         </td>
                         <td>
                           <div className="model-name">
@@ -287,14 +280,7 @@ export function ExploreClient({
                         </div>
                         <div className="mobile-id">{row.canonicalId}</div>
                       </div>
-                      <button
-                        type="button"
-                        className={`btn small ${compare.selected.includes(row.id) ? 'primary' : ''}`}
-                        onClick={() => compare.toggle(row.id)}
-                        disabled={!compare.ready}
-                      >
-                        {compare.selected.includes(row.id) ? '已加入' : '对比'}
-                      </button>
+                      <CompareButton modelId={row.id} small short />
                     </div>
                     <div className="mobile-scores">
                       <MobileScore label="Arena text" score={row.text} domain={domains.text} />

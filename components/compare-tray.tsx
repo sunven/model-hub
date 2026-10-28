@@ -2,15 +2,16 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useMemo } from 'react'
 import { useCompare } from './compare-provider'
 import { compareHref } from '@/lib/compare-set'
 
 export function CompareTray() {
   const { selected, modelIndex, remove, clear, showToast } = useCompare()
   const pathname = usePathname()
+  const byId = useMemo(() => new Map(modelIndex.map(m => [m.id, m])), [modelIndex])
 
   if (pathname.startsWith('/compare') || selected.length === 0) return null
-  const byId = new Map(modelIndex.map(m => [m.id, m]))
   const href = compareHref(selected)
 
   return (
@@ -36,18 +37,37 @@ export function CompareTray() {
   )
 }
 
-export function CompareButton({ modelId, small = false, primary = false }: { modelId: string; small?: boolean; primary?: boolean }) {
+export function CompareButton({
+  modelId,
+  small = false,
+  primary = false,
+  short = false,
+}: {
+  modelId: string
+  small?: boolean
+  primary?: boolean
+  short?: boolean
+}) {
   const { selected, ready, toggle } = useCompare()
   const active = selected.includes(modelId)
+  const className = ['btn', small && 'small', (active || primary) && 'primary'].filter(Boolean).join(' ')
+  const label = active ? (short ? '已加入' : '已加入对比') : short ? '对比' : '加入对比'
   return (
-    <button
-      type="button"
-      className={`btn ${active || primary ? 'primary' : ''}`}
-      style={small ? { padding: '4px 8px', fontSize: 11 } : undefined}
-      onClick={() => toggle(modelId)}
-      disabled={!ready}
-    >
-      {active ? '已加入对比' : '加入对比'}
+    <button type="button" className={className} onClick={() => toggle(modelId)} disabled={!ready}>
+      {label}
     </button>
+  )
+}
+
+export function CompareCheckbox({ modelId, label }: { modelId: string; label: string }) {
+  const { selected, ready, toggle } = useCompare()
+  return (
+    <input
+      type="checkbox"
+      checked={selected.includes(modelId)}
+      disabled={!ready}
+      onChange={() => toggle(modelId)}
+      aria-label={label}
+    />
   )
 }

@@ -155,6 +155,13 @@ export default async function ModelPage({ params }: Props) {
   } = detail
   const aaUrl = found.aaUrl ?? AA_FALLBACK
   const modalities = `${(found.modalities.input ?? []).join(' / ') || '未提供'} → ${(found.modalities.output ?? []).join(' / ') || '未提供'}`
+  let hasToolCall = false
+  let hasStructuredOutput = false
+  for (const offer of offers) {
+    hasToolCall ||= offer.capabilities.toolCall
+    hasStructuredOutput ||= offer.capabilities.structuredOutput
+    if (hasToolCall && hasStructuredOutput) break
+  }
 
   const path = modelHref(found.canonicalModelId)
   const pageDescription = found.description ?? `${found.name} 的价格、上下文、推理等级和 Arena 评分。`
@@ -246,8 +253,8 @@ export default async function ModelPage({ params }: Props) {
             {found.description && <p className="source-box" style={{ marginTop: 8 }}>{found.description}</p>}
             <div className="cap-list">
               <div><span>输入 / 输出模态</span><strong>{modalities}</strong></div>
-              <div><span>工具调用</span><strong>{offers.some(o => o.capabilities.toolCall) ? '支持' : '未提供'}</strong></div>
-              <div><span>结构化输出</span><strong>{offers.some(o => o.capabilities.structuredOutput) ? '支持' : '未提供'}</strong></div>
+              <div><span>工具调用</span><strong>{hasToolCall ? '支持' : '未提供'}</strong></div>
+              <div><span>结构化输出</span><strong>{hasStructuredOutput ? '支持' : '未提供'}</strong></div>
               <div><span>知识截止</span><strong>{found.knowledgeCutoff || '未提供'}</strong></div>
               <div><span>开源权重</span><strong>{found.openWeights ? '是' : '否'}</strong></div>
               <div><span>推理等级</span><strong>{found.reasoningLabel}</strong></div>

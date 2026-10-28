@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { brandMark } from './brand-mark'
 import { manifest, modelsDevDate } from '@/lib/data'
 import { ATTRIBUTION_URL, NEW_ISSUE_URL, REPO_URL } from '@/lib/site'
 
@@ -9,19 +10,7 @@ export function SiteFooter() {
         <div className="footer-top">
           <div className="footer-brand">
             <Link className="brand" href="/" aria-label="Model Hub 首页">
-              <svg className="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M12 5.2v5.2M12 13.6v5.2M5.2 12h5.2M13.6 12h5.2"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                />
-                <circle cx="12" cy="12" r="2.4" fill="currentColor" />
-                <circle cx="12" cy="3.4" r="1.6" fill="currentColor" />
-                <circle cx="12" cy="20.6" r="1.6" fill="currentColor" />
-                <circle cx="3.4" cy="12" r="1.6" fill="currentColor" />
-                <circle cx="20.6" cy="12" r="1.6" fill="currentColor" />
-              </svg>
+              {brandMark}
               <span>Model Hub</span>
             </Link>
             <p>面向中文开发者的只读模型信息市场。比较价格、上下文、推理等级与 Arena 偏好评分。</p>

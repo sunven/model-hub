@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import { normalizeCompareSet, restoreCompareSet, updateCompareSet, type CompareAction } from '@/lib/compare-set'
 import type { ModelIndexEntry } from '@/lib/types'
 
-const STORAGE_KEY = 'modelhub.compare'
+const STORAGE_KEY = 'modelhub.compare:v1'
 
 function readStoredSelection(): unknown {
   try {

@@ -30,7 +30,7 @@ export function useExploreQuery() {
     if (!urlReady || window.location.pathname !== '/') return
     const search = serializeExploreQuery(query).toString()
     const next = `${window.location.pathname}${search ? `?${search}` : ''}${window.location.hash}`
-    window.history.replaceState({}, '', next)
+    window.history.replaceState(window.history.state, '', next)
   }, [urlReady, query])
 
   const update = useCallback((patch: Partial<ExploreQuery>) => {

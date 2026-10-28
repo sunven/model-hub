@@ -1006,6 +1006,8 @@ details.filter-group[open] > summary::after {
   padding: 14px 0;
   border-bottom: 1px solid var(--rule);
   background: transparent;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 180px;
 }
 
 .mobile-card:first-child {
@@ -1562,6 +1564,8 @@ details.filter-group[open] > summary::after {
 .mobile-offer {
   padding: 12px 0;
   border-bottom: 1px solid var(--rule);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 130px;
 }
 
 .mobile-offer:first-child {
