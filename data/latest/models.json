@@ -26,7 +26,7 @@
     "sourceRefs": [
       "models.dev:anthropic/claude-fable-5-1"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_anthropic__claude-haiku-5-5",
@@ -55,7 +55,7 @@
     "sourceRefs": [
       "models.dev:anthropic/claude-haiku-5-5"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_anthropic__claude-opus-5-5",
@@ -84,7 +84,7 @@
     "sourceRefs": [
       "models.dev:anthropic/claude-opus-5-5"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_anthropic__claude-sonnet-5-5",
@@ -113,7 +113,7 @@
     "sourceRefs": [
       "models.dev:anthropic/claude-sonnet-5-5"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_mistral__codestral-2508",
@@ -141,7 +141,7 @@
     "sourceRefs": [
       "models.dev:mistral/codestral-2508"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_cohere__command-a-plus-05-2026",
@@ -169,7 +169,7 @@
     "sourceRefs": [
       "models.dev:cohere/command-a-plus-05-2026"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_deepseek__deepseek-v4-pro-0813",
@@ -198,7 +198,7 @@
     "sourceRefs": [
       "models.dev:deepseek/deepseek-v4-pro-0813"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_deepseek__deepseek-v4.1-flash-1017",
@@ -228,7 +228,7 @@
     "sourceRefs": [
       "models.dev:deepseek/deepseek-v4.1-flash-1017"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_sakana__fugu-max",
@@ -257,7 +257,7 @@
     "sourceRefs": [
       "models.dev:sakana/fugu-max"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_google__gemini-3.1-pro-preview-customtools",
@@ -290,7 +290,7 @@
     "sourceRefs": [
       "models.dev:google/gemini-3.1-pro-preview-customtools"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_google__gemini-3.5-flash-lite",
@@ -321,7 +321,7 @@
     "sourceRefs": [
       "models.dev:google/gemini-3.5-flash-lite"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_google__gemini-3.8-flash",
@@ -352,7 +352,7 @@
     "sourceRefs": [
       "models.dev:google/gemini-3.8-flash"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_zhipuai__glm-4.7-flashx",
@@ -379,7 +379,7 @@
     "sourceRefs": [
       "models.dev:zhipuai/glm-4.7-flashx"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_zhipuai__glm-5.3",
@@ -408,7 +408,7 @@
     "sourceRefs": [
       "models.dev:zhipuai/glm-5.3"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_zhipuai__glm-5.3-flash",
@@ -416,7 +416,7 @@
     "name": "GLM 5.3 Flash",
     "lab": "Zhipu / GLM",
     "family": "glm-flash",
-    "releaseDate": "2026-08-26",
+    "releaseDate": "2026-09-18",
     "knowledgeCutoff": null,
     "modalities": {
       "input": [
@@ -430,7 +430,7 @@
       ]
     },
     "openWeights": true,
-    "description": "Native multimodal GLM model for efficient coding and long-horizon agent tasks",
+    "description": "High-speed GLM-5.3-Flash serving option for coding and agent workflows",
     "aaUrl": "https://artificialanalysis.ai/models/glm-5-3-flash",
     "availability": "available",
     "releaseBadges": [
@@ -440,7 +440,7 @@
     "sourceRefs": [
       "models.dev:zhipuai/glm-5.3-flash"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_openai__gpt-6-astra",
@@ -469,7 +469,7 @@
     "sourceRefs": [
       "models.dev:openai/gpt-6-astra"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_openai__gpt-6-luna",
@@ -498,7 +498,7 @@
     "sourceRefs": [
       "models.dev:openai/gpt-6-luna"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_openai__gpt-6-sol",
@@ -527,7 +527,7 @@
     "sourceRefs": [
       "models.dev:openai/gpt-6-sol"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_openai__gpt-6.1-sol",
@@ -556,7 +556,7 @@
     "sourceRefs": [
       "models.dev:openai/gpt-6.1-sol"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_xai__grok-4.5",
@@ -585,7 +585,7 @@
     "sourceRefs": [
       "models.dev:xai/grok-4.5"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_xai__grok-4.7",
@@ -616,7 +616,7 @@
     "sourceRefs": [
       "models.dev:xai/grok-4.7"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_tencent__hy4-preview",
@@ -643,7 +643,7 @@
     "sourceRefs": [
       "models.dev:tencent/hy4-preview"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_moonshotai__kimi-k3",
@@ -674,7 +674,7 @@
     "sourceRefs": [
       "models.dev:moonshotai/kimi-k3"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_moonshotai__kimi-k3.1-pro",
@@ -703,7 +703,7 @@
     "sourceRefs": [
       "models.dev:moonshotai/kimi-k3.1-pro"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_inception__mercury-3",
@@ -730,7 +730,7 @@
     "sourceRefs": [
       "models.dev:inception/mercury-3"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_xiaomi__mimo-v2.6-flash",
@@ -760,7 +760,7 @@
     "sourceRefs": [
       "models.dev:xiaomi/mimo-v2.6-flash"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_xiaomi__mimo-v2.6-pro",
@@ -790,7 +790,7 @@
     "sourceRefs": [
       "models.dev:xiaomi/mimo-v2.6-pro"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_mistral__mistral-large-4",
@@ -821,7 +821,7 @@
     "sourceRefs": [
       "models.dev:mistral/mistral-large-4"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_mistral__mistral-medium-latest",
@@ -850,7 +850,7 @@
     "sourceRefs": [
       "models.dev:mistral/mistral-medium-latest"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_meta__muse-glimmer-30b",
@@ -878,7 +878,7 @@
     "sourceRefs": [
       "models.dev:meta/muse-glimmer-30b"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_meta__muse-spark-1.1",
@@ -908,7 +908,7 @@
     "sourceRefs": [
       "models.dev:meta/muse-spark-1.1"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_meta__muse-wonder-1.0",
@@ -939,7 +939,7 @@
     "sourceRefs": [
       "models.dev:meta/muse-wonder-1.0"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_nvidia__nemotron-3.5-super-vl-120b-a12b",
@@ -968,7 +968,7 @@
     "sourceRefs": [
       "models.dev:nvidia/nemotron-3.5-super-vl-120b-a12b"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_amazon__nova-2-lite",
@@ -998,7 +998,7 @@
     "sourceRefs": [
       "models.dev:amazon/nova-2-lite"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_alibaba__qwen3.8-27b",
@@ -1030,7 +1030,7 @@
     "sourceRefs": [
       "models.dev:alibaba/qwen3.8-27b"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_alibaba__qwen3.8-flash",
@@ -1059,7 +1059,7 @@
     "sourceRefs": [
       "models.dev:alibaba/qwen3.8-flash"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_alibaba__qwen3.8-max",
@@ -1089,7 +1089,7 @@
     "sourceRefs": [
       "models.dev:alibaba/qwen3.8-max"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_alibaba__qwen3.8-omni-flash",
@@ -1119,7 +1119,7 @@
     "sourceRefs": [
       "models.dev:alibaba/qwen3.8-omni-flash"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_bytedance-seed__seed-2.1-pro",
@@ -1148,7 +1148,7 @@
     "sourceRefs": [
       "models.dev:bytedance-seed/seed-2.1-pro"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_bytedance-seed__seed-character",
@@ -1177,7 +1177,7 @@
     "sourceRefs": [
       "models.dev:bytedance-seed/seed-character"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_bytedance-seed__seed-evolving",
@@ -1206,7 +1206,7 @@
     "sourceRefs": [
       "models.dev:bytedance-seed/seed-evolving"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_upstage__solar-pro4",
@@ -1233,7 +1233,7 @@
     "sourceRefs": [
       "models.dev:upstage/solar-pro4"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   },
   {
     "id": "mv_stepfun__step-3.5-flash-2603",
@@ -1260,6 +1260,6 @@
     "sourceRefs": [
       "models.dev:stepfun/step-3.5-flash-2603"
     ],
-    "snapshotId": "20261028-888c00fa"
+    "snapshotId": "20261029-1e9fc8b3"
   }
 ]
