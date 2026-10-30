@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { checkFreshness, snapshotFreshness } from '../../lib/freshness'
-import { fmtCnyRange, fxIsFresh } from '../../lib/format'
+import { fmtCnyRange } from '../../lib/format'
 import { manifestSchema } from '../../lib/snapshot'
 import manifest from '../../data/latest/manifest.json'
 
@@ -42,10 +42,10 @@ test('rounded Manifest ages never decide staleness, and Arena uses its oldest so
 test('FX formatting and freshness agree at the UTC date-only expiry', () => {
   const fx = { ...manifest.fx, as_of: '2026-10-27', usd_to_cny: 7 }
   const expiry = Date.parse('2026-11-10T00:00:00.000Z')
-  assert.equal(fxIsFresh(fx, new Date(expiry)), true)
+  assert.equal(checkFreshness('fx', fx.as_of, expiry).stale, false)
   assert.equal(fmtCnyRange(1, 2, fx, expiry), '≈¥7.00–14.00')
   assert.equal(fmtCnyRange(0, 0, fx, expiry), '≈¥0.00')
-  assert.equal(fxIsFresh(fx, new Date(expiry + 1)), false)
+  assert.equal(checkFreshness('fx', fx.as_of, expiry + 1).stale, true)
   assert.equal(fmtCnyRange(1, 2, fx, expiry + 1), null)
 })
 

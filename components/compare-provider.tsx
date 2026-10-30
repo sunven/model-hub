@@ -2,6 +2,7 @@
 
 import { createContext, Suspense, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { CompareLocationSync, useCompareSet } from './use-compare-set'
+import { COMPARE_LIMIT } from '@/lib/compare-set'
 import type { ModelIndexEntry } from '@/lib/types'
 
 interface CompareContextValue {
@@ -28,7 +29,7 @@ export function CompareProvider({ modelIndex, children }: { modelIndex: ModelInd
     if (toastTimer.current) clearTimeout(toastTimer.current)
   }, [])
 
-  const onLimit = useCallback(() => showToast('最多选择 3 个模型'), [showToast])
+  const onLimit = useCallback(() => showToast(`最多选择 ${COMPARE_LIMIT} 个模型`), [showToast])
   const { selected, ready, toggle, remove, clear, synchronize } = useCompareSet(modelIndex, onLimit)
   const value = useMemo(
     () => ({ selected, ready, modelIndex, toggle, remove, clear, showToast }),

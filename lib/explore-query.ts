@@ -233,17 +233,5 @@ export function removeFilter(query: ExploreQuery, filter: ActiveFilter): Explore
 }
 
 export function isDefaultExploreQuery(query: ExploreQuery): boolean {
-  return (
-    query.q === '' &&
-    query.labs.length === 0 &&
-    query.providers.length === 0 &&
-    !query.gatewayOnly &&
-    query.maxOutput === null &&
-    query.minContext === null &&
-    !query.reasoning &&
-    !query.openWeights &&
-    !query.stableOnly &&
-    !query.hasArena &&
-    query.sortKey === DEFAULT_EXPLORE_QUERY.sortKey
-  )
+  return serializeExploreQuery(query).toString() === ''
 }

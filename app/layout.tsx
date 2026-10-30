@@ -19,8 +19,8 @@ import { websiteLd } from '@/lib/structured-data'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Model Hub — 模型信息市场',
-    template: '%s | Model Hub',
+    default: `${SITE_NAME} — 模型信息市场`,
+    template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: LOCALE,
     siteName: SITE_NAME,
-    title: 'Model Hub — 模型信息市场',
+    title: `${SITE_NAME} — 模型信息市场`,
     description: SITE_DESCRIPTION,
     url: '/',
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'Model Hub 模型信息市场' }],
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `${SITE_NAME} 模型信息市场` }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Model Hub — 模型信息市场',
+    title: `${SITE_NAME} — 模型信息市场`,
     description: SITE_DESCRIPTION,
     images: [OG_IMAGE],
   },

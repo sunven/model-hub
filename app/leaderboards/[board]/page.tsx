@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { JsonLd } from '@/components/json-ld'
 import { LeaderboardClient } from '@/components/leaderboard-client'
+import { BOARDS, boardTitle, isBoard } from '@/lib/boards'
 import { arenaDate, leaderboardRows } from '@/lib/data'
-import { OG_IMAGE } from '@/lib/site'
+import { pageMetadata } from '@/lib/site'
 import { breadcrumbLd, itemListLd, webPageLd } from '@/lib/structured-data'
 
 type Props = { params: Promise<{ board: string }> }
@@ -11,39 +12,30 @@ type Props = { params: Promise<{ board: string }> }
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return [{ board: 'text' }, { board: 'webdev' }]
+  return BOARDS.map(board => ({ board }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { board } = await params
-  if (board !== 'text' && board !== 'webdev') {
+  if (!isBoard(board)) {
     return { title: '榜单未找到', robots: { index: false, follow: false } }
   }
-  const title = board === 'text' ? 'Arena text 榜单' : 'Arena webdev 榜单'
+  const title = boardTitle(board)
   const description = 'Arena 偏好评分榜单；text 与 webdev 分开展示，不跨榜比较。'
   const path = `/leaderboards/${board}`
   return {
-    title,
-    description,
-    alternates: { canonical: path },
-    openGraph: {
-      title: `${title} | Model Hub`,
-      description,
-      url: path,
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: title }],
-    },
-    twitter: { card: 'summary_large_image', title: `${title} | Model Hub`, description, images: [OG_IMAGE] },
+    ...pageMetadata({ title, description, path }),
     robots: { index: true, follow: true },
   }
 }
 
 export default async function LeaderboardPage({ params }: Props) {
   const { board } = await params
-  if (board !== 'text' && board !== 'webdev') notFound()
+  if (!isBoard(board)) notFound()
   const rows = leaderboardRows(board)
   const dataDate = arenaDate(board)
   const path = `/leaderboards/${board}`
-  const title = board === 'text' ? 'Arena text 榜单' : 'Arena webdev 榜单'
+  const title = boardTitle(board)
   return (
     <>
       <JsonLd data={webPageLd({ name: title, description: 'Arena 偏好评分榜单。', path })} />

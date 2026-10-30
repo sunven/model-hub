@@ -6,12 +6,11 @@ import { useCompare } from './compare-provider'
 import { RowBadges } from './badges'
 import { ScorePill } from './score-pill'
 import { CnyRange } from './cny-price'
-import { fmtContext, fmtRange, scoreMeta } from '@/lib/format'
-import { modelHref } from '@/lib/site'
+import { COMPARE_LIMIT } from '@/lib/compare-set'
+import { fmtContext, fmtDate, fmtRange, scoreMeta } from '@/lib/format'
+import { AA_LEADERBOARD_URL, modelHref } from '@/lib/site'
 import type { FxConfig } from '@/lib/snapshot'
 import type { BoardDomains, ModelRow } from '@/lib/types'
-
-const AA_URL = 'https://artificialanalysis.ai/leaderboards/models'
 
 type Field = {
   label: string
@@ -97,13 +96,13 @@ const FIELDS: Field[] = [
   },
   {
     label: '发布',
-    value: m => m.releaseDate ?? '—',
-    render: m => m.releaseDate ?? '—',
+    value: m => fmtDate(m.releaseDate),
+    render: m => fmtDate(m.releaseDate),
   },
   {
     label: 'AA',
     value: () => 'external',
-    render: () => <a className="btn small" href={AA_URL} target="_blank" rel="noopener noreferrer">外部链接</a>,
+    render: () => <a className="btn small" href={AA_LEADERBOARD_URL} target="_blank" rel="noopener noreferrer">外部链接</a>,
   },
 ]
 
@@ -131,7 +130,7 @@ export function CompareClient({
         <div className="compare-empty">
           <div className="compare-intro">
             <h1>先选两个模型</h1>
-            <p>从模型表勾选，或在详情页点「加入对比」。最多 3 个。</p>
+            <p>从模型表勾选，或在详情页点「加入对比」。最多 {COMPARE_LIMIT} 个。</p>
             <div className="detail-actions">
               <Link className="btn primary" href="/">去模型表</Link>
             </div>
@@ -139,7 +138,7 @@ export function CompareClient({
           <div className="pick-list">
             <div className="pick-head">
               <h2>从 Arena text 排名开始</h2>
-              <span>最多选择 3 个</span>
+              <span>最多选择 {COMPARE_LIMIT} 个</span>
             </div>
             {picks.map(model => (
               <div className="pick-row" key={model.id}>
@@ -163,8 +162,8 @@ export function CompareClient({
   const diffCount = diffs.filter(Boolean).length
   const finding =
     selected.length >= 2
-      ? `已选 ${selected.length}/3 个模型；${FIELDS.length} 个字段中 ${diffCount} 个不同。差异只表示取值不同，不判定优劣。`
-      : '已选 1/3 个模型；再选一个就能对比。'
+      ? `已选 ${selected.length}/${COMPARE_LIMIT} 个模型；${FIELDS.length} 个字段中 ${diffCount} 个不同。差异只表示取值不同，不判定优劣。`
+      : `已选 1/${COMPARE_LIMIT} 个模型；再选一个就能对比。`
 
   return (
     <div className="sheet-inner">
@@ -175,7 +174,7 @@ export function CompareClient({
         </div>
         <div className="detail-actions">
           <button type="button" className="btn ghost" onClick={() => compare.clear()}>清空全部</button>
-          <Link className="btn" href="/">{selected.length < 3 ? '添加模型' : '模型目录'}</Link>
+          <Link className="btn" href="/">{selected.length < COMPARE_LIMIT ? '添加模型' : '模型目录'}</Link>
         </div>
       </div>
 

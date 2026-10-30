@@ -6,6 +6,7 @@ import path from 'node:path'
 import { parse, stringify } from 'yaml'
 import { asyncBufferFromFile, parquetReadObjects } from 'hyparquet'
 import { compressors } from 'hyparquet-compressors'
+import { FRESHNESS_POLICY } from '../lib/freshness'
 import { manifestSchema, sourceFileSchema } from '../lib/snapshot'
 import type { FxConfig, SourceFile } from '../lib/snapshot'
 import type { SnapshotSource } from './snapshot'
@@ -80,7 +81,7 @@ async function refreshFx(file: string, current: FxConfig, now: Date): Promise<{ 
     }
     await writeAtomic(file,
       '# USD→CNY display-only conversion, fetched from the ECB reference rate via Frankfurter.\n' +
-      '# The pipeline refreshes this on --refresh; CNY is hidden when as_of is older than 14 days.\n' + stringify(fx))
+      `# The pipeline refreshes this on --refresh; CNY is hidden when as_of is older than ${FRESHNESS_POLICY.fx.thresholdDays} days.\n` + stringify(fx))
     return { fx }
   } catch (error) {
     return {
@@ -152,11 +153,14 @@ export function createSnapshotSource({ dataDir, refresh = false, offline = false
         if (result.status === 'rejected') throw result.reason
         return result.value
       })
-      const [launch, crosswalk, aaCrosswalk, currentFx, catalog, textRows, webdevRows, overrideBytes] = await Promise.all([
+      const fxFile = path.join(dataDir, 'fx.yml')
+      const currentFx = await readYaml<FxConfig>(fxFile)
+      // Start the FX request before parsing the large local sources.
+      const fxRefresh = refresh && !offline ? refreshFx(fxFile, currentFx, now) : null
+      const [launch, crosswalk, aaCrosswalk, catalog, textRows, webdevRows, overrideBytes] = await Promise.all([
         readYaml<LaunchEntry[]>(path.join(dataDir, 'launch-set.yml')),
         readYaml<CrosswalkEntry[]>(path.join(dataDir, 'crosswalk/arena.yml')),
         readYaml<AaCrosswalkEntry[]>(path.join(dataDir, 'crosswalk/aa.yml')),
-        readYaml<FxConfig>(path.join(dataDir, 'fx.yml')),
         readJson<RawCatalog>(files[0].file),
         readParquet(files[2].file),
         readParquet(files[3].file),
@@ -167,8 +171,7 @@ export function createSnapshotSource({ dataDir, refresh = false, offline = false
       ])
       const entries = overrideBytes ? parse(overrideBytes.toString('utf8')) ?? [] : []
       if (!Array.isArray(entries)) throw new Error('data/overrides/overrides.yml must contain a YAML array')
-      const { fx, warning } = refresh && !offline
-        ? await refreshFx(path.join(dataDir, 'fx.yml'), currentFx, now) : { fx: currentFx }
+      const { fx, warning } = fxRefresh ? await fxRefresh : { fx: currentFx }
       const [api, models, text, webdev] = metadata.map(item => item.info)
       return {
         catalog, launch, crosswalk, aaCrosswalk, fx,

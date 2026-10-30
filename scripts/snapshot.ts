@@ -83,11 +83,9 @@ export async function runSnapshot({ source, now = new Date(), dataDir }: {
     const { catalog, launch, crosswalk, aaCrosswalk, fx, overrides: overrideFile } = input
     phase = 'build'
     const { entries: rawOverrides, hash: overrideHash } = overrideFile
-    const parsedOverrides = overrideEntrySchema.array().safeParse(rawOverrides)
-    const overrideSchemaFailures = parsedOverrides.success
-      ? []
-      : parsedOverrides.error.issues.map(issue => `schema overrides.yml: ${issue.path.join('.') || '(root)'} ${issue.message}`)
-    const overrideEntries: OverrideEntry[] = parsedOverrides.success ? parsedOverrides.data : []
+    const overrideSchemaFailures: string[] = []
+    const overrideEntries: OverrideEntry[] =
+      validateSchema(overrideEntrySchema.array(), rawOverrides, 'overrides.yml', overrideSchemaFailures) ?? []
 
     snapshotId = await makeSnapshotId(input, now)
 

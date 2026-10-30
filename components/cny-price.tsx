@@ -21,10 +21,8 @@ export function CnyPricePair({ inputMin, inputMax, outputMin, outputMax, fx }: {
   if (!input || !output) return null
   return <>
     {' · '}
-    <span className="cny-pair">
-      <span className="cny-range">{input}</span>
-      <span className="cny-sep"> / </span>
-      <span className="cny-range">{output}</span>
-    </span>
+    <span className="cny-range">{input}</span>
+    {' / '}
+    <span className="cny-range">{output}</span>
   </>
 }

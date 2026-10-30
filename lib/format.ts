@@ -1,4 +1,4 @@
-import type { Availability, FxConfig } from './snapshot'
+import type { Availability, FxConfig, OfferStatus } from './snapshot'
 import { checkFreshness } from './freshness'
 import type { CiDomain, CiStat, PriceSummary } from './types'
 
@@ -66,34 +66,20 @@ export function scoreMeta(score: CiStat & { rank: number; condition: string }): 
   return `#${score.rank} · ${score.condition} · ±${ciHalf(score).toFixed(1)}`
 }
 
+const AVAILABILITY: Record<Availability, { label: string; className: string }> = {
+  available: { label: '可用', className: 'stable' },
+  mixed: { label: '混合', className: 'mixed' },
+  deprecated: { label: '已弃用', className: 'deprecated' },
+  open_weights_only: { label: '可自托管', className: 'ow' },
+  unknown: { label: '未知', className: 'mixed' },
+}
+
 export function availabilityLabel(availability: Availability): string {
-  switch (availability) {
-    case 'available':
-      return '可用'
-    case 'mixed':
-      return '混合'
-    case 'deprecated':
-      return '已弃用'
-    case 'open_weights_only':
-      return '可自托管'
-    default:
-      return '未知'
-  }
+  return AVAILABILITY[availability].label
 }
 
 export function availabilityClass(availability: Availability): string {
-  switch (availability) {
-    case 'available':
-      return 'stable'
-    case 'mixed':
-      return 'mixed'
-    case 'deprecated':
-      return 'deprecated'
-    case 'open_weights_only':
-      return 'ow'
-    default:
-      return 'mixed'
-  }
+  return AVAILABILITY[availability].className
 }
 
 export function providerKindLabel(kind: string): string {
@@ -102,17 +88,19 @@ export function providerKindLabel(kind: string): string {
   return '网关'
 }
 
-export function offerStatusLabel(status: string): string {
-  if (status === 'deprecated') return '已弃用'
-  if (status === 'beta') return 'Beta'
-  if (status === 'alpha') return 'Alpha'
-  return '可用'
+const OFFER_STATUS: Record<OfferStatus, { label: string; className: string }> = {
+  available_unmarked: { label: '可用', className: 'stable' },
+  beta: { label: 'Beta', className: 'beta' },
+  alpha: { label: 'Alpha', className: 'beta' },
+  deprecated: { label: '已弃用', className: 'deprecated' },
 }
 
-export function offerStatusClass(status: string): string {
-  if (status === 'deprecated') return 'deprecated'
-  if (status === 'beta' || status === 'alpha') return 'beta'
-  return 'stable'
+export function offerStatusLabel(status: OfferStatus): string {
+  return OFFER_STATUS[status].label
+}
+
+export function offerStatusClass(status: OfferStatus): string {
+  return OFFER_STATUS[status].className
 }
 
 export function reasoningText(options: any[] | undefined, supported: boolean): string {
@@ -130,10 +118,6 @@ export function reasoningText(options: any[] | undefined, supported: boolean): s
     else parts.push('预算可调')
   }
   return parts.length ? [...new Set(parts)].join(' + ') : '支持，未标档'
-}
-
-export function fxIsFresh(fx: FxConfig, now = new Date()): boolean {
-  return !checkFreshness('fx', fx.as_of, now.getTime()).stale
 }
 
 export function fmtCnyRange(min: number, max: number, fx: FxConfig, now = Date.now()): string | null {

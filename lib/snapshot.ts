@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { BOARDS } from './boards'
 import { checkFreshness, FRESHNESS_POLICY } from './freshness'
 
 const stringArray = z.array(z.string())
@@ -9,7 +10,7 @@ const nullableString = z.string().nullable()
 export const providerKindSchema = z.enum(['first_party', 'cloud', 'gateway'])
 export const offerStatusSchema = z.enum(['available_unmarked', 'beta', 'alpha', 'deprecated'])
 export const availabilitySchema = z.enum(['available', 'deprecated', 'mixed', 'open_weights_only', 'unknown'])
-export const boardSchema = z.enum(['text', 'webdev'])
+export const boardSchema = z.enum(BOARDS)
 export const aaUrlSchema = z.string().url().regex(
   /^https:\/\/(?:www\.)?artificialanalysis\.ai\/models\/[A-Za-z0-9][A-Za-z0-9._-]*\/?(?:[?#].*)?$/,
   'AA URL must use https://artificialanalysis.ai/models/<slug>',
@@ -267,17 +268,13 @@ export type OfferStatus = z.infer<typeof offerStatusSchema>
 export type Availability = z.infer<typeof availabilitySchema>
 export type Board = z.infer<typeof boardSchema>
 export type ModelVersion = z.infer<typeof modelVersionSchema>
-export type OfferPrice = z.infer<typeof priceSchema>
 export type Offer = z.infer<typeof offerSchema>
 export type Score = z.infer<typeof scoreSchema>
 export type UnmatchedEntry = z.infer<typeof unmatchedSchema>
 export type OverrideEntry = z.infer<typeof overrideEntrySchema>
-export type OverrideTargetType = OverrideEntry['target_type']
 export type Manifest = z.infer<typeof manifestSchema>
-export type ManifestSources = Manifest['sources']
 export type OverrideAudit = Manifest['overrides']['applied'][number]
 export type FxConfig = z.infer<typeof fxSchema>
-export type FreshnessCheck = z.infer<typeof freshnessCheckSchema>
 export type SourceFile = z.infer<typeof sourceFileSchema>
 export type ValidationReport = z.infer<typeof validationReportSchema>
 

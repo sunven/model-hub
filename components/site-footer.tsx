@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { brandMark } from './brand-mark'
 import { manifest, modelsDevDate } from '@/lib/data'
-import { ATTRIBUTION_URL, NEW_ISSUE_URL, REPO_URL } from '@/lib/site'
+import { ATTRIBUTION_URL, NEW_ISSUE_URL, REPO_URL, SITE_NAME } from '@/lib/site'
 
 export function SiteFooter() {
   return (
@@ -9,9 +9,9 @@ export function SiteFooter() {
       <div className="footer-inner">
         <div className="footer-top">
           <div className="footer-brand">
-            <Link className="brand" href="/" aria-label="Model Hub 首页">
+            <Link className="brand" href="/" aria-label={`${SITE_NAME} 首页`}>
               {brandMark}
-              <span>Model Hub</span>
+              <span>{SITE_NAME}</span>
             </Link>
             <p>面向中文开发者的只读模型信息市场。比较价格、上下文、推理等级与 Arena 偏好评分。</p>
           </div>

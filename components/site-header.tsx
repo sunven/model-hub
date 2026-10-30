@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { brandMark } from './brand-mark'
 import { useCompare } from './compare-provider'
 import { compareHref } from '@/lib/compare-set'
+import { SITE_NAME } from '@/lib/site'
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -18,9 +19,9 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="header-inner">
-        <Link className="brand" href="/" aria-label="Model Hub 首页">
+        <Link className="brand" href="/" aria-label={`${SITE_NAME} 首页`}>
           {brandMark}
-          <span>Model Hub</span>
+          <span>{SITE_NAME}</span>
         </Link>
         <nav className="nav" aria-label="主导航">
           <Link

@@ -1,25 +1,24 @@
 import path from 'node:path'
+import { parseArgs } from 'node:util'
 import { fileURLToPath } from 'node:url'
 import { createSnapshotSource } from './fetch'
 import { runSnapshot } from './snapshot'
 
-const args = process.argv.slice(2)
-const options = new Set(['--refresh', '--offline', '--data-dir'])
-let dataDir = fileURLToPath(new URL('../data/', import.meta.url))
-let refresh = false
-let offline = false
-for (let i = 0; i < args.length; i++) {
-  if (!options.has(args[i])) throw new Error(`Unknown argument: ${args[i]}`)
-  if (args[i] === '--refresh') refresh = true
-  if (args[i] === '--offline') offline = true
-  if (args[i] === '--data-dir') {
-    const value = args[++i]
-    if (!value || value.startsWith('--')) throw new Error('--data-dir requires a path')
-    dataDir = path.resolve(value)
-  }
-}
+const { values } = parseArgs({
+  options: {
+    refresh: { type: 'boolean', default: false },
+    offline: { type: 'boolean', default: false },
+    'data-dir': { type: 'string' },
+  },
+})
+const dataDir = values['data-dir']
+  ? path.resolve(values['data-dir'])
+  : fileURLToPath(new URL('../data/', import.meta.url))
 
-const result = await runSnapshot({ source: createSnapshotSource({ dataDir, refresh, offline, log: console.log }), dataDir })
+const result = await runSnapshot({
+  source: createSnapshotSource({ dataDir, refresh: values.refresh, offline: values.offline, log: console.log }),
+  dataDir,
+})
 console.log(`snapshot ${result.report.snapshotId}`)
 if (result.status === 'failed') {
   console.error('\nVALIDATION FAILED')

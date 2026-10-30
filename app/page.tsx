@@ -3,24 +3,18 @@ import { ExploreClient } from '@/components/explore-client'
 import { JsonLd } from '@/components/json-ld'
 import { catalog, modelsDevDate } from '@/lib/data'
 import { ciOverlaps, fmtRange } from '@/lib/format'
-import { OG_IMAGE, modelHref } from '@/lib/site'
+import { SITE_NAME, modelHref, pageMetadata } from '@/lib/site'
 import { itemListLd, webPageLd } from '@/lib/structured-data'
 
 const title = '选型工作台'
 const description = '比较模型版本的价格、上下文、推理等级和 Arena 评分。'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title,
   description,
-  alternates: { canonical: '/' },
-  openGraph: {
-    title: `${title} | Model Hub`,
-    description,
-    url: '/',
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'Model Hub 模型信息市场' }],
-  },
-  twitter: { card: 'summary_large_image', title: `${title} | Model Hub`, description, images: [OG_IMAGE] },
-}
+  path: '/',
+  alt: `${SITE_NAME} 模型信息市场`,
+})
 
 const rows = catalog.rows
 const withArena = rows.filter(row => row.text || row.webdev)
@@ -41,7 +35,7 @@ export default function HomePage() {
       <JsonLd data={webPageLd({ name: title, description, path: '/', type: 'CollectionPage' })} />
       <JsonLd
         data={itemListLd({
-          name: 'Model Hub 模型目录',
+          name: `${SITE_NAME} 模型目录`,
           items: catalog.index.map(model => ({ name: model.name, path: modelHref(model.canonicalId) })),
         })}
       />

@@ -7,7 +7,7 @@ import { CiRail } from '@/components/ci-rail'
 import { CompareButton } from '@/components/compare-tray'
 import { JsonLd } from '@/components/json-ld'
 import { OfferTable } from '@/components/offer-table'
-import { modelHref, OG_IMAGE } from '@/lib/site'
+import { AA_LEADERBOARD_URL, modelHref, pageMetadata } from '@/lib/site'
 import { breadcrumbLd, webPageLd } from '@/lib/structured-data'
 import {
   ciHalf,
@@ -39,22 +39,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = found.description ?? `${found.name} 的价格、上下文、推理等级和 Arena 评分。`
   const path = modelHref(found.canonicalModelId)
   return {
-    title,
-    description,
-    alternates: { canonical: path },
-    openGraph: {
-      type: 'article',
-      title: `${title} | Model Hub`,
-      description,
-      url: path,
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: found.name }],
-    },
-    twitter: { card: 'summary_large_image', title: `${title} | Model Hub`, description, images: [OG_IMAGE] },
+    ...pageMetadata({ title, description, path, alt: found.name, type: 'article' }),
     robots: { index: true, follow: true },
   }
 }
-
-const AA_FALLBACK = 'https://artificialanalysis.ai/leaderboards/models'
 
 function ScoreSpec({ label, score, domain }: { label: string; score: Score | null; domain: CiDomain | null }) {
   return (
@@ -153,15 +141,10 @@ export default async function ModelPage({ params }: Props) {
     textDomain,
     webdevDomain,
   } = detail
-  const aaUrl = found.aaUrl ?? AA_FALLBACK
-  const modalities = `${(found.modalities.input ?? []).join(' / ') || '未提供'} → ${(found.modalities.output ?? []).join(' / ') || '未提供'}`
-  let hasToolCall = false
-  let hasStructuredOutput = false
-  for (const offer of offers) {
-    hasToolCall ||= offer.capabilities.toolCall
-    hasStructuredOutput ||= offer.capabilities.structuredOutput
-    if (hasToolCall && hasStructuredOutput) break
-  }
+  const aaUrl = found.aaUrl ?? AA_LEADERBOARD_URL
+  const modalities = `${found.modalities.input.join(' / ') || '未提供'} → ${found.modalities.output.join(' / ') || '未提供'}`
+  const hasToolCall = offers.some(offer => offer.capabilities.toolCall)
+  const hasStructuredOutput = offers.some(offer => offer.capabilities.structuredOutput)
 
   const path = modelHref(found.canonicalModelId)
   const pageDescription = found.description ?? `${found.name} 的价格、上下文、推理等级和 Arena 评分。`

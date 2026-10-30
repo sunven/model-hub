@@ -50,7 +50,7 @@ export function availabilityFromStatuses(statuses: OfferStatus[], haveOffers: bo
   return 'available'
 }
 
-export function uniqueEffortValues(options: any[] | undefined): string[] {
+function uniqueEffortValues(options: any[] | undefined): string[] {
   if (!Array.isArray(options)) return []
   const effort = options.find(o => o?.type === 'effort')
   const rawValues: unknown[] = Array.isArray(effort?.values) ? effort.values : []
@@ -76,7 +76,7 @@ export function conditionFromName(name: string): string {
   return raw || 'default'
 }
 
-export function slug(value: string): string {
+function slug(value: string): string {
   return value
     .toLowerCase()
     .replace(/\//g, '__')
@@ -104,10 +104,6 @@ export function unmatchedId(board: Board, modelName: string, snapshotDate: strin
 export function finiteNumber(value: unknown): number | null {
   const n = typeof value === 'number' ? value : Number(value)
   return Number.isFinite(n) ? n : null
-}
-
-export function asString(value: unknown): string | null {
-  return typeof value === 'string' && value.trim() ? value.trim() : null
 }
 
 export function sourceRefModelsDev(providerId: string, modelId: string): string {

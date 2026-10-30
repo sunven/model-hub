@@ -4,7 +4,9 @@ import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { CiRail } from './ci-rail'
 import { useNoindex } from './use-noindex'
+import { BOARDS, BOARD_LABELS } from '@/lib/boards'
 import { ciDomain, ciHalf, ciOverlaps, fmtVotes } from '@/lib/format'
+import type { Board } from '@/lib/snapshot'
 import type { LeaderboardRow } from '@/lib/types'
 
 const PAGE = 50
@@ -14,7 +16,7 @@ export function LeaderboardClient({
   rows,
   dataDate,
 }: {
-  board: 'text' | 'webdev'
+  board: Board
   rows: LeaderboardRow[]
   dataDate: string
 }) {
@@ -30,7 +32,7 @@ export function LeaderboardClient({
   }, [rows, q])
 
   const visible = filtered.slice(0, visibleCount)
-  const boardLabel = board === 'text' ? 'Arena text' : 'Arena webdev'
+  const boardLabel = BOARD_LABELS[board]
   const domains = ciDomain(visible)
   const [first, second] = rows
   const topGap =
@@ -47,7 +49,7 @@ export function LeaderboardClient({
       : 'rating 是偏好评分，不是准确率；text / webdev 不可跨榜比较。'
 
   return (
-    <div className="lb-wrap sheet-inner">
+    <div className="sheet-inner">
       <div className="lb-head">
         <div>
           <h1>Arena 榜单</h1>
@@ -59,20 +61,16 @@ export function LeaderboardClient({
       </div>
 
       <nav className="tabs" aria-label="榜单类型">
-        <Link
-          className={`tab ${board === 'text' ? 'active' : ''}`}
-          href="/leaderboards/text"
-          aria-current={board === 'text' ? 'page' : undefined}
-        >
-          Arena text
-        </Link>
-        <Link
-          className={`tab ${board === 'webdev' ? 'active' : ''}`}
-          href="/leaderboards/webdev"
-          aria-current={board === 'webdev' ? 'page' : undefined}
-        >
-          Arena webdev
-        </Link>
+        {BOARDS.map(value => (
+          <Link
+            key={value}
+            className={`tab ${board === value ? 'active' : ''}`}
+            href={`/leaderboards/${value}`}
+            aria-current={board === value ? 'page' : undefined}
+          >
+            {BOARD_LABELS[value]}
+          </Link>
+        ))}
       </nav>
 
       <div className="lb-toolbar">

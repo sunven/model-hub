@@ -8,26 +8,21 @@ import {
   ISSUES_URL,
   LEGAL_REVIEW_URL,
   NEW_ISSUE_URL,
-  OG_IMAGE,
   REPO_URL,
+  SITE_NAME,
+  pageMetadata,
 } from '@/lib/site'
 import { breadcrumbLd, webPageLd } from '@/lib/structured-data'
 
 const title = '数据说明与许可'
 const description = 'Model Hub 的数据来源、许可、修改说明、价格与汇率免责、隐私、纠错和开源信息。'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title,
   description,
-  alternates: { canonical: '/about' },
-  openGraph: {
-    title: `${title} | Model Hub`,
-    description,
-    url: '/about',
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'Model Hub 数据说明与许可' }],
-  },
-  twitter: { card: 'summary_large_image', title: `${title} | Model Hub`, description, images: [OG_IMAGE] },
-}
+  path: '/about',
+  alt: `${SITE_NAME} 数据说明与许可`,
+})
 
 const apiDate = modelsDevDate
 const arenaTextDate = arenaDate('text')

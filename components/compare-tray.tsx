@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useMemo } from 'react'
 import { useCompare } from './compare-provider'
-import { compareHref } from '@/lib/compare-set'
+import { COMPARE_LIMIT, compareHref } from '@/lib/compare-set'
 
 export function CompareTray() {
   const { selected, modelIndex, remove, clear, showToast } = useCompare()
@@ -16,7 +16,7 @@ export function CompareTray() {
 
   return (
     <div className="compare-tray" role="region" aria-label="对比托盘">
-      <span className="tray-label">对比 {selected.length}/3</span>
+      <span className="tray-label">对比 {selected.length}/{COMPARE_LIMIT}</span>
       {selected.map(id => (
         <span className="tray-chip" key={id}>
           {byId.get(id)?.name ?? id}
