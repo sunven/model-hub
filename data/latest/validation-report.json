@@ -16,9 +16,9 @@
   "stats": {
     "launchModels": 43,
     "models": 43,
-    "offers": 1246,
+    "offers": 1259,
     "scores": 61,
-    "unmatched": 504,
+    "unmatched": 507,
     "modelsWithScores": 33,
     "modelsWithoutScores": 10,
     "byBoard": {
@@ -26,14 +26,14 @@
       "webdev": 31
     },
     "offerStatusCounts": {
-      "available_unmarked": 1223,
+      "available_unmarked": 1236,
       "beta": 17,
       "deprecated": 6
     },
     "offerKindCounts": {
-      "cloud": 109,
+      "cloud": 110,
       "first_party": 59,
-      "gateway": 1078
+      "gateway": 1090
     },
     "availabilityCounts": {
       "available": 40,
@@ -41,14 +41,14 @@
     },
     "fxAgeDays": 1,
     "arena": {
-      "textRows": 11099,
-      "webdevRows": 647,
-      "textCategoryRows": 418,
-      "webdevCategoryRows": 150,
-      "textDeduped": 418,
-      "webdevDeduped": 149,
+      "textRows": 11132,
+      "webdevRows": 655,
+      "textCategoryRows": 419,
+      "webdevCategoryRows": 152,
+      "textDeduped": 419,
+      "webdevDeduped": 151,
       "scores": 61,
-      "unmatched": 504,
+      "unmatched": 507,
       "matchedRows": 61,
       "byBoard": {
         "text": 30,
@@ -61,6 +61,6 @@
       "hash": "c66340a9362f142d6b60fc5bf60607c7c5e61c5dfe5b82bcb0e3246b723fdd85"
     }
   },
-  "generatedAt": "2026-10-27T04:32:57.270Z",
-  "snapshotId": "20261027-76543201"
+  "generatedAt": "2026-10-29T10:17:37.653Z",
+  "snapshotId": "20261029-1e9fc8b3"
 }
