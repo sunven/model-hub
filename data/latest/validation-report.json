@@ -39,7 +39,7 @@
       "available": 39,
       "mixed": 4
     },
-    "fxAgeDays": 2,
+    "fxAgeDays": 3,
     "arena": {
       "textRows": 11132,
       "webdevRows": 655,
@@ -61,6 +61,6 @@
       "hash": "c66340a9362f142d6b60fc5bf60607c7c5e61c5dfe5b82bcb0e3246b723fdd85"
     }
   },
-  "generatedAt": "2026-11-01T10:42:24.347Z",
-  "snapshotId": "20261101-6d07361a"
+  "generatedAt": "2026-11-02T11:31:36.277Z",
+  "snapshotId": "20261102-c807fa7f"
 }
