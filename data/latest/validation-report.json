@@ -17,9 +17,9 @@
   "stats": {
     "launchModels": 43,
     "models": 43,
-    "offers": 1293,
+    "offers": 1297,
     "scores": 61,
-    "unmatched": 509,
+    "unmatched": 511,
     "modelsWithScores": 33,
     "modelsWithoutScores": 10,
     "byBoard": {
@@ -27,29 +27,29 @@
       "webdev": 31
     },
     "offerStatusCounts": {
-      "available_unmarked": 1266,
+      "available_unmarked": 1270,
       "beta": 18,
       "deprecated": 9
     },
     "offerKindCounts": {
-      "cloud": 115,
+      "cloud": 117,
       "first_party": 59,
-      "gateway": 1119
+      "gateway": 1121
     },
     "availabilityCounts": {
       "available": 38,
       "mixed": 5
     },
-    "fxAgeDays": 3,
+    "fxAgeDays": 1,
     "arena": {
-      "textRows": 11153,
-      "webdevRows": 659,
-      "textCategoryRows": 420,
-      "webdevCategoryRows": 153,
-      "textDeduped": 420,
-      "webdevDeduped": 152,
+      "textRows": 11175,
+      "webdevRows": 663,
+      "textCategoryRows": 421,
+      "webdevCategoryRows": 154,
+      "textDeduped": 421,
+      "webdevDeduped": 153,
       "scores": 61,
-      "unmatched": 509,
+      "unmatched": 511,
       "matchedRows": 61,
       "byBoard": {
         "text": 30,
@@ -62,6 +62,6 @@
       "hash": "c66340a9362f142d6b60fc5bf60607c7c5e61c5dfe5b82bcb0e3246b723fdd85"
     }
   },
-  "generatedAt": "2026-11-09T11:55:55.343Z",
-  "snapshotId": "20261109-dcdc7176"
+  "generatedAt": "2026-11-10T11:29:05.596Z",
+  "snapshotId": "20261110-d850b2f7"
 }
