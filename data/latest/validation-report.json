@@ -17,7 +17,7 @@
   "stats": {
     "launchModels": 43,
     "models": 43,
-    "offers": 1300,
+    "offers": 1303,
     "scores": 61,
     "unmatched": 513,
     "modelsWithScores": 33,
@@ -27,14 +27,14 @@
       "webdev": 31
     },
     "offerStatusCounts": {
-      "available_unmarked": 1273,
+      "available_unmarked": 1276,
       "beta": 18,
       "deprecated": 9
     },
     "offerKindCounts": {
       "cloud": 117,
       "first_party": 59,
-      "gateway": 1124
+      "gateway": 1127
     },
     "availabilityCounts": {
       "available": 38,
@@ -62,6 +62,6 @@
       "hash": "c66340a9362f142d6b60fc5bf60607c7c5e61c5dfe5b82bcb0e3246b723fdd85"
     }
   },
-  "generatedAt": "2026-11-11T11:18:59.406Z",
-  "snapshotId": "20261111-8fc5f6f1"
+  "generatedAt": "2026-11-12T11:37:11.717Z",
+  "snapshotId": "20261112-785c1feb"
 }
