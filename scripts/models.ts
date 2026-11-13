@@ -91,9 +91,9 @@ function buildOffer(row: Row, lab: string, modelVersionId: string, snapshotId: s
         tiers: Array.isArray(cost?.tiers) ? cost.tiers : [],
       }
     : null
-  let id = offerId(row.providerId, row.modelId)
-  let n = 2
-  while (seen.has(id)) id = `${offerId(row.providerId, row.modelId)}_${n++}`
+  const base = offerId(row.providerId, row.modelId)
+  let id = base
+  for (let n = 2; seen.has(id); n++) id = `${base}_${n}`
   seen.add(id)
   return {
     id,

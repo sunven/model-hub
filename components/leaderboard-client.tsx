@@ -47,9 +47,9 @@ export function LeaderboardClient({
     return rows.filter(row => `${row.name} ${row.lab} ${row.condition}`.toLowerCase().includes(query))
   }, [rows, q])
 
-  const visible = filtered.slice(0, visibleCount)
+  const visible = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount])
   const boardLabel = BOARD_LABELS[board]
-  const domains = ciDomain(visible)
+  const domains = useMemo(() => ciDomain(visible), [visible])
   const [first, second] = rows
   const topGap =
     first && second

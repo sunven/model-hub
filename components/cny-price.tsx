@@ -21,13 +21,14 @@ export function CnyPricePair({ inputMin, inputMax, outputMin, outputMax, fx }: {
   inputMin: number; inputMax: number; outputMin: number; outputMax: number; fx: FxConfig
 }) {
   const state = useFreshness()
-  const input = state ? fmtCnyRange(inputMin, inputMax, fx, state.now) : null
-  const output = state ? fmtCnyRange(outputMin, outputMax, fx, state.now) : null
+  if (!state) return null
+  const input = fmtCnyRange(inputMin, inputMax, fx, state.now)
+  const output = fmtCnyRange(outputMin, outputMax, fx, state.now)
   if (!input || !output) return null
   return <>
     {' · '}
-    <Text as="span" type="supporting" className="cny-range">{input}</Text>
+    <CnyRange min={inputMin} max={inputMax} fx={fx} className="cny-range" />
     {' / '}
-    <Text as="span" type="supporting" className="cny-range">{output}</Text>
+    <CnyRange min={outputMin} max={outputMax} fx={fx} className="cny-range" />
   </>
 }

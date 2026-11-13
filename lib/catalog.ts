@@ -30,7 +30,7 @@ export interface CatalogInput {
   scores: Score[]
 }
 
-function scoreView(score: Score | undefined): ScoreView | null {
+function scoreView(score: Score | null | undefined): ScoreView | null {
   if (!score) return null
   return {
     rating: score.rating,
@@ -77,15 +77,19 @@ function summarizeOffers(offers: Offer[]): OfferSummary {
   const priced = pricedPrimary.length
     ? pricedPrimary
     : offers.filter(hasCompletePrice)
-  const price: PriceSummary | null = priced.length
-    ? {
-        inputMin: Math.min(...priced.map(offer => offer.price!.input!)),
-        inputMax: Math.max(...priced.map(offer => offer.price!.input!)),
-        outputMin: Math.min(...priced.map(offer => offer.price!.output!)),
-        outputMax: Math.max(...priced.map(offer => offer.price!.output!)),
-        gatewayOnly: pricedPrimary.length === 0,
-      }
-    : null
+  let price: PriceSummary | null = null
+  if (priced.length) {
+    let inputMin = Infinity, inputMax = -Infinity, outputMin = Infinity, outputMax = -Infinity
+    for (const offer of priced) {
+      const input = offer.price!.input!
+      const output = offer.price!.output!
+      if (input < inputMin) inputMin = input
+      if (input > inputMax) inputMax = input
+      if (output < outputMin) outputMin = output
+      if (output > outputMax) outputMax = output
+    }
+    price = { inputMin, inputMax, outputMin, outputMax, gatewayOnly: pricedPrimary.length === 0 }
+  }
   const providerNames = [...new Set(primary.map(offer => offer.providerName))].sort((a, b) =>
     a.localeCompare(b),
   )
@@ -114,7 +118,12 @@ export function buildCatalog({ models, offers, scores }: CatalogInput): Catalog 
     scoresByModel.set(score.modelVersionId, list)
   }
 
+  const primaries = new Map<string, { text: Score | null; webdev: Score | null }>()
   const rows: ModelRow[] = models.map(model => {
+    const modelScores = scoresByModel.get(model.id)
+    const textPrimary = primaryScore(modelScores, 'text')
+    const webdevPrimary = primaryScore(modelScores, 'webdev')
+    primaries.set(model.id, { text: textPrimary, webdev: webdevPrimary })
     const summary = summarizeOffers(offersByModel.get(model.id) ?? [])
     return {
       id: model.id,
@@ -130,14 +139,13 @@ export function buildCatalog({ models, offers, scores }: CatalogInput): Catalog 
       outputLimit: summary.outputLimit,
       releaseDate: model.releaseDate,
       price: summary.price,
-      text: scoreView(primaryScore(scoresByModel.get(model.id), 'text') ?? undefined),
-      webdev: scoreView(primaryScore(scoresByModel.get(model.id), 'webdev') ?? undefined),
+      text: scoreView(textPrimary),
+      webdev: scoreView(webdevPrimary),
       providerNames: summary.providerNames,
       gatewayOnly: summary.gatewayOnly,
       unmarked: summary.unmarked,
     }
   })
-  const rowById = new Map(rows.map(row => [row.id, row]))
   const index: ModelIndexEntry[] = rows.map(row => ({
     id: row.id,
     canonicalId: row.canonicalId,
@@ -150,32 +158,33 @@ export function buildCatalog({ models, offers, scores }: CatalogInput): Catalog 
   }
 
   const detailByCanonical = new Map<string, ModelDetail>()
-  for (const model of models) {
-    const row = rowById.get(model.id)
-    if (!row) continue
+  for (let i = 0; i < models.length; i++) {
+    const model = models[i]
+    const row = rows[i]
     const allScores = sortScores(scoresByModel.get(model.id) ?? [])
+    const primary = primaries.get(model.id)!
     detailByCanonical.set(model.canonicalModelId, {
       model,
       row,
       offers: [...(offersByModel.get(model.id) ?? [])].sort(compareOffers),
       textScores: allScores.filter(score => score.board === 'text'),
       webdevScores: allScores.filter(score => score.board === 'webdev'),
-      textPrimary: primaryScore(scoresByModel.get(model.id), 'text'),
-      webdevPrimary: primaryScore(scoresByModel.get(model.id), 'webdev'),
+      textPrimary: primary.text,
+      webdevPrimary: primary.webdev,
       textDomain: domains.text,
       webdevDomain: domains.webdev,
     })
   }
+
+  const textRanked = rows
+    .filter(row => row.text)
+    .sort((a, b) => b.text!.rating - a.text!.rating)
 
   return {
     rows,
     index,
     domains,
     getDetail: canonicalId => detailByCanonical.get(canonicalId) ?? null,
-    topText: limit =>
-      rows
-        .filter(row => row.text)
-        .sort((a, b) => b.text!.rating - a.text!.rating)
-        .slice(0, limit),
+    topText: limit => textRanked.slice(0, limit),
   }
 }

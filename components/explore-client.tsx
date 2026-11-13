@@ -32,7 +32,7 @@ import {
   selectModels,
   type SortKey,
 } from '@/lib/explore-query'
-import { ciHalf, fmtContext, fmtPriceLines } from '@/lib/format'
+import { fmtContext, fmtPriceLines, scoreMeta } from '@/lib/format'
 import { modelHref } from '@/lib/site'
 import type { BoardDomains, CiDomain, ModelRow, ScoreView } from '@/lib/types'
 
@@ -46,7 +46,7 @@ function MobileScore({ label, score, domain }: { label: string; score: ScoreView
             <Text weight="semibold" hasTabularNumbers>{score.rating.toFixed(1)}</Text>
             <CiRail stat={score} domain={domain} width={48} />
           </HStack>
-          <Text type="supporting">#{score.rank} · {score.condition} · ±{ciHalf(score).toFixed(1)}</Text>
+          <Text type="supporting">{scoreMeta(score)}</Text>
         </>
       ) : (
         <Text type="supporting">未收录</Text>

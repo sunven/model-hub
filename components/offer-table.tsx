@@ -11,24 +11,14 @@ import { Switch } from '@astryxdesign/core/Switch'
 import { Table, proportional, type TableColumn } from '@astryxdesign/core/Table'
 import { Text } from '@astryxdesign/core/Text'
 import type { Offer } from '@/lib/types'
-import type { OfferStatus } from '@/lib/snapshot'
-import { compareOffers } from '@/lib/offers'
 import {
   fmtContext,
   fmtMoney,
   offerStatusLabel,
+  offerStatusVariant,
   providerKindLabel,
   reasoningText,
 } from '@/lib/format'
-
-type StatusVariant = 'success' | 'warning' | 'error'
-
-const STATUS_VARIANT: Record<OfferStatus, StatusVariant> = {
-  available_unmarked: 'success',
-  beta: 'warning',
-  alpha: 'warning',
-  deprecated: 'error',
-}
 
 interface OfferRow extends Record<string, unknown> {
   id: string
@@ -36,7 +26,7 @@ interface OfferRow extends Record<string, unknown> {
   providerModelId: string
   kind: string
   statusLabel: string
-  statusVariant: StatusVariant
+  statusVariant: 'success' | 'warning' | 'error' | 'info' | 'blue' | 'neutral'
   input: string
   output: string
   cache: string
@@ -98,25 +88,30 @@ export function OfferTable({ offers, hasPrimary }: { offers: Offer[]; hasPrimary
   const [showGateways, setShowGateways] = useState(!hasPrimary)
   const [showDeprecated, setShowDeprecated] = useState(false)
 
-  const rows = useMemo(
+  const allRows = useMemo(
     () =>
-      offers
-        .filter(o => (showGateways || o.providerKind !== 'gateway') && (showDeprecated || o.status !== 'deprecated'))
-        .sort(compareOffers)
-        .map<OfferRow>(offer => ({
-          id: offer.id,
-          providerName: offer.providerName,
-          providerModelId: offer.providerModelId,
-          kind: providerKindLabel(offer.providerKind),
-          statusLabel: offerStatusLabel(offer.status),
-          statusVariant: STATUS_VARIANT[offer.status],
-          input: fmtMoney(offer.price?.input),
-          output: fmtMoney(offer.price?.output),
-          cache: fmtMoney(offer.price?.cacheRead),
-          context: fmtContext(offer.limits.context),
-          reason: reasoningText(offer.capabilities.reasoningOptions, offer.capabilities.reasoning),
-        })),
-    [offers, showGateways, showDeprecated],
+      offers.map<OfferRow>(offer => ({
+        id: offer.id,
+        providerName: offer.providerName,
+        providerModelId: offer.providerModelId,
+        kind: providerKindLabel(offer.providerKind),
+        statusLabel: offerStatusLabel(offer.status),
+        statusVariant: offerStatusVariant(offer.status),
+        input: fmtMoney(offer.price?.input),
+        output: fmtMoney(offer.price?.output),
+        cache: fmtMoney(offer.price?.cacheRead),
+        context: fmtContext(offer.limits.context),
+        reason: reasoningText(offer.capabilities.reasoningOptions, offer.capabilities.reasoning),
+      })),
+    [offers],
+  )
+
+  const rows = useMemo(
+    () => allRows.filter((_, i) => {
+      const o = offers[i]
+      return (showGateways || o.providerKind !== 'gateway') && (showDeprecated || o.status !== 'deprecated')
+    }),
+    [allRows, offers, showGateways, showDeprecated],
   )
 
   return (

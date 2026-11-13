@@ -3,8 +3,6 @@ import { fmtContext } from './format'
 
 export type SortKey = 'arena_text' | 'arena_webdev' | 'newest' | 'price' | 'context'
 
-export type ExploreListField = 'labs' | 'providers'
-
 export type ExploreQuery = {
   q: string
   labs: string[]
@@ -162,8 +160,7 @@ const COMPARATORS: Record<SortKey, (a: ModelRow, b: ModelRow) => number> = {
   context: compareContext,
 }
 
-function matchesQuery(model: ModelRow, query: ExploreQuery): boolean {
-  const needle = query.q.trim().toLowerCase()
+function matchesQuery(model: ModelRow, query: ExploreQuery, needle: string): boolean {
   if (needle) {
     const haystack = `${model.name} ${model.lab} ${model.canonicalId} ${model.family ?? ''}`.toLowerCase()
     if (!haystack.includes(needle)) return false
@@ -173,12 +170,8 @@ function matchesQuery(model: ModelRow, query: ExploreQuery): boolean {
     const providerMatch = query.providers.some(provider => model.providerNames.includes(provider))
     if (!providerMatch && !(query.gatewayOnly && model.gatewayOnly)) return false
   }
-  if (query.maxOutput !== null) {
-    if (!model.price || model.price.outputMin > query.maxOutput) return false
-  }
-  if (query.minContext !== null) {
-    if (!model.context || model.context < query.minContext) return false
-  }
+  if (query.maxOutput !== null && (!model.price || model.price.outputMin > query.maxOutput)) return false
+  if (query.minContext !== null && (!model.context || model.context < query.minContext)) return false
   if (query.reasoning && model.reasoningLabel === '不支持') return false
   if (query.openWeights && !model.openWeights) return false
   if (query.stableOnly && (model.availability !== 'available' || model.releaseBadges.length > 0)) return false
@@ -187,7 +180,8 @@ function matchesQuery(model: ModelRow, query: ExploreQuery): boolean {
 }
 
 export function selectModels(models: ModelRow[], query: ExploreQuery): ModelRow[] {
-  return models.filter(model => matchesQuery(model, query)).sort(COMPARATORS[query.sortKey])
+  const needle = query.q.trim().toLowerCase()
+  return models.filter(model => matchesQuery(model, query, needle)).sort(COMPARATORS[query.sortKey])
 }
 
 export function describeActiveFilters(query: ExploreQuery): ActiveFilter[] {
@@ -207,31 +201,23 @@ export function describeActiveFilters(query: ExploreQuery): ActiveFilter[] {
   return filters
 }
 
+const FILTER_RESETS: Record<string, Partial<ExploreQuery>> = {
+  q: { q: '' },
+  gatewayOnly: { gatewayOnly: false },
+  maxOutput: { maxOutput: null },
+  minContext: { minContext: null },
+  reasoning: { reasoning: false },
+  openWeights: { openWeights: false },
+  stableOnly: { stableOnly: false },
+  hasArena: { hasArena: false },
+}
+
 export function removeFilter(query: ExploreQuery, filter: ActiveFilter): ExploreQuery {
-  switch (filter.kind) {
-    case 'q':
-      return { ...query, q: '' }
-    case 'lab':
-      return { ...query, labs: query.labs.filter(lab => lab !== filter.value) }
-    case 'provider':
-      return { ...query, providers: query.providers.filter(provider => provider !== filter.value) }
-    case 'gatewayOnly':
-      return { ...query, gatewayOnly: false }
-    case 'maxOutput':
-      return { ...query, maxOutput: null }
-    case 'minContext':
-      return { ...query, minContext: null }
-    case 'reasoning':
-      return { ...query, reasoning: false }
-    case 'openWeights':
-      return { ...query, openWeights: false }
-    case 'stableOnly':
-      return { ...query, stableOnly: false }
-    case 'hasArena':
-      return { ...query, hasArena: false }
-  }
+  if (filter.kind === 'lab') return { ...query, labs: query.labs.filter(lab => lab !== filter.value) }
+  if (filter.kind === 'provider') return { ...query, providers: query.providers.filter(provider => provider !== filter.value) }
+  return { ...query, ...FILTER_RESETS[filter.kind] }
 }
 
 export function isDefaultExploreQuery(query: ExploreQuery): boolean {
-  return serializeExploreQuery(query).toString() === ''
+  return serializeExploreQuery(query).size === 0
 }

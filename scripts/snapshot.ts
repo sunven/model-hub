@@ -36,9 +36,10 @@ function json(value: unknown): string {
 
 async function makeSnapshotId(input: SnapshotInput, now: Date): Promise<string> {
   const hash = createHash('sha256')
-  // Hash the recipe as well as its inputs; no manually maintained pipeline version.
-  for (const file of ['snapshot.ts', 'fetch.ts', 'publish-snapshot.ts', 'models.ts', 'arena.ts', 'overrides.ts', 'config.ts', '../lib/snapshot.ts', '../lib/freshness.ts', '../package-lock.json']) {
-    hash.update(file).update(await readFile(new URL(file, import.meta.url)))
+  const recipeFiles = ['snapshot.ts', 'fetch.ts', 'publish-snapshot.ts', 'models.ts', 'arena.ts', 'overrides.ts', 'config.ts', '../lib/snapshot.ts', '../lib/freshness.ts', '../package-lock.json']
+  const contents = await Promise.all(recipeFiles.map(file => readFile(new URL(file, import.meta.url))))
+  for (let i = 0; i < recipeFiles.length; i++) {
+    hash.update(recipeFiles[i]).update(contents[i])
   }
   const { warnings, sources, ...content } = input
   const sourceHashes = {

@@ -3,14 +3,13 @@ import { checkFreshness } from './freshness'
 import type { CiDomain, CiStat, PriceSummary } from './types'
 
 export function fmtMoney(value: number | null | undefined): string {
-  if (value === null || value === undefined) return '未公布'
+  if (value == null) return '未公布'
   if (value === 0) return '免费'
-  const rounded = Math.round(value * 100) / 100
-  return `$${Number.isInteger(rounded) ? rounded.toFixed(0) : rounded.toFixed(2).replace(/0$/, '')}`
+  return `$${Math.round(value * 100) / 100}`
 }
 
 export function fmtRange(min: number | null | undefined, max: number | null | undefined): string {
-  if (min === null || min === undefined || max === null || max === undefined) return '未公布'
+  if (min == null || max == null) return '未公布'
   return min === max ? fmtMoney(min) : `${fmtMoney(min)}–${fmtMoney(max)}`
 }
 
@@ -26,7 +25,7 @@ export function fmtContext(value: number | null | undefined): string {
   if (!value) return '—'
   if (value >= 1_000_000) {
     const m = value / 1_000_000
-    return `${(Math.round(m * 100) / 100).toString().replace(/\.0+$/, '')}M`
+    return `${Math.round(m * 100) / 100}M`
   }
   if (value >= 1_000) return `${Math.round(value / 1_000)}K`
   return String(value)
@@ -43,13 +42,18 @@ export function fmtVotes(votes: number): string {
 }
 
 export function ciDomain(items: (CiStat | null | undefined)[]): CiDomain | null {
-  const valid = items.filter(
-    (item): item is CiStat =>
-      Boolean(item && Number.isFinite(item.ciLow) && Number.isFinite(item.ciHigh) && Number.isFinite(item.rating)),
-  )
-  if (!valid.length) return null
-  const low = Math.min(...valid.map(item => item.ciLow), ...valid.map(item => item.rating))
-  const high = Math.max(...valid.map(item => item.ciHigh), ...valid.map(item => item.rating))
+  let low = Infinity
+  let high = -Infinity
+  let count = 0
+  for (const item of items) {
+    if (!item || !Number.isFinite(item.ciLow) || !Number.isFinite(item.ciHigh) || !Number.isFinite(item.rating)) continue
+    count++
+    if (item.ciLow < low) low = item.ciLow
+    if (item.rating < low) low = item.rating
+    if (item.ciHigh > high) high = item.ciHigh
+    if (item.rating > high) high = item.rating
+  }
+  if (!count) return null
   const pad = Math.max((high - low) * 0.04, 0.4)
   return { min: low - pad, max: high + pad }
 }
@@ -66,20 +70,22 @@ export function scoreMeta(score: CiStat & { rank: number; condition: string }): 
   return `#${score.rank} · ${score.condition} · ±${ciHalf(score).toFixed(1)}`
 }
 
-const AVAILABILITY: Record<Availability, { label: string; className: string }> = {
-  available: { label: '可用', className: 'stable' },
-  mixed: { label: '混合', className: 'mixed' },
-  deprecated: { label: '已弃用', className: 'deprecated' },
-  open_weights_only: { label: '可自托管', className: 'ow' },
-  unknown: { label: '未知', className: 'mixed' },
+type BadgeVariant = 'success' | 'warning' | 'error' | 'info' | 'blue' | 'neutral'
+
+const AVAILABILITY: Record<Availability, { label: string; variant: BadgeVariant }> = {
+  available: { label: '可用', variant: 'success' },
+  mixed: { label: '混合', variant: 'warning' },
+  deprecated: { label: '已弃用', variant: 'error' },
+  open_weights_only: { label: '可自托管', variant: 'info' },
+  unknown: { label: '未知', variant: 'neutral' },
 }
 
 export function availabilityLabel(availability: Availability): string {
   return AVAILABILITY[availability].label
 }
 
-export function availabilityClass(availability: Availability): string {
-  return AVAILABILITY[availability].className
+export function availabilityVariant(availability: Availability): BadgeVariant {
+  return AVAILABILITY[availability].variant
 }
 
 export function providerKindLabel(kind: string): string {
@@ -88,19 +94,19 @@ export function providerKindLabel(kind: string): string {
   return '网关'
 }
 
-const OFFER_STATUS: Record<OfferStatus, { label: string; className: string }> = {
-  available_unmarked: { label: '可用', className: 'stable' },
-  beta: { label: 'Beta', className: 'beta' },
-  alpha: { label: 'Alpha', className: 'beta' },
-  deprecated: { label: '已弃用', className: 'deprecated' },
+const OFFER_STATUS: Record<OfferStatus, { label: string; variant: BadgeVariant }> = {
+  available_unmarked: { label: '可用', variant: 'success' },
+  beta: { label: 'Beta', variant: 'warning' },
+  alpha: { label: 'Alpha', variant: 'warning' },
+  deprecated: { label: '已弃用', variant: 'error' },
 }
 
 export function offerStatusLabel(status: OfferStatus): string {
   return OFFER_STATUS[status].label
 }
 
-export function offerStatusClass(status: OfferStatus): string {
-  return OFFER_STATUS[status].className
+export function offerStatusVariant(status: OfferStatus): BadgeVariant {
+  return OFFER_STATUS[status].variant
 }
 
 export function reasoningText(options: any[] | undefined, supported: boolean): string {

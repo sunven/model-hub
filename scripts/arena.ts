@@ -20,7 +20,6 @@ interface ArenaRow {
   rank: number
   votes: number
   snapshotDate: string
-  category: string
   sourceRef: string
 }
 
@@ -44,7 +43,7 @@ function normalizeRows(raw: Record<string, unknown>[], board: Board): { rows: Ar
     const ciHigh = finiteNumber(r.rating_upper) ?? rating
     const rank = finiteNumber(r.rank)
     const votes = finiteNumber(r.vote_count)
-    if (rating === null || ciLow === null || ciHigh === null || rank === null || votes === null) {
+    if (rating === null || rank === null || votes === null) {
       warnings.push(`Arena ${board} row has invalid numbers: ${modelName} (${organization})`)
       continue
     }
@@ -59,12 +58,11 @@ function normalizeRows(raw: Record<string, unknown>[], board: Board): { rows: Ar
       organization,
       condition: conditionFromName(modelName),
       rating,
-      ciLow,
-      ciHigh,
+      ciLow: ciLow!,
+      ciHigh: ciHigh!,
       rank: Math.trunc(rank),
       votes: Math.trunc(votes),
       snapshotDate,
-      category,
       sourceRef: sourceRefArena(board, modelName, snapshotDate),
     }
     const key = `${modelName}|${organization}`
@@ -100,7 +98,7 @@ function compilePatterns(crosswalk: CrosswalkEntry[], launch: LaunchEntry[], har
       for (const pattern of patterns ?? []) {
         try {
           out.get(board)!.push({ canonicalId: entry.canonicalId, regex: new RegExp(pattern, 'i') })
-        } catch (err) {
+        } catch {
           hardFailures.push(`invalid crosswalk regex for ${entry.canonicalId} (${board}): ${pattern}`)
         }
       }
@@ -139,7 +137,7 @@ export function buildArenaData(args: {
 
   for (const board of ['text', 'webdev'] as const) {
     const rows = board === 'text' ? text.rows : webdev.rows
-    const boardPatterns = patterns.get(board) ?? []
+    const boardPatterns = patterns.get(board)!
     for (const row of rows) {
       const matches = boardPatterns.filter(p => p.regex.test(row.modelName))
       if (matches.length > 1) {

@@ -18,29 +18,34 @@ export function FreshnessProvider({ freshness, children }: {
 
   useEffect(() => {
     let timer: number
+    let lastCheck = 0
     const check = () => {
       window.clearTimeout(timer)
       const now = Date.now()
-      setState({ now, freshness: snapshotFreshness({
+      if (now - lastCheck < 1000) return
+      lastCheck = now
+      const timestamps = {
         modelsDev: freshness.modelsDev.fetchedAt,
         arena: [freshness.arena.fetchedAt],
         fx: freshness.fx.asOf,
-      }, now) })
+      }
+      const state = snapshotFreshness(timestamps, now)
+      setState({ now, freshness: state })
       const expirations = [
-        checkFreshness('modelsDev', freshness.modelsDev.fetchedAt, now),
-        checkFreshness('arena', freshness.arena.fetchedAt, now),
-        checkFreshness('fx', freshness.fx.asOf, now),
+        checkFreshness('modelsDev', timestamps.modelsDev, now),
+        checkFreshness('arena', timestamps.arena[0], now),
+        checkFreshness('fx', timestamps.fx, now),
       ].flatMap(({ expiresAt }) => expiresAt !== null && expiresAt >= now ? [expiresAt + 1] : [])
-      // Recheck hourly for clock changes, and immediately after each expiry.
       timer = window.setTimeout(check, Math.min(3_600_000, ...expirations.map(time => time - now)))
     }
     check()
+    const onVisible = () => { if (document.visibilityState === 'visible') check() }
     window.addEventListener('focus', check)
-    document.addEventListener('visibilitychange', check)
+    document.addEventListener('visibilitychange', onVisible)
     return () => {
       window.clearTimeout(timer)
       window.removeEventListener('focus', check)
-      document.removeEventListener('visibilitychange', check)
+      document.removeEventListener('visibilitychange', onVisible)
     }
   }, [freshness])
 

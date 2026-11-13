@@ -8,7 +8,6 @@ import {
   removeFilter as removeExploreFilter,
   serializeExploreQuery,
   type ActiveFilter,
-  type ExploreListField,
   type ExploreQuery,
 } from '@/lib/explore-query'
 import { useNoindex } from './use-noindex'
@@ -39,17 +38,9 @@ export function useExploreQuery() {
 
   const reset = useCallback(() => setQuery(DEFAULT_EXPLORE_QUERY), [])
 
-  const toggleInList = useCallback((field: ExploreListField, value: string) => {
-    setQuery(previous => {
-      const values = previous[field]
-      const next = values.includes(value) ? values.filter(item => item !== value) : [...values, value]
-      return field === 'labs' ? { ...previous, labs: next } : { ...previous, providers: next }
-    })
-  }, [])
-
   const removeFilter = useCallback((filter: ActiveFilter) => {
     setQuery(previous => removeExploreFilter(previous, filter))
   }, [])
 
-  return { query, update, reset, toggleInList, removeFilter, urlReady }
+  return { query, update, reset, removeFilter, urlReady }
 }

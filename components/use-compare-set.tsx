@@ -41,12 +41,12 @@ export function useCompareSet(modelIndex: ModelIndexEntry[], onLimit: () => void
   const initialized = useRef(false)
 
   const commit = useCallback((next: string[]) => {
-    if (current.current.length !== next.length || current.current.some((id, index) => id !== next[index])) {
+    if (current.current.join(',') !== next.join(',')) {
       current.current = next
       setSelected(next)
+      persistSelection(next)
+      replaceCompareUrl(next)
     }
-    persistSelection(next)
-    replaceCompareUrl(next)
   }, [])
 
   const synchronize = useCallback((fromHistory = false) => {
