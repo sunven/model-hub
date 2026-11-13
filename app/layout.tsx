@@ -5,6 +5,7 @@ import '@fontsource/ibm-plex-sans/latin-500.css'
 import '@fontsource/ibm-plex-sans/latin-600.css'
 import '@fontsource/ibm-plex-mono/latin-400.css'
 import './globals.css'
+import { AstryxThemeProvider } from '@/components/astryx-theme-provider'
 import { CompareProvider } from '@/components/compare-provider'
 import { CompareTray } from '@/components/compare-tray'
 import { DataFreshness } from '@/components/data-freshness'
@@ -48,17 +49,19 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body>
         <JsonLd data={websiteLd()} />
         <a className="skip-link" href="#main-content">跳到主要内容</a>
-        <CompareProvider modelIndex={catalog.index}>
-          <FreshnessProvider freshness={manifest.freshness}>
-            <SiteHeader />
-            <div className="sheet">
-              <DataFreshness />
-              <main id="main-content" tabIndex={-1}>{children}</main>
-              <SiteFooter />
-            </div>
-            <CompareTray />
-          </FreshnessProvider>
-        </CompareProvider>
+        <AstryxThemeProvider>
+          <CompareProvider modelIndex={catalog.index}>
+            <FreshnessProvider freshness={manifest.freshness}>
+              <SiteHeader />
+              <div className="sheet">
+                <DataFreshness />
+                <main id="main-content" tabIndex={-1}>{children}</main>
+                <SiteFooter />
+              </div>
+              <CompareTray />
+            </FreshnessProvider>
+          </CompareProvider>
+        </AstryxThemeProvider>
       </body>
     </html>
   )

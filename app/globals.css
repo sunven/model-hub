@@ -5,31 +5,34 @@
    Type: IBM Plex Sans; IBM Plex Mono only for canonical / provider model IDs. */
 
 :root {
-  --ground: #f9fbfc;
+  /* First-paint baseline: the hub-matcha light palette, used before the Theme
+     wrapper's tokens apply and by elements outside it (body, skip link). */
+  --ground: #f0f0e0;
   --surface: #ffffff;
-  --raised: #f4f6f8;
-  --active: #ebedee;
-  --border: #e8eaec;
-  --rule: #f0f1f2;
-  --control: #cdced1;
-  --text: #131416;
-  --muted: #5d5f60;
-  --faint: #6b6b6b;
-  --accent: #1b6c80;
-  --primary: #131416;
+  --raised: #f7f7ec;
+  --active: #e6e8d5;
+  --border: #dce3ce;
+  --rule: #e8ebdb;
+  --control: #b7c29e;
+  --text: #3e481d;
+  --muted: #5a6b2a;
+  --faint: #627235;
+  --accent: #3e481d;
+  --primary: #3e481d;
   --primary-ink: #ffffff;
+  --primary-hover: #303817;
   --positive: #1e7b4f;
   --negative: #c4242a;
   --warning: #92400e;
-  --chart-1: #1b6c80;
-  --pill-positive-bg: #dcfae5;
-  --pill-positive-ink: #04250e;
-  --pill-negative-bg: #ffedea;
-  --pill-negative-ink: #831c1e;
-  --pill-warning-bg: #fffbeb;
-  --pill-warning-ink: #92400e;
-  --pill-neutral-bg: #ebedee;
-  --pill-neutral-ink: #353736;
+  --chart-1: #3e481d;
+  --pill-positive-bg: #edf4f1;
+  --pill-positive-ink: #1e7b4f;
+  --pill-negative-bg: #f8e5e5;
+  --pill-negative-ink: #c4242a;
+  --pill-warning-bg: #fef7e0;
+  --pill-warning-ink: #836700;
+  --pill-neutral-bg: #f0f0e0;
+  --pill-neutral-ink: #5a6b2a;
 
   --radius-sheet: 16px;
   --radius-card: 8px;
@@ -52,6 +55,37 @@
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
 
   --shadow-float: 0 12px 32px rgba(19, 20, 22, 0.14), 0 2px 8px rgba(19, 20, 22, 0.06);
+}
+
+/* Live theme: inside the Astryx wrapper the palette follows the built theme
+   tokens, so switching or rebuilding the theme restyles the app. */
+[data-astryx-theme] {
+  --ground: var(--color-background-body);
+  --surface: var(--color-background-surface);
+  --raised: color-mix(in oklab, var(--color-background-surface) 55%, var(--color-background-body));
+  --active: color-mix(in oklab, var(--color-border) 45%, var(--color-background-surface));
+  --border: var(--color-border);
+  --rule: color-mix(in oklab, var(--color-border) 45%, var(--color-background-surface));
+  --control: var(--color-border-emphasized);
+  --text: var(--color-text-primary);
+  --muted: var(--color-text-secondary);
+  --faint: color-mix(in oklab, var(--muted) 95%, var(--surface));
+  --accent: var(--color-accent);
+  --primary: var(--color-accent);
+  --primary-ink: var(--color-on-accent);
+  --primary-hover: color-mix(in oklab, var(--primary) 78%, black);
+  --positive: var(--color-success);
+  --negative: var(--color-error);
+  --warning: var(--color-warning);
+  --chart-1: var(--color-accent);
+  --pill-positive-bg: color-mix(in oklab, var(--color-success) 8%, var(--surface));
+  --pill-positive-ink: var(--color-text-success);
+  --pill-negative-bg: var(--color-error-muted);
+  --pill-negative-ink: var(--color-text-error);
+  --pill-warning-bg: var(--color-warning-muted);
+  --pill-warning-ink: var(--color-text-warning);
+  --pill-neutral-bg: var(--color-background-muted);
+  --pill-neutral-ink: var(--color-text-secondary);
 }
 
 *,
@@ -134,7 +168,7 @@ canvas {
 }
 
 ::selection {
-  background: #d6e9ee;
+  background: var(--active);
   color: var(--text);
 }
 
@@ -146,7 +180,7 @@ canvas {
   padding: 8px 12px;
   border-radius: var(--radius-control);
   background: var(--text);
-  color: #fff;
+  color: var(--primary-ink);
   font-size: 12px;
 }
 
@@ -294,7 +328,7 @@ canvas {
 }
 
 .compare-count:hover {
-  border-color: #b9bbbf;
+  border-color: var(--control);
 }
 
 .sheet {
@@ -405,7 +439,7 @@ main {
 }
 
 .btn:hover {
-  border-color: #b9bbbf;
+  border-color: var(--control);
   background: var(--raised);
 }
 
@@ -420,8 +454,8 @@ main {
 }
 
 .btn.primary:hover {
-  border-color: #2a2b2e;
-  background: #2a2b2e;
+  border-color: var(--primary-hover);
+  background: var(--primary-hover);
 }
 
 .btn.ghost {
@@ -733,7 +767,7 @@ details.filter-group[open] > summary::after {
 
 .model-row:hover td,
 .model-row:focus-within td {
-  background: #fafbfb;
+  background: var(--raised);
 }
 
 .model-table .num,
@@ -943,7 +977,7 @@ details.filter-group[open] > summary::after {
 }
 
 .badge.beta {
-  border-color: #fde68a;
+  border-color: color-mix(in oklab, var(--warning) 45%, var(--surface));
   background: var(--pill-warning-bg);
   color: var(--pill-warning-ink);
 }
@@ -1962,7 +1996,7 @@ details.filter-group[open] > summary::after {
 }
 
 .lb-row:hover td {
-  background: #fafbfb;
+  background: var(--raised);
 }
 
 .lb-rank {
@@ -2160,7 +2194,7 @@ a.lb-name:hover {
 }
 
 .about-prose a:hover {
-  color: #145666;
+  color: color-mix(in oklab, var(--accent) 75%, black);
 }
 
 .about-prose code {
@@ -2435,7 +2469,7 @@ a.lb-name:hover {
   flex-wrap: wrap;
   gap: 6px 10px;
   padding: 9px 12px;
-  border: 1px solid #fde68a;
+  border: 1px solid color-mix(in oklab, var(--warning) 45%, var(--surface));
   border-radius: var(--radius-control);
   background: var(--pill-warning-bg);
   color: var(--pill-warning-ink);
@@ -2518,7 +2552,7 @@ a.lb-name:hover {
 }
 
 .tray-btn:hover {
-  background: #2a2b2e;
+  background: var(--primary-hover);
 }
 
 .tray-clear {
@@ -2541,7 +2575,7 @@ a.lb-name:hover {
   padding: 7px 12px;
   border-radius: var(--radius-control);
   background: var(--text);
-  color: #fff;
+  color: var(--primary-ink);
   font-size: 12px;
   white-space: nowrap;
   opacity: 0;

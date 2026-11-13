@@ -19,8 +19,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@astryxdesign/core": "^0.7.14",
+    "@astryxdesign/theme-matcha": "^0.7.14",
+    "@astryxdesign/theme-neutral": "^0.7.14",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@stylexjs/stylex": "^0.19.2",
     "hyparquet": "^1.31.5",
     "hyparquet-compressors": "^1.1.2",
     "next": "^15.5.28",
@@ -30,6 +34,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@astryxdesign/cli": "^0.7.14",
     "@axe-core/playwright": "^4.14.0",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.64.1",
