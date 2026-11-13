@@ -8,10 +8,15 @@ const models = [
 ]
 const selectionUrl = (ids: string[]) => `/compare?models=${ids.join(',')}`
 
+const mainNav = (page: Page) => page.getByRole('navigation', { name: '主导航' })
+const tray = (page: Page) => page.getByRole('region', { name: '对比托盘' })
+const trayTokens = (page: Page) => tray(page).locator('.astryx-token')
+const tableRows = (page: Page) => page.locator('table tbody tr')
+
 async function seedOnce(page: Page, value: unknown) {
   await page.addInitScript(value => {
     if (sessionStorage.getItem('compare-test-seeded')) return
-    localStorage.setItem('modelhub.compare', JSON.stringify(value))
+    localStorage.setItem('modelhub.compare:v1', JSON.stringify(value))
     sessionStorage.setItem('compare-test-seeded', 'yes')
   }, value)
 }
@@ -19,12 +24,12 @@ async function seedOnce(page: Page, value: unknown) {
 async function expectSelection(page: Page, indices: number[]) {
   if (indices.length) {
     await expect(page.locator('.compare-table thead th a')).toHaveText(indices.map(index => models[index].name))
-    await expect(page.locator('.compare-count b')).toHaveText(String(indices.length))
+    await expect(mainNav(page).getByRole('link', { name: /对比/ })).toContainText(String(indices.length))
   } else {
     await expect(page.getByRole('heading', { name: '先选两个模型' })).toBeVisible()
-    await expect(page.locator('.compare-count')).toHaveCount(0)
+    await expect(mainNav(page).getByRole('link', { name: /对比/ })).toHaveCount(0)
   }
-  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('modelhub.compare')!)))
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('modelhub.compare:v1')!)))
     .toEqual(indices.map(index => models[index].id))
 }
 
@@ -55,7 +60,7 @@ test('malformed browser storage is sanitized without crashing the page', async (
   await page.goto('/compare')
   await expectSelection(page, [])
   for (const stored of ['{broken', '{}', 'null', '"text"', '[1,null,"missing"]']) {
-    await page.evaluate(stored => localStorage.setItem('modelhub.compare', stored), stored)
+    await page.evaluate(stored => localStorage.setItem('modelhub.compare:v1', stored), stored)
     await page.reload()
     await expectSelection(page, [])
   }
@@ -100,14 +105,13 @@ test('same-route URL navigation, back, and forward update the one Compare Set', 
 test('home, detail, tray, header, and compare page share the selection across client navigation', async ({ page }) => {
   await page.goto(selectionUrl([models[0].id, models[1].id]))
   await expectSelection(page, [0, 1])
-  await page.getByRole('banner').getByRole('link', { name: 'Model Hub 首页' }).click()
-  await expect(page.locator('.tray-chip')).toHaveCount(2)
-  await page.locator('.model-row').filter({ hasText: models[0].name }).locator('.model-name').click()
+  await mainNav(page).getByRole('link', { name: /Model Hub/ }).click()
+  await expect(trayTokens(page)).toHaveCount(2)
+  await tableRows(page).filter({ hasText: models[0].name }).getByRole('link', { name: models[0].name }).click()
   await expect(page.getByRole('button', { name: '已加入对比' })).toBeVisible()
   await page.getByRole('button', { name: '已加入对比' }).click()
-  await expect(page.locator('.tray-chip')).toHaveCount(1)
-  await expect(page.locator('.compare-count')).toHaveAttribute('href', selectionUrl([models[1].id]))
-  await page.locator('.compare-count').click()
+  await expect(trayTokens(page)).toHaveCount(1)
+  await mainNav(page).getByRole('link', { name: /对比/ }).click()
   await expectSelection(page, [1])
 })
 
@@ -116,17 +120,17 @@ test('back to a formerly empty compare URL clears later selections', async ({ pa
   await expectSelection(page, [])
   await page.getByRole('link', { name: '去模型表' }).click()
   for (const model of models.slice(0, 2)) {
-    await page.locator('.model-row').filter({ hasText: model.name }).locator('input[type=checkbox]').check()
+    await page.getByRole('checkbox', { name: `加入对比 ${model.name}` }).check({ force: true })
   }
-  await page.locator('.tray-btn').click()
+  await tray(page).getByRole('link', { name: '去对比' }).click()
   await expectSelection(page, [0, 1])
   await page.goBack()
-  await expect(page.locator('.tray-chip')).toHaveCount(2)
+  await expect(trayTokens(page)).toHaveCount(2)
   await page.goBack()
   await expectSelection(page, [])
   await page.goForward()
-  await expect(page.locator('.model-row')).toHaveCount(43)
-  await expect(page.locator('.compare-tray')).toHaveCount(0)
+  await expect(tableRows(page)).toHaveCount(43)
+  await expect(tray(page)).toHaveCount(0)
 })
 
 test('comparison still works when browser storage is blocked', async ({ page }) => {

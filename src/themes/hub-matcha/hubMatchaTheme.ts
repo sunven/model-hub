@@ -1,5 +1,5 @@
 import { defineTheme } from '@astryxdesign/core/theme'
-import { matchaTheme } from '@astryxdesign/theme-matcha/built'
+import { matchaTheme } from '@astryxdesign/theme-matcha'
 
 const plexSans = '"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, sans-serif'
 const plexMono = '"SFMono-Regular", Menlo, Consolas, monospace'

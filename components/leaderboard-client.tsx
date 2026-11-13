@@ -1,7 +1,18 @@
 'use client'
 
-import Link from 'next/link'
 import { useMemo, useState } from 'react'
+import { Badge } from '@astryxdesign/core/Badge'
+import { Button } from '@astryxdesign/core/Button'
+import { Card } from '@astryxdesign/core/Card'
+import { EmptyState } from '@astryxdesign/core/EmptyState'
+import { Heading } from '@astryxdesign/core/Heading'
+import { HStack } from '@astryxdesign/core/HStack'
+import { Link } from '@astryxdesign/core/Link'
+import { Stack } from '@astryxdesign/core/Stack'
+import { Tab, TabList } from '@astryxdesign/core/TabList'
+import { Table, proportional, type TableColumn } from '@astryxdesign/core/Table'
+import { Text } from '@astryxdesign/core/Text'
+import { TextInput } from '@astryxdesign/core/TextInput'
 import { CiRail } from './ci-rail'
 import { useNoindex } from './use-noindex'
 import { BOARDS, BOARD_LABELS } from '@/lib/boards'
@@ -10,6 +21,11 @@ import type { Board } from '@/lib/snapshot'
 import type { LeaderboardRow } from '@/lib/types'
 
 const PAGE = 50
+
+interface BoardView extends Record<string, unknown> {
+  id: string
+  row: LeaderboardRow
+}
 
 export function LeaderboardClient({
   board,
@@ -48,150 +64,165 @@ export function LeaderboardClient({
         }；text / webdev 不可跨榜比较。`
       : 'rating 是偏好评分，不是准确率；text / webdev 不可跨榜比较。'
 
+  const data = useMemo<BoardView[]>(() => visible.map(row => ({ id: row.id, row })), [visible])
+
+  const columns: TableColumn<BoardView>[] = [
+    {
+      key: 'rank',
+      header: '排名',
+      width: proportional(0.4, { minWidth: 64 }),
+      renderCell: ({ row }) => <Text hasTabularNumbers>#{row.rank}</Text>,
+    },
+    {
+      key: 'model',
+      header: '模型',
+      width: proportional(2, { minWidth: 220 }),
+      renderCell: ({ row }) => (
+        <Stack gap={0}>
+          <HStack gap={1} wrap="wrap" vAlign="center">
+            {row.href ? (
+              <Link href={row.href} weight="medium">{row.name}</Link>
+            ) : (
+              <Text weight="medium">{row.name}</Text>
+            )}
+            {row.kind === 'unmatched' && <Badge label="未匹配" variant="neutral" />}
+          </HStack>
+          <Text type="supporting">{row.lab}</Text>
+        </Stack>
+      ),
+    },
+    {
+      key: 'range',
+      header: '评分区间',
+      width: proportional(1.4, { minWidth: 160 }),
+      renderCell: ({ row }) => <CiRail stat={row} domain={domains} width={144} />,
+    },
+    {
+      key: 'rating',
+      header: '评分',
+      align: 'end',
+      width: proportional(0.8, { minWidth: 110 }),
+      renderCell: ({ row }) => (
+        <HStack gap={1} justify="end" vAlign="center">
+          <Text weight="medium" hasTabularNumbers>{row.rating.toFixed(1)}</Text>
+          <Text type="supporting">±{ciHalf(row).toFixed(1)}</Text>
+        </HStack>
+      ),
+    },
+    {
+      key: 'condition',
+      header: '条件',
+      width: proportional(0.9, { minWidth: 120 }),
+      renderCell: ({ row }) => <Text>{row.condition}</Text>,
+    },
+    {
+      key: 'votes',
+      header: '票数',
+      align: 'end',
+      width: proportional(0.7, { minWidth: 100 }),
+      renderCell: ({ row }) => <Text hasTabularNumbers>{fmtVotes(row.votes)}</Text>,
+    },
+  ]
+
   return (
-    <div className="sheet-inner">
-      <div className="lb-head">
-        <div>
-          <h1>Arena 榜单</h1>
-          <p>{finding}</p>
-        </div>
-        <div className="detail-actions">
-          <Link className="btn" href="/">模型目录</Link>
-        </div>
-      </div>
+    <Stack className="sheet-inner" gap={4}>
+      <HStack justify="between" align="start" wrap="wrap" gap={3}>
+        <Stack gap={1}>
+          <Heading level={1}>Arena 榜单</Heading>
+          <Text type="large">{finding}</Text>
+        </Stack>
+        <Button label="模型目录" href="/" variant="secondary" />
+      </HStack>
 
-      <nav className="tabs" aria-label="榜单类型">
+      <TabList value={board} onChange={() => {}} aria-label="榜单类型">
         {BOARDS.map(value => (
-          <Link
-            key={value}
-            className={`tab ${board === value ? 'active' : ''}`}
-            href={`/leaderboards/${value}`}
-            aria-current={board === value ? 'page' : undefined}
-          >
-            {BOARD_LABELS[value]}
-          </Link>
+          <Tab key={value} value={value} label={BOARD_LABELS[value]} href={`/leaderboards/${value}`} />
         ))}
-      </nav>
+      </TabList>
 
-      <div className="lb-toolbar">
-        <input
-          className="search"
-          type="search"
-          aria-label="搜索模型、组织或条件"
-          placeholder="搜索模型 / 组织 / 条件"
-          value={q}
-          onChange={e => { setQ(e.target.value); setVisibleCount(PAGE) }}
-        />
-      </div>
+      <TextInput
+        label="搜索模型、组织或条件"
+        isLabelHidden
+        type="search"
+        startIcon="search"
+        placeholder="搜索模型 / 组织 / 条件"
+        value={q}
+        onChange={value => { setQ(value); setVisibleCount(PAGE) }}
+        hasClear
+        width={320}
+      />
 
-      <p className="lb-source">
+      <Text type="supporting">
         {boardLabel} · 来源{' '}
-        <a
+        <Link
           href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset"
-          target="_blank"
-          rel="noopener noreferrer"
+          isExternalLink
         >
           LMArena Leaderboard Dataset
-        </a>
+        </Link>
         （CC BY 4.0）· 数据 {dataDate} · 已显示 {visible.length} / {filtered.length} 条 · 未匹配行保留在榜单，不链模型页。
-      </p>
+      </Text>
 
       {visible.length ? (
         <>
-          <div className="lb-table-wrap desktop-only">
-            <table className="lb-table">
-              <caption className="sr-only">{boardLabel} 榜单，按 rank 排序</caption>
-              <colgroup>
-                <col style={{ width: '5%' }} />
-                <col style={{ width: '36%' }} />
-                <col style={{ width: '18%' }} />
-                <col style={{ width: '12%' }} />
-                <col style={{ width: '15%' }} />
-                <col style={{ width: '14%' }} />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th>排名</th>
-                  <th>模型</th>
-                  <th>
-                    评分区间
-                    <span className="th-sub">CI 共享刻度 · 当前 {visible.length} 条</span>
-                  </th>
-                  <th className="num">评分</th>
-                  <th>条件</th>
-                  <th className="num">票数</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visible.map(row => (
-                  <tr className={row.kind === 'model' ? 'lb-row' : ''} key={row.id}>
-                    <td className="lb-rank">#{row.rank}</td>
-                    <td>
-                      {row.href ? (
-                        <Link className="lb-name" href={row.href}>{row.name}</Link>
-                      ) : (
-                        <span className="lb-name">{row.name}</span>
-                      )}
-                      {row.kind === 'unmatched' && <span className="lb-badge">未匹配</span>}
-                      <div className="lb-org">{row.lab}</div>
-                    </td>
-                    <td className="lb-range">
-                      <CiRail stat={row} domain={domains} width={144} />
-                    </td>
-                    <td className="num">
-                      <div className="lb-score">
-                        <span className="lb-rating">{row.rating.toFixed(1)}</span>
-                        <span className="lb-ci">±{ciHalf(row).toFixed(1)}</span>
-                      </div>
-                    </td>
-                    <td className="lb-condition">{row.condition}</td>
-                    <td className="num">{fmtVotes(row.votes)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <Stack className="desktop-only">
+            <Table
+              data={data}
+              columns={columns}
+              idKey="id"
+              density="compact"
+              dividers="rows"
+              hasHover
+              aria-label={`${boardLabel} 榜单，按 rank 排序`}
+            />
+          </Stack>
 
-          <div className="mobile-list">
+          <Stack className="mobile-list" gap={3}>
             {visible.map(row => (
-              <article className="mobile-card" key={row.id}>
-                <div className="mobile-card-top">
-                  <div>
-                    <div className="lab">#{row.rank} · {row.lab}</div>
-                    <h3>
-                      {row.href ? <Link href={row.href}>{row.name}</Link> : row.name}
-                      {row.kind === 'unmatched' && <span className="lb-badge">未匹配</span>}
-                    </h3>
-                  </div>
-                  <div className="lb-rating-cell">
-                    <div className="lb-rating-line">
-                      <CiRail stat={row} domain={domains} width={44} />
-                      <span className="lb-rating">{row.rating.toFixed(1)}</span>
-                    </div>
-                    <span className="lb-ci">±{ciHalf(row).toFixed(1)}</span>
-                  </div>
-                </div>
-                <div className="mobile-facts" style={{ marginTop: 8 }}>
-                  <span>条件 <b>{row.condition}</b></span>
-                  <span>票数 <b>{fmtVotes(row.votes)}</b></span>
-                </div>
-              </article>
+              <Card key={row.id} padding={3}>
+                <Stack gap={2}>
+                  <HStack justify="between" align="start" gap={2}>
+                    <Stack gap={0.5}>
+                      <Text type="supporting">#{row.rank} · {row.lab}</Text>
+                      <HStack gap={1} wrap="wrap" vAlign="center">
+                        {row.href ? (
+                          <Heading level={3}><Link href={row.href}>{row.name}</Link></Heading>
+                        ) : (
+                          <Heading level={3}>{row.name}</Heading>
+                        )}
+                        {row.kind === 'unmatched' && <Badge label="未匹配" variant="neutral" />}
+                      </HStack>
+                    </Stack>
+                    <Stack gap={0.5}>
+                      <HStack gap={1} vAlign="center">
+                        <CiRail stat={row} domain={domains} width={44} />
+                        <Text weight="semibold" hasTabularNumbers>{row.rating.toFixed(1)}</Text>
+                      </HStack>
+                      <Text type="supporting">±{ciHalf(row).toFixed(1)}</Text>
+                    </Stack>
+                  </HStack>
+                  <HStack gap={3} wrap="wrap">
+                    <Text type="supporting">条件 <Text weight="semibold">{row.condition}</Text></Text>
+                    <Text type="supporting">票数 <Text weight="semibold">{fmtVotes(row.votes)}</Text></Text>
+                  </HStack>
+                </Stack>
+              </Card>
             ))}
-          </div>
+          </Stack>
 
           {visible.length < filtered.length && (
-            <div className="lb-more">
-              <button type="button" className="btn" onClick={() => setVisibleCount(count => count + PAGE)}>显示更多</button>
-            </div>
+            <HStack justify="center">
+              <Button label="显示更多" onClick={() => setVisibleCount(count => count + PAGE)} />
+            </HStack>
           )}
         </>
       ) : (
-        <div className="empty">
-          <strong>没有找到模型</strong>
-          <p>清空搜索，或者换一个关键词。</p>
-          <button type="button" className="btn primary" onClick={() => setQ('')}>清空搜索</button>
-        </div>
+        <EmptyState
+          title="没有找到模型"
+          description="清空搜索，或者换一个关键词。"
+          actions={<Button label="清空搜索" variant="primary" onClick={() => setQ('')} />}
+        />
       )}
-    </div>
+    </Stack>
   )
 }

@@ -1,8 +1,12 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useMemo } from 'react'
+import { Button } from '@astryxdesign/core/Button'
+import { CheckboxInput } from '@astryxdesign/core/CheckboxInput'
+import { HStack } from '@astryxdesign/core/HStack'
+import { Text } from '@astryxdesign/core/Text'
+import { Token } from '@astryxdesign/core/Token'
 import { useCompare } from './compare-provider'
 import { COMPARE_LIMIT, compareHref } from '@/lib/compare-set'
 
@@ -15,25 +19,30 @@ export function CompareTray() {
   const href = compareHref(selected)
 
   return (
-    <div className="compare-tray" role="region" aria-label="对比托盘">
-      <span className="tray-label">对比 {selected.length}/{COMPARE_LIMIT}</span>
+    <HStack
+      className="compare-tray"
+      role="region"
+      aria-label="对比托盘"
+      gap={2}
+      vAlign="center"
+      wrap="wrap"
+    >
+      <Text type="label">对比 {selected.length}/{COMPARE_LIMIT}</Text>
       {selected.map(id => (
-        <span className="tray-chip" key={id}>
-          {byId.get(id)?.name ?? id}
-          <button type="button" onClick={() => remove(id)} aria-label={`移除 ${byId.get(id)?.name ?? id}`}>
-            ×
-          </button>
-        </span>
+        <Token
+          key={id}
+          label={byId.get(id)?.name ?? id}
+          size="sm"
+          onRemove={() => remove(id)}
+        />
       ))}
       {selected.length >= 2 ? (
-        <Link className="tray-btn" href={href}>去对比</Link>
+        <Button label="去对比" href={href} size="sm" variant="primary" />
       ) : (
-        <button type="button" className="tray-btn" onClick={() => showToast('再选一个模型就能对比')}>
-          去对比
-        </button>
+        <Button label="去对比" size="sm" variant="primary" onClick={() => showToast('再选一个模型就能对比')} />
       )}
-      <button type="button" className="tray-clear" onClick={clear}>清空</button>
-    </div>
+      <Button label="清空" size="sm" variant="ghost" onClick={clear} />
+    </HStack>
   )
 }
 
@@ -50,24 +59,28 @@ export function CompareButton({
 }) {
   const { selected, ready, toggle } = useCompare()
   const active = selected.includes(modelId)
-  const className = ['btn', small && 'small', (active || primary) && 'primary'].filter(Boolean).join(' ')
   const label = active ? (short ? '已加入' : '已加入对比') : short ? '对比' : '加入对比'
   return (
-    <button type="button" className={className} onClick={() => toggle(modelId)} disabled={!ready}>
-      {label}
-    </button>
+    <Button
+      label={label}
+      size={small ? 'sm' : 'md'}
+      variant={active || primary ? 'primary' : 'secondary'}
+      isDisabled={!ready}
+      onClick={() => toggle(modelId)}
+    />
   )
 }
 
 export function CompareCheckbox({ modelId, label }: { modelId: string; label: string }) {
   const { selected, ready, toggle } = useCompare()
   return (
-    <input
-      type="checkbox"
-      checked={selected.includes(modelId)}
-      disabled={!ready}
+    <CheckboxInput
+      label={label}
+      isLabelHidden
+      size="sm"
+      value={selected.includes(modelId)}
+      isDisabled={!ready}
       onChange={() => toggle(modelId)}
-      aria-label={label}
     />
   )
 }

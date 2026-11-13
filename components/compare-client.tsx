@@ -1,7 +1,24 @@
 'use client'
 
-import Link from 'next/link'
 import { useMemo, type ReactNode } from 'react'
+import { Button } from '@astryxdesign/core/Button'
+import { Card } from '@astryxdesign/core/Card'
+import { EmptyState } from '@astryxdesign/core/EmptyState'
+import { Heading } from '@astryxdesign/core/Heading'
+import { HStack } from '@astryxdesign/core/HStack'
+import { Link } from '@astryxdesign/core/Link'
+import { List, ListItem } from '@astryxdesign/core/List'
+import { Spinner } from '@astryxdesign/core/Spinner'
+import { Stack } from '@astryxdesign/core/Stack'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableHeaderCell,
+  TableRow,
+} from '@astryxdesign/core/Table'
+import { Text } from '@astryxdesign/core/Text'
 import { useCompare } from './compare-provider'
 import { RowBadges } from './badges'
 import { ScorePill } from './score-pill'
@@ -37,10 +54,10 @@ const FIELDS: Field[] = [
     render: (m, fx) => {
       if (!m.price) return '未公布'
       return (
-        <span>
-          {fmtRange(m.price.inputMin, m.price.inputMax)} / 1M
-          <CnyRange min={m.price.inputMin} max={m.price.inputMax} fx={fx} className="small muted cell-block" />
-        </span>
+        <Stack gap={0}>
+          <Text hasTabularNumbers>{fmtRange(m.price.inputMin, m.price.inputMax)} / 1M</Text>
+          <CnyRange min={m.price.inputMin} max={m.price.inputMax} fx={fx} className="cell-block" />
+        </Stack>
       )
     },
   },
@@ -51,10 +68,10 @@ const FIELDS: Field[] = [
     render: (m, fx) => {
       if (!m.price) return '未公布'
       return (
-        <span>
-          {fmtRange(m.price.outputMin, m.price.outputMax)} / 1M
-          <CnyRange min={m.price.outputMin} max={m.price.outputMax} fx={fx} className="small muted cell-block" />
-        </span>
+        <Stack gap={0}>
+          <Text hasTabularNumbers>{fmtRange(m.price.outputMin, m.price.outputMax)} / 1M</Text>
+          <CnyRange min={m.price.outputMin} max={m.price.outputMax} fx={fx} className="cell-block" />
+        </Stack>
       )
     },
   },
@@ -62,7 +79,7 @@ const FIELDS: Field[] = [
     label: '上下文',
     numeric: true,
     value: m => fmtContext(m.context),
-    render: m => fmtContext(m.context),
+    render: m => <Text hasTabularNumbers>{fmtContext(m.context)}</Text>,
   },
   {
     label: '推理',
@@ -73,20 +90,20 @@ const FIELDS: Field[] = [
     label: 'Arena text',
     value: m => (m.text ? `${m.text.rating.toFixed(1)}|${m.text.rank}|${m.text.condition}` : '未收录'),
     render: (m, fx, domains) => (
-      <span className="compare-score">
+      <Stack gap={0}>
         <ScorePill score={m.text} domain={domains.text} />
-        {m.text && <span className="cell-sub">{scoreMeta(m.text)}</span>}
-      </span>
+        {m.text && <Text type="supporting">{scoreMeta(m.text)}</Text>}
+      </Stack>
     ),
   },
   {
     label: 'Arena webdev',
     value: m => (m.webdev ? `${m.webdev.rating.toFixed(1)}|${m.webdev.rank}|${m.webdev.condition}` : '未收录'),
     render: (m, fx, domains) => (
-      <span className="compare-score">
+      <Stack gap={0}>
         <ScorePill score={m.webdev} domain={domains.webdev} />
-        {m.webdev && <span className="cell-sub">{scoreMeta(m.webdev)}</span>}
-      </span>
+        {m.webdev && <Text type="supporting">{scoreMeta(m.webdev)}</Text>}
+      </Stack>
     ),
   },
   {
@@ -102,7 +119,16 @@ const FIELDS: Field[] = [
   {
     label: 'AA',
     value: () => 'external',
-    render: () => <a className="btn small" href={AA_LEADERBOARD_URL} target="_blank" rel="noopener noreferrer">外部链接</a>,
+    render: () => (
+      <Button
+        label="外部链接"
+        href={AA_LEADERBOARD_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        size="sm"
+        variant="secondary"
+      />
+    ),
   },
 ]
 
@@ -120,40 +146,52 @@ export function CompareClient({
   const compare = useCompare()
   const byId = useMemo(() => new Map(models.map(m => [m.id, m])), [models])
 
-  if (!compare.ready) return <div className="sheet-inner"><div className="empty">正在加载对比…</div></div>
+  if (!compare.ready) {
+    return (
+      <Stack className="sheet-inner" gap={2} hAlign="center">
+        <Spinner />
+        <Text type="supporting">正在加载对比…</Text>
+      </Stack>
+    )
+  }
 
   const selected = compare.selected.map(id => byId.get(id)).filter(Boolean) as ModelRow[]
 
   if (!selected.length) {
     return (
-      <div className="sheet-inner">
-        <div className="compare-empty">
-          <div className="compare-intro">
-            <h1>先选两个模型</h1>
-            <p>从模型表勾选，或在详情页点「加入对比」。最多 {COMPARE_LIMIT} 个。</p>
-            <div className="detail-actions">
-              <Link className="btn primary" href="/">去模型表</Link>
-            </div>
-          </div>
-          <div className="pick-list">
-            <div className="pick-head">
-              <h2>从 Arena text 排名开始</h2>
-              <span>最多选择 {COMPARE_LIMIT} 个</span>
-            </div>
-            {picks.map(model => (
-              <div className="pick-row" key={model.id}>
-                <span className="pick-rank">#{model.text!.rank}</span>
-                <div className="pick-name">
-                  {model.name}
-                  <small>{model.lab}</small>
-                </div>
-                <span className="pick-rating">{model.text!.rating.toFixed(1)}</span>
-                <button type="button" className="btn small" onClick={() => compare.toggle(model.id)}>加入</button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Stack className="sheet-inner" gap={4}>
+        <EmptyState
+          headingLevel={1}
+          title="先选两个模型"
+          description={`从模型表勾选，或在详情页点「加入对比」。最多 ${COMPARE_LIMIT} 个。`}
+          actions={<Button label="去模型表" href="/" variant="primary" />}
+        />
+        <Card padding={4}>
+          <Stack gap={2}>
+            <HStack justify="between" vAlign="center" gap={2} wrap="wrap">
+              <Heading level={2}>从 Arena text 排名开始</Heading>
+              <Text type="supporting">最多选择 {COMPARE_LIMIT} 个</Text>
+            </HStack>
+            <List hasDividers density="compact">
+              {picks.map(model => (
+                <ListItem
+                  key={model.id}
+                  label={model.name}
+                  description={model.lab}
+                  startContent={<Text weight="medium" hasTabularNumbers>#{model.text!.rank}</Text>}
+                  endContent={
+                    <HStack gap={2} vAlign="center">
+                      <Text weight="semibold" hasTabularNumbers>{model.text!.rating.toFixed(1)}</Text>
+                      <Text color="accent" weight="medium">加入</Text>
+                    </HStack>
+                  }
+                  onClick={() => compare.toggle(model.id)}
+                />
+              ))}
+            </List>
+          </Stack>
+        </Card>
+      </Stack>
     )
   }
 
@@ -166,56 +204,70 @@ export function CompareClient({
       : `已选 1/${COMPARE_LIMIT} 个模型；再选一个就能对比。`
 
   return (
-    <div className="sheet-inner">
-      <div className="compare-head">
-        <div>
-          <h1>并排比较</h1>
-          <p>{finding}</p>
-        </div>
-        <div className="detail-actions">
-          <button type="button" className="btn ghost" onClick={() => compare.clear()}>清空全部</button>
-          <Link className="btn" href="/">{selected.length < COMPARE_LIMIT ? '添加模型' : '模型目录'}</Link>
-        </div>
-      </div>
+    <Stack className="sheet-inner" gap={4}>
+      <HStack className="compare-head" justify="between" align="start" wrap="wrap" gap={3}>
+        <Stack gap={1}>
+          <Heading level={1}>并排比较</Heading>
+          <Text type="large">{finding}</Text>
+        </Stack>
+        <HStack gap={2} wrap="wrap">
+          <Button label="清空全部" variant="ghost" onClick={() => compare.clear()} />
+          <Button
+            label={selected.length < COMPARE_LIMIT ? '添加模型' : '模型目录'}
+            href="/"
+            variant="secondary"
+          />
+        </HStack>
+      </HStack>
 
-      <div className="compare-table-wrap">
-        <table className="compare-table">
-          <caption className="sr-only">所选模型并排对比</caption>
-          <thead>
-            <tr>
-              <th>字段</th>
-              {selected.map(m => (
-                <th key={m.id}>
-                  <Link href={modelHref(m.canonicalId)}>{m.name}</Link>
-                  <span className="cell-sub">
-                    {m.lab}
-                    <button type="button" className="btn small" onClick={() => compare.remove(m.id)}>移除</button>
-                  </span>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {FIELDS.map((field, i) => (
-              <tr key={field.label}>
-                <td>{field.label}</td>
-                {selected.map((m, j) => (
-                  <td
-                    key={m.id}
-                    className={[diffs[i] ? 'diff' : '', field.numeric ? 'num' : ''].filter(Boolean).join(' ')}
-                  >
-                    {field.render(m, fx, domains)}
-                  </td>
-                ))}
-              </tr>
+      <Table
+        density="compact"
+        dividers="rows"
+        aria-label="所选模型并排对比"
+        className="compare-table"
+      >
+        <colgroup>
+          <col style={{ width: '14%' }} />
+          {selected.map(m => <col key={m.id} />)}
+        </colgroup>
+        <TableHeader>
+          <TableRow>
+            <TableHeaderCell>字段</TableHeaderCell>
+            {selected.map(m => (
+              <TableHeaderCell key={m.id}>
+                <Stack gap={1}>
+                  <Link href={modelHref(m.canonicalId)} weight="medium">{m.name}</Link>
+                  <HStack gap={2} vAlign="center" wrap="wrap">
+                    <Text type="supporting">{m.lab}</Text>
+                    <Button label="移除" size="sm" variant="ghost" onClick={() => compare.remove(m.id)} />
+                  </HStack>
+                </Stack>
+              </TableHeaderCell>
             ))}
-          </tbody>
-        </table>
-      </div>
-      <p className="source-box" style={{ marginTop: 10 }}>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {FIELDS.map((field, i) => (
+            <TableRow key={field.label}>
+              <TableCell>
+                <Text weight={diffs[i] ? 'semibold' : 'normal'}>{field.label}</Text>
+              </TableCell>
+              {selected.map((m, j) => (
+                <TableCell key={m.id}>
+                  <Text as="div" hasTabularNumbers={field.numeric}>
+                    {field.render(m, fx, domains)}
+                  </Text>
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+
+      <Text type="supporting">
         价格 USD / 1M tokens；CNY 由本地汇率表折算，仅供参考。完整报价见模型详情。Arena text / webdev
-        不可跨榜比较；底色只表示取值不同，不判定赢家。
-      </p>
-    </div>
+        不可跨榜比较；加粗只表示取值不同，不判定赢家。
+      </Text>
+    </Stack>
   )
 }

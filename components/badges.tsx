@@ -1,5 +1,21 @@
-import { availabilityClass, availabilityLabel } from '@/lib/format'
+import { Badge } from '@astryxdesign/core/Badge'
+import { Tooltip } from '@astryxdesign/core/Tooltip'
+import { availabilityLabel } from '@/lib/format'
 import type { Availability, ModelRow } from '@/lib/types'
+
+type BadgeItem = {
+  label: string
+  variant: 'success' | 'warning' | 'error' | 'info' | 'blue' | 'neutral'
+  hint?: string
+}
+
+const AVAILABILITY_BADGE: Record<Availability, BadgeItem> = {
+  available: { label: '可用', variant: 'success' },
+  mixed: { label: '混合', variant: 'warning' },
+  deprecated: { label: '已弃用', variant: 'error' },
+  open_weights_only: { label: '可自托管', variant: 'info' },
+  unknown: { label: '未知', variant: 'neutral' },
+}
 
 export function StatusBadges({
   availability,
@@ -14,35 +30,38 @@ export function StatusBadges({
   unmarked?: boolean
   exceptionsOnly?: boolean
 }) {
-  const items: { label: string; className: string; title?: string; dashed?: boolean }[] = []
+  const items: BadgeItem[] = []
   if (availability === 'available') {
     if (releaseBadges.length === 0 && !exceptionsOnly) {
       items.push({
+        ...AVAILABILITY_BADGE[availability],
         label: availabilityLabel(availability),
-        className: availabilityClass(availability),
-        title: unmarked ? '可用（上游未标记状态）' : '可用',
-        dashed: unmarked,
+        hint: unmarked ? '可用（上游未标记状态）' : '可用',
       })
     }
   } else {
-    items.push({ label: availabilityLabel(availability), className: availabilityClass(availability) })
+    items.push({ ...AVAILABILITY_BADGE[availability], label: availabilityLabel(availability) })
   }
   for (const badge of releaseBadges) {
-    items.push({ label: badge === 'beta' ? 'Beta' : badge === 'alpha' ? 'Alpha' : badge, className: 'beta' })
+    items.push({
+      label: badge === 'beta' ? 'Beta' : badge === 'alpha' ? 'Alpha' : badge,
+      variant: 'warning',
+    })
   }
-  if (openWeights) items.push({ label: '开源', className: 'ow' })
+  if (openWeights) items.push({ label: '开源', variant: 'blue' })
+
   return (
     <>
-      {items.map(item => (
-        <span
-          key={`${item.label}-${item.className}`}
-          className={`badge ${item.className}`}
-          title={item.title}
-          style={item.dashed ? { borderStyle: 'dashed' } : undefined}
-        >
-          {item.label}
-        </span>
-      ))}
+      {items.map(item => {
+        const badge = <Badge key={`${item.label}-${item.variant}`} label={item.label} variant={item.variant} />
+        return item.hint ? (
+          <Tooltip key={`${item.label}-${item.variant}`} content={item.hint}>
+            {badge}
+          </Tooltip>
+        ) : (
+          badge
+        )
+      })}
     </>
   )
 }

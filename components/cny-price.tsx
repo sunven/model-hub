@@ -1,5 +1,6 @@
 'use client'
 
+import { Text } from '@astryxdesign/core/Text'
 import { fmtCnyRange } from '@/lib/format'
 import type { FxConfig } from '@/lib/snapshot'
 import { useFreshness } from './freshness-provider'
@@ -9,7 +10,11 @@ type Props = { min: number; max: number; fx: FxConfig; className?: string }
 export function CnyRange({ min, max, fx, className }: Props) {
   const state = useFreshness()
   const value = state ? fmtCnyRange(min, max, fx, state.now) : null
-  return value ? <span className={className}>{value}</span> : null
+  return value ? (
+    <Text as="span" type="supporting" className={className}>
+      {value}
+    </Text>
+  ) : null
 }
 
 export function CnyPricePair({ inputMin, inputMax, outputMin, outputMax, fx }: {
@@ -21,8 +26,8 @@ export function CnyPricePair({ inputMin, inputMax, outputMin, outputMax, fx }: {
   if (!input || !output) return null
   return <>
     {' · '}
-    <span className="cny-range">{input}</span>
+    <Text as="span" type="supporting" className="cny-range">{input}</Text>
     {' / '}
-    <span className="cny-range">{output}</span>
+    <Text as="span" type="supporting" className="cny-range">{output}</Text>
   </>
 }

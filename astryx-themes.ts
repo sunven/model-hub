@@ -8,6 +8,7 @@ import "@astryxdesign/theme-matcha/theme.css";
 import "@astryxdesign/theme-matcha/fonts.css";
 import {hubMatchaTheme as _astryxTheme1} from "./src/themes/hub-matcha/hub-matcha.js";
 import "./src/themes/hub-matcha/hub-matcha.css";
+import "./src/themes/hub-matcha/hub-matcha.fonts.css";
 
 export const themes = {
   "matcha": _astryxTheme0,

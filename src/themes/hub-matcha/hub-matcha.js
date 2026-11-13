@@ -6,7 +6,7 @@
  * Core: @astryxdesign/core@0.7.14
  */
 
-import { matchaTheme } from '@astryxdesign/theme-matcha/built';
+import { matchaTheme } from '@astryxdesign/theme-matcha';
 const themeIcons = matchaTheme["icons"];
 /**
  * hub-matcha theme — built by `pnpm exec astryx theme build`

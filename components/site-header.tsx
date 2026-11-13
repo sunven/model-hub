@@ -1,7 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Badge } from '@astryxdesign/core/Badge'
+import { Button } from '@astryxdesign/core/Button'
+import { TopNav, TopNavHeading, TopNavItem } from '@astryxdesign/core/TopNav'
 import { brandMark } from './brand-mark'
 import { useCompare } from './compare-provider'
 import { compareHref } from '@/lib/compare-set'
@@ -17,39 +19,26 @@ export function SiteHeader() {
       : 'about'
 
   return (
-    <header className="site-header">
-      <div className="header-inner">
-        <Link className="brand" href="/" aria-label={`${SITE_NAME} 首页`}>
-          {brandMark}
-          <span>{SITE_NAME}</span>
-        </Link>
-        <nav className="nav" aria-label="主导航">
-          <Link
-            className={`nav-link ${section === 'models' ? 'active' : ''}`}
-            href="/"
-            aria-current={section === 'models' ? 'page' : undefined}
-          >
-            模型
-          </Link>
-          <Link
-            className={`nav-link ${section === 'leaderboards' ? 'active' : ''}`}
-            href="/leaderboards/text"
-            aria-current={section === 'leaderboards' ? 'page' : undefined}
-          >
-            榜单
-          </Link>
-        </nav>
-        <div className="header-tools">
-          {selected.length > 0 && (
-            <Link
-              className="compare-count"
-              href={compareHref(selected)}
-            >
-              对比 <b>{selected.length}</b>
-            </Link>
-          )}
-        </div>
-      </div>
-    </header>
+    <TopNav
+      label="主导航"
+      heading={<TopNavHeading heading={SITE_NAME} headingHref="/" logo={brandMark} />}
+      startContent={
+        <>
+          <TopNavItem label="模型" href="/" isSelected={section === 'models'} />
+          <TopNavItem label="榜单" href="/leaderboards/text" isSelected={section === 'leaderboards'} />
+        </>
+      }
+      endContent={
+        selected.length > 0 ? (
+          <Button
+            label="对比"
+            href={compareHref(selected)}
+            size="sm"
+            variant="secondary"
+            endContent={<Badge label={String(selected.length)} variant="info" />}
+          />
+        ) : undefined
+      }
+    />
   )
 }

@@ -1,6 +1,7 @@
 'use client'
 
-import Link from 'next/link'
+import { Banner } from '@astryxdesign/core/Banner'
+import { Link } from '@astryxdesign/core/Link'
 import { useFreshness } from './freshness-provider'
 
 export function DataFreshness() {
@@ -21,10 +22,13 @@ export function DataFreshness() {
   if (!messages.length) return null
 
   return (
-    <div className="data-banner" role="status">
-      <strong>数据可能已过期</strong>
-      <span>{messages.join(' ')} 页面仍显示最近一次通过校验的快照，不会隐藏数据。</span>
-      <Link href="/about#freshness">查看数据说明</Link>
-    </div>
+    <Banner
+      data-testid="freshness-banner"
+      status="warning"
+      title="数据可能已过期"
+      description={`${messages.join(' ')} 页面仍显示最近一次通过校验的快照，不会隐藏数据。`}
+      endContent={<Link href="/about#freshness">查看数据说明</Link>}
+      container="section"
+    />
   )
 }

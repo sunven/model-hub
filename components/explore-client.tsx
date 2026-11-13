@@ -1,8 +1,24 @@
 'use client'
 
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
+import { Badge } from '@astryxdesign/core/Badge'
+import { Button } from '@astryxdesign/core/Button'
+import { Card } from '@astryxdesign/core/Card'
+import { CheckboxList, CheckboxListItem } from '@astryxdesign/core/CheckboxList'
+import { Collapsible } from '@astryxdesign/core/Collapsible'
+import { EmptyState } from '@astryxdesign/core/EmptyState'
+import { Heading } from '@astryxdesign/core/Heading'
+import { HStack } from '@astryxdesign/core/HStack'
+import { Icon } from '@astryxdesign/core/Icon'
+import { Link } from '@astryxdesign/core/Link'
+import { MultiSelector } from '@astryxdesign/core/MultiSelector'
+import { Selector } from '@astryxdesign/core/Selector'
+import { Stack, StackItem } from '@astryxdesign/core/Stack'
+import { Switch } from '@astryxdesign/core/Switch'
+import { Table, proportional, type TableColumn } from '@astryxdesign/core/Table'
+import { Text } from '@astryxdesign/core/Text'
+import { TextInput } from '@astryxdesign/core/TextInput'
+import { Token } from '@astryxdesign/core/Token'
 import { RowBadges } from './badges'
 import { CiRail } from './ci-rail'
 import { ScoreCell } from './score-pill'
@@ -22,25 +38,26 @@ import type { BoardDomains, CiDomain, ModelRow, ScoreView } from '@/lib/types'
 
 function MobileScore({ label, score, domain }: { label: string; score: ScoreView | null; domain: CiDomain | null }) {
   return (
-    <div className="mobile-score">
-      <span>{label}</span>
+    <Stack gap={0.5}>
+      <Text type="supporting">{label}</Text>
       {score ? (
         <>
-          <strong>{score.rating.toFixed(1)}</strong>
-          <div className="score-top">
+          <HStack gap={1} vAlign="center">
+            <Text weight="semibold" hasTabularNumbers>{score.rating.toFixed(1)}</Text>
             <CiRail stat={score} domain={domain} width={48} />
-            <span className="lb-ci">±{ciHalf(score).toFixed(1)}</span>
-          </div>
-          <small>#{score.rank} · {score.condition}</small>
+          </HStack>
+          <Text type="supporting">#{score.rank} · {score.condition} · ±{ciHalf(score).toFixed(1)}</Text>
         </>
       ) : (
-        <>
-          <span className="missing">未收录</span>
-          <small>Arena 未收录</small>
-        </>
+        <Text type="supporting">未收录</Text>
       )}
-    </div>
+    </Stack>
   )
+}
+
+interface ModelView extends Record<string, unknown> {
+  id: string
+  model: ModelRow
 }
 
 export function ExploreClient({
@@ -52,8 +69,7 @@ export function ExploreClient({
   domains: BoardDomains
   dataDate: string
 }) {
-  const router = useRouter()
-  const { query, update, reset, toggleInList, removeFilter, urlReady } = useExploreQuery()
+  const { query, update, reset, removeFilter, urlReady } = useExploreQuery()
   const [filtersOpen, setFiltersOpen] = useState(false)
 
   const allLabs = useMemo(() => [...new Set(models.map(m => m.lab))].sort((a, b) => a.localeCompare(b, 'zh')), [models])
@@ -64,251 +80,327 @@ export function ExploreClient({
 
   const rows = useMemo(() => selectModels(models, query), [models, query])
   const activeChips = describeActiveFilters(query)
+  const data = useMemo<ModelView[]>(() => rows.map(model => ({ id: model.id, model })), [rows])
 
-  function sortButton(key: SortKey, label: string) {
+  function sortHeader(key: SortKey, label: string, sub: string) {
+    const active = query.sortKey === key
     return (
-      <button type="button" className="th-sort" onClick={() => update({ sortKey: key })}>
-        {label}
-        {query.sortKey === key && <span className="arrow">{key === 'price' ? '↑' : '↓'}</span>}
-      </button>
+      <Stack gap={0}>
+        <Button
+          label={label}
+          size="sm"
+          variant="ghost"
+          onClick={() => update({ sortKey: key })}
+          endContent={
+            active ? <Icon icon={key === 'price' ? 'arrowUp' : 'arrowDown'} size="xsm" /> : undefined
+          }
+        />
+        <Text type="supporting">{sub}</Text>
+      </Stack>
     )
   }
 
-  function ariaSort(key: SortKey) {
-    if (query.sortKey !== key) return 'none' as const
-    return key === 'price' ? ('ascending' as const) : ('descending' as const)
-  }
+  const columns: TableColumn<ModelView>[] = [
+    {
+      key: 'compare',
+      header: <Text as="span" type="supporting">对比</Text>,
+      width: proportional(0.4, { minWidth: 56 }),
+      renderCell: ({ model }) => <CompareCheckbox modelId={model.id} label={`加入对比 ${model.name}`} />,
+    },
+    {
+      key: 'model',
+      header: '模型',
+      width: proportional(2, { minWidth: 220 }),
+      renderCell: ({ model }) => (
+        <Stack gap={0.5}>
+          <HStack gap={1} wrap="wrap" vAlign="center">
+            <Link href={modelHref(model.canonicalId)} weight="medium">{model.name}</Link>
+            <RowBadges row={model} exceptionsOnly />
+          </HStack>
+          <Text type="supporting">
+            {model.lab} · {model.canonicalId}
+          </Text>
+        </Stack>
+      ),
+    },
+    {
+      key: 'context',
+      header: sortHeader('context', '上下文', 'tokens'),
+      align: 'end',
+      width: proportional(0.9, { minWidth: 100 }),
+      renderCell: ({ model }) => <Text hasTabularNumbers>{fmtContext(model.context)}</Text>,
+    },
+    {
+      key: 'price',
+      header: sortHeader('price', '价格', '输入 / 输出 · USD / 1M'),
+      align: 'end',
+      width: proportional(1.2, { minWidth: 150 }),
+      renderCell: ({ model }) => {
+        const prices = fmtPriceLines(model.price)
+        return (
+          <Stack gap={0.5}>
+            <HStack gap={1} justify="between">
+              <Text type="supporting">输入</Text>
+              <Text hasTabularNumbers>{prices.input}</Text>
+            </HStack>
+            <HStack gap={1} justify="between">
+              <Text type="supporting">输出</Text>
+              <Text hasTabularNumbers>{prices.output}</Text>
+            </HStack>
+            {model.price?.gatewayOnly && <Badge label="仅网关" variant="neutral" />}
+          </Stack>
+        )
+      },
+    },
+    {
+      key: 'reasoning',
+      header: '推理',
+      width: proportional(0.9, { minWidth: 100 }),
+      renderCell: ({ model }) => <Token label={model.reasoningLabel} size="sm" />,
+    },
+    {
+      key: 'arena_text',
+      header: sortHeader('arena_text', 'Arena text', 'CI 共享刻度'),
+      align: 'end',
+      width: proportional(1.1, { minWidth: 130 }),
+      renderCell: ({ model }) => <ScoreCell score={model.text} domain={domains.text} label="Arena text" />,
+    },
+    {
+      key: 'arena_webdev',
+      header: sortHeader('arena_webdev', 'Arena webdev', 'CI 共享刻度'),
+      align: 'end',
+      width: proportional(1.1, { minWidth: 130 }),
+      renderCell: ({ model }) => <ScoreCell score={model.webdev} domain={domains.webdev} label="Arena webdev" />,
+    },
+  ]
 
   return (
-    <div className="workbench" data-url-ready={urlReady ? 'true' : 'false'}>
-      <aside className={`filters ${filtersOpen ? 'open' : ''}`} id="filters-panel" aria-label="筛选">
-        <div className="filters-head">
-          <strong>筛选</strong>
-          <div className="head-actions">
-            <button type="button" className="btn small ghost" onClick={reset}>清除</button>
-            <button type="button" className="btn small mobile-only" onClick={() => setFiltersOpen(false)}>关闭</button>
-          </div>
-        </div>
+    <HStack className="workbench" data-url-ready={urlReady ? 'true' : 'false'} gap={4} align="start">
+      <Stack
+        as="aside"
+        className={`filters ${filtersOpen ? 'open' : ''}`}
+        id="filters-panel"
+        aria-label="筛选"
+        gap={3}
+        width={220}
+      >
+        <HStack justify="between" vAlign="center">
+          <Text type="label" weight="semibold">筛选</Text>
+          <HStack gap={1}>
+            <Button label="清除" size="sm" variant="ghost" onClick={reset} />
+            <Button
+              label="关闭"
+              size="sm"
+              variant="secondary"
+              className="mobile-only"
+              onClick={() => setFiltersOpen(false)}
+            />
+          </HStack>
+        </HStack>
 
-        <div className="filter-group" id="lab-filter">
-          <div className="filter-title">实验室</div>
+        <CheckboxList
+          label="实验室"
+          density="compact"
+          value={query.labs}
+          onChange={labs => update({ labs })}
+        >
           {allLabs.map(lab => (
-            <label className="check" key={lab}>
-              <input type="checkbox" checked={query.labs.includes(lab)} onChange={() => toggleInList('labs', lab)} />
-              <span>{lab}</span>
-            </label>
+            <CheckboxListItem key={lab} value={lab} label={lab} />
           ))}
-        </div>
+        </CheckboxList>
 
-        <details className="filter-group" id="provider-filter">
-          <summary className="filter-title">托管商（更多）</summary>
-          <div style={{ marginTop: 6 }}>
-            <p className="small muted" style={{ marginBottom: 4 }}>有任一选中托管商的报价</p>
-            {allProviders.map(provider => (
-              <label className="check" key={provider}>
-                <input
-                  type="checkbox"
-                  checked={query.providers.includes(provider)}
-                  onChange={() => toggleInList('providers', provider)}
+        <Collapsible trigger="托管商（更多）" defaultIsOpen={false}>
+          <Stack gap={2}>
+            <Text type="supporting">有任一选中托管商的报价</Text>
+            <MultiSelector
+              label="托管商"
+              options={allProviders.map(provider => ({ value: provider, label: provider }))}
+              value={query.providers}
+              onChange={providers => update({ providers })}
+              hasSearch
+              hasClear
+              triggerDisplay="count"
+              placeholder="不限"
+              searchPlaceholder="搜索托管商"
+            />
+            <Switch
+              label="仅网关（无第一方 / 云报价）"
+              size="sm"
+              value={query.gatewayOnly}
+              onChange={gatewayOnly => update({ gatewayOnly })}
+            />
+          </Stack>
+        </Collapsible>
+
+        <Selector
+          label="最高输出价"
+          options={PRICE_OPTIONS.map(value => ({ value: String(value), label: `≤ $${value} / 1M` }))}
+          value={query.maxOutput === null ? null : String(query.maxOutput)}
+          onChange={value => update({ maxOutput: value ? Number(value) : null })}
+          hasClear
+          placeholder="不限"
+        />
+
+        <Selector
+          label="最低上下文"
+          options={CONTEXT_OPTIONS.map(value => ({ value: String(value), label: `≥ ${fmtContext(value)}` }))}
+          value={query.minContext === null ? null : String(query.minContext)}
+          onChange={value => update({ minContext: value ? Number(value) : null })}
+          hasClear
+          placeholder="不限"
+        />
+
+        <Stack gap={2}>
+          <Text type="label">能力 / 状态</Text>
+          <Switch
+            label="支持推理"
+            size="sm"
+            labelPosition="start"
+            labelSpacing="spread"
+            width="100%"
+            value={query.reasoning}
+            onChange={reasoning => update({ reasoning })}
+          />
+          <Switch
+            label="开源权重"
+            size="sm"
+            labelPosition="start"
+            labelSpacing="spread"
+            width="100%"
+            value={query.openWeights}
+            onChange={openWeights => update({ openWeights })}
+          />
+          <Switch
+            label="仅稳定版"
+            size="sm"
+            labelPosition="start"
+            labelSpacing="spread"
+            width="100%"
+            value={query.stableOnly}
+            onChange={stableOnly => update({ stableOnly })}
+          />
+          <Switch
+            label="只看有评测"
+            size="sm"
+            labelPosition="start"
+            labelSpacing="spread"
+            width="100%"
+            value={query.hasArena}
+            onChange={hasArena => update({ hasArena })}
+          />
+        </Stack>
+      </Stack>
+
+      <StackItem size="fill">
+        <Stack className="results" gap={3}>
+          <HStack className="toolbar" gap={2} wrap="wrap" vAlign="end">
+            <TextInput
+              label="搜索模型、实验室或家族"
+              isLabelHidden
+              type="search"
+              startIcon="search"
+              placeholder="搜索模型 / 实验室 / 家族"
+              value={query.q}
+              onChange={q => update({ q })}
+              hasClear
+              width={280}
+            />
+            <Selector
+              label="排序"
+              isLabelHidden
+              options={SORT_OPTIONS}
+              value={query.sortKey}
+              onChange={sortKey => update({ sortKey: sortKey as SortKey })}
+              width={200}
+            />
+            <Button
+              label="筛选"
+              size="sm"
+              variant="secondary"
+              className="mobile-only"
+              aria-expanded={filtersOpen}
+              aria-controls="filters-panel"
+              onClick={() => setFiltersOpen(v => !v)}
+            />
+            <Text type="supporting">{rows.length} 个结果</Text>
+          </HStack>
+
+          {activeChips.length > 0 && (
+            <HStack gap={1} wrap="wrap" vAlign="center">
+              {activeChips.map(chip => (
+                <Token
+                  key={`${chip.kind}:${chip.value ?? ''}`}
+                  label={chip.label}
+                  size="sm"
+                  onRemove={() => removeFilter(chip)}
                 />
-                <span>{provider}</span>
-              </label>
-            ))}
-            <label className="check">
-              <input
-                type="checkbox"
-                checked={query.gatewayOnly}
-                onChange={e => update({ gatewayOnly: e.target.checked })}
-              />
-              <span>仅网关（无第一方 / 云报价）</span>
-            </label>
-          </div>
-        </details>
+              ))}
+              <Button label="清除全部" size="sm" variant="ghost" onClick={reset} />
+            </HStack>
+          )}
 
-        <div className="filter-group">
-          <label className="filter-title" htmlFor="max-output">最高输出价</label>
-          <select
-            id="max-output"
-            value={query.maxOutput === null ? '' : String(query.maxOutput)}
-            onChange={e => update({ maxOutput: e.target.value ? Number(e.target.value) : null })}
-          >
-            <option value="">不限</option>
-            {PRICE_OPTIONS.map(v => <option key={v} value={v}>≤ ${v} / 1M</option>)}
-          </select>
-        </div>
+          {rows.length ? (
+            <>
+              <Stack className="desktop-only">
+                <Table
+                  data={data}
+                  columns={columns}
+                  idKey="id"
+                  density="compact"
+                  dividers="rows"
+                  hasHover
+                  aria-label="模型目录，按当前筛选和排序显示"
+                />
+              </Stack>
 
-        <div className="filter-group">
-          <label className="filter-title" htmlFor="min-context">最低上下文</label>
-          <select
-            id="min-context"
-            value={query.minContext === null ? '' : String(query.minContext)}
-            onChange={e => update({ minContext: e.target.value ? Number(e.target.value) : null })}
-          >
-            <option value="">不限</option>
-            {CONTEXT_OPTIONS.map(v => <option key={v} value={v}>≥ {fmtContext(v)}</option>)}
-          </select>
-        </div>
+              <Stack className="mobile-list" gap={3}>
+                {rows.map(row => {
+                  const prices = fmtPriceLines(row.price)
+                  return (
+                    <Card key={row.id} padding={3}>
+                      <Stack gap={2}>
+                        <HStack justify="between" align="start" gap={2}>
+                          <Stack gap={0.5}>
+                            <Text type="supporting">{row.lab}</Text>
+                            <Heading level={3}>
+                              <Link href={modelHref(row.canonicalId)}>{row.name}</Link>
+                            </Heading>
+                            <HStack gap={1} wrap="wrap">
+                              <RowBadges row={row} exceptionsOnly />
+                            </HStack>
+                            <Text type="supporting">{row.canonicalId}</Text>
+                          </Stack>
+                          <CompareButton modelId={row.id} small short />
+                        </HStack>
+                        <HStack gap={4} wrap="wrap">
+                          <MobileScore label="Arena text" score={row.text} domain={domains.text} />
+                          <MobileScore label="Arena webdev" score={row.webdev} domain={domains.webdev} />
+                        </HStack>
+                        <HStack gap={3} wrap="wrap">
+                          <Text type="supporting">上下文 <Text weight="semibold">{fmtContext(row.context)}</Text></Text>
+                          <Text type="supporting">价格 <Text weight="semibold">{prices.input} / {prices.output}</Text></Text>
+                          <Text type="supporting">推理 <Text weight="semibold">{row.reasoningLabel}</Text></Text>
+                        </HStack>
+                      </Stack>
+                    </Card>
+                  )
+                })}
+              </Stack>
 
-        <div className="filter-group">
-          <div className="filter-title">能力 / 状态</div>
-          <label className="switch-row"><span>支持推理</span><input type="checkbox" checked={query.reasoning} onChange={e => update({ reasoning: e.target.checked })} /></label>
-          <label className="switch-row"><span>开源权重</span><input type="checkbox" checked={query.openWeights} onChange={e => update({ openWeights: e.target.checked })} /></label>
-          <label className="switch-row"><span>仅稳定版</span><input type="checkbox" checked={query.stableOnly} onChange={e => update({ stableOnly: e.target.checked })} /></label>
-          <label className="switch-row"><span>只看有评测</span><input type="checkbox" checked={query.hasArena} onChange={e => update({ hasArena: e.target.checked })} /></label>
-        </div>
-      </aside>
-
-      <section className="results">
-        <div className="toolbar">
-          <div className="search-wrap">
-            <div className="search-field">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.5" />
-                <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              <input
-                className="search"
-                type="search"
-                aria-label="搜索模型、实验室或家族"
-                placeholder="搜索模型 / 实验室 / 家族"
-                value={query.q}
-                onChange={e => update({ q: e.target.value })}
-              />
-            </div>
-          </div>
-          <select
-            className="sort-select"
-            value={query.sortKey}
-            onChange={e => update({ sortKey: e.target.value as SortKey })}
-            aria-label="排序"
-          >
-            {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-          </select>
-          <button
-            type="button"
-            className="btn mobile-only"
-            aria-expanded={filtersOpen}
-            aria-controls="filters-panel"
-            onClick={() => setFiltersOpen(v => !v)}
-          >
-            筛选
-          </button>
-          <span className="count">{rows.length} 个结果</span>
-        </div>
-
-        {activeChips.length > 0 && (
-          <div className="chips">
-            {activeChips.map(chip => (
-              <span className="chip" key={`${chip.kind}:${chip.value ?? ''}`}>
-                {chip.label}
-                <button type="button" onClick={() => removeFilter(chip)} aria-label={`移除 ${chip.label}`}>×</button>
-              </span>
-            ))}
-            <button type="button" className="chip clear" onClick={reset}>清除全部</button>
-          </div>
-        )}
-
-        {rows.length ? (
-          <>
-            <div className="table-wrap desktop-only">
-              <table className="model-table">
-                <caption className="sr-only">模型目录，按当前筛选和排序显示</caption>
-                <thead>
-                  <tr>
-                    <th className="col-check"><span className="sr-only">对比</span></th>
-                    <th>模型</th>
-                    <th className="num" aria-sort={ariaSort('context')}>{sortButton('context', '上下文')}</th>
-                    <th className="num" aria-sort={ariaSort('price')}>
-                      {sortButton('price', '价格')}
-                      <span className="th-sub">输入 / 输出 · USD / 1M</span>
-                    </th>
-                    <th>推理</th>
-                    <th className="num" aria-sort={ariaSort('arena_text')}>
-                      {sortButton('arena_text', 'Arena text')}
-                      <span className="th-sub">CI 共享刻度</span>
-                    </th>
-                    <th className="num" aria-sort={ariaSort('arena_webdev')}>
-                      {sortButton('arena_webdev', 'Arena webdev')}
-                      <span className="th-sub">CI 共享刻度</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map(row => {
-                    const prices = fmtPriceLines(row.price)
-                    return (
-                      <tr className="model-row" key={row.id} onClick={() => router.push(modelHref(row.canonicalId))}>
-                        <td className="col-check" onClick={e => e.stopPropagation()}>
-                          <CompareCheckbox modelId={row.id} label={`加入对比 ${row.name}`} />
-                        </td>
-                        <td>
-                          <div className="model-name">
-                            <Link href={modelHref(row.canonicalId)} onClick={e => e.stopPropagation()}>{row.name}</Link>
-                            <RowBadges row={row} exceptionsOnly />
-                          </div>
-                          <div className="model-sub">
-                            {row.lab} · <span className="id">{row.canonicalId}</span>
-                          </div>
-                        </td>
-                        <td className="num">{fmtContext(row.context)}</td>
-                        <td className="price-cell">
-                          <div><span className="lab">输入</span><b>{prices.input}</b></div>
-                          <div><span className="lab">输出</span><b>{prices.output}</b></div>
-                          {row.price?.gatewayOnly && <div className="gateway-note">仅网关</div>}
-                        </td>
-                        <td><span className="reasoning-pill">{row.reasoningLabel}</span></td>
-                        <td><ScoreCell score={row.text} domain={domains.text} label="Arena text" /></td>
-                        <td><ScoreCell score={row.webdev} domain={domains.webdev} label="Arena webdev" /></td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="mobile-list">
-              {rows.map(row => {
-                const prices = fmtPriceLines(row.price)
-                return (
-                  <article className="mobile-card" key={row.id}>
-                    <div className="mobile-card-top">
-                      <div>
-                        <div className="lab">{row.lab}</div>
-                        <h3><Link href={modelHref(row.canonicalId)}>{row.name}</Link></h3>
-                        <div className="mobile-badges">
-                          <RowBadges row={row} exceptionsOnly />
-                        </div>
-                        <div className="mobile-id">{row.canonicalId}</div>
-                      </div>
-                      <CompareButton modelId={row.id} small short />
-                    </div>
-                    <div className="mobile-scores">
-                      <MobileScore label="Arena text" score={row.text} domain={domains.text} />
-                      <MobileScore label="Arena webdev" score={row.webdev} domain={domains.webdev} />
-                    </div>
-                    <div className="mobile-facts">
-                      <span>上下文 <b>{fmtContext(row.context)}</b></span>
-                      <span>价格 <b>{prices.input} / {prices.output}</b></span>
-                      <span>推理 <b>{row.reasoningLabel}</b></span>
-                    </div>
-                  </article>
-                )
-              })}
-            </div>
-
-            <div className="table-foot">
-              <span>显示 {rows.length} / {models.length} 个模型 · 价格 USD / 1M tokens</span>
-              <span>价格快照 {dataDate} · Arena latest</span>
-            </div>
-          </>
-        ) : (
-          <div className="empty">
-            <strong>没有符合条件的模型</strong>
-            <p>删掉一两个筛选条件，或者清除全部筛选再看。</p>
-            <button type="button" className="btn primary" onClick={reset}>清除筛选</button>
-          </div>
-        )}
-      </section>
-    </div>
+              <HStack className="table-foot" justify="between" wrap="wrap" gap={2}>
+                <Text type="supporting">显示 {rows.length} / {models.length} 个模型 · 价格 USD / 1M tokens</Text>
+                <Text type="supporting">价格快照 {dataDate} · Arena latest</Text>
+              </HStack>
+            </>
+          ) : (
+            <EmptyState
+              title="没有符合条件的模型"
+              description="删掉一两个筛选条件，或者清除全部筛选再看。"
+              actions={<Button label="清除筛选" variant="primary" onClick={reset} />}
+            />
+          )}
+        </Stack>
+      </StackItem>
+    </HStack>
   )
 }

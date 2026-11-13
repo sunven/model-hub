@@ -1,6 +1,7 @@
 'use client'
 
-import { createContext, Suspense, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { createContext, Suspense, useCallback, useContext, useMemo, type ReactNode } from 'react'
+import { useToast } from '@astryxdesign/core/Toast'
 import { CompareLocationSync, useCompareSet } from './use-compare-set'
 import { COMPARE_LIMIT } from '@/lib/compare-set'
 import type { ModelIndexEntry } from '@/lib/types'
@@ -18,16 +19,13 @@ interface CompareContextValue {
 const CompareContext = createContext<CompareContextValue | null>(null)
 
 export function CompareProvider({ modelIndex, children }: { modelIndex: ModelIndexEntry[]; children: ReactNode }) {
-  const [toast, setToast] = useState<string | null>(null)
-  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const showToast = useCallback((message: string) => {
-    setToast(message)
-    if (toastTimer.current) clearTimeout(toastTimer.current)
-    toastTimer.current = setTimeout(() => setToast(null), 1900)
-  }, [])
-  useEffect(() => () => {
-    if (toastTimer.current) clearTimeout(toastTimer.current)
-  }, [])
+  const toast = useToast()
+  const showToast = useCallback(
+    (message: string) => {
+      toast({ body: message, uniqueID: 'compare-limit', autoHideDuration: 2600 })
+    },
+    [toast],
+  )
 
   const onLimit = useCallback(() => showToast(`最多选择 ${COMPARE_LIMIT} 个模型`), [showToast])
   const { selected, ready, toggle, remove, clear, synchronize } = useCompareSet(modelIndex, onLimit)
@@ -42,9 +40,6 @@ export function CompareProvider({ modelIndex, children }: { modelIndex: ModelInd
         <CompareLocationSync synchronize={synchronize} />
       </Suspense>
       {children}
-      <div className={`toast ${toast ? 'show' : ''}`} role="status" aria-live="polite">
-        {toast ?? ''}
-      </div>
     </CompareContext.Provider>
   )
 }

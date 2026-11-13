@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react'
 import { Theme } from '@astryxdesign/core/theme'
-import { themes, defaultThemeSlug } from '@/astryx-themes'
+import { themes, defaultThemeSlug } from '../astryx-themes'
 
 /** Built themes carry React icon elements, so the theme object must be read on
  * this side of the RSC boundary rather than passed down from the server layout.

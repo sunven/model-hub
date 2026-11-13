@@ -1,10 +1,14 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import '@astryxdesign/core/reset.css'
 import '@fontsource/ibm-plex-sans/latin-400.css'
 import '@fontsource/ibm-plex-sans/latin-500.css'
 import '@fontsource/ibm-plex-sans/latin-600.css'
 import '@fontsource/ibm-plex-mono/latin-400.css'
 import './globals.css'
+import '@astryxdesign/core/astryx.css'
+import { Stack } from '@astryxdesign/core/Stack'
+import { AstryxLinkProvider } from '@/components/astryx-link-provider'
 import { AstryxThemeProvider } from '@/components/astryx-theme-provider'
 import { CompareProvider } from '@/components/compare-provider'
 import { CompareTray } from '@/components/compare-tray'
@@ -50,17 +54,19 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <JsonLd data={websiteLd()} />
         <a className="skip-link" href="#main-content">跳到主要内容</a>
         <AstryxThemeProvider>
-          <CompareProvider modelIndex={catalog.index}>
-            <FreshnessProvider freshness={manifest.freshness}>
-              <SiteHeader />
-              <div className="sheet">
-                <DataFreshness />
-                <main id="main-content" tabIndex={-1}>{children}</main>
-                <SiteFooter />
-              </div>
-              <CompareTray />
-            </FreshnessProvider>
-          </CompareProvider>
+          <AstryxLinkProvider>
+            <CompareProvider modelIndex={catalog.index}>
+              <FreshnessProvider freshness={manifest.freshness}>
+                <SiteHeader />
+                <Stack className="sheet" gap={0}>
+                  <DataFreshness />
+                  <main id="main-content" tabIndex={-1}>{children}</main>
+                  <SiteFooter />
+                </Stack>
+                <CompareTray />
+              </FreshnessProvider>
+            </CompareProvider>
+          </AstryxLinkProvider>
         </AstryxThemeProvider>
       </body>
     </html>
