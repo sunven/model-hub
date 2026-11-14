@@ -4,11 +4,11 @@ Public deployment is intentionally out of scope for the current phase. Nothing i
 
 ## Build
 
-Requires Node.js 22+.
+Requires Node.js 22.13+ and pnpm 11.15.1, as pinned in `package.json`.
 
 ```bash
-npm ci
-SITE_URL=https://your-domain.example npm run build
+pnpm install --frozen-lockfile
+SITE_URL=https://your-domain.example pnpm run build
 ```
 
 The output is in `out/`. `SITE_URL` controls canonical URLs, `sitemap.xml`, `robots.txt`, and absolute Open Graph URLs. It has no trailing slash; the code normalizes it. The default `https://model-hub.example` is a placeholder and must not be used for a public launch.
@@ -19,7 +19,7 @@ The build reads only the committed, validated `data/latest` snapshot. It does no
 
 Any static host that serves directory indexes works. For Cloudflare Pages, use:
 
-- Build command: `npm run build`
+- Build command: `pnpm run build`
 - Build output directory: `out`
 - Environment: `SITE_URL=https://your-domain.example`
 - Node version: 22
@@ -33,7 +33,7 @@ No server functions, KV, D1, or secrets are required. If mainland-China access b
 3. Verify `/compare` and query-parameter views are noindex/blocked; clean pages remain indexable.
 4. Confirm the public GitHub Issues entry works and that the removal process is reachable from every page.
 5. Publish a private contact channel for sensitive rights-holder requests.
-6. Run `npm run test:e2e`, the axe smoke test, and Lighthouse CI against the production build.
+6. Run `pnpm run test:e2e`, the axe smoke test, and Lighthouse CI against the production build.
 7. Enable GitHub Actions `CI` and `Refresh data`; confirm the refresh workflow can commit to `main` or adjust it to open a PR if branch protection is enabled.
 8. Review the host's access-log retention and privacy terms, then update `/about` if needed.
 

@@ -36,7 +36,7 @@ function json(value: unknown): string {
 
 async function makeSnapshotId(input: SnapshotInput, now: Date): Promise<string> {
   const hash = createHash('sha256')
-  const recipeFiles = ['snapshot.ts', 'fetch.ts', 'publish-snapshot.ts', 'models.ts', 'arena.ts', 'overrides.ts', 'config.ts', '../lib/snapshot.ts', '../lib/freshness.ts', '../package-lock.json']
+  const recipeFiles = ['snapshot.ts', 'fetch.ts', 'publish-snapshot.ts', 'models.ts', 'arena.ts', 'overrides.ts', 'config.ts', '../lib/snapshot.ts', '../lib/freshness.ts', '../pnpm-lock.yaml']
   const contents = await Promise.all(recipeFiles.map(file => readFile(new URL(file, import.meta.url))))
   for (let i = 0; i < recipeFiles.length; i++) {
     hash.update(recipeFiles[i]).update(contents[i])

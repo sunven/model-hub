@@ -1,13 +1,14 @@
 'use client'
 
+import React from 'react'
 import { Banner } from '@astryxdesign/core/Banner'
 import { Link } from '@astryxdesign/core/Link'
 import { useFreshness } from './freshness-provider'
+import type { Manifest } from '@/lib/snapshot'
 
-export function DataFreshness() {
+export function DataFreshness({ initialFreshness }: { initialFreshness: Manifest['freshness'] }) {
   const state = useFreshness()
-  if (!state) return null
-  const { freshness } = state
+  const freshness = state?.freshness ?? initialFreshness
   const messages: string[] = []
   if (freshness.modelsDev.stale) {
     messages.push(`models.dev 快照已超过 ${freshness.modelsDev.thresholdHours} 小时（获取于 ${freshness.modelsDev.fetchedAt.slice(0, 10)}）。`)

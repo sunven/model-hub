@@ -21,17 +21,18 @@ jobs:
       PLAYWRIGHT_CHANNEL: chromium
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run schema:check
-      - run: npm run typecheck
-      - run: npm run test:unit
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:e2e
-      - run: npm run build
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run schema:check
+      - run: pnpm run typecheck
+      - run: pnpm run test:unit
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm run test:e2e
+      - run: pnpm run build
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -47,14 +48,15 @@ jobs:
       SITE_URL: https://model-hub.example
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
       - name: Lighthouse CI
-        run: npx lhci autorun
+        run: pnpm exec lhci autorun
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

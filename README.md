@@ -17,21 +17,21 @@
 
 ## 本地运行
 
-要求 Node.js 22+、npm 和 curl。
+要求 Node.js 22.13+、pnpm 11.15.1（版本固定在 `package.json`）和 curl。
 
 ```bash
-npm ci
-npm run dev
+pnpm install --frozen-lockfile
+pnpm run dev
 ```
 
 打开 http://localhost:3000。仓库已包含通过校验的 `data/latest`，首次运行不需要联网。
 
 ```bash
-npm run typecheck   # TypeScript
-npm run test:unit   # 纯逻辑与数据契约
-npm run schema:check # 检查 JSON Schema 是否与契约一致
-npm run test:e2e    # Playwright（本地默认使用 Chrome）
-npm run build       # 静态导出到 out/
+pnpm run typecheck   # TypeScript
+pnpm run test:unit   # 纯逻辑与数据契约
+pnpm run schema:check # 检查 JSON Schema 是否与契约一致
+pnpm run test:e2e    # Playwright（本地默认使用 Chrome）
+pnpm run build       # 静态导出到 out/
 ```
 
 Compare Set 由 `CompareProvider` 唯一持有，页面、托盘和导航栏共用；合法 ID、去重、顺序和最多 3 个的规则统一在 `lib/compare-set.ts`。localStorage 只用于首次恢复与保存选择。对比 URL 中显式给出的 `models` 优先，包括空值和全部无效的 ID；裸 `/compare` 首次进入可恢复已有选择，浏览器返回到已清空的对比地址会恢复空集合。移除和清空用 `replaceState` 更新当前地址，保留其他 query、hash 与 history state。
@@ -39,10 +39,10 @@ Compare Set 由 `CompareProvider` 唯一持有，页面、托盘和导航栏共�
 ## 数据刷新
 
 ```bash
-npm run data:refresh   # 下载 models.dev + Arena 数据，更新 ECB 汇率，重建快照
-npm run data:offline   # 使用 data/raw 缓存重建，不联网
-npm run data           # 缓存存在时复用，否则下载
-npm run data:offline -- --data-dir /absolute/path/to/data # 使用独立数据目录
+pnpm run data:refresh   # 下载 models.dev + Arena 数据，更新 ECB 汇率，重建快照
+pnpm run data:offline   # 使用 data/raw 缓存重建，不联网
+pnpm run data           # 缓存存在时复用，否则下载
+pnpm run data:offline --data-dir /absolute/path/to/data # 使用独立数据目录
 ```
 
 管道先校验并写入临时目录，再通过目录 rename 发布 `data/latest` 与 `data/schema`。写入或替换失败会回滚两份目录，报告写到 `data/validation-report.json`；若文件系统连回滚也拒绝，报告会注明保留下来的备份目录。跨目录发布不保证进程崩溃时的原子性，同一数据目录应只运行一个写入者。`data/raw` 不纳入版本控制。
@@ -69,7 +69,7 @@ Snapshot ID 同时哈希构建代码、依赖锁文件及数据输入。固定�
 
 `lib/snapshot.ts` 是 Snapshot 契约的权威：定义 Zod schema、由 schema 推导的 TypeScript 类型和快照校验规则。数据管道与站点构建共用这份契约，`scripts/types.ts` 仅保留上游输入与管道处理结果的类型。
 
-修改契约后运行 `npm run schema:generate`，并提交生成的 `data/schema/*.json`。CI 通过 `npm run schema:check` 拦截遗漏更新、缺失或多余的 schema；这两条命令均不刷新数据快照。
+修改契约后运行 `pnpm run schema:generate`，并提交生成的 `data/schema/*.json`。CI 通过 `pnpm run schema:check` 拦截遗漏更新、缺失或多余的 schema；这两条命令均不刷新数据快照。
 
 ```text
 data/latest/models.json               ModelVersion

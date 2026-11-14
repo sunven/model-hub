@@ -8,7 +8,7 @@ type FreshnessState = { now: number; freshness: Manifest['freshness'] }
 const FreshnessContext = createContext<FreshnessState | null>(null)
 
 /** One browser clock drives both warnings and CNY, including static pages.
- * No time-dependent markup is emitted before hydration.
+ * CNY is withheld until the browser clock is available.
  */
 export function FreshnessProvider({ freshness, children }: {
   freshness: Manifest['freshness']
@@ -18,12 +18,9 @@ export function FreshnessProvider({ freshness, children }: {
 
   useEffect(() => {
     let timer: number
-    let lastCheck = 0
     const check = () => {
       window.clearTimeout(timer)
       const now = Date.now()
-      if (now - lastCheck < 1000) return
-      lastCheck = now
       const timestamps = {
         modelsDev: freshness.modelsDev.fetchedAt,
         arena: [freshness.arena.fetchedAt],

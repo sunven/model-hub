@@ -18,8 +18,15 @@ import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { catalog, manifest } from '@/lib/data'
+import { snapshotFreshness } from '@/lib/freshness'
 import { LOCALE, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site'
 import { websiteLd } from '@/lib/structured-data'
+
+const fontPreloads = [
+  new URL('../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2', import.meta.url).pathname,
+  new URL('../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2', import.meta.url).pathname,
+  new URL('../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff2', import.meta.url).pathname,
+]
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -48,8 +55,16 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  const initialFreshness = snapshotFreshness({
+    modelsDev: manifest.freshness.modelsDev.fetchedAt,
+    arena: [manifest.freshness.arena.fetchedAt],
+    fx: manifest.freshness.fx.asOf,
+  })
   return (
     <html lang="zh-CN">
+      <head>
+        {fontPreloads.map(href => <link key={href} rel="preload" href={href} as="font" type="font/woff2" crossOrigin="anonymous" />)}
+      </head>
       <body>
         <JsonLd data={websiteLd()} />
         <a className="skip-link" href="#main-content">跳到主要内容</a>
@@ -59,7 +74,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
               <FreshnessProvider freshness={manifest.freshness}>
                 <SiteHeader />
                 <Stack className="sheet" gap={0}>
-                  <DataFreshness />
+                  <DataFreshness initialFreshness={initialFreshness} />
                   <main id="main-content" tabIndex={-1}>{children}</main>
                   <SiteFooter />
                 </Stack>

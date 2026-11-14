@@ -19,8 +19,8 @@ export default defineConfig({
   },
   webServer: {
     // Tests own the dev server and clear .next in pretest:e2e.
-    // Stop any running `npm run dev` before test:e2e.
-    command: 'npm run dev',
+    // Stop any running `pnpm run dev` before test:e2e.
+    command: 'pnpm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: false,
     timeout: 120_000,

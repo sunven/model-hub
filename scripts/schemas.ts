@@ -30,7 +30,7 @@ if (mode === '--write') {
   })
   drift.push(...files.filter(file => file.endsWith('.schema.json') && !(file in schemas)))
   if (drift.length) {
-    console.error(`JSON Schema drift: ${drift.join(', ')}. Run npm run schema:generate and remove obsolete schemas.`)
+    console.error(`JSON Schema drift: ${drift.join(', ')}. Run pnpm run schema:generate and remove obsolete schemas.`)
     process.exitCode = 1
   } else {
     console.log(`All ${Object.keys(schemas).length} JSON Schemas match lib/snapshot.ts`)

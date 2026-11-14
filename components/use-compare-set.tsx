@@ -44,9 +44,9 @@ export function useCompareSet(modelIndex: ModelIndexEntry[], onLimit: () => void
     if (current.current.join(',') !== next.join(',')) {
       current.current = next
       setSelected(next)
-      persistSelection(next)
-      replaceCompareUrl(next)
     }
+    persistSelection(next)
+    replaceCompareUrl(next)
   }, [])
 
   const synchronize = useCallback((fromHistory = false) => {
