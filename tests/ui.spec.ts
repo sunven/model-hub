@@ -33,6 +33,19 @@ test('home renders and search/filter/sort update URL', async ({ page }) => {
   await expect(page).toHaveURL(/sort=price/)
 })
 
+test('shared filters restore on load and can be cleared', async ({ page }) => {
+  await page.goto('/?labs=Anthropic&sort=price')
+  await waitForUrlReady(page)
+  await expect(rows(page)).toHaveCount(4)
+  await expect(page.getByRole('checkbox', { name: 'Anthropic', exact: true })).toBeChecked()
+  await expect(page).toHaveURL(/labs=Anthropic/)
+  await expect(page).toHaveURL(/sort=price/)
+
+  await page.getByRole('button', { name: '清除', exact: true }).click()
+  await expect(rows(page)).toHaveCount(43)
+  await expect(page).toHaveURL('/')
+})
+
 test('provider filter includes first-party and gateway-only', async ({ page }) => {
   await page.goto('/')
   await waitForUrlReady(page)

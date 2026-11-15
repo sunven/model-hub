@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import { Badge } from '@astryxdesign/core/Badge'
 import { Button } from '@astryxdesign/core/Button'
 import { Card } from '@astryxdesign/core/Card'
@@ -60,16 +60,25 @@ interface ModelView extends Record<string, unknown> {
   model: ModelRow
 }
 
-export function ExploreClient({
-  models,
-  domains,
-  dataDate,
-}: {
+type ExploreClientProps = {
   models: ModelRow[]
   domains: BoardDomains
   dataDate: string
-}) {
+}
+
+export function ExploreClient(props: ExploreClientProps) {
   const { query, update, reset, removeFilter, urlReady } = useExploreQuery()
+  return (
+    <HStack className="workbench" data-url-ready={urlReady ? 'true' : 'false'} gap={4} align="start">
+      <ExploreContent {...props} query={query} update={update} reset={reset} removeFilter={removeFilter} />
+    </HStack>
+  )
+}
+
+// URL readiness changes during hydration without changing the default results.
+const ExploreContent = memo(function ExploreContent({
+  models, domains, dataDate, query, update, reset, removeFilter,
+}: ExploreClientProps & Omit<ReturnType<typeof useExploreQuery>, 'urlReady'>) {
   const [filtersOpen, setFiltersOpen] = useState(false)
 
   const allLabs = useMemo(() => [...new Set(models.map(m => m.lab))].sort((a, b) => a.localeCompare(b, 'zh')), [models])
@@ -175,7 +184,7 @@ export function ExploreClient({
   ]
 
   return (
-    <HStack className="workbench" data-url-ready={urlReady ? 'true' : 'false'} gap={4} align="start">
+    <>
       <Stack
         as="aside"
         className={`filters ${filtersOpen ? 'open' : ''}`}
@@ -401,6 +410,6 @@ export function ExploreClient({
           )}
         </Stack>
       </StackItem>
-    </HStack>
+    </>
   )
-}
+})

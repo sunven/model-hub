@@ -19,7 +19,8 @@ export function useExploreQuery() {
   const [urlReady, setUrlReady] = useState(false)
 
   useIsoLayoutEffect(() => {
-    setQuery(parseExploreQuery(new URLSearchParams(window.location.search)))
+    const restored = parseExploreQuery(new URLSearchParams(window.location.search))
+    if (!isDefaultExploreQuery(restored)) setQuery(restored)
     setUrlReady(true)
   }, [])
 

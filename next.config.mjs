@@ -17,7 +17,8 @@ const nextConfig = {
       config.optimization.splitChunks.cacheGroups.astryx = {
         name: 'astryx',
         test: /[\\/]node_modules[\\/]@astryxdesign[\\/]/,
-        chunks: 'all',
+        // Keep lazy components out of the shared startup bundle.
+        chunks: 'initial',
         minChunks: 2,
         enforce: true,
         priority: 50,
