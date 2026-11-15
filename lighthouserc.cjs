@@ -3,6 +3,8 @@ module.exports = {
     collect: {
       staticDistDir: './out',
       numberOfRuns: 3,
+      // Measure hydration with Chrome throttled, including its task scheduling.
+      settings: { throttlingMethod: 'devtools' },
       url: ['/', '/models/anthropic/claude-opus-5-5.html', '/leaderboards/text.html', '/about.html'],
     },
     assert: {
