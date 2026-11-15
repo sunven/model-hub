@@ -132,6 +132,11 @@ canvas {
   display: none !important;
 }
 
+.mobile-list > .astryx-card {
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto calc(var(--spacing-4) * 16);
+}
+
 /* ---------- framed sheet ---------- */
 
 .sheet {

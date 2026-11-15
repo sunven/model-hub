@@ -14,6 +14,7 @@ import { Table, proportional, type TableColumn } from '@astryxdesign/core/Table'
 import { Text } from '@astryxdesign/core/Text'
 import { TextInput } from '@astryxdesign/core/TextInput'
 import { CiRail } from './ci-rail'
+import { DesktopHydration } from './desktop-hydration'
 import { useNoindex } from './use-noindex'
 import { BOARDS, BOARD_LABELS } from '@/lib/boards'
 import { ciDomain, ciHalf, ciOverlaps, fmtVotes } from '@/lib/format'
@@ -166,15 +167,17 @@ export function LeaderboardClient({
       {visible.length ? (
         <>
           <Stack className="desktop-only">
-            <Table
-              data={data}
-              columns={columns}
-              idKey="id"
-              density="compact"
-              dividers="rows"
-              hasHover
-              aria-label={`${boardLabel} 榜单，按 rank 排序`}
-            />
+            <DesktopHydration>
+              <Table
+                data={data}
+                columns={columns}
+                idKey="id"
+                density="compact"
+                dividers="rows"
+                hasHover
+                aria-label={`${boardLabel} 榜单，按 rank 排序`}
+              />
+            </DesktopHydration>
           </Stack>
 
           <Stack className="mobile-list" gap={3}>

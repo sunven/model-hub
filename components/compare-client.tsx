@@ -19,7 +19,7 @@ import {
   TableRow,
 } from '@astryxdesign/core/Table'
 import { Text } from '@astryxdesign/core/Text'
-import { useCompare } from './compare-provider'
+import { useCompare, useCompareReady } from './compare-provider'
 import { RowBadges } from './badges'
 import { ScorePill } from './score-pill'
 import { CnyRange } from './cny-price'
@@ -144,9 +144,10 @@ export function CompareClient({
   picks: ModelRow[]
 }) {
   const compare = useCompare()
+  const ready = useCompareReady()
   const byId = useMemo(() => new Map(models.map(m => [m.id, m])), [models])
 
-  if (!compare.ready) {
+  if (!ready) {
     return (
       <Stack className="sheet-inner" gap={2} hAlign="center">
         <Spinner />

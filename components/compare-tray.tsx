@@ -57,7 +57,7 @@ export function CompareButton({
   primary?: boolean
   short?: boolean
 }) {
-  const { selected, ready, toggle } = useCompare()
+  const { selected, toggle } = useCompare()
   const active = selected.includes(modelId)
   const label = active ? (short ? '已加入' : '已加入对比') : short ? '对比' : '加入对比'
   return (
@@ -65,21 +65,19 @@ export function CompareButton({
       label={label}
       size={small ? 'sm' : 'md'}
       variant={active || primary ? 'primary' : 'secondary'}
-      isDisabled={!ready}
       onClick={() => toggle(modelId)}
     />
   )
 }
 
 export function CompareCheckbox({ modelId, label }: { modelId: string; label: string }) {
-  const { selected, ready, toggle } = useCompare()
+  const { selected, toggle } = useCompare()
   return (
     <CheckboxInput
       label={label}
       isLabelHidden
       size="sm"
       value={selected.includes(modelId)}
-      isDisabled={!ready}
       onChange={() => toggle(modelId)}
     />
   )

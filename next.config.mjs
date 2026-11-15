@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  // Deliver metadata before client filters can update robots directives.
+  htmlLimitedBots: /.*/,
   images: { unoptimized: true },
   devIndicators: false,
   experimental: {
@@ -20,6 +22,7 @@ const nextConfig = {
         // Keep lazy components out of the shared startup bundle.
         chunks: 'initial',
         minChunks: 2,
+        maxSize: 512 * 1024,
         enforce: true,
         priority: 50,
       }

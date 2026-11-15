@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test'
 import manifest from '../data/latest/manifest.json' with { type: 'json' }
 
-const rows = (page: Page) => page.locator('table tbody tr')
+const rows = (page: Page) => page.locator('main table tbody tr')
 
 async function waitForUrlReady(page: Page) {
   await expect(page.locator('.workbench')).toHaveAttribute('data-url-ready', 'true')
@@ -130,6 +130,48 @@ test('mobile cards and filter drawer', async ({ page }) => {
   await expect(page.locator('#filters-panel')).toHaveClass(/open/)
   await page.getByRole('button', { name: '关闭' }).click()
   await expect(page.locator('#filters-panel')).not.toHaveClass(/open/)
+})
+
+test('filters and comparison survive switching between mobile and desktop', async ({ page }) => {
+  const errors: string[] = []
+  page.on('pageerror', error => errors.push(error.message))
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/?labs=Anthropic&sort=price')
+  await waitForUrlReady(page)
+
+  const cards = page.locator('.mobile-list .astryx-card')
+  await expect(cards).toHaveCount(4)
+  const opus = cards.filter({ has: page.getByRole('link', { name: 'Claude Opus 5.5', exact: true }) })
+  await opus.getByRole('button', { name: '对比', exact: true }).click()
+
+  await page.getByRole('button', { name: '筛选', exact: true }).click()
+  await expect(page.getByRole('checkbox', { name: 'Anthropic', exact: true })).toBeChecked()
+  await page.getByRole('checkbox', { name: 'OpenAI', exact: true }).check({ force: true })
+  await page.getByRole('button', { name: '关闭', exact: true }).click()
+  await expect(cards).toHaveCount(8)
+
+  await page.setViewportSize({ width: 1440, height: 1000 })
+  await expect(rows(page)).toHaveCount(8)
+  await expect(page.getByRole('checkbox', { name: '加入对比 Claude Opus 5.5', exact: true })).toBeChecked()
+  await page.getByRole('checkbox', { name: '加入对比 GPT-6 Luna', exact: true }).check({ force: true })
+
+  await page.setViewportSize({ width: 390, height: 844 })
+  await expect(opus.getByRole('button', { name: '已加入', exact: true })).toBeVisible()
+  await expect(page.getByRole('region', { name: '对比托盘' }).locator('.astryx-token')).toHaveCount(2)
+  await page.getByRole('button', { name: '筛选', exact: true }).click()
+  await expect(page.getByRole('checkbox', { name: 'OpenAI', exact: true })).toBeChecked()
+  expect(errors).toEqual([])
+})
+
+test('mobile models below the initial viewport remain interactive', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/')
+  await waitForUrlReady(page)
+  const last = page.locator('.mobile-list .astryx-card').last()
+  await last.scrollIntoViewIfNeeded()
+  const name = await last.getByRole('heading').innerText()
+  await last.getByRole('button', { name: '对比', exact: true }).click()
+  await expect(page.getByRole('region', { name: '对比托盘' })).toContainText(name)
 })
 
 test('about and 404 pages', async ({ page }) => {

@@ -1,20 +1,17 @@
 'use client'
 
-import { memo, useMemo, useState } from 'react'
+import { memo, useMemo, useState, useSyncExternalStore, type ComponentProps } from 'react'
+import dynamic from 'next/dynamic'
 import { Badge } from '@astryxdesign/core/Badge'
 import { Button } from '@astryxdesign/core/Button'
 import { Card } from '@astryxdesign/core/Card'
-import { CheckboxList, CheckboxListItem } from '@astryxdesign/core/CheckboxList'
-import { Collapsible } from '@astryxdesign/core/Collapsible'
 import { EmptyState } from '@astryxdesign/core/EmptyState'
 import { Heading } from '@astryxdesign/core/Heading'
 import { HStack } from '@astryxdesign/core/HStack'
 import { Icon } from '@astryxdesign/core/Icon'
 import { Link } from '@astryxdesign/core/Link'
-import { MultiSelector } from '@astryxdesign/core/MultiSelector'
 import { Selector } from '@astryxdesign/core/Selector'
 import { Stack, StackItem } from '@astryxdesign/core/Stack'
-import { Switch } from '@astryxdesign/core/Switch'
 import { Table, proportional, type TableColumn } from '@astryxdesign/core/Table'
 import { Text } from '@astryxdesign/core/Text'
 import { TextInput } from '@astryxdesign/core/TextInput'
@@ -24,9 +21,8 @@ import { CiRail } from './ci-rail'
 import { ScoreCell } from './score-pill'
 import { CompareButton, CompareCheckbox } from './compare-tray'
 import { useExploreQuery } from './use-explore-query'
+import { DesktopHydration } from './desktop-hydration'
 import {
-  CONTEXT_OPTIONS,
-  PRICE_OPTIONS,
   SORT_OPTIONS,
   describeActiveFilters,
   selectModels,
@@ -35,6 +31,25 @@ import {
 import { fmtContext, fmtPriceLines, scoreMeta } from '@/lib/format'
 import { modelHref } from '@/lib/site'
 import type { BoardDomains, CiDomain, ModelRow, ScoreView } from '@/lib/types'
+
+const ExploreFilters = dynamic(() => import('./explore-filters'), {
+  loading: () => <Text type="supporting">正在加载筛选…</Text>,
+})
+const filterMedia = '(min-width: 1240px)'
+const serverFilters = () => false
+const desktopFilters = () => window.matchMedia(filterMedia).matches
+function subscribeFilters(notify: () => void) {
+  const media = window.matchMedia(filterMedia)
+  media.addEventListener('change', notify)
+  return () => media.removeEventListener('change', notify)
+}
+
+function FilterPanel({ open, ...props }: ComponentProps<typeof ExploreFilters> & { open: boolean }) {
+  const desktop = useSyncExternalStore(subscribeFilters, desktopFilters, serverFilters)
+  const [shown, setShown] = useState(false)
+  if ((desktop || open) && !shown) setShown(true)
+  return shown ? <ExploreFilters {...props} /> : null
+}
 
 function MobileScore({ label, score, domain }: { label: string; score: ScoreView | null; domain: CiDomain | null }) {
   return (
@@ -80,12 +95,6 @@ const ExploreContent = memo(function ExploreContent({
   models, domains, dataDate, query, update, reset, removeFilter,
 }: ExploreClientProps & Omit<ReturnType<typeof useExploreQuery>, 'urlReady'>) {
   const [filtersOpen, setFiltersOpen] = useState(false)
-
-  const allLabs = useMemo(() => [...new Set(models.map(m => m.lab))].sort((a, b) => a.localeCompare(b, 'zh')), [models])
-  const allProviders = useMemo(
-    () => [...new Set(models.flatMap(m => m.providerNames))].sort((a, b) => a.localeCompare(b)),
-    [models],
-  )
 
   const rows = useMemo(() => selectModels(models, query), [models, query])
   const activeChips = describeActiveFilters(query)
@@ -193,111 +202,7 @@ const ExploreContent = memo(function ExploreContent({
         gap={3}
         width={220}
       >
-        <HStack justify="between" vAlign="center">
-          <Text type="label" weight="semibold">筛选</Text>
-          <HStack gap={1}>
-            <Button label="清除" size="sm" variant="ghost" onClick={reset} />
-            <Button
-              label="关闭"
-              size="sm"
-              variant="secondary"
-              className="mobile-only"
-              onClick={() => setFiltersOpen(false)}
-            />
-          </HStack>
-        </HStack>
-
-        <CheckboxList
-          label="实验室"
-          density="compact"
-          value={query.labs}
-          onChange={labs => update({ labs })}
-        >
-          {allLabs.map(lab => (
-            <CheckboxListItem key={lab} value={lab} label={lab} />
-          ))}
-        </CheckboxList>
-
-        <Collapsible trigger="托管商（更多）" defaultIsOpen={false}>
-          <Stack gap={2}>
-            <Text type="supporting">有任一选中托管商的报价</Text>
-            <MultiSelector
-              label="托管商"
-              options={allProviders.map(provider => ({ value: provider, label: provider }))}
-              value={query.providers}
-              onChange={providers => update({ providers })}
-              hasSearch
-              hasClear
-              triggerDisplay="count"
-              placeholder="不限"
-              searchPlaceholder="搜索托管商"
-            />
-            <Switch
-              label="仅网关（无第一方 / 云报价）"
-              size="sm"
-              value={query.gatewayOnly}
-              onChange={gatewayOnly => update({ gatewayOnly })}
-            />
-          </Stack>
-        </Collapsible>
-
-        <Selector
-          label="最高输出价"
-          options={PRICE_OPTIONS.map(value => ({ value: String(value), label: `≤ $${value} / 1M` }))}
-          value={query.maxOutput === null ? null : String(query.maxOutput)}
-          onChange={value => update({ maxOutput: value ? Number(value) : null })}
-          hasClear
-          placeholder="不限"
-        />
-
-        <Selector
-          label="最低上下文"
-          options={CONTEXT_OPTIONS.map(value => ({ value: String(value), label: `≥ ${fmtContext(value)}` }))}
-          value={query.minContext === null ? null : String(query.minContext)}
-          onChange={value => update({ minContext: value ? Number(value) : null })}
-          hasClear
-          placeholder="不限"
-        />
-
-        <Stack gap={2}>
-          <Text type="label">能力 / 状态</Text>
-          <Switch
-            label="支持推理"
-            size="sm"
-            labelPosition="start"
-            labelSpacing="spread"
-            width="100%"
-            value={query.reasoning}
-            onChange={reasoning => update({ reasoning })}
-          />
-          <Switch
-            label="开源权重"
-            size="sm"
-            labelPosition="start"
-            labelSpacing="spread"
-            width="100%"
-            value={query.openWeights}
-            onChange={openWeights => update({ openWeights })}
-          />
-          <Switch
-            label="仅稳定版"
-            size="sm"
-            labelPosition="start"
-            labelSpacing="spread"
-            width="100%"
-            value={query.stableOnly}
-            onChange={stableOnly => update({ stableOnly })}
-          />
-          <Switch
-            label="只看有评测"
-            size="sm"
-            labelPosition="start"
-            labelSpacing="spread"
-            width="100%"
-            value={query.hasArena}
-            onChange={hasArena => update({ hasArena })}
-          />
-        </Stack>
+        <FilterPanel models={models} query={query} update={update} reset={reset} open={filtersOpen} onClose={() => setFiltersOpen(false)} />
       </Stack>
 
       <StackItem size="fill">
@@ -351,15 +256,17 @@ const ExploreContent = memo(function ExploreContent({
           {rows.length ? (
             <>
               <Stack className="desktop-only">
-                <Table
-                  data={data}
-                  columns={columns}
-                  idKey="id"
-                  density="compact"
-                  dividers="rows"
-                  hasHover
-                  aria-label="模型目录，按当前筛选和排序显示"
-                />
+                <DesktopHydration>
+                  <Table
+                    data={data}
+                    columns={columns}
+                    idKey="id"
+                    density="compact"
+                    dividers="rows"
+                    hasHover
+                    aria-label="模型目录，按当前筛选和排序显示"
+                  />
+                </DesktopHydration>
               </Stack>
 
               <Stack className="mobile-list" gap={3}>

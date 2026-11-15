@@ -8,7 +8,6 @@ import type { ModelIndexEntry } from '@/lib/types'
 
 interface CompareContextValue {
   selected: readonly string[]
-  ready: boolean
   modelIndex: ModelIndexEntry[]
   toggle: (id: string) => void
   remove: (id: string) => void
@@ -16,6 +15,7 @@ interface CompareContextValue {
   showToast: (message: string) => void
 }
 
+const CompareReadyContext = createContext(false)
 const CompareContext = createContext<CompareContextValue | null>(null)
 
 export function CompareProvider({ modelIndex, children }: { modelIndex: ModelIndexEntry[]; children: ReactNode }) {
@@ -30,8 +30,8 @@ export function CompareProvider({ modelIndex, children }: { modelIndex: ModelInd
   const onLimit = useCallback(() => showToast(`最多选择 ${COMPARE_LIMIT} 个模型`), [showToast])
   const { selected, ready, toggle, remove, clear, synchronize } = useCompareSet(modelIndex, onLimit)
   const value = useMemo(
-    () => ({ selected, ready, modelIndex, toggle, remove, clear, showToast }),
-    [selected, ready, modelIndex, toggle, remove, clear, showToast],
+    () => ({ selected, modelIndex, toggle, remove, clear, showToast }),
+    [selected, modelIndex, toggle, remove, clear, showToast],
   )
 
   return (
@@ -39,7 +39,7 @@ export function CompareProvider({ modelIndex, children }: { modelIndex: ModelInd
       <Suspense fallback={null}>
         <CompareLocationSync synchronize={synchronize} />
       </Suspense>
-      {children}
+      <CompareReadyContext.Provider value={ready}>{children}</CompareReadyContext.Provider>
     </CompareContext.Provider>
   )
 }
@@ -48,4 +48,8 @@ export function useCompare(): CompareContextValue {
   const value = useContext(CompareContext)
   if (!value) throw new Error('useCompare must be used inside CompareProvider')
   return value
+}
+
+export function useCompareReady(): boolean {
+  return useContext(CompareReadyContext)
 }
