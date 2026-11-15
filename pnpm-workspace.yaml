@@ -2,3 +2,5 @@ allowBuilds:
   '@astryxdesign/cli': true
   '@astryxdesign/core': true
   esbuild: true
+patchedDependencies:
+  '@astryxdesign/core@0.7.14': patches/@astryxdesign__core@0.7.14.patch

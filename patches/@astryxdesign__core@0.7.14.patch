@@ -1,0 +1,17 @@
+diff --git a/dist/utils/hitArea.js b/dist/utils/hitArea.js
+index f8c53bfecadf1bf107ae88576aca485cc356d090..3ca4adf5578d3ccfb5d8adaf736278721b87a34e 100644
+--- a/dist/utils/hitArea.js
++++ b/dist/utils/hitArea.js
+@@ -536,7 +536,11 @@ function ungroup(element) {
+ 
+ /** The page's interactive elements and their rects: one read. */
+ function readCandidates(doc) {
+-  return interactiveElements(doc).map(element => ({
++  // Reading a skipped subtree's bounds forces content-visibility to render it.
++  // Such elements cannot obstruct a visible target until they are rendered.
++  return interactiveElements(doc).filter(element =>
++    typeof element.checkVisibility !== 'function' || element.checkVisibility({ contentVisibilityAuto: true })
++  ).map(element => ({
+     element,
+     rect: plainRect(element)
+   }));

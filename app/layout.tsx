@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
+  other: { 'text-scale': 'scale' },
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
@@ -61,7 +62,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     fx: manifest.freshness.fx.asOf,
   })
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" data-theme="light" data-astryx-theme="hub-matcha">
       <head>
         {fontPreloads.map(href => <link key={href} rel="preload" href={href} as="font" type="font/woff2" crossOrigin="anonymous" />)}
       </head>

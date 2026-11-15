@@ -174,6 +174,26 @@ test('mobile models below the initial viewport remain interactive', async ({ pag
   await expect(page.getByRole('region', { name: '对比托盘' })).toContainText(name)
 })
 
+test.describe('touch comparison', () => {
+  test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } })
+
+  test('targets still work after scrolling to previously skipped models', async ({ page }) => {
+    await page.goto('/')
+    await waitForUrlReady(page)
+    const cards = page.locator('.mobile-list .astryx-card')
+    await cards.first().getByRole('button', { name: '对比', exact: true }).tap()
+    const last = cards.last()
+    await last.scrollIntoViewIfNeeded()
+    const name = await last.getByRole('heading').innerText()
+    await last.getByRole('button', { name: '对比', exact: true }).tap()
+    const tray = page.getByRole('region', { name: '对比托盘' })
+    await expect(tray.locator('.astryx-token')).toHaveCount(2)
+    await expect(tray).toContainText(name)
+    await last.getByRole('button', { name: '已加入', exact: true }).tap()
+    await expect(tray.locator('.astryx-token')).toHaveCount(1)
+  })
+})
+
 test('about and 404 pages', async ({ page }) => {
   await page.goto('/about')
   await expect(page.getByText('CC BY 4.0').first()).toBeVisible()
