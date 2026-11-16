@@ -10,8 +10,8 @@ import { Heading } from '@astryxdesign/core/Heading'
 import { HStack } from '@astryxdesign/core/HStack'
 import { Icon } from '@astryxdesign/core/Icon'
 import { Link } from '@astryxdesign/core/Link'
-import { Selector } from '@astryxdesign/core/Selector'
 import { Stack, StackItem } from '@astryxdesign/core/Stack'
+import { Switch } from '@astryxdesign/core/Switch'
 import { Table, proportional, type TableColumn } from '@astryxdesign/core/Table'
 import { Text } from '@astryxdesign/core/Text'
 import { TextInput } from '@astryxdesign/core/TextInput'
@@ -23,7 +23,7 @@ import { CompareButton, CompareCheckbox } from './compare-tray'
 import { useExploreQuery } from './use-explore-query'
 import { DesktopHydration } from './desktop-hydration'
 import {
-  SORT_OPTIONS,
+  defaultSortDirection,
   describeActiveFilters,
   selectModels,
   type SortKey,
@@ -102,15 +102,19 @@ const ExploreContent = memo(function ExploreContent({
 
   function sortHeader(key: SortKey, label: string, sub: string) {
     const active = query.sortKey === key
+    const nextDirection = active
+      ? query.sortDirection === 'asc' ? 'desc' : 'asc'
+      : defaultSortDirection(key)
     return (
       <Stack gap={0}>
         <Button
           label={label}
           size="sm"
           variant="ghost"
-          onClick={() => update({ sortKey: key })}
+          onClick={() => update({ sortKey: key, sortDirection: nextDirection })}
+          aria-description={active ? `当前${query.sortDirection === 'asc' ? '升序' : '降序'}，点击切换为${nextDirection === 'asc' ? '升序' : '降序'}` : undefined}
           endContent={
-            active ? <Icon icon={key === 'price' ? 'arrowUp' : 'arrowDown'} size="xsm" /> : undefined
+            active ? <Icon icon={query.sortDirection === 'asc' ? 'arrowUp' : 'arrowDown'} size="xsm" /> : undefined
           }
         />
         <Text type="supporting">{sub}</Text>
@@ -219,14 +223,6 @@ const ExploreContent = memo(function ExploreContent({
               hasClear
               width={280}
             />
-            <Selector
-              label="排序"
-              isLabelHidden
-              options={SORT_OPTIONS}
-              value={query.sortKey}
-              onChange={sortKey => update({ sortKey: sortKey as SortKey })}
-              width={200}
-            />
             <Button
               label="筛选"
               size="sm"
@@ -237,6 +233,37 @@ const ExploreContent = memo(function ExploreContent({
               onClick={() => setFiltersOpen(v => !v)}
             />
             <Text type="supporting">{rows.length} 个结果</Text>
+          </HStack>
+
+          <HStack gap={4} wrap="wrap" vAlign="center" role="group" aria-label="能力 / 状态">
+            <Switch
+              label="支持推理"
+              size="sm"
+              labelPosition="start"
+              value={query.reasoning}
+              onChange={reasoning => update({ reasoning })}
+            />
+            <Switch
+              label="开源权重"
+              size="sm"
+              labelPosition="start"
+              value={query.openWeights}
+              onChange={openWeights => update({ openWeights })}
+            />
+            <Switch
+              label="仅稳定版"
+              size="sm"
+              labelPosition="start"
+              value={query.stableOnly}
+              onChange={stableOnly => update({ stableOnly })}
+            />
+            <Switch
+              label="只看有评测"
+              size="sm"
+              labelPosition="start"
+              value={query.hasArena}
+              onChange={hasArena => update({ hasArena })}
+            />
           </HStack>
 
           {activeChips.length > 0 && (

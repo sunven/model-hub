@@ -94,46 +94,6 @@ export default function ExploreFilters({ models, query, update, reset, onClose }
         hasClear
         placeholder="不限"
       />
-
-      <Stack gap={2}>
-        <Text type="label">能力 / 状态</Text>
-        <Switch
-          label="支持推理"
-          size="sm"
-          labelPosition="start"
-          labelSpacing="spread"
-          width="100%"
-          value={query.reasoning}
-          onChange={reasoning => update({ reasoning })}
-        />
-        <Switch
-          label="开源权重"
-          size="sm"
-          labelPosition="start"
-          labelSpacing="spread"
-          width="100%"
-          value={query.openWeights}
-          onChange={openWeights => update({ openWeights })}
-        />
-        <Switch
-          label="仅稳定版"
-          size="sm"
-          labelPosition="start"
-          labelSpacing="spread"
-          width="100%"
-          value={query.stableOnly}
-          onChange={stableOnly => update({ stableOnly })}
-        />
-        <Switch
-          label="只看有评测"
-          size="sm"
-          labelPosition="start"
-          labelSpacing="spread"
-          width="100%"
-          value={query.hasArena}
-          onChange={hasArena => update({ hasArena })}
-        />
-      </Stack>
     </>
   )
 }

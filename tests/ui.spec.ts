@@ -7,6 +7,58 @@ async function waitForUrlReady(page: Page) {
   await expect(page.locator('.workbench')).toHaveAttribute('data-url-ready', 'true')
 }
 
+for (const { key, label, direction } of [
+  { key: 'context', label: '上下文', direction: 'desc' },
+  { key: 'price', label: '价格', direction: 'asc' },
+  { key: 'arena_text', label: 'Arena text', direction: 'desc' },
+  { key: 'arena_webdev', label: 'Arena webdev', direction: 'desc' },
+]) {
+  test(`repeated ${key} header clicks alternate and restore the model order`, async ({ page }) => {
+    await page.goto('/?sort=newest')
+    await waitForUrlReady(page)
+    const header = page.getByRole('button', { name: label, exact: true })
+    const modelNames = () => rows(page).getByRole('link').allTextContents()
+
+    await header.click()
+    await expect(page).toHaveURL(url => url.searchParams.get('sort') === (key === 'arena_text' ? null : key))
+    const defaultOrder = await modelNames()
+
+    await header.click()
+    await expect.poll(modelNames).not.toEqual(defaultOrder)
+    await expect(page).toHaveURL(url => url.searchParams.get('order') === (direction === 'asc' ? 'desc' : 'asc'))
+    await expect(header).toHaveAttribute('aria-description', new RegExp(`^当前${direction === 'asc' ? '降序' : '升序'}`))
+    const reversedOrder = await modelNames()
+
+    await page.reload()
+    await waitForUrlReady(page)
+    await expect.poll(modelNames).toEqual(reversedOrder)
+
+    await header.click()
+    await expect.poll(modelNames).toEqual(defaultOrder)
+    await expect(page).toHaveURL(url => !url.searchParams.has('order'))
+  })
+}
+
+test('changing the sort field restores its default direction and preserves filters', async ({ page }) => {
+  await page.goto('/?labs=Anthropic&sort=context&order=asc')
+  await waitForUrlReady(page)
+  await expect(rows(page)).toHaveCount(4)
+
+  await page.getByRole('button', { name: '价格', exact: true }).click()
+  await expect(page).toHaveURL(url => url.searchParams.get('sort') === 'price' && !url.searchParams.has('order'))
+  await expect(rows(page).first()).toContainText('Claude Haiku 5.5')
+
+  await page.getByRole('button', { name: '价格', exact: true }).click()
+  await expect(page).toHaveURL(/order=desc/)
+  await expect(rows(page).first()).toContainText('Claude Fable 5.1')
+  await expect(rows(page)).toHaveCount(4)
+  await expect(page.getByRole('checkbox', { name: 'Anthropic', exact: true })).toBeChecked()
+
+  await page.getByRole('button', { name: '上下文', exact: true }).click()
+  await expect(page).toHaveURL(url => url.searchParams.get('sort') === 'context' && !url.searchParams.has('order'))
+  await expect(page.getByRole('button', { name: '上下文', exact: true })).toHaveAttribute('aria-description', /^当前降序/)
+})
+
 test('home renders and search/filter/sort update URL', async ({ page }) => {
   await page.goto('/')
   await expect(rows(page)).toHaveCount(43)
@@ -21,8 +73,7 @@ test('home renders and search/filter/sort update URL', async ({ page }) => {
   await expect(rows(page)).toHaveCount(4)
   await expect(page).toHaveURL(/labs=OpenAI/)
 
-  await page.getByRole('combobox', { name: '排序' }).click()
-  await page.getByRole('option', { name: '输出价格' }).click()
+  await page.getByRole('button', { name: '价格', exact: true }).click()
   await expect(rows(page).first()).toContainText('GPT-6 Luna')
   await expect(page).toHaveURL(/sort=price/)
   await expect(page).toHaveURL(/labs=OpenAI/)

@@ -67,12 +67,14 @@ body {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
   background: var(--ground);
   color: var(--text);
   font-family: var(--font-sans);
   font-size: 14px;
   line-height: 1.55;
-  padding-bottom: 84px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -137,15 +139,12 @@ canvas {
   contain-intrinsic-block-size: auto calc(var(--spacing-4) * 16);
 }
 
-/* ---------- framed sheet ---------- */
+/* ---------- full-viewport sheet ---------- */
 
 .sheet {
-  width: calc(100% - 16px);
-  min-height: calc(100svh - 56px);
-  margin: 0 auto 8px;
+  flex: 1;
+  width: 100%;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sheet);
 }
 
 main {
@@ -153,9 +152,13 @@ main {
   outline: none;
 }
 
-.sheet-inner {
-  width: min(100% - 48px, 1240px);
+.sheet-inner,
+.footer-inner {
+  width: calc(100% - var(--spacing-4) * 2);
   margin: 0 auto;
+}
+
+.sheet-inner {
   padding: 28px 0 56px;
 }
 
@@ -241,13 +244,11 @@ main {
 .site-footer {
   margin-top: auto;
   border-top: 1px solid var(--border);
-  border-radius: 0 0 var(--radius-sheet) var(--radius-sheet);
   background: var(--raised);
 }
 
-.footer-inner {
-  width: min(100% - 48px, 1240px);
-  margin: 0 auto;
+body:has(.compare-tray) .site-footer {
+  padding-bottom: calc(var(--spacing-4) * 4);
 }
 
 /* ---------- responsive ---------- */
@@ -291,12 +292,12 @@ main {
 }
 
 @media (max-width: 719px) {
-  body {
-    padding-bottom: 88px;
+  .sheet-inner,
+  .footer-inner {
+    width: calc(100% - var(--spacing-3) * 2);
   }
 
   .sheet-inner {
-    width: min(100% - 32px, 1240px);
     padding: 20px 0 40px;
   }
 }

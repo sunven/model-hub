@@ -2,6 +2,7 @@ import type { ModelRow } from './types'
 import { fmtContext } from './format'
 
 export type SortKey = 'arena_text' | 'arena_webdev' | 'newest' | 'price' | 'context'
+export type SortDirection = 'asc' | 'desc'
 
 export type ExploreQuery = {
   q: string
@@ -15,6 +16,7 @@ export type ExploreQuery = {
   stableOnly: boolean
   hasArena: boolean
   sortKey: SortKey
+  sortDirection: SortDirection
 }
 
 export type ActiveFilterKind =
@@ -35,18 +37,10 @@ export type ActiveFilter = {
   label: string
 }
 
-export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
-  { value: 'arena_text', label: 'Arena text（默认）' },
-  { value: 'arena_webdev', label: 'Arena webdev' },
-  { value: 'newest', label: '最新发布' },
-  { value: 'price', label: '输出价格' },
-  { value: 'context', label: '上下文' },
-]
-
 export const CONTEXT_OPTIONS = [32000, 128000, 256000, 1000000]
 export const PRICE_OPTIONS = [1, 5, 15]
 
-const SORT_VALUES = new Set(SORT_OPTIONS.map(option => option.value))
+const SORT_VALUES = new Set<SortKey>(['arena_text', 'arena_webdev', 'newest', 'price', 'context'])
 const GATEWAY_ONLY = '__gateway_only__'
 
 export const DEFAULT_EXPLORE_QUERY: ExploreQuery = {
@@ -61,6 +55,11 @@ export const DEFAULT_EXPLORE_QUERY: ExploreQuery = {
   stableOnly: false,
   hasArena: false,
   sortKey: 'arena_text',
+  sortDirection: 'desc',
+}
+
+export function defaultSortDirection(key: SortKey): SortDirection {
+  return key === 'price' ? 'asc' : 'desc'
 }
 
 function parseList(value: string | null): string[] {
@@ -76,6 +75,8 @@ function parseNumber(value: string | null): number | null {
 export function parseExploreQuery(params: URLSearchParams): ExploreQuery {
   const providers = parseList(params.get('providers'))
   const sort = params.get('sort')
+  const sortKey = sort && SORT_VALUES.has(sort as SortKey) ? (sort as SortKey) : DEFAULT_EXPLORE_QUERY.sortKey
+  const order = params.get('order')
 
   return {
     q: params.get('q') ?? '',
@@ -88,7 +89,8 @@ export function parseExploreQuery(params: URLSearchParams): ExploreQuery {
     openWeights: params.get('openWeights') === '1',
     stableOnly: params.get('stableOnly') === '1',
     hasArena: params.get('hasArena') === '1',
-    sortKey: sort && SORT_VALUES.has(sort as SortKey) ? (sort as SortKey) : DEFAULT_EXPLORE_QUERY.sortKey,
+    sortKey,
+    sortDirection: order === 'asc' || order === 'desc' ? order : defaultSortDirection(sortKey),
   }
 }
 
@@ -105,6 +107,7 @@ export function serializeExploreQuery(query: ExploreQuery): URLSearchParams {
   if (query.stableOnly) params.set('stableOnly', '1')
   if (query.hasArena) params.set('hasArena', '1')
   if (query.sortKey !== DEFAULT_EXPLORE_QUERY.sortKey) params.set('sort', query.sortKey)
+  if (query.sortDirection !== defaultSortDirection(query.sortKey)) params.set('order', query.sortDirection)
   return params
 }
 
@@ -112,49 +115,48 @@ function compareNames(a: ModelRow, b: ModelRow): number {
   return a.name.localeCompare(b.name, 'zh')
 }
 
-function compareReleaseDate(a: ModelRow, b: ModelRow): number {
-  if (!a.releaseDate && !b.releaseDate) return 0
-  if (!a.releaseDate) return 1
-  if (!b.releaseDate) return -1
-  if (a.releaseDate === b.releaseDate) return 0
-  return a.releaseDate < b.releaseDate ? 1 : -1
+function compareValues(left: number | string | null, right: number | string | null, direction: SortDirection): number {
+  // Missing data stays at the end in either direction.
+  if (left === null && right === null) return 0
+  if (left === null) return 1
+  if (right === null) return -1
+  const order = left < right ? -1 : left > right ? 1 : 0
+  return direction === 'asc' ? order : -order
 }
 
-function compareArena(a: ModelRow, b: ModelRow, board: 'text' | 'webdev'): number {
+function compareReleaseDate(a: ModelRow, b: ModelRow, direction: SortDirection = 'desc'): number {
+  return compareValues(a.releaseDate || null, b.releaseDate || null, direction)
+}
+
+function compareArena(a: ModelRow, b: ModelRow, board: 'text' | 'webdev', direction: SortDirection): number {
   const left = a[board]
   const right = b[board]
   if (!left || !right) {
     if (!left && !right) return compareNames(a, b)
     return left ? -1 : 1
   }
-  if (left.rating !== right.rating) return right.rating - left.rating
+  if (left.rating !== right.rating) return compareValues(left.rating, right.rating, direction)
   if (left.rank !== right.rank) return left.rank - right.rank
   return compareReleaseDate(a, b) || compareNames(a, b)
 }
 
-function compareNewest(a: ModelRow, b: ModelRow): number {
-  return compareReleaseDate(a, b) || compareNames(a, b)
+function compareNewest(a: ModelRow, b: ModelRow, direction: SortDirection): number {
+  return compareReleaseDate(a, b, direction) || compareNames(a, b)
 }
 
-function comparePrice(a: ModelRow, b: ModelRow): number {
+function comparePrice(a: ModelRow, b: ModelRow, direction: SortDirection): number {
   const left = a.price?.outputMin ?? null
   const right = b.price?.outputMin ?? null
-  if (left === null && right === null) return compareNames(a, b)
-  if (left === null) return 1
-  if (right === null) return -1
-  return left - right || compareNames(a, b)
+  return compareValues(left, right, direction) || compareNames(a, b)
 }
 
-function compareContext(a: ModelRow, b: ModelRow): number {
-  if (a.context === null && b.context === null) return compareNames(a, b)
-  if (a.context === null) return 1
-  if (b.context === null) return -1
-  return b.context - a.context || compareNames(a, b)
+function compareContext(a: ModelRow, b: ModelRow, direction: SortDirection): number {
+  return compareValues(a.context, b.context, direction) || compareNames(a, b)
 }
 
-const COMPARATORS: Record<SortKey, (a: ModelRow, b: ModelRow) => number> = {
-  arena_text: (a, b) => compareArena(a, b, 'text'),
-  arena_webdev: (a, b) => compareArena(a, b, 'webdev'),
+const COMPARATORS: Record<SortKey, (a: ModelRow, b: ModelRow, direction: SortDirection) => number> = {
+  arena_text: (a, b, direction) => compareArena(a, b, 'text', direction),
+  arena_webdev: (a, b, direction) => compareArena(a, b, 'webdev', direction),
   newest: compareNewest,
   price: comparePrice,
   context: compareContext,
@@ -181,7 +183,8 @@ function matchesQuery(model: ModelRow, query: ExploreQuery, needle: string): boo
 
 export function selectModels(models: ModelRow[], query: ExploreQuery): ModelRow[] {
   const needle = query.q.trim().toLowerCase()
-  return models.filter(model => matchesQuery(model, query, needle)).sort(COMPARATORS[query.sortKey])
+  const compare = COMPARATORS[query.sortKey]
+  return models.filter(model => matchesQuery(model, query, needle)).sort((a, b) => compare(a, b, query.sortDirection))
 }
 
 export function describeActiveFilters(query: ExploreQuery): ActiveFilter[] {

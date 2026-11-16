@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import {
   DEFAULT_EXPLORE_QUERY,
+  defaultSortDirection,
   describeActiveFilters,
   isDefaultExploreQuery,
   parseExploreQuery,
@@ -119,7 +120,11 @@ const epsilon = row({
 const models = [alpha, beta, gamma, delta, epsilon]
 
 function query(patch: Partial<ExploreQuery> = {}): ExploreQuery {
-  return { ...DEFAULT_EXPLORE_QUERY, ...patch }
+  return {
+    ...DEFAULT_EXPLORE_QUERY,
+    sortDirection: defaultSortDirection(patch.sortKey ?? DEFAULT_EXPLORE_QUERY.sortKey),
+    ...patch,
+  }
 }
 
 function ids(rows: ModelRow[]): string[] {
@@ -149,6 +154,7 @@ test('parses every supported parameter and maps the gateway sentinel', () => {
     stableOnly: true,
     hasArena: true,
     sortKey: 'price',
+    sortDirection: 'asc',
   })
 })
 
@@ -213,9 +219,23 @@ test('detects the default query, including sort-only differences', () => {
     { stableOnly: true },
     { hasArena: true },
     { sortKey: 'price' },
+    { sortDirection: 'asc' },
   ]
   for (const patch of patches) {
     assert.equal(isDefaultExploreQuery(query(patch)), false)
+  }
+})
+
+test('persists explicit sort directions and preserves defaults for existing URLs', () => {
+  for (const sortKey of ['arena_text', 'arena_webdev', 'newest', 'price', 'context'] as const) {
+    assert.equal(parseExploreQuery(new URLSearchParams(`sort=${sortKey}`)).sortDirection, defaultSortDirection(sortKey))
+    assert.equal(parseExploreQuery(new URLSearchParams(`sort=${sortKey}&order=invalid`)).sortDirection, defaultSortDirection(sortKey))
+    for (const sortDirection of ['asc', 'desc'] as const) {
+      const current = query({ sortKey, sortDirection })
+      const serialized = serializeExploreQuery(current)
+      assert.deepEqual(parseExploreQuery(serialized), current)
+      assert.equal(serialized.has('order'), sortDirection !== defaultSortDirection(sortKey))
+    }
   }
 })
 
@@ -294,6 +314,31 @@ test('uses rank, newest release, then name for Arena ties', () => {
   const missing = row({ id: 'missing', name: 'Missing', text: score(1000, 5) })
 
   assert.deepEqual(ids(selectModels([older, newer, missing], query())), ['newer', 'older', 'missing'])
+})
+
+test('sorts in the opposite direction without moving missing values to the front', () => {
+  assert.deepEqual(ids(selectModels(models, query({ sortKey: 'context', sortDirection: 'asc' }))), [
+    'mv_beta', 'mv_alpha', 'mv_epsilon', 'mv_delta', 'mv_gamma',
+  ])
+  assert.deepEqual(ids(selectModels(models, query({ sortKey: 'price', sortDirection: 'desc' }))), [
+    'mv_delta', 'mv_epsilon', 'mv_alpha', 'mv_beta', 'mv_gamma',
+  ])
+  assert.deepEqual(ids(selectModels(models, query({ sortKey: 'arena_text', sortDirection: 'asc' }))), [
+    'mv_epsilon', 'mv_beta', 'mv_alpha', 'mv_delta', 'mv_gamma',
+  ])
+  assert.deepEqual(ids(selectModels(models, query({ sortKey: 'arena_webdev', sortDirection: 'asc' }))), [
+    'mv_epsilon', 'mv_delta', 'mv_alpha', 'mv_beta', 'mv_gamma',
+  ])
+  assert.deepEqual(ids(selectModels(models, query({ sortKey: 'newest', sortDirection: 'asc' }))), [
+    'mv_epsilon', 'mv_alpha', 'mv_beta', 'mv_delta', 'mv_gamma',
+  ])
+})
+
+test('keeps free prices as zero when switching direction', () => {
+  const free = row({ id: 'free', name: 'Free', price: price(0) })
+  const sample = [gamma, beta, free]
+  assert.deepEqual(ids(selectModels(sample, query({ sortKey: 'price', sortDirection: 'asc' }))), ['free', 'mv_beta', 'mv_gamma'])
+  assert.deepEqual(ids(selectModels(sample, query({ sortKey: 'price', sortDirection: 'desc' }))), ['mv_beta', 'free', 'mv_gamma'])
 })
 
 test('does not mutate the input models', () => {
