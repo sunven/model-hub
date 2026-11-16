@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import './globals.css'
 import '@astryxdesign/core/reset.css'
 import '@fontsource/ibm-plex-sans/latin-400.css'
 import '@fontsource/ibm-plex-sans/latin-500.css'
 import '@fontsource/ibm-plex-sans/latin-600.css'
 import '@fontsource/ibm-plex-mono/latin-400.css'
-import './globals.css'
 import '@astryxdesign/core/astryx.css'
 import { Stack } from '@astryxdesign/core/Stack'
 import { AstryxLinkProvider } from '@/components/astryx-link-provider'
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
-  other: { 'text-scale': 'scale' },
+  other: { 'text-scale': 'scale', 'page-type': 'software', 'site-kind': 'software' },
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
@@ -62,7 +62,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     fx: manifest.freshness.fx.asOf,
   })
   return (
-    <html lang="zh-CN" data-theme="light" data-astryx-theme="hub-matcha">
+    <html lang="zh-CN" data-type="software" data-theme="light" data-astryx-theme="hub-matcha">
       <head>
         {fontPreloads.map(href => <link key={href} rel="preload" href={href} as="font" type="font/woff2" crossOrigin="anonymous" />)}
       </head>

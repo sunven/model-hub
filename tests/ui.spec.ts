@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test'
 import manifest from '../data/latest/manifest.json' with { type: 'json' }
+import offers from '../data/latest/offers.json' with { type: 'json' }
 
 const rows = (page: Page) => page.locator('main table tbody tr')
 
@@ -138,7 +139,7 @@ test('detail offers fold, AA link, and unmarked status', async ({ page }) => {
   await page.goto('/models/anthropic/claude-opus-5-5')
   await expect(rows(page)).toHaveCount(6)
   await page.getByRole('switch', { name: '显示网关报价' }).check({ force: true })
-  await expect(rows(page)).toHaveCount(41)
+  await expect(rows(page)).toHaveCount(offers.filter(offer => offer.modelVersionId === 'mv_anthropic__claude-opus-5-5').length)
 
   await expect(page.getByRole('link', { name: '外部评测 · AA' })).toHaveAttribute(
     'href',
@@ -170,17 +171,79 @@ test('leaderboard search, show more, and noindex meta', async ({ page }) => {
   await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute('content', /noindex/)
 })
 
-test('mobile cards and filter drawer', async ({ page }) => {
+test('mobile model rows and filter panel', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
   await waitForUrlReady(page)
-  await expect(page.locator('.mobile-list .astryx-card').first()).toBeVisible()
+  await expect(page.locator('.mobile-list article').first()).toBeVisible()
   await expect(rows(page).first()).toBeHidden()
 
   await page.getByRole('button', { name: '筛选' }).click()
   await expect(page.locator('#filters-panel')).toHaveClass(/open/)
   await page.getByRole('button', { name: '关闭' }).click()
   await expect(page.locator('#filters-panel')).not.toHaveClass(/open/)
+})
+
+test('component styling survives the global reset', async ({ page }) => {
+  await page.goto('/')
+  const heading = page.getByRole('heading', { name: '全部模型', level: 1 })
+  await expect(heading).toBeVisible()
+  const typography = await heading.evaluate(element => ({
+    heading: parseFloat(getComputedStyle(element).fontSize),
+    body: parseFloat(getComputedStyle(document.body).fontSize),
+  }))
+  expect(typography.heading).toBeGreaterThan(typography.body * 1.25)
+  const padding = await rows(page).first().locator('td').first().evaluate(element =>
+    parseFloat(getComputedStyle(element).paddingTop),
+  )
+  expect(padding).toBeGreaterThanOrEqual(8)
+  await page.setViewportSize({ width: 390, height: 844 })
+  const filterButton = page.getByRole('button', { name: '筛选', exact: true })
+  await expect(filterButton).toBeVisible()
+  await expect(filterButton).toHaveCSS('border-top-width', '1px')
+})
+
+test('mobile sorting preserves filters and supports reversing the order', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/?labs=Anthropic')
+  await waitForUrlReady(page)
+  const models = page.locator('.mobile-list article')
+  await page.getByRole('combobox', { name: '排序方式', exact: true }).click()
+  await page.getByRole('option', { name: '输出价格', exact: true }).click()
+  await expect(models.first()).toContainText('Claude Haiku 5.5')
+  await expect(page).toHaveURL(/labs=Anthropic/)
+  await expect(page).toHaveURL(/sort=price/)
+  await page.getByRole('button', { name: '升序', exact: true }).click()
+  await expect(models.first()).toContainText('Claude Fable 5.1')
+  await expect(page).toHaveURL(/order=desc/)
+})
+
+test('selected labs stay visible when the lab list is collapsed', async ({ page }) => {
+  await page.goto('/?labs=Sakana')
+  await waitForUrlReady(page)
+  await expect(page.getByRole('checkbox', { name: 'Sakana', exact: true })).toBeChecked()
+  await page.getByRole('button', { name: '查看全部 20 家实验室' }).click()
+  await expect(page.getByRole('checkbox', { name: 'Inception', exact: true })).toBeVisible()
+  await page.getByRole('button', { name: '收起实验室' }).click()
+  await expect(page.getByRole('checkbox', { name: 'Sakana', exact: true })).toBeChecked()
+})
+
+test('workbench stays within the viewport on desktop, tablet, and phone', async ({ page }) => {
+  for (const width of [1440, 1024, 820, 768, 390, 320]) {
+    await page.setViewportSize({ width, height: 900 })
+    await page.goto('/')
+    await waitForUrlReady(page)
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+    expect(overflow, `page overflow at ${width}`).toBeLessThanOrEqual(1)
+    if (width >= 980) {
+      const tableOverflow = await page.locator('.model-table .astryx-table-scroll-wrapper').evaluate(element =>
+        element.scrollWidth - element.clientWidth,
+      )
+      expect(tableOverflow, `table overflow at ${width}`).toBeLessThanOrEqual(1)
+    } else {
+      await expect(page.getByRole('combobox', { name: '排序方式', exact: true })).toBeVisible()
+    }
+  }
 })
 
 test('filters and comparison survive switching between mobile and desktop', async ({ page }) => {
@@ -190,7 +253,7 @@ test('filters and comparison survive switching between mobile and desktop', asyn
   await page.goto('/?labs=Anthropic&sort=price')
   await waitForUrlReady(page)
 
-  const cards = page.locator('.mobile-list .astryx-card')
+  const cards = page.locator('.mobile-list article')
   await expect(cards).toHaveCount(4)
   const opus = cards.filter({ has: page.getByRole('link', { name: 'Claude Opus 5.5', exact: true }) })
   await opus.getByRole('button', { name: '对比', exact: true }).click()
@@ -218,7 +281,7 @@ test('mobile models below the initial viewport remain interactive', async ({ pag
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
   await waitForUrlReady(page)
-  const last = page.locator('.mobile-list .astryx-card').last()
+  const last = page.locator('.mobile-list article').last()
   await last.scrollIntoViewIfNeeded()
   const name = await last.getByRole('heading').innerText()
   await last.getByRole('button', { name: '对比', exact: true }).click()
@@ -231,7 +294,7 @@ test.describe('touch comparison', () => {
   test('targets still work after scrolling to previously skipped models', async ({ page }) => {
     await page.goto('/')
     await waitForUrlReady(page)
-    const cards = page.locator('.mobile-list .astryx-card')
+    const cards = page.locator('.mobile-list article')
     await cards.first().getByRole('button', { name: '对比', exact: true }).tap()
     const last = cards.last()
     await last.scrollIntoViewIfNeeded()

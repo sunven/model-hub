@@ -4,12 +4,13 @@ import { memo, useMemo, useState, useSyncExternalStore, type ComponentProps } fr
 import dynamic from 'next/dynamic'
 import { Badge } from '@astryxdesign/core/Badge'
 import { Button } from '@astryxdesign/core/Button'
-import { Card } from '@astryxdesign/core/Card'
 import { EmptyState } from '@astryxdesign/core/EmptyState'
+import { Grid } from '@astryxdesign/core/Grid'
 import { Heading } from '@astryxdesign/core/Heading'
 import { HStack } from '@astryxdesign/core/HStack'
 import { Icon } from '@astryxdesign/core/Icon'
 import { Link } from '@astryxdesign/core/Link'
+import { Selector } from '@astryxdesign/core/Selector'
 import { Stack, StackItem } from '@astryxdesign/core/Stack'
 import { Switch } from '@astryxdesign/core/Switch'
 import { Table, proportional, type TableColumn } from '@astryxdesign/core/Table'
@@ -23,6 +24,8 @@ import { CompareButton, CompareCheckbox } from './compare-tray'
 import { useExploreQuery } from './use-explore-query'
 import { DesktopHydration } from './desktop-hydration'
 import {
+  CONTEXT_OPTIONS,
+  PRICE_OPTIONS,
   defaultSortDirection,
   describeActiveFilters,
   selectModels,
@@ -35,6 +38,19 @@ import type { BoardDomains, CiDomain, ModelRow, ScoreView } from '@/lib/types'
 const ExploreFilters = dynamic(() => import('./explore-filters'), {
   loading: () => <Text type="supporting">正在加载筛选…</Text>,
 })
+const MobileSortControls = dynamic(() => import('./explore-sort'), { loading: () => null })
+const mobileSortMedia = '(max-width: 979px)'
+const mobileSortSnapshot = () => window.matchMedia(mobileSortMedia).matches
+function subscribeMobileSort(notify: () => void) {
+  const media = window.matchMedia(mobileSortMedia)
+  media.addEventListener('change', notify)
+  return () => media.removeEventListener('change', notify)
+}
+
+function MobileSort(props: ComponentProps<typeof MobileSortControls>) {
+  const mobile = useSyncExternalStore(subscribeMobileSort, mobileSortSnapshot, serverFilters)
+  return <Stack className="mobile-sort">{mobile ? <MobileSortControls {...props} /> : null}</Stack>
+}
 const filterMedia = '(min-width: 1240px)'
 const serverFilters = () => false
 const desktopFilters = () => window.matchMedia(filterMedia).matches
@@ -84,7 +100,7 @@ type ExploreClientProps = {
 export function ExploreClient(props: ExploreClientProps) {
   const { query, update, reset, removeFilter, urlReady } = useExploreQuery()
   return (
-    <HStack className="workbench" data-url-ready={urlReady ? 'true' : 'false'} gap={4} align="start">
+    <HStack className="workbench" data-url-ready={urlReady ? 'true' : 'false'} gap={6} align="start">
       <ExploreContent {...props} query={query} update={update} reset={reset} removeFilter={removeFilter} />
     </HStack>
   )
@@ -111,6 +127,7 @@ const ExploreContent = memo(function ExploreContent({
           label={label}
           size="sm"
           variant="ghost"
+          className="px-1"
           onClick={() => update({ sortKey: key, sortDirection: nextDirection })}
           aria-description={active ? `当前${query.sortDirection === 'asc' ? '升序' : '降序'}，点击切换为${nextDirection === 'asc' ? '升序' : '降序'}` : undefined}
           endContent={
@@ -126,21 +143,21 @@ const ExploreContent = memo(function ExploreContent({
     {
       key: 'compare',
       header: <Text as="span" type="supporting">对比</Text>,
-      width: proportional(0.4, { minWidth: 56 }),
+      width: proportional(0.4, { minWidth: 44 }),
       renderCell: ({ model }) => <CompareCheckbox modelId={model.id} label={`加入对比 ${model.name}`} />,
     },
     {
       key: 'model',
       header: '模型',
-      width: proportional(2, { minWidth: 220 }),
+      width: proportional(2, { minWidth: 192 }),
       renderCell: ({ model }) => (
         <Stack gap={0.5}>
           <HStack gap={1} wrap="wrap" vAlign="center">
-            <Link href={modelHref(model.canonicalId)} weight="medium">{model.name}</Link>
+            <Link href={modelHref(model.canonicalId)} color="primary" weight="medium" tooltip={model.canonicalId}>{model.name}</Link>
             <RowBadges row={model} exceptionsOnly />
           </HStack>
           <Text type="supporting">
-            {model.lab} · {model.canonicalId}
+            {model.lab}
           </Text>
         </Stack>
       ),
@@ -149,14 +166,14 @@ const ExploreContent = memo(function ExploreContent({
       key: 'context',
       header: sortHeader('context', '上下文', 'tokens'),
       align: 'end',
-      width: proportional(0.9, { minWidth: 100 }),
+      width: proportional(0.9, { minWidth: 72 }),
       renderCell: ({ model }) => <Text hasTabularNumbers>{fmtContext(model.context)}</Text>,
     },
     {
       key: 'price',
       header: sortHeader('price', '价格', '输入 / 输出 · USD / 1M'),
       align: 'end',
-      width: proportional(1.2, { minWidth: 150 }),
+      width: proportional(1.2, { minWidth: 120 }),
       renderCell: ({ model }) => {
         const prices = fmtPriceLines(model.price)
         return (
@@ -169,7 +186,7 @@ const ExploreContent = memo(function ExploreContent({
               <Text type="supporting">输出</Text>
               <Text hasTabularNumbers>{prices.output}</Text>
             </HStack>
-            {model.price?.gatewayOnly && <Badge label="仅网关" variant="neutral" />}
+            {model.price?.gatewayOnly && <Token label="仅网关" size="sm" />}
           </Stack>
         )
       },
@@ -177,21 +194,21 @@ const ExploreContent = memo(function ExploreContent({
     {
       key: 'reasoning',
       header: '推理',
-      width: proportional(0.9, { minWidth: 100 }),
+      width: proportional(0.9, { minWidth: 80 }),
       renderCell: ({ model }) => <Token label={model.reasoningLabel} size="sm" />,
     },
     {
       key: 'arena_text',
       header: sortHeader('arena_text', 'Arena text', 'CI 共享刻度'),
       align: 'end',
-      width: proportional(1.1, { minWidth: 130 }),
+      width: proportional(1.1, { minWidth: 116 }),
       renderCell: ({ model }) => <ScoreCell score={model.text} domain={domains.text} label="Arena text" />,
     },
     {
       key: 'arena_webdev',
       header: sortHeader('arena_webdev', 'Arena webdev', 'CI 共享刻度'),
       align: 'end',
-      width: proportional(1.1, { minWidth: 130 }),
+      width: proportional(1.1, { minWidth: 116 }),
       renderCell: ({ model }) => <ScoreCell score={model.webdev} domain={domains.webdev} label="Arena webdev" />,
     },
   ]
@@ -209,62 +226,95 @@ const ExploreContent = memo(function ExploreContent({
         <FilterPanel models={models} query={query} update={update} reset={reset} open={filtersOpen} onClose={() => setFiltersOpen(false)} />
       </Stack>
 
-      <StackItem size="fill">
+      <StackItem size="fill" className="results-column">
         <Stack className="results" gap={3}>
-          <HStack className="toolbar" gap={2} wrap="wrap" vAlign="end">
-            <TextInput
-              label="搜索模型、实验室或家族"
-              isLabelHidden
-              type="search"
-              startIcon="search"
-              placeholder="搜索模型 / 实验室 / 家族"
-              value={query.q}
-              onChange={q => update({ q })}
-              hasClear
-              width={280}
-            />
-            <Button
-              label="筛选"
-              size="sm"
-              variant="secondary"
-              className="mobile-only"
-              aria-expanded={filtersOpen}
-              aria-controls="filters-panel"
-              onClick={() => setFiltersOpen(v => !v)}
-            />
-            <Text type="supporting">{rows.length} 个结果</Text>
+          <HStack className="toolbar" gap={3} wrap="wrap" vAlign="center" justify="between">
+            <HStack gap={2} vAlign="center">
+              <Heading level={1} className="text-2xl" weight="semibold">全部模型</Heading>
+              <Stack role="status" aria-label={`${rows.length} 个结果`}>
+                <Badge label={String(rows.length)} variant="neutral" />
+              </Stack>
+            </HStack>
+            <HStack className="search-actions" gap={2} vAlign="center">
+              <TextInput
+                label="搜索模型、实验室或家族"
+                isLabelHidden
+                type="search"
+                startIcon="search"
+                placeholder="搜索模型、实验室或家族…"
+                value={query.q}
+                onChange={q => update({ q })}
+                hasClear
+                width="100%"
+                containerClassName="model-search"
+              />
+              <Button
+                label="筛选"
+                variant="secondary"
+                className="mobile-only"
+                aria-expanded={filtersOpen}
+                aria-controls="filters-panel"
+                onClick={() => setFiltersOpen(v => !v)}
+              />
+            </HStack>
           </HStack>
 
-          <HStack gap={4} wrap="wrap" vAlign="center" role="group" aria-label="能力 / 状态">
-            <Switch
-              label="支持推理"
-              size="sm"
-              labelPosition="start"
-              value={query.reasoning}
-              onChange={reasoning => update({ reasoning })}
-            />
-            <Switch
-              label="开源权重"
-              size="sm"
-              labelPosition="start"
-              value={query.openWeights}
-              onChange={openWeights => update({ openWeights })}
-            />
-            <Switch
-              label="仅稳定版"
-              size="sm"
-              labelPosition="start"
-              value={query.stableOnly}
-              onChange={stableOnly => update({ stableOnly })}
-            />
-            <Switch
-              label="只看有评测"
-              size="sm"
-              labelPosition="start"
-              value={query.hasArena}
-              onChange={hasArena => update({ hasArena })}
-            />
+          <HStack gap={4} wrap="wrap" align="end" justify="between">
+            <Grid columns={2} gap={3} className="w-full sm:w-96" role="group" aria-label="价格与上下文">
+              <Selector
+                label="最高输出价"
+                options={PRICE_OPTIONS.map(value => ({ value: String(value), label: `≤ $${value} / 1M` }))}
+                value={query.maxOutput === null ? null : String(query.maxOutput)}
+                onChange={value => update({ maxOutput: value ? Number(value) : null })}
+                hasClear
+                placeholder="不限"
+                width="100%"
+                containerClassName="min-w-0"
+              />
+              <Selector
+                label="最低上下文"
+                options={CONTEXT_OPTIONS.map(value => ({ value: String(value), label: `≥ ${fmtContext(value)}` }))}
+                value={query.minContext === null ? null : String(query.minContext)}
+                onChange={value => update({ minContext: value ? Number(value) : null })}
+                hasClear
+                placeholder="不限"
+                width="100%"
+                containerClassName="min-w-0"
+              />
+            </Grid>
+            <HStack className="capability-filters" gap={4} wrap="wrap" vAlign="center" role="group" aria-label="能力 / 状态">
+              <Switch
+                label="支持推理"
+                size="sm"
+                labelPosition="start"
+                value={query.reasoning}
+                onChange={reasoning => update({ reasoning })}
+              />
+              <Switch
+                label="开源权重"
+                size="sm"
+                labelPosition="start"
+                value={query.openWeights}
+                onChange={openWeights => update({ openWeights })}
+              />
+              <Switch
+                label="仅稳定版"
+                size="sm"
+                labelPosition="start"
+                value={query.stableOnly}
+                onChange={stableOnly => update({ stableOnly })}
+              />
+              <Switch
+                label="只看有评测"
+                size="sm"
+                labelPosition="start"
+                value={query.hasArena}
+                onChange={hasArena => update({ hasArena })}
+              />
+            </HStack>
           </HStack>
+
+          <MobileSort query={query} update={update} />
 
           {activeChips.length > 0 && (
             <HStack gap={1} wrap="wrap" vAlign="center">
@@ -282,7 +332,7 @@ const ExploreContent = memo(function ExploreContent({
 
           {rows.length ? (
             <>
-              <Stack className="desktop-only">
+              <Stack className="desktop-only model-table">
                 <DesktopHydration>
                   <Table
                     data={data}
@@ -296,36 +346,38 @@ const ExploreContent = memo(function ExploreContent({
                 </DesktopHydration>
               </Stack>
 
-              <Stack className="mobile-list" gap={3}>
+              <Stack className="mobile-list" gap={0}>
                 {rows.map(row => {
                   const prices = fmtPriceLines(row.price)
                   return (
-                    <Card key={row.id} padding={3}>
-                      <Stack gap={2}>
-                        <HStack justify="between" align="start" gap={2}>
-                          <Stack gap={0.5}>
-                            <Text type="supporting">{row.lab}</Text>
-                            <Heading level={3}>
-                              <Link href={modelHref(row.canonicalId)}>{row.name}</Link>
-                            </Heading>
-                            <HStack gap={1} wrap="wrap">
-                              <RowBadges row={row} exceptionsOnly />
-                            </HStack>
-                            <Text type="supporting">{row.canonicalId}</Text>
-                          </Stack>
-                          <CompareButton modelId={row.id} small short />
-                        </HStack>
-                        <HStack gap={4} wrap="wrap">
-                          <MobileScore label="Arena text" score={row.text} domain={domains.text} />
-                          <MobileScore label="Arena webdev" score={row.webdev} domain={domains.webdev} />
-                        </HStack>
-                        <HStack gap={3} wrap="wrap">
+                    <Stack as="article" key={row.id} className="model-list-row" gap={3} paddingBlock={4} aria-label={row.name}>
+                      <HStack justify="between" align="start" gap={2}>
+                        <Stack className="model-identity" gap={1}>
+                          <Text type="supporting">{row.lab}</Text>
+                          <Heading level={2} className="text-base" weight="medium">
+                            <Link href={modelHref(row.canonicalId)} color="primary" weight="medium">{row.name}</Link>
+                          </Heading>
+                          <HStack gap={1} wrap="wrap">
+                            <RowBadges row={row} exceptionsOnly />
+                          </HStack>
+                        </Stack>
+                        <CompareButton modelId={row.id} small short />
+                      </HStack>
+                      <Grid columns={2} gap={3}>
+                        <MobileScore label="Arena text" score={row.text} domain={domains.text} />
+                        <MobileScore label="Arena webdev" score={row.webdev} domain={domains.webdev} />
+                      </Grid>
+                      <Grid columns={2} gap={3}>
+                        <Stack gap={0.5}>
+                          <Text type="supporting">输入 / 输出 · USD / 1M</Text>
+                          <Text hasTabularNumbers>{prices.input} / {prices.output}</Text>
+                        </Stack>
+                        <Stack gap={0.5}>
                           <Text type="supporting">上下文 <Text weight="semibold">{fmtContext(row.context)}</Text></Text>
-                          <Text type="supporting">价格 <Text weight="semibold">{prices.input} / {prices.output}</Text></Text>
                           <Text type="supporting">推理 <Text weight="semibold">{row.reasoningLabel}</Text></Text>
-                        </HStack>
-                      </Stack>
-                    </Card>
+                        </Stack>
+                      </Grid>
+                    </Stack>
                   )
                 })}
               </Stack>

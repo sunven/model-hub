@@ -1,4 +1,4 @@
-import { Badge } from '@astryxdesign/core/Badge'
+import { Token } from '@astryxdesign/core/Token'
 import { Tooltip } from '@astryxdesign/core/Tooltip'
 import { availabilityLabel, availabilityVariant, offerStatusLabel } from '@/lib/format'
 import type { Availability, ModelRow } from '@/lib/types'
@@ -42,7 +42,8 @@ export function StatusBadges({
   return (
     <>
       {items.map(item => {
-        const badge = <Badge key={`${item.label}-${item.variant}`} label={item.label} variant={item.variant} />
+        const color = item.variant === 'warning' ? 'yellow' : item.variant === 'error' ? 'red' : item.variant === 'success' ? 'green' : item.variant === 'blue' ? 'blue' : 'default'
+        const badge = <Token key={`${item.label}-${item.variant}`} label={item.label} color={color} size="sm" />
         return item.hint ? (
           <Tooltip key={`${item.label}-${item.variant}`} content={item.hint}>
             {badge}

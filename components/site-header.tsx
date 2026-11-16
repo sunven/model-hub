@@ -26,16 +26,17 @@ export function SiteHeader() {
         <>
           <TopNavItem label="模型" href="/" isSelected={section === 'models'} />
           <TopNavItem label="榜单" href="/leaderboards/text" isSelected={section === 'leaderboards'} />
+          <TopNavItem label="关于" href="/about" isSelected={section === 'about'} />
         </>
       }
       endContent={
         selected.length > 0 ? (
           <Button
-            label="对比"
+            label="对比模型"
             href={compareHref(selected)}
             size="sm"
             variant="secondary"
-            endContent={<Badge label={String(selected.length)} variant="info" />}
+            endContent={selected.length > 0 ? <Badge label={String(selected.length)} variant="neutral" /> : undefined}
           />
         ) : undefined
       }

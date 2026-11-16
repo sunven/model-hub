@@ -1,18 +1,19 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Button } from '@astryxdesign/core/Button'
 import { CheckboxList, CheckboxListItem } from '@astryxdesign/core/CheckboxList'
 import { Collapsible } from '@astryxdesign/core/Collapsible'
+import { Divider } from '@astryxdesign/core/Divider'
 import { HStack } from '@astryxdesign/core/HStack'
 import { MultiSelector } from '@astryxdesign/core/MultiSelector'
-import { Selector } from '@astryxdesign/core/Selector'
 import { Stack } from '@astryxdesign/core/Stack'
 import { Switch } from '@astryxdesign/core/Switch'
 import { Text } from '@astryxdesign/core/Text'
-import { CONTEXT_OPTIONS, PRICE_OPTIONS, type ExploreQuery } from '@/lib/explore-query'
-import { fmtContext } from '@/lib/format'
+import type { ExploreQuery } from '@/lib/explore-query'
 import type { ModelRow } from '@/lib/types'
+
+const primaryLabs = ['Anthropic', 'OpenAI', 'Google', 'Alibaba / Qwen', 'Meta', 'DeepSeek', 'Moonshot / Kimi']
 
 export default function ExploreFilters({ models, query, update, reset, onClose }: {
   models: ModelRow[]
@@ -26,6 +27,16 @@ export default function ExploreFilters({ models, query, update, reset, onClose }
     () => [...new Set(models.flatMap(m => m.providerNames))].sort((a, b) => a.localeCompare(b)),
     [models],
   )
+  const [showAllLabs, setShowAllLabs] = useState(false)
+  const labCounts = useMemo(() => {
+    const counts = new Map<string, number>()
+    for (const model of models) counts.set(model.lab, (counts.get(model.lab) ?? 0) + 1)
+    return counts
+  }, [models])
+  const visibleLabs = showAllLabs ? allLabs : [
+    ...primaryLabs.filter(lab => labCounts.has(lab)),
+    ...allLabs.filter(lab => query.labs.includes(lab) && !primaryLabs.includes(lab)),
+  ]
 
   return (
     <>
@@ -49,13 +60,15 @@ export default function ExploreFilters({ models, query, update, reset, onClose }
         value={query.labs}
         onChange={labs => update({ labs })}
       >
-        {allLabs.map(lab => (
-          <CheckboxListItem key={lab} value={lab} label={lab} />
+        {visibleLabs.map(lab => (
+          <CheckboxListItem key={lab} value={lab} label={lab} endContent={<Text type="supporting" hasTabularNumbers>{labCounts.get(lab)}</Text>} />
         ))}
       </CheckboxList>
+      <Button label={showAllLabs ? '收起实验室' : `查看全部 ${allLabs.length} 家实验室`} variant="ghost" size="sm" onClick={() => setShowAllLabs(value => !value)} aria-expanded={showAllLabs} />
+      <Divider />
 
       <Collapsible trigger="托管商（更多）" defaultIsOpen={false}>
-        <Stack gap={2}>
+        <Stack gap={3}>
           <Text type="supporting">有任一选中托管商的报价</Text>
           <MultiSelector
             label="托管商"
@@ -77,23 +90,6 @@ export default function ExploreFilters({ models, query, update, reset, onClose }
         </Stack>
       </Collapsible>
 
-      <Selector
-        label="最高输出价"
-        options={PRICE_OPTIONS.map(value => ({ value: String(value), label: `≤ $${value} / 1M` }))}
-        value={query.maxOutput === null ? null : String(query.maxOutput)}
-        onChange={value => update({ maxOutput: value ? Number(value) : null })}
-        hasClear
-        placeholder="不限"
-      />
-
-      <Selector
-        label="最低上下文"
-        options={CONTEXT_OPTIONS.map(value => ({ value: String(value), label: `≥ ${fmtContext(value)}` }))}
-        value={query.minContext === null ? null : String(query.minContext)}
-        onChange={value => update({ minContext: value ? Number(value) : null })}
-        hasClear
-        placeholder="不限"
-      />
     </>
   )
 }
