@@ -14,18 +14,18 @@
     "sourceRef": "arena_hf:text:Qwen3.8-27B:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_alibaba__qwen3.8-27b_default_2026-11-11",
+    "id": "sc_webdev_mv_alibaba__qwen3.8-27b_default_2026-11-15",
     "modelVersionId": "mv_alibaba__qwen3.8-27b",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1589.724268081238,
-    "ciLow": 1583.6602216580225,
-    "ciHigh": 1595.7883145044536,
-    "rank": 40,
-    "votes": 20860,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Qwen3.8-27B:2026-11-11"
+    "rating": 1589.9120921259462,
+    "ciLow": 1583.873191852326,
+    "ciHigh": 1595.9509923995663,
+    "rank": 41,
+    "votes": 21184,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Qwen3.8-27B:2026-11-15"
   },
   {
     "id": "sc_text_mv_alibaba__qwen3.8-max_default_2026-11-11",
@@ -42,18 +42,18 @@
     "sourceRef": "arena_hf:text:Qwen3.8-Max:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_alibaba__qwen3.8-max_default_2026-11-11",
+    "id": "sc_webdev_mv_alibaba__qwen3.8-max_default_2026-11-15",
     "modelVersionId": "mv_alibaba__qwen3.8-max",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1670.4282618241323,
-    "ciLow": 1658.317169874884,
-    "ciHigh": 1682.5393537733805,
-    "rank": 17,
-    "votes": 3370,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Qwen3.8-Max:2026-11-11"
+    "rating": 1670.470799043542,
+    "ciLow": 1658.3552718173642,
+    "ciHigh": 1682.5863262697198,
+    "rank": 18,
+    "votes": 3366,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Qwen3.8-Max:2026-11-15"
   },
   {
     "id": "sc_text_mv_amazon__nova-2-lite_default_2026-11-11",
@@ -84,18 +84,18 @@
     "sourceRef": "arena_hf:text:Claude Fable 5.1 (Max):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_anthropic__claude-fable-5-1_max_2026-11-11",
+    "id": "sc_webdev_mv_anthropic__claude-fable-5-1_max_2026-11-15",
     "modelVersionId": "mv_anthropic__claude-fable-5-1",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1741.8533410965445,
-    "ciLow": 1733.934715873295,
-    "ciHigh": 1749.7719663197936,
+    "rating": 1742.9286772319851,
+    "ciLow": 1735.0754052733648,
+    "ciHigh": 1750.7819491906055,
     "rank": 7,
-    "votes": 9800,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Claude Fable 5.1 (Max):2026-11-11"
+    "votes": 9990,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Claude Fable 5.1 (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_anthropic__claude-haiku-5-5_high_2026-11-11",
@@ -112,18 +112,18 @@
     "sourceRef": "arena_hf:text:Claude Haiku 5.5 (High):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_anthropic__claude-haiku-5-5_high_2026-11-11",
+    "id": "sc_webdev_mv_anthropic__claude-haiku-5-5_high_2026-11-15",
     "modelVersionId": "mv_anthropic__claude-haiku-5-5",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "High",
-    "rating": 1593.4483670522147,
-    "ciLow": 1584.9836975728374,
-    "ciHigh": 1601.9130365315918,
-    "rank": 39,
-    "votes": 6643,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Claude Haiku 5.5 (High):2026-11-11"
+    "rating": 1593.2157732209616,
+    "ciLow": 1584.984597004379,
+    "ciHigh": 1601.4469494375444,
+    "rank": 40,
+    "votes": 7147,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Claude Haiku 5.5 (High):2026-11-15"
   },
   {
     "id": "sc_text_mv_anthropic__claude-opus-5-5_high_2026-11-11",
@@ -140,18 +140,18 @@
     "sourceRef": "arena_hf:text:Claude Opus 5.5 (High):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_anthropic__claude-opus-5-5_max_2026-11-11",
+    "id": "sc_webdev_mv_anthropic__claude-opus-5-5_max_2026-11-15",
     "modelVersionId": "mv_anthropic__claude-opus-5-5",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1814.6504732652713,
-    "ciLow": 1802.937536465503,
-    "ciHigh": 1826.3634100650397,
+    "rating": 1815.5673296142866,
+    "ciLow": 1804.0371822936986,
+    "ciHigh": 1827.0974769348745,
     "rank": 2,
-    "votes": 4208,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Claude Opus 5.5 (Max):2026-11-11"
+    "votes": 4399,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Claude Opus 5.5 (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_anthropic__claude-sonnet-5-5_xhigh_2026-11-11",
@@ -168,32 +168,32 @@
     "sourceRef": "arena_hf:text:Claude Sonnet 5.5 (xHigh):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_anthropic__claude-sonnet-5-5_xhigh_2026-11-11",
+    "id": "sc_webdev_mv_anthropic__claude-sonnet-5-5_xhigh_2026-11-15",
     "modelVersionId": "mv_anthropic__claude-sonnet-5-5",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "xHigh",
-    "rating": 1772.2552981440065,
-    "ciLow": 1762.382617935597,
-    "ciHigh": 1782.127978352416,
+    "rating": 1772.2285268565488,
+    "ciLow": 1762.5150068598402,
+    "ciHigh": 1781.9420468532574,
     "rank": 3,
-    "votes": 5895,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Claude Sonnet 5.5 (xHigh):2026-11-11"
+    "votes": 6120,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Claude Sonnet 5.5 (xHigh):2026-11-15"
   },
   {
-    "id": "sc_webdev_mv_anthropic__claude-sonnet-5-5_high_2026-11-11",
+    "id": "sc_webdev_mv_anthropic__claude-sonnet-5-5_high_2026-11-15",
     "modelVersionId": "mv_anthropic__claude-sonnet-5-5",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "High",
-    "rating": 1715.1914718635655,
-    "ciLow": 1706.801757531517,
-    "ciHigh": 1723.581186195614,
-    "rank": 9,
-    "votes": 7940,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Claude Sonnet 5.5 (High):2026-11-11"
+    "rating": 1715.8153001788419,
+    "ciLow": 1707.5092150973962,
+    "ciHigh": 1724.1213852602875,
+    "rank": 10,
+    "votes": 8154,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Claude Sonnet 5.5 (High):2026-11-15"
   },
   {
     "id": "sc_text_mv_deepseek__deepseek-v4-pro-0813_high-20260813_2026-11-11",
@@ -210,32 +210,32 @@
     "sourceRef": "arena_hf:text:DeepSeek-V4-Pro (High, 20260813):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_deepseek__deepseek-v4-pro-0813_high-20260813_2026-11-11",
+    "id": "sc_webdev_mv_deepseek__deepseek-v4-pro-0813_high-20260813_2026-11-15",
     "modelVersionId": "mv_deepseek__deepseek-v4-pro-0813",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "High, 20260813",
-    "rating": 1580.9739128179658,
-    "ciLow": 1571.4427838037723,
-    "ciHigh": 1590.5050418321591,
-    "rank": 45,
-    "votes": 4605,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:DeepSeek-V4-Pro (High, 20260813):2026-11-11"
+    "rating": 1580.8313453870173,
+    "ciLow": 1571.3019673229096,
+    "ciHigh": 1590.360723451125,
+    "rank": 46,
+    "votes": 4600,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:DeepSeek-V4-Pro (High, 20260813):2026-11-15"
   },
   {
-    "id": "sc_webdev_mv_deepseek__deepseek-v4.1-flash-1017_max_2026-11-11",
+    "id": "sc_webdev_mv_deepseek__deepseek-v4.1-flash-1017_max_2026-11-15",
     "modelVersionId": "mv_deepseek__deepseek-v4.1-flash-1017",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1663.6515358275167,
-    "ciLow": 1656.8709818088528,
-    "ciHigh": 1670.4320898461804,
-    "rank": 18,
-    "votes": 14108,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:DeepSeek-V4.1-Flash-20261017 (Max):2026-11-11"
+    "rating": 1661.4090008988376,
+    "ciLow": 1654.7040887384956,
+    "ciHigh": 1668.1139130591794,
+    "rank": 19,
+    "votes": 15385,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:DeepSeek-V4.1-Flash-20261017 (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_google__gemini-3.1-pro-preview-customtools_default_2026-11-11",
@@ -252,18 +252,18 @@
     "sourceRef": "arena_hf:text:Gemini 3.1 Pro Preview:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_google__gemini-3.1-pro-preview-customtools_default_2026-11-11",
+    "id": "sc_webdev_mv_google__gemini-3.1-pro-preview-customtools_default_2026-11-15",
     "modelVersionId": "mv_google__gemini-3.1-pro-preview-customtools",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1446.4466525185815,
-    "ciLow": 1441.3450546237248,
-    "ciHigh": 1451.548250413438,
-    "rank": 85,
-    "votes": 23833,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Gemini 3.1 Pro Preview:2026-11-11"
+    "rating": 1446.3669685303926,
+    "ciLow": 1441.2692828883955,
+    "ciHigh": 1451.46465417239,
+    "rank": 86,
+    "votes": 23841,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Gemini 3.1 Pro Preview:2026-11-15"
   },
   {
     "id": "sc_text_mv_google__gemini-3.5-flash-lite_default_2026-11-11",
@@ -280,18 +280,18 @@
     "sourceRef": "arena_hf:text:Gemini 3.5 Flash-Lite:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_google__gemini-3.5-flash-lite_default_2026-11-11",
+    "id": "sc_webdev_mv_google__gemini-3.5-flash-lite_default_2026-11-15",
     "modelVersionId": "mv_google__gemini-3.5-flash-lite",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1432.0049718249152,
-    "ciLow": 1390.6367253153403,
-    "ciHigh": 1473.37321833449,
-    "rank": 95,
+    "rating": 1432.0610610867861,
+    "ciLow": 1390.697687419171,
+    "ciHigh": 1473.4244347544018,
+    "rank": 96,
     "votes": 231,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Gemini 3.5 Flash-Lite:2026-11-11"
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Gemini 3.5 Flash-Lite:2026-11-15"
   },
   {
     "id": "sc_text_mv_google__gemini-3.8-flash_high_2026-11-11",
@@ -308,18 +308,18 @@
     "sourceRef": "arena_hf:text:Gemini 3.8 Flash (High):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_google__gemini-3.8-flash_high_2026-11-11",
+    "id": "sc_webdev_mv_google__gemini-3.8-flash_high_2026-11-15",
     "modelVersionId": "mv_google__gemini-3.8-flash",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "High",
-    "rating": 1583.464963253387,
-    "ciLow": 1576.825687948897,
-    "ciHigh": 1590.1042385578771,
+    "rating": 1582.9504492727992,
+    "ciLow": 1576.3698553606441,
+    "ciHigh": 1589.5310431849541,
     "rank": 43,
-    "votes": 13914,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Gemini 3.8 Flash (High):2026-11-11"
+    "votes": 14218,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Gemini 3.8 Flash (High):2026-11-15"
   },
   {
     "id": "sc_text_mv_meta__muse-glimmer-30b_default_2026-11-11",
@@ -336,18 +336,18 @@
     "sourceRef": "arena_hf:text:Muse Glimmer:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_meta__muse-glimmer-30b_default_2026-11-11",
+    "id": "sc_webdev_mv_meta__muse-glimmer-30b_default_2026-11-15",
     "modelVersionId": "mv_meta__muse-glimmer-30b",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1354.120119546484,
-    "ciLow": 1338.410162269,
-    "ciHigh": 1369.8300768239678,
-    "rank": 125,
-    "votes": 1628,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Muse Glimmer:2026-11-11"
+    "rating": 1353.774849068347,
+    "ciLow": 1338.0454595246908,
+    "ciHigh": 1369.5042386120035,
+    "rank": 126,
+    "votes": 1627,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Muse Glimmer:2026-11-15"
   },
   {
     "id": "sc_text_mv_meta__muse-spark-1.1_default_2026-11-11",
@@ -364,18 +364,18 @@
     "sourceRef": "arena_hf:text:Muse Spark 1.1:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_meta__muse-spark-1.1_default_2026-11-11",
+    "id": "sc_webdev_mv_meta__muse-spark-1.1_default_2026-11-15",
     "modelVersionId": "mv_meta__muse-spark-1.1",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1541.4854810281627,
-    "ciLow": 1533.8103076739171,
-    "ciHigh": 1549.1606543824084,
-    "rank": 54,
-    "votes": 7843,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Muse Spark 1.1:2026-11-11"
+    "rating": 1541.5538636882459,
+    "ciLow": 1533.869850815444,
+    "ciHigh": 1549.2378765610479,
+    "rank": 55,
+    "votes": 7820,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Muse Spark 1.1:2026-11-15"
   },
   {
     "id": "sc_text_mv_meta__muse-wonder-1.0_max_2026-11-11",
@@ -392,18 +392,18 @@
     "sourceRef": "arena_hf:text:Muse Wonder (Max):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_meta__muse-wonder-1.0_max_2026-11-11",
+    "id": "sc_webdev_mv_meta__muse-wonder-1.0_max_2026-11-15",
     "modelVersionId": "mv_meta__muse-wonder-1.0",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1647.398907135767,
-    "ciLow": 1638.016754036961,
-    "ciHigh": 1656.781060234573,
-    "rank": 22,
-    "votes": 5296,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Muse Wonder (Max):2026-11-11"
+    "rating": 1647.336734048649,
+    "ciLow": 1638.185168978501,
+    "ciHigh": 1656.4882991187972,
+    "rank": 23,
+    "votes": 5618,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Muse Wonder (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_mistral__mistral-large-4_default_2026-11-11",
@@ -420,18 +420,18 @@
     "sourceRef": "arena_hf:text:Mistral Large 4:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_mistral__mistral-large-4_default_2026-11-11",
+    "id": "sc_webdev_mv_mistral__mistral-large-4_default_2026-11-15",
     "modelVersionId": "mv_mistral__mistral-large-4",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1564.4613706641235,
-    "ciLow": 1549.4820579722725,
-    "ciHigh": 1579.4406833559747,
-    "rank": 48,
-    "votes": 1777,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Mistral Large 4:2026-11-11"
+    "rating": 1566.319210179848,
+    "ciLow": 1552.2658852145812,
+    "ciHigh": 1580.3725351451144,
+    "rank": 49,
+    "votes": 2045,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Mistral Large 4:2026-11-15"
   },
   {
     "id": "sc_text_mv_mistral__mistral-medium-latest_default_2026-11-11",
@@ -462,32 +462,32 @@
     "sourceRef": "arena_hf:text:Kimi K3 (Max):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_moonshotai__kimi-k3_max_2026-11-11",
+    "id": "sc_webdev_mv_moonshotai__kimi-k3_max_2026-11-15",
     "modelVersionId": "mv_moonshotai__kimi-k3",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1657.7561945999978,
-    "ciLow": 1652.0667664506645,
-    "ciHigh": 1663.445622749331,
-    "rank": 19,
-    "votes": 22448,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Kimi K3 (Max):2026-11-11"
+    "rating": 1657.7144862830485,
+    "ciLow": 1652.0582321288605,
+    "ciHigh": 1663.3707404372367,
+    "rank": 20,
+    "votes": 22692,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Kimi K3 (Max):2026-11-15"
   },
   {
-    "id": "sc_webdev_mv_moonshotai__kimi-k3.1-pro_max_2026-11-11",
+    "id": "sc_webdev_mv_moonshotai__kimi-k3.1-pro_max_2026-11-15",
     "modelVersionId": "mv_moonshotai__kimi-k3.1-pro",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1687.2226472628417,
-    "ciLow": 1677.5366348428365,
-    "ciHigh": 1696.9086596828472,
-    "rank": 12,
-    "votes": 4977,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Kimi K3.1 Pro (Max):2026-11-11"
+    "rating": 1686.2251930517164,
+    "ciLow": 1676.7279108123548,
+    "ciHigh": 1695.722475291078,
+    "rank": 13,
+    "votes": 5215,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Kimi K3.1 Pro (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_nvidia__nemotron-3.5-super-vl-120b-a12b_nvfp4_2026-11-11",
@@ -504,18 +504,18 @@
     "sourceRef": "arena_hf:text:NVIDIA-Nemotron-3.5-Super-VL-120B-A12B (NVFP4):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_nvidia__nemotron-3.5-super-vl-120b-a12b_nvfp4_2026-11-11",
+    "id": "sc_webdev_mv_nvidia__nemotron-3.5-super-vl-120b-a12b_nvfp4_2026-11-15",
     "modelVersionId": "mv_nvidia__nemotron-3.5-super-vl-120b-a12b",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "NVFP4",
-    "rating": 1401.0783827969508,
-    "ciLow": 1390.374538660102,
-    "ciHigh": 1411.7822269337996,
-    "rank": 103,
-    "votes": 5127,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:NVIDIA-Nemotron-3.5-Super-VL-120B-A12B (NVFP4):2026-11-11"
+    "rating": 1400.956284096251,
+    "ciLow": 1390.4533018910251,
+    "ciHigh": 1411.4592663014769,
+    "rank": 104,
+    "votes": 5398,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:NVIDIA-Nemotron-3.5-Super-VL-120B-A12B (NVFP4):2026-11-15"
   },
   {
     "id": "sc_text_mv_openai__gpt-6-astra_max_2026-11-11",
@@ -532,18 +532,18 @@
     "sourceRef": "arena_hf:text:GPT-6 Astra (Max):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_openai__gpt-6-astra_max_2026-11-11",
+    "id": "sc_webdev_mv_openai__gpt-6-astra_max_2026-11-15",
     "modelVersionId": "mv_openai__gpt-6-astra",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1763.760987795171,
-    "ciLow": 1755.1864905838654,
-    "ciHigh": 1772.3354850064768,
+    "rating": 1762.8833463635062,
+    "ciLow": 1754.423764450295,
+    "ciHigh": 1771.3429282767174,
     "rank": 5,
-    "votes": 8470,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:GPT-6 Astra (Max):2026-11-11"
+    "votes": 8685,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:GPT-6 Astra (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_openai__gpt-6-luna_max_2026-11-11",
@@ -560,18 +560,18 @@
     "sourceRef": "arena_hf:text:GPT-6 Luna (Max):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_openai__gpt-6-luna_max_2026-11-11",
+    "id": "sc_webdev_mv_openai__gpt-6-luna_max_2026-11-15",
     "modelVersionId": "mv_openai__gpt-6-luna",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1577.2140806726663,
-    "ciLow": 1571.2851864132745,
-    "ciHigh": 1583.1429749320582,
-    "rank": 46,
-    "votes": 30581,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:GPT-6 Luna (Max):2026-11-11"
+    "rating": 1576.631492574981,
+    "ciLow": 1570.717805624671,
+    "ciHigh": 1582.545179525291,
+    "rank": 47,
+    "votes": 31066,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:GPT-6 Luna (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_openai__gpt-6-sol_max_2026-11-11",
@@ -588,18 +588,18 @@
     "sourceRef": "arena_hf:text:GPT-6 Sol (Max):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_openai__gpt-6-sol_max_2026-11-11",
+    "id": "sc_webdev_mv_openai__gpt-6-sol_max_2026-11-15",
     "modelVersionId": "mv_openai__gpt-6-sol",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1672.5810270348863,
-    "ciLow": 1664.2688352387659,
-    "ciHigh": 1680.893218831007,
-    "rank": 16,
-    "votes": 7326,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:GPT-6 Sol (Max):2026-11-11"
+    "rating": 1672.8294786156646,
+    "ciLow": 1664.6225559887291,
+    "ciHigh": 1681.0364012426,
+    "rank": 17,
+    "votes": 7569,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:GPT-6 Sol (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_openai__gpt-6.1-sol_max_2026-11-11",
@@ -616,18 +616,18 @@
     "sourceRef": "arena_hf:text:GPT-6.1 Sol (Max):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_openai__gpt-6.1-sol_max_2026-11-11",
+    "id": "sc_webdev_mv_openai__gpt-6.1-sol_max_2026-11-15",
     "modelVersionId": "mv_openai__gpt-6.1-sol",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1743.2624849606134,
-    "ciLow": 1733.4635812114493,
-    "ciHigh": 1753.0613887097775,
-    "rank": 6,
-    "votes": 5590,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:GPT-6.1 Sol (Max):2026-11-11"
+    "rating": 1742.3355894955869,
+    "ciLow": 1732.691665768142,
+    "ciHigh": 1751.9795132230315,
+    "rank": 8,
+    "votes": 5804,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:GPT-6.1 Sol (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_stepfun__step-3.5-flash-2603_default_2026-11-11",
@@ -644,18 +644,18 @@
     "sourceRef": "arena_hf:text:Step-3.5-Flash:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_tencent__hy4-preview_default_2026-11-11",
+    "id": "sc_webdev_mv_tencent__hy4-preview_default_2026-11-15",
     "modelVersionId": "mv_tencent__hy4-preview",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1631.6666370935461,
-    "ciLow": 1621.8828574589422,
-    "ciHigh": 1641.4504167281498,
-    "rank": 26,
-    "votes": 4601,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Hy4 preview:2026-11-11"
+    "rating": 1631.6484324850692,
+    "ciLow": 1621.849964262315,
+    "ciHigh": 1641.446900707823,
+    "rank": 27,
+    "votes": 4586,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Hy4 preview:2026-11-15"
   },
   {
     "id": "sc_text_mv_upstage__solar-pro4_default_2026-11-11",
@@ -672,18 +672,18 @@
     "sourceRef": "arena_hf:text:Solar Pro 4:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_upstage__solar-pro4_default_2026-11-11",
+    "id": "sc_webdev_mv_upstage__solar-pro4_default_2026-11-15",
     "modelVersionId": "mv_upstage__solar-pro4",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1369.320142963206,
-    "ciLow": 1358.8373550024032,
-    "ciHigh": 1379.802930924009,
-    "rank": 118,
-    "votes": 4502,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Solar Pro 4:2026-11-11"
+    "rating": 1368.9933231487948,
+    "ciLow": 1358.4925851655448,
+    "ciHigh": 1379.4940611320453,
+    "rank": 119,
+    "votes": 4488,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Solar Pro 4:2026-11-15"
   },
   {
     "id": "sc_text_mv_xai__grok-4.5_default_2026-11-11",
@@ -700,18 +700,18 @@
     "sourceRef": "arena_hf:text:Grok 4.5:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_xai__grok-4.5_default_2026-11-11",
+    "id": "sc_webdev_mv_xai__grok-4.5_default_2026-11-15",
     "modelVersionId": "mv_xai__grok-4.5",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1552.5979396616426,
-    "ciLow": 1545.8678559514806,
-    "ciHigh": 1559.3280233718046,
-    "rank": 52,
-    "votes": 10796,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Grok 4.5:2026-11-11"
+    "rating": 1552.468819599658,
+    "ciLow": 1545.7380577847864,
+    "ciHigh": 1559.1995814145298,
+    "rank": 53,
+    "votes": 10771,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Grok 4.5:2026-11-15"
   },
   {
     "id": "sc_text_mv_xai__grok-4.7_xhigh_2026-11-11",
@@ -728,18 +728,18 @@
     "sourceRef": "arena_hf:text:Grok 4.7 (xHigh):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_xai__grok-4.7_xhigh_2026-11-11",
+    "id": "sc_webdev_mv_xai__grok-4.7_xhigh_2026-11-15",
     "modelVersionId": "mv_xai__grok-4.7",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "xHigh",
-    "rating": 1640.6962858563677,
-    "ciLow": 1632.7703548446602,
-    "ciHigh": 1648.6222168680752,
-    "rank": 24,
-    "votes": 8186,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:Grok 4.7 (xHigh):2026-11-11"
+    "rating": 1640.0851740078472,
+    "ciLow": 1632.2822056593575,
+    "ciHigh": 1647.888142356337,
+    "rank": 25,
+    "votes": 8488,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:Grok 4.7 (xHigh):2026-11-15"
   },
   {
     "id": "sc_text_mv_xiaomi__mimo-v2.6-flash_default_2026-11-11",
@@ -756,18 +756,18 @@
     "sourceRef": "arena_hf:text:MiMo-V2.6-Flash:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_xiaomi__mimo-v2.6-flash_default_2026-11-11",
+    "id": "sc_webdev_mv_xiaomi__mimo-v2.6-flash_default_2026-11-15",
     "modelVersionId": "mv_xiaomi__mimo-v2.6-flash",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1638.0623167609676,
-    "ciLow": 1630.340226138309,
-    "ciHigh": 1645.7844073836263,
-    "rank": 25,
-    "votes": 8944,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:MiMo-V2.6-Flash:2026-11-11"
+    "rating": 1638.534308059064,
+    "ciLow": 1630.9193576966804,
+    "ciHigh": 1646.1492584214477,
+    "rank": 26,
+    "votes": 9239,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:MiMo-V2.6-Flash:2026-11-15"
   },
   {
     "id": "sc_text_mv_xiaomi__mimo-v2.6-pro_default_2026-11-11",
@@ -784,18 +784,18 @@
     "sourceRef": "arena_hf:text:MiMo-V2.6-Pro:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_xiaomi__mimo-v2.6-pro_default_2026-11-11",
+    "id": "sc_webdev_mv_xiaomi__mimo-v2.6-pro_default_2026-11-15",
     "modelVersionId": "mv_xiaomi__mimo-v2.6-pro",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1625.0160105731081,
-    "ciLow": 1617.364620583139,
-    "ciHigh": 1632.667400563077,
-    "rank": 28,
-    "votes": 8846,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:MiMo-V2.6-Pro:2026-11-11"
+    "rating": 1623.8353645079155,
+    "ciLow": 1616.309777071278,
+    "ciHigh": 1631.3609519445529,
+    "rank": 30,
+    "votes": 9234,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:MiMo-V2.6-Pro:2026-11-15"
   },
   {
     "id": "sc_text_mv_zhipuai__glm-5.3_max_2026-11-11",
@@ -812,18 +812,18 @@
     "sourceRef": "arena_hf:text:GLM-5.3 (Max):2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_zhipuai__glm-5.3_max_2026-11-11",
+    "id": "sc_webdev_mv_zhipuai__glm-5.3_max_2026-11-15",
     "modelVersionId": "mv_zhipuai__glm-5.3",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "Max",
-    "rating": 1622.4527854707603,
-    "ciLow": 1615.606138861268,
-    "ciHigh": 1629.2994320802527,
-    "rank": 30,
-    "votes": 12695,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:GLM-5.3 (Max):2026-11-11"
+    "rating": 1622.2656789436146,
+    "ciLow": 1615.4783986394261,
+    "ciHigh": 1629.0529592478033,
+    "rank": 31,
+    "votes": 12995,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:GLM-5.3 (Max):2026-11-15"
   },
   {
     "id": "sc_text_mv_zhipuai__glm-5.3-flash_default_2026-11-11",
@@ -840,17 +840,17 @@
     "sourceRef": "arena_hf:text:GLM-5.3-Flash:2026-11-11"
   },
   {
-    "id": "sc_webdev_mv_zhipuai__glm-5.3-flash_default_2026-11-11",
+    "id": "sc_webdev_mv_zhipuai__glm-5.3-flash_default_2026-11-15",
     "modelVersionId": "mv_zhipuai__glm-5.3-flash",
     "source": "arena_hf",
     "board": "webdev",
     "condition": "default",
-    "rating": 1608.7856095415655,
-    "ciLow": 1602.6215627144234,
-    "ciHigh": 1614.9496563687073,
-    "rank": 36,
-    "votes": 23608,
-    "snapshotDate": "2026-11-11",
-    "sourceRef": "arena_hf:webdev:GLM-5.3-Flash:2026-11-11"
+    "rating": 1609.106095262355,
+    "ciLow": 1602.9819580907301,
+    "ciHigh": 1615.2302324339798,
+    "rank": 37,
+    "votes": 23917,
+    "snapshotDate": "2026-11-15",
+    "sourceRef": "arena_hf:webdev:GLM-5.3-Flash:2026-11-15"
   }
 ]

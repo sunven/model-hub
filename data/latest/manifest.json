@@ -1,6 +1,6 @@
 {
-  "snapshotId": "20261115-b2e31b3c",
-  "generatedAt": "2026-11-15T11:19:53.518Z",
+  "snapshotId": "20261116-6c67b769",
+  "generatedAt": "2026-11-16T11:52:03.941Z",
   "sources": {
     "modelsDev": {
       "license": "MIT",
@@ -8,15 +8,15 @@
       "files": {
         "api": {
           "url": "https://models.dev/api.json",
-          "hash": "5df83c78e3c9d083194ca4893b7cba8b7d25db21f7faac7a91eec3c2142feb7d",
-          "bytes": 6655607,
-          "fetchedAt": "2026-11-15T11:19:53.518Z"
+          "hash": "2cc561b786db0238b49c7854764d41ee8cb3fd9847cefb3da5740f36e8e6a520",
+          "bytes": 6662182,
+          "fetchedAt": "2026-11-16T11:52:03.941Z"
         },
         "models": {
           "url": "https://models.dev/models.json",
-          "hash": "2136789881fe5f1bd695c8d869778ef6d7d761d583fe397c373b323bf9d8df04",
-          "bytes": 526426,
-          "fetchedAt": "2026-11-15T11:19:53.518Z"
+          "hash": "c025aeb3edffd85986f9d9f03387de2a785b4f7a40e1eb6e2c91153c75ae6638",
+          "bytes": 527379,
+          "fetchedAt": "2026-11-16T11:52:03.941Z"
         }
       }
     },
@@ -32,13 +32,13 @@
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/text/latest-00000-of-00001.parquet",
           "hash": "928462c23d9e51ea1581e3e6063f5e280834782a0cb943f6922bf3322f06ea16",
           "bytes": 627183,
-          "fetchedAt": "2026-11-15T11:19:53.518Z"
+          "fetchedAt": "2026-11-16T11:52:03.941Z"
         },
         "webdev": {
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/webdev/latest-00000-of-00001.parquet",
-          "hash": "e1405727c7d1e840a70fb215e09cbff7efef9bc11359c0797e742291a09441f4",
-          "bytes": 32003,
-          "fetchedAt": "2026-11-15T11:19:53.518Z"
+          "hash": "577d2da67b911f7b03cd242efdee1ba75f2c56292a68cdb4af91beee40c37955",
+          "bytes": 32126,
+          "fetchedAt": "2026-11-16T11:52:03.941Z"
         }
       }
     }
@@ -48,20 +48,20 @@
     "as_of": "2026-11-13",
     "source": "ECB reference rate via Frankfurter",
     "source_url": "https://api.frankfurter.dev/v1/latest?base=USD&symbols=CNY",
-    "fetched_at": "2026-11-15T11:19:53.518Z"
+    "fetched_at": "2026-11-16T11:52:03.941Z"
   },
   "counts": {
     "models": 43,
-    "offers": 1702,
+    "offers": 1703,
     "scores": 61,
-    "unmatched": 513
+    "unmatched": 514
   },
   "files": {
-    "models.json": "0c9c0705c91f8507ceecb43983480758fab63c8bace131c5e8453dfa47e64d4b",
-    "offers.json": "fa1efc607bfcc7c74ea67dd0cb79dfa85503e78ca633f99df370a3c3c5100342",
-    "scores.json": "7cba8971a6c96aa0e78bbcdbd4a44d65afc2cb6b5d66565cbe1579f9aa05fe5c",
-    "unmatched.json": "fb079d117a20f1c3781a68c2d8516629bdb9f2756146d1b44716bdedebb54a87",
-    "validation-report.json": "87f8c60cd1d4920d0f5fce5ace856a75bae55621c75008a936b605747d22b6df"
+    "models.json": "71a3ec7738aeb41f427c48eb1ad404974068619f229a94996a3db4fe2478a1de",
+    "offers.json": "70606e1fcfa23127c5e379521ad8b163e86fe61471783a95ba049245173fd781",
+    "scores.json": "a62ec394cc8791f750fc2c92abd216b2ef1870d240f7bd126e81bd15a470e7f2",
+    "unmatched.json": "58ba7f053ba5927444e589000ad3dbace733c1e6dc7f6a684df79e2615d5c810",
+    "validation-report.json": "aec4105e5942353dc089150199e9214b2234e883d8b6c3ef0e03184db8e35514"
   },
   "overrides": {
     "count": 0,
@@ -79,20 +79,20 @@
   },
   "freshness": {
     "modelsDev": {
-      "fetchedAt": "2026-11-15T11:19:53.518Z",
+      "fetchedAt": "2026-11-16T11:52:03.941Z",
       "ageHours": 0,
       "thresholdHours": 48,
       "stale": false
     },
     "arena": {
-      "fetchedAt": "2026-11-15T11:19:53.518Z",
+      "fetchedAt": "2026-11-16T11:52:03.941Z",
       "ageHours": 0,
       "thresholdHours": 72,
       "stale": false
     },
     "fx": {
       "asOf": "2026-11-13",
-      "ageDays": 2,
+      "ageDays": 3,
       "thresholdDays": 14,
       "stale": false
     }
@@ -103,8 +103,8 @@
   },
   "notes": [
     "Local pipeline run. Site deployment is out of scope for this step.",
-    "models.dev snapshot fetchedAt=2026-11-15T11:19:53.518Z",
-    "Arena text/webdev fetchedAt=2026-11-15T11:19:53.518Z/2026-11-15T11:19:53.518Z",
+    "models.dev snapshot fetchedAt=2026-11-16T11:52:03.941Z",
+    "Arena text/webdev fetchedAt=2026-11-16T11:52:03.941Z/2026-11-16T11:52:03.941Z",
     "Arena text filtered to category=overall; webdev filtered to category=webdev; latest publish date, highest vote_count per model/org.",
     "No AA data embedded; AA links are external-only.",
     "FX 6.6719 2026-11-13 from ECB reference rate via Frankfurter.",
