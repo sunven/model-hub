@@ -1,6 +1,6 @@
 {
-  "snapshotId": "20261117-c369486b",
-  "generatedAt": "2026-11-17T12:14:39.225Z",
+  "snapshotId": "20261118-ffb51e19",
+  "generatedAt": "2026-11-18T12:01:53.559Z",
   "sources": {
     "modelsDev": {
       "license": "MIT",
@@ -8,15 +8,15 @@
       "files": {
         "api": {
           "url": "https://models.dev/api.json",
-          "hash": "01221db67a47999df0d93c2e7d85ad70172bc6732815751da164ce875231c88e",
-          "bytes": 6689815,
-          "fetchedAt": "2026-11-17T12:14:39.225Z"
+          "hash": "d386013a3df274d61c0807cd88a75a0060913f4ce5b79736dae6b40480d8a839",
+          "bytes": 6736622,
+          "fetchedAt": "2026-11-18T12:01:53.559Z"
         },
         "models": {
           "url": "https://models.dev/models.json",
-          "hash": "730012e65bf2bb1151826f09880930e4577ad67ef82ba79db8dfced983ffdf78",
-          "bytes": 527987,
-          "fetchedAt": "2026-11-17T12:14:39.225Z"
+          "hash": "af49321f48b30b810425116acc0afa2ec3bcdda53997568fec44d6c44f04220c",
+          "bytes": 529310,
+          "fetchedAt": "2026-11-18T12:01:53.559Z"
         }
       }
     },
@@ -32,36 +32,36 @@
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/text/latest-00000-of-00001.parquet",
           "hash": "928462c23d9e51ea1581e3e6063f5e280834782a0cb943f6922bf3322f06ea16",
           "bytes": 627183,
-          "fetchedAt": "2026-11-17T12:14:39.225Z"
+          "fetchedAt": "2026-11-18T12:01:53.559Z"
         },
         "webdev": {
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/webdev/latest-00000-of-00001.parquet",
           "hash": "577d2da67b911f7b03cd242efdee1ba75f2c56292a68cdb4af91beee40c37955",
           "bytes": 32126,
-          "fetchedAt": "2026-11-17T12:14:39.225Z"
+          "fetchedAt": "2026-11-18T12:01:53.559Z"
         }
       }
     }
   },
   "fx": {
-    "usd_to_cny": 6.6665,
-    "as_of": "2026-11-16",
+    "usd_to_cny": 6.6661,
+    "as_of": "2026-11-17",
     "source": "ECB reference rate via Frankfurter",
     "source_url": "https://api.frankfurter.dev/v1/latest?base=USD&symbols=CNY",
-    "fetched_at": "2026-11-17T12:14:39.225Z"
+    "fetched_at": "2026-11-18T12:01:53.559Z"
   },
   "counts": {
     "models": 43,
-    "offers": 1724,
+    "offers": 1731,
     "scores": 61,
     "unmatched": 514
   },
   "files": {
-    "models.json": "057a681b837c63f02c6a27d91051eb6bba6f4d352fd4d44a4db59163fc0f5636",
-    "offers.json": "9b1c6df9d1f7f96ddba078c69b664338ded5d4f10f56c8dfede14904be6f4f8e",
+    "models.json": "4044b69056b6a1b410de40a148e32a919e5c9a970e90b3c2331bfc5dcd9c0a4c",
+    "offers.json": "5953bd8667ab34da8960cae0b3e21d8bc1660bbb7ad326444f98faff981d64a6",
     "scores.json": "a62ec394cc8791f750fc2c92abd216b2ef1870d240f7bd126e81bd15a470e7f2",
     "unmatched.json": "58ba7f053ba5927444e589000ad3dbace733c1e6dc7f6a684df79e2615d5c810",
-    "validation-report.json": "c1a26157c7c6ed06b571d2b9bf2698ba30452fff3bc9b8e9c07495310007d2d1"
+    "validation-report.json": "2098c51cc847e608982e557a9df56f3d6f7b90c3088dfb193b1a84bd912815f4"
   },
   "overrides": {
     "count": 0,
@@ -79,19 +79,19 @@
   },
   "freshness": {
     "modelsDev": {
-      "fetchedAt": "2026-11-17T12:14:39.225Z",
+      "fetchedAt": "2026-11-18T12:01:53.559Z",
       "ageHours": 0,
       "thresholdHours": 48,
       "stale": false
     },
     "arena": {
-      "fetchedAt": "2026-11-17T12:14:39.225Z",
+      "fetchedAt": "2026-11-18T12:01:53.559Z",
       "ageHours": 0,
       "thresholdHours": 72,
       "stale": false
     },
     "fx": {
-      "asOf": "2026-11-16",
+      "asOf": "2026-11-17",
       "ageDays": 1,
       "thresholdDays": 14,
       "stale": false
@@ -103,11 +103,11 @@
   },
   "notes": [
     "Local pipeline run. Site deployment is out of scope for this step.",
-    "models.dev snapshot fetchedAt=2026-11-17T12:14:39.225Z",
-    "Arena text/webdev fetchedAt=2026-11-17T12:14:39.225Z/2026-11-17T12:14:39.225Z",
+    "models.dev snapshot fetchedAt=2026-11-18T12:01:53.559Z",
+    "Arena text/webdev fetchedAt=2026-11-18T12:01:53.559Z/2026-11-18T12:01:53.559Z",
     "Arena text filtered to category=overall; webdev filtered to category=webdev; latest publish date, highest vote_count per model/org.",
     "No AA data embedded; AA links are external-only.",
-    "FX 6.6665 2026-11-16 from ECB reference rate via Frankfurter.",
+    "FX 6.6661 2026-11-17 from ECB reference rate via Frankfurter.",
     "Overrides: 0 entries, 0 applied.",
     "Output JSON Schema lives in data/schema and is validated before promotion."
   ]
