@@ -1,6 +1,6 @@
 {
-  "snapshotId": "20261118-ffb51e19",
-  "generatedAt": "2026-11-18T12:01:53.559Z",
+  "snapshotId": "20261119-cd9d8cba",
+  "generatedAt": "2026-11-19T11:57:55.205Z",
   "sources": {
     "modelsDev": {
       "license": "MIT",
@@ -8,15 +8,15 @@
       "files": {
         "api": {
           "url": "https://models.dev/api.json",
-          "hash": "d386013a3df274d61c0807cd88a75a0060913f4ce5b79736dae6b40480d8a839",
-          "bytes": 6736622,
-          "fetchedAt": "2026-11-18T12:01:53.559Z"
+          "hash": "dba9ba53fb2dde07c11db0e552852f1309b633b65f635296b5dd483eb1d77811",
+          "bytes": 6766168,
+          "fetchedAt": "2026-11-19T11:57:55.205Z"
         },
         "models": {
           "url": "https://models.dev/models.json",
-          "hash": "af49321f48b30b810425116acc0afa2ec3bcdda53997568fec44d6c44f04220c",
-          "bytes": 529310,
-          "fetchedAt": "2026-11-18T12:01:53.559Z"
+          "hash": "2d76b9e60288023805fe5056e71a9bad53291d523f72f650c194aa0be8547ae4",
+          "bytes": 531102,
+          "fetchedAt": "2026-11-19T11:57:55.205Z"
         }
       }
     },
@@ -30,38 +30,38 @@
       "files": {
         "text": {
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/text/latest-00000-of-00001.parquet",
-          "hash": "928462c23d9e51ea1581e3e6063f5e280834782a0cb943f6922bf3322f06ea16",
-          "bytes": 627183,
-          "fetchedAt": "2026-11-18T12:01:53.559Z"
+          "hash": "c06a792487fde339c541f1bfbb71815e77c0eaa6a954ce7070633915b177adf3",
+          "bytes": 629959,
+          "fetchedAt": "2026-11-19T11:57:55.205Z"
         },
         "webdev": {
           "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/main/webdev/latest-00000-of-00001.parquet",
-          "hash": "577d2da67b911f7b03cd242efdee1ba75f2c56292a68cdb4af91beee40c37955",
-          "bytes": 32126,
-          "fetchedAt": "2026-11-18T12:01:53.559Z"
+          "hash": "f014eaca6025c669b35087952818569600ff09dc083065135bf32422b58f61fd",
+          "bytes": 32569,
+          "fetchedAt": "2026-11-19T11:57:55.205Z"
         }
       }
     }
   },
   "fx": {
-    "usd_to_cny": 6.6661,
-    "as_of": "2026-11-17",
+    "usd_to_cny": 6.6672,
+    "as_of": "2026-11-18",
     "source": "ECB reference rate via Frankfurter",
     "source_url": "https://api.frankfurter.dev/v1/latest?base=USD&symbols=CNY",
-    "fetched_at": "2026-11-18T12:01:53.559Z"
+    "fetched_at": "2026-11-19T11:57:55.205Z"
   },
   "counts": {
     "models": 43,
     "offers": 1731,
     "scores": 61,
-    "unmatched": 514
+    "unmatched": 518
   },
   "files": {
-    "models.json": "4044b69056b6a1b410de40a148e32a919e5c9a970e90b3c2331bfc5dcd9c0a4c",
-    "offers.json": "5953bd8667ab34da8960cae0b3e21d8bc1660bbb7ad326444f98faff981d64a6",
-    "scores.json": "a62ec394cc8791f750fc2c92abd216b2ef1870d240f7bd126e81bd15a470e7f2",
-    "unmatched.json": "58ba7f053ba5927444e589000ad3dbace733c1e6dc7f6a684df79e2615d5c810",
-    "validation-report.json": "2098c51cc847e608982e557a9df56f3d6f7b90c3088dfb193b1a84bd912815f4"
+    "models.json": "9dff5b0ba0e4f874885c62e7c161a08c4d302184afef95ec1a1bc33a06cec664",
+    "offers.json": "15304fd04fc6914bcd4f5d1b3b1a578c13776fc23d8d12a0b4e4490979e977d6",
+    "scores.json": "f92843eb097db3a7fbbc2734772e0e09681aae8ff7d32806c283c394ba9245f9",
+    "unmatched.json": "d428d99e01d671116d5937e2cd8cbdeb9bd8220ccc58e629b2e08795eda30cc2",
+    "validation-report.json": "912f771cf6d8ff6f801f15957f14438ed71e0edcf215c8b79ceb9f7fa925d319"
   },
   "overrides": {
     "count": 0,
@@ -79,19 +79,19 @@
   },
   "freshness": {
     "modelsDev": {
-      "fetchedAt": "2026-11-18T12:01:53.559Z",
+      "fetchedAt": "2026-11-19T11:57:55.205Z",
       "ageHours": 0,
       "thresholdHours": 48,
       "stale": false
     },
     "arena": {
-      "fetchedAt": "2026-11-18T12:01:53.559Z",
+      "fetchedAt": "2026-11-19T11:57:55.205Z",
       "ageHours": 0,
       "thresholdHours": 72,
       "stale": false
     },
     "fx": {
-      "asOf": "2026-11-17",
+      "asOf": "2026-11-18",
       "ageDays": 1,
       "thresholdDays": 14,
       "stale": false
@@ -103,11 +103,11 @@
   },
   "notes": [
     "Local pipeline run. Site deployment is out of scope for this step.",
-    "models.dev snapshot fetchedAt=2026-11-18T12:01:53.559Z",
-    "Arena text/webdev fetchedAt=2026-11-18T12:01:53.559Z/2026-11-18T12:01:53.559Z",
+    "models.dev snapshot fetchedAt=2026-11-19T11:57:55.205Z",
+    "Arena text/webdev fetchedAt=2026-11-19T11:57:55.205Z/2026-11-19T11:57:55.205Z",
     "Arena text filtered to category=overall; webdev filtered to category=webdev; latest publish date, highest vote_count per model/org.",
     "No AA data embedded; AA links are external-only.",
-    "FX 6.6661 2026-11-17 from ECB reference rate via Frankfurter.",
+    "FX 6.6672 2026-11-18 from ECB reference rate via Frankfurter.",
     "Overrides: 0 entries, 0 applied.",
     "Output JSON Schema lives in data/schema and is validated before promotion."
   ]

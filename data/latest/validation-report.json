@@ -19,7 +19,7 @@
     "models": 43,
     "offers": 1731,
     "scores": 61,
-    "unmatched": 514,
+    "unmatched": 518,
     "modelsWithScores": 33,
     "modelsWithoutScores": 10,
     "byBoard": {
@@ -42,14 +42,14 @@
     },
     "fxAgeDays": 1,
     "arena": {
-      "textRows": 11177,
-      "webdevRows": 676,
-      "textCategoryRows": 421,
-      "webdevCategoryRows": 157,
-      "textDeduped": 421,
-      "webdevDeduped": 156,
+      "textRows": 11202,
+      "webdevRows": 688,
+      "textCategoryRows": 422,
+      "webdevCategoryRows": 160,
+      "textDeduped": 422,
+      "webdevDeduped": 159,
       "scores": 61,
-      "unmatched": 514,
+      "unmatched": 518,
       "matchedRows": 61,
       "byBoard": {
         "text": 30,
@@ -62,6 +62,6 @@
       "hash": "c66340a9362f142d6b60fc5bf60607c7c5e61c5dfe5b82bcb0e3246b723fdd85"
     }
   },
-  "generatedAt": "2026-11-18T12:01:53.559Z",
-  "snapshotId": "20261118-ffb51e19"
+  "generatedAt": "2026-11-19T11:57:55.205Z",
+  "snapshotId": "20261119-cd9d8cba"
 }
